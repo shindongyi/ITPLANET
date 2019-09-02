@@ -26,9 +26,4 @@ public class StudyController {
 	public String studyListView() {
 		return "study/studyListView";
 	}
-	
-	@RequestMapping("studyUpdateView.do")
-	public String studyUpdateView() {
-		return "study/studyUpdateView";
-	}
 }

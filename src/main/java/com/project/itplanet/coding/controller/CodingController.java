@@ -15,9 +15,4 @@ public class CodingController {
 	public String cdTest() {
 		return "coding/codingTestInsert";
 	}
-	
-	@RequestMapping("codingTestView.do")
-	public String codingTestView() {
-		return "coding/codingTestView";
-	}
 }

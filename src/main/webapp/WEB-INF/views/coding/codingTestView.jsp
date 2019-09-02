@@ -8,7 +8,7 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta charset="utf-8">
 	<title>코딩 테스트</title>
-	<link rel="stylesheet" media="all" href="${ contextPath }/resources/css/coding.css" />
+	<link rel="stylesheet" media="all" href="<%= request.getContextPath() %>/css/coding.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

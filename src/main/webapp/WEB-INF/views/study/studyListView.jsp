@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
-<script src="${ contextPath }/resources/js/select2.min.js"></script>
-<link rel='stylesheet' href="${ contextPath }/resources/css/bootstrap.css">
-<link href="${ contextPath }/resources/css/select2.min.css" rel="stylesheet"/>
+<script src="<%= request.getContextPath() %>/js/select2.min.js"></script>
+<link rel='stylesheet' href="<%= request.getContextPath() %>/css/bootstrap.css">
+<link href="<%= request.getContextPath() %>/css/select2.min.css" rel="stylesheet"/>
 <script>
 		var ns = $.noConflict(true);
 		ns(document).ready(function() {

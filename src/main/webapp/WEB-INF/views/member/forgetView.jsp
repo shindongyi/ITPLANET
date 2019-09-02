@@ -60,9 +60,29 @@
 											</dl>
 										</fieldset>
 										<p class="btnAlign">
-											<span class="findIdSubBtn">확인</span>
+											<span id="fIdBtn" class="findIdSubBtn">확인</span>
 										</p>
 									</div>
+									<script>
+										$('#fIdBtn').on('click', function(){
+											findId();
+										});
+										
+										function() findId{
+											$.ajax({
+												url: "findId.do",
+												type: "post",
+												data: {userName:fidName, email:txEmail1},
+												success: function(data){
+													if(data != null){
+														$('#resultIdList strong').text('');
+														$('#resultIdList strong').text('${data}');
+														$('#idResult').show();
+													}
+												}
+											});
+										});
+									</script>
 								</form>
 							</div>
 						</div>
@@ -121,9 +141,33 @@
 												</dl>
 											</fieldset>
 										<p class="btnAlign">
-											<span class="findIdSubBtn">확인</span>
+											<span id="fPwdBtn" class="findIdSubBtn">확인</span>
 										</p>
 									</div>
+									<script>
+										$('#fPwdBtn').on('click', function(){
+											findId();
+										});
+										
+										function() findPwd{
+											var userId = $('#fpwId').val(); 
+											var userName = $('#fpwName').val(); 
+											var email = $('#fpwMail2').val();
+											
+											$.ajax({
+												url: "findPwd.do",
+												type: "post",
+												data: {userId:userId, userName:userName, email:email},
+												success: function(data){
+													if(data == "success"){
+														$('.changePwd').show();
+													} else {
+														alert('존재하지 않는 회원 정보입니다.');
+													}
+												}
+											});
+										});
+									</script>
 								</form>
 							</div>
 						</div>
@@ -174,13 +218,22 @@
 											</dl>
 										</fieldset>
 										<p class="btnAlign">
-											<span class="findIdSubBtn">확인</span>
+											<span id="findPwdBtn" class="findIdSubBtn">확인</span>
 										</p>
 									</div>
 								</form>
 							</div>
 						</div>
 					</div>
+					<script>
+						$('.findPwdBtn').on('click', function(){
+							findPwd();
+						});
+						
+						function findPwd(){
+							$.ajax
+						}
+					</script>
 					<!-- end pwd search result -->
 				</div>
 			</div>

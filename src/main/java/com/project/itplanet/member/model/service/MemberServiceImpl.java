@@ -32,5 +32,14 @@ public class MemberServiceImpl implements MemberService{
 	public int updatePwd(Member m) {
 		return mDAO.updatePwd(m);
 	}
-	
+
+	@Override
+	public String findUserId(Member m) {
+		return mDAO.findUserId(m);
+	}
+
+	@Override
+	public int findPwd(Member m) {
+		return mDAO.findUserPwd(m);
+	}
 }

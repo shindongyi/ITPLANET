@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+.findMem{
+	position: relative;
+    width: 1000px;
+    margin: 0 auto;
+    letter-spacing: -1px;
+    padding-top: 35px;
+}
+.contentWrap h2{
+	font-size: 28px;
+	font-weight: bold;
+	color: #555;
+	padding-bottom: 16px;
+}
+.help{
+	color: #999;
+	font-size: 11px;
+	line-height: 16px;
+	padding-bottom: 20px;
+}
+.findIdSection{
+	width: 460px;
+	padding: 32px 30px;
+	background: #fbfbfb;
+}
+.boxCont{
+	position: relative;
+	height: 182px;
+	font-size: 11px;
+	color : #999;
+	width: 400px;
+	margin: 0 auto;
+}
+.frmType{
+	width: 100%;
+	margin-bottom: 12px;
+}
+.frmType dt{
+    float: left;
+    width: 60px;
+    font-size: 11px;
+    padding-top: 8px;
+    font-weight: bold;
+    color: #555;
+}
+.frmType dd{
+	float: left;
+}
+.btnAlign{
+	position: absolute;
+	left: 147px;
+	bottom: 0; 
+}
+.findIdSubBtn{
+	font-size: 12px;
+	line-height: 13px;
+	padding: 12px 40px;
+	display: inline-block;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middel;
+	cursor: pointer;
+	color: #fff;
+	background-color: #002358;
+	border: 1px solid #002358;
+}
+.findId, .findPwd, .findResult, .changePwd{
+	display: inline-block;
+	margin: 0 auto;
+	width: 460px;
+}
+.findId, .findResult {
+	float: left;
+}
+.findPwd, .changePwd{
+	float: right;
+}
+.findResult, .changePwd{
+	display: none;
+}
+.findResult{
+	width: 400px;
+	margin-top: 5px;
+	padding: 30px;
+	font-size: 11px;
+	background: url(http://fiximage.10x10.co.kr/web2013/member/bg_search_result.gif) left top no-repeat #eee;
+	clear: both;
+}
+.idList{
+	overflow: hidden;
+    color: #d50c0c;
+    padding-top: 10px;
+}
+.idList li{
+	float: left;
+	padding-right: 20px;
+	font-size: 12px;
+}
+.idList li strong{
+	letter-spacing: 0.005em;
+}
+#changePwdWrap dt{
+	width: 100px;
+}
+.changePwdSection{
+	width: 420px;
+} 
+
+
+
+
+
+

@@ -1,0 +1,185 @@
+@charset "UTF-8";
+
+.section h3{
+	padding: 0 10px;
+}
+.middleSection{
+	width: 598px;
+	margin-left: 20px;
+}
+.middleSection .article{
+	position: relative;
+	padding-top: 11px;
+	border-top: 2px solid #555;
+}
+.section .article{
+	/* margin-top: 20px; */
+}
+.article{
+	min-height: 232px;
+}
+.compe h3, .hire h3, .lcs h3{
+	padding-left: 28px;
+} 
+.scpList {
+	overflow: hidden;
+	margin-top: 26px;
+	padding-left: 13px;
+}
+.middleSection .article .more{
+	position: absolute;
+	top: 7px;
+	right: 10px;
+	color: #777;
+	font-size: 11px;
+}
+.scpList li{
+	float: left;
+	position: relative;
+	width: 142px;
+	background: none;
+	text-align: center;
+}
+.scpList li:first-child .figure{
+	border: 0;
+}
+.scpList li .figure{
+	display: block;
+	width: 106px;
+	padding: 0 18px;
+	border-left: 1px dotted #ddd;
+}
+.scpList li .figure img{
+	vertical-align: top;
+}
+.scpList li a .scpName{
+	margin-top: 13px;
+}
+.scpName{
+	width: 106px;
+	margin: 0 auto;
+	overflow: hidden;
+	height: 15px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
+	color: #777;
+	font-size: 11px;
+	line-height: 14px;
+	font-weight: bold;
+}
+.rightSection{
+	width: 288px;
+	margin-left: 22px;
+}
+.alarm{
+	position: relative;
+}
+.alarm h3{
+	position: relative;
+	padding: 12px 10px 12px 29px;
+	/* background: #555; */
+	background: #003458;
+	color: #fff;
+}
+.alarm span{
+	position: relative;
+	top: 11px;
+	left: 10px;
+	width: 13px;
+	height: 14px;
+}
+.myAalam{
+	font-size: 11px;
+}
+.alarmList:first-child{
+	padding-top: 20px;
+}
+.alarmList{
+	position: relative;
+	padding: 0 20px;
+	overflow: hidden;
+	font-size: 11px;
+}
+.alarmList .almToday{
+	padding-top: 0;
+	padding-bottom: 0;
+	background: none;
+}
+.almToday{
+	padding: 15px 0;
+}
+.almToday .todayBox{
+	width: 256px;
+	font-size: 11px;
+	background: #f7f7f7;
+}
+.todayBox{
+	margin: 0 auto;
+	height: 22px;
+	text-align: center;
+	font-weight: bold;
+	color: #333;
+	line-height: 22px;
+	vertical-align: middle;
+}
+.alarmList ul.alarmUnit{
+	padding-bottom: 0;
+}
+ul.alarmUnit{
+	float: none;
+}
+.alarmList .alarmUnit li{
+	overflow: hiddem;
+	margin-bottom: -1px;
+	padding: 20px 8px 22px 90px;
+}
+.alarmUnit li{
+	position: relative;
+	float: none;
+	vertical-align: middle;
+}
+.alarmList .alarmUnit li a{
+	display: block;
+}
+li.itemPart span.alarmIco{
+	background-position: 0 -250px;
+}
+.alarmUnit li span.alarmIco{
+	display: block;
+	position: absolute;
+	left: 8px;
+	top: 50%;
+	margin-top: -32px;
+	width: 66px;
+	height: 66px;
+	background-image: url(../../image/changePwd6.png);
+	background-repeat: no-repeat;
+}
+.alarmUnit li dl{
+	padding-bottom: 5px;
+}
+.itemPart dt{
+	padding-top: 7px;
+    background: url(http://fiximage.10x10.co.kr/web2015/my10x10/bg_sprite.png) no-repeat 0 -388px;
+}
+.alarmUnit li dl dt{
+	font-weight: bold;
+	color: #555;
+}
+.alarmUnit li dl dt{
+	color: #555;
+}
+.alarmList .alarmUnit li p{
+	color: #555;
+}
+.alarmUnit li p{
+	letter-spacing: -0.05em;
+}
+.alarm .expire{
+	padding: 13px 0 11px;
+	background-color: #f7f7f7;
+    color: #aaa;
+    font-size: 11px;
+    text-align: center;
+}

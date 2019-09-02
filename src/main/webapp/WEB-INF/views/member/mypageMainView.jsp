@@ -1,20 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${contextPath}/resources/css/member/mypageMainView-style.css" type="text/css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
+<script>
+	$(function(){
+		alert('회원탈퇴 페이지 css수정하기, 회원가입 다듬기');
+	});
+</script>
 <div id="wrap">
 		<div id="container">
 			<div id="mypageContentWrap">
 				<div id="myHeader">
 					<h2>
-						<a href="myPage.do">MY PAGE</a>
+						<a href="mypage.do">MY PAGE</a>
 					</h2>
 					<div id="breadcrumb"></div>
 				</div>

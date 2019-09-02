@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.dropGuide{
+	margin-top: 40px;
+}
+.dropGuide h4{
+	margin-bottom: 15px;
+	color: #000;
+	font-size: 14px;
+}
+.guide li{
+	text-indent: -16px;
+	padding: 0 0 3px 16px;
+}
+#update_form .box strong{
+	
+}
+#update_form .update_row .email_title{
+	line-height: 20px;
+}
+.guideMsg{
+	padding: 10px 0 10px 208px;
+}

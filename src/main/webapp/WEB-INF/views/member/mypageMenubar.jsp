@@ -42,13 +42,13 @@
 					<span class="navCt_title">MY INFO</span>
 					<ul style="display:none;">
 						<li>
-							<a id="updateInfo" href="#">내 정보 관리</a>
+							<a id="updateInfo" href="confirmUser.do">내 정보 관리</a>
 						</li>
 						<li>
-							<a id="updatePwd" href="#">비밀번호변경</a>
+							<a id="updatePwd" href="updatePwdForm.do">비밀번호변경</a>
 						</li>
 						<li>
-							<a id="deleteM" href="#">회원탈퇴</a>
+							<a id="deleteM" href="deleteMV.do">회원탈퇴</a>
 						</li>
 					</ul>
 				</li>
@@ -92,16 +92,16 @@
 		var type = $(event.target).val(); 
 		location.href="myPageScrapView.do?type="+ type;
 		location.href="myPageScrapView.do";
-	}); */
-	$('#updateInfo').on('click', function(){
+	}); 
+	 $('#updateInfo').on('click', function(){
 	location.href="confirmUser.do";
 	});
 	$('#updatePwd').on('click', function(){
 		location.href="updatePwdForm.do";
 	});
 	$('#deleteM').on('click', function(){
-		location.href="deleteMV.do";
-	});
+		location.href="joinView.do";
+	}); */
 </script>
 <!-- start main -->
 </body>

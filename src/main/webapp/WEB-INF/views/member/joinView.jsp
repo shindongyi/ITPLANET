@@ -56,7 +56,7 @@
 							<h3 class="join_title"><label for="nickName">닉네임</label><span class="red_mark">*</span></h3>
 							<input type="text" id="nickName" name="nickName" class="int">
 						</div>
-						<span class="error_box" id="nickNameMsg" style="display: none;"></span>
+						<div class="error_box" id="nickNameMsg" style="display: none;"></div>
 					</div>
 					<div class="join_row join_birth">
 						<div class="birth_wrap">
@@ -353,12 +353,11 @@ $("#email").blur(function(){
 });
 
 function checkUserId(event){
-	if(userIdFlag) return true;
+	/* if(userIdFlag) return true; */
 	userIdFlag = false;
 	
 	var userId = $("#userId").val();
 	var oMsg = $('#idMsg');
-	console.log(userId);
 	
 	if(userId == ""){
 		showErrorMsg(oMsg, "아이디를 입력해주세요.");
@@ -370,15 +369,14 @@ function checkUserId(event){
 		showErrorMsg(oMsg, "5~20자의 영문 소문자, 숫자와 특수기호(_), (-)만 사용 가능합니다.");
 	} else {
 		oMsg.hide();
-		userIdFlag = checkUserIdAjax();
+		var a = checkUserIdAjax();
+		console.log("a: " + a);
 	}
 }
 
 function checkUserIdAjax(){
 	var userId = $("#userId").val();
 	var oMsg = $('#idMsg');
-	
-	console.log("ajax안 : " + userId);
 	
 	$.ajax({
 		url: "checkUserId.do",
@@ -388,17 +386,15 @@ function checkUserIdAjax(){
 			if(data == "success"){
 				console.log(data);
 				showErrorMsg(oMsg, "이미 사용중이거나 탈퇴한 회원의 아이디입니다.");
-				return false;
+				userIdFlag = false;
 			} else{
 				/* oMsg.hide(); */
-				showErrorMsg(oMsg, "멋진 아이디네요!");
+				showErrorMsg(oMsg, "사용 가능한 아이디 입니다.");
 				oMsg.css('color', 'green');
-				return true;
+				userIdFlag = true;
 			}
 		}
 	});
-	
-	userIdFlag = false;
 }
 
 function checkUserPwd(){
@@ -474,7 +470,7 @@ function checkNickNameAjax(){
 				showErrorMsg(oMsg, "이미 사용중인 닉네임입니다.");
 				return false;
 			} else{
-				showErrorMsg(oMsg, "멋진 닉네임입니다!");
+				showErrorMsg(oMsg, "사용 가능한 닉네임입니다.");
 				oMsg.css('color', 'green');
 				return true;
 			}
@@ -511,7 +507,7 @@ function checkBirth(){
 	} else if(!isBirth_dd.test(birth_dd)){
 		showErrorMsg(oMsg, "생년월일을 다시 확인해주세요.");
 	} else if(!isBirth_yy.test(birth_yy)){
-		showErrorMsg(oMsg, "정말요?");
+		showErrorMsg(oMsg, "다시 확인 해주세요.");
 	} else{
 		oMsg.hide();
 		check = true;
@@ -551,11 +547,17 @@ function showErrorMsg(oMsg, msg){
 	oMsg.attr('style', '');
 	oMsg.text(msg);
 }
-
 $('#join_btn').on('click', function(){
-	
+	console.log("1: " + check);
+	console.log("2: " + userIdFlag);
+	console.log("3: " + userPwdFlag);
 	if(check && userIdFlag && userPwdFlag){
-		$('#join_form').submit();
+		if($('#agreeUseAdult').is("checked") && $('#agreeUse').is("checked") && $('#agreePrivate').is("checked")){
+			console.log(1234);
+			$('#join_form').submit();
+		} else{
+			alert('모든 약관에 동의해주세요.');
+		}
 	} else{
 		alert("모든 항목을 알맞게 입력해주세요.");
 	}

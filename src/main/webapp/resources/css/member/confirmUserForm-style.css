@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+.myContent{
+	float: right;
+    width: 848px;
+    min-height: 703px;
+    height: auto !important;
+    padding: 40px 30px;
+    border-top: 2px solid #555;
+    background: #fff;
+    font-size: 11px;
+}
+.myContent .titleSection{
+	margin: 0 -30px 45px;
+    padding: 0 30px 30px;
+    background: url(http://fiximage.10x10.co.kr/web2013/my10x10/bg_double_line.gif) left bottom repeat-x;
+    position: relative;
+}
+#mypageMain .myContent .titleSection h3{
+    color: #000;
+    font-size: 22px;
+	font-weight: 700;
+}
+.pwdConfirm{
+	font-size: 12px;
+	text-align: center;
+}
+.pwdConfirm h2{
+	padding-bottom: 14px;
+	font-size: 18px;
+	font-weight: 700;
+}
+.box{
+	display: block;
+	position: relative;
+	padding: 10px 14px 10px 14px;
+	width: 400px;
+	height: 51px;
+	border-bottom: 1px solid #dadada;
+	box-sizing: border-box;
+	background: #fff;
+	vertical-align: top;
+	margin: 0 auto;
+}
+.box input{
+	outline: 0;
+}
+#mypageMain .update_title{
+	/* margin: 19px 0 8px; */
+	margin-left: -48px;
+	display: inline;
+	line-height: 29px;
+	font-size: 12px;
+	font-weight: normal;
+}
+.int{
+	display: inline-block;
+	position: relative;
+	float: right;
+	width: 75%;
+	height: 29px;
+	line-height: 29px;
+	border: none;
+	background: #fff;
+	font-size: 15px;
+	box-sizing: border-box;
+	z-index: 10;
+}
+.handing{
+	margin-top: 35px;
+    padding: 22px 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    background: #f8f8f8;
+}

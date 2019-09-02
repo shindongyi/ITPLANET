@@ -10,4 +10,8 @@ public interface MemberService {
 	int selectUserId(String userId);
 
 	int updatePwd(Member m);
+
+	String findUserId(Member m);
+
+	int findPwd(Member m);
 }

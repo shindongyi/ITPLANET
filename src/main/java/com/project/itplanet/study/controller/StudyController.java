@@ -1,9 +1,13 @@
 package com.project.itplanet.study.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.project.itplanet.common.model.vo.Local;
 import com.project.itplanet.study.model.service.StudyService;
 
 
@@ -13,8 +17,12 @@ public class StudyController {
 	private StudyService sService;
 	
 	@RequestMapping("studyInsertView.do")
-	public String studyInsertView() {
-		return "study/studyInsertView";
+	public ModelAndView studyInsertView(ModelAndView mv) {
+		ArrayList<Local> list = sService.selectLocal();
+		mv.addObject("list", list);
+		mv.setViewName("study/studyInsertView");
+		
+		return mv;
 	}
 	
 	@RequestMapping("studyDetailView.do")

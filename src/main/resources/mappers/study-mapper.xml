@@ -23,4 +23,14 @@
 		<result property="sId" column="S_ID"/>
 		<result property="srWriter" column="USER_ID"/>
 	</resultMap>
+	
+	<resultMap type="Local" id="localResult">
+		<id property="lCode" column="L_CODE"/>
+		<result property="lName" column="L_NAME"/>
+	</resultMap>
+	
+	<select id="selectLocal" resultMap="localResult">
+		select *
+		from local
+	</select>
 </mapper>

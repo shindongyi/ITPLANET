@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,7 +130,10 @@ td{
 							<th style="vertical-align: middle;">모임장소</th>
 							<td>
 								<select id="local" class="local" name="local" style="width:300px;">
-									<option value="1">서울 강서구</option>
+									<!-- <option value="1">서울 강서구</option> -->
+									<c:forEach items="${ list }" var="lo">
+										<option value="${ lo.lCode }">${ lo.lName }</option>
+									</c:forEach>
 								</select>
 							</td>
 							<th style="vertical-align: middle;">스터디 멤버</th>

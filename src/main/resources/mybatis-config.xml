@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+	<typeAliases>
+		<!-- VO객체 별칭 지정 -->
+		<typeAlias type="com.project.itplanet.study.model.vo.Study" alias="Study"/>
+		<typeAlias type="com.project.itplanet.study.model.vo.StudyReply" alias="StudyReply"/>
+		<typeAlias type="com.project.itplanet.member.model.vo.Member" alias="Member"/>
+	</typeAliases>
+	
+	<mappers>
+		<!-- mapper 파일 -->
+		<mapper resource="mappers/blacklist-mapper.xml"/>
+		<mapper resource="mappers/coding-mapper.xml"/>
+		<mapper resource="mappers/competition-mapper.xml"/>
+		<mapper resource="mappers/hire-mapper.xml"/>
+		<mapper resource="mappers/license-mapper.xml"/>
+		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/study-mapper.xml"/>
+	</mappers>
+</configuration>

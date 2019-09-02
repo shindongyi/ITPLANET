@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+.header {
+	
+	width: 100%;
+	height: 150px;
+	background: #003458;
+}
+
+#container {
+	margin: 16px auto;
+	color: -internal-root-color;
+}
+
+#container > div.section {
+  padding: 16px;
+  background-color: #fff;
+}
+
+.content {
+	border: 2px solid #003458;
+	margin: 16px auto 16px auto; 
+	width: 896px;
+	display: flex;
+  	
+}
+
+img.contentImg {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	
+}
+
+.section {
+	margin: 20px auto 0 auto;
+	padding: 15px;
+	border: 1px solid #003458;
+	max-width: 896px;
+	
+}
+
+.menubar {
+	width: 896px;
+	margin: 16px auto 16px auto;
+}
+
+#menu{
+	margin: 0;
+	padding: 0;
+	margin-top: 20px;
+	max-width: 896px;
+}
+#menu li{
+	margin: 5px auto 5px auto;
+	list-style: none;
+	display: inline-block;
+	width: 33%;
+    text-align: center;
+	
+}
+
+#menu li a{
+	text-decoration: none;
+	position: relative;
+	color: #313131;
+	font-size: 30px;
+	font-weight: 700;
+}
+
+#container > div.menubottom {
+	padding: 15px;
+	margin: 5px auto 5px auto;
+	list-style: none;
+	width: 896px;
+    font-size: 25px;
+	font-weight: 700;
+	color: #003458;
+}
+
+#container > div.menubottom > a {
+	
+	margin-left: 20px;
+}
+
+
+#container > div.section > p.indent {
+    margin-bottom: 4px;
+    padding-left: 80px;
+    line-height: 45px;
+    color: #4c4c4c;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+#container > div.section > h3 {
+    margin-bottom: 8px;
+    line-height: 24px;
+    color: #003458;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#container > div.section > h4 {
+    position: absolute;
+    line-height: 20px;
+    color: #a6a6a6;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+#container > div.section > p.dday {
+    position: absolute;
+    padding: 0 8px;
+    line-height: 20px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #a6a6a6;
+    margin: 10px;
+}

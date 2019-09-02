@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+<resultMap type="Member" id="memberResultSet">
+		<id property="userId" column="USER_ID"/>
+		<result property="userPwd" column="USER_PWD"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="nickName" column="NICKNAME"/>
+		<result property="birthDay" column="BIRTH_DAY"/>
+		<result property="gender" column="GENDER"/>
+		<result property="email" column="EMAIL"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="modifyDate" column="MODIFY_DATE"/>
+		<result property="status" column="STATUS"/>
+		<result property="black" column="BLACK"/>
+		<result property="grade" column="GRADE"/>
+	</resultMap>
+	
+	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
+		select * 
+		from member
+		where user_id=#{userId} and status='Y'
+	</select>
+	
+	<insert id="insertMember" parameterType="Member">
+		insert into member
+		values(#{userId}, #{userPwd}, #{userName}, 
+				#{nickName}, #{birthDay}, #{gender}, 
+				#{email}, sysdate, sysdate, default, default, default)
+	</insert>
+	
+	<select id="selectUserId" parameterType="String" resultType="_int">
+		select count(*)
+		from member
+		where user_id = #{userId}
+	</select>
+	
+	<update id="updatePwd" parameterType="Member">
+		update member set user_id=#{userId}, user_pwd=#{userPwd} 
+	</update>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="studyMapper">
+
+	<resultMap type="Study" id="studyResultSet">
+		<id property="sId" column="S_ID"/>
+		<result property="sTitle" column="S_TITLE"/>
+		<result property="sContent" column="S_CONTENT"/>
+		<result property="sCount" column="S_COUNT"/>
+		<result property="createDate" column="CREATE_DATE"/>
+		<result property="modifyDate" column="MODIFY_DATE"/>
+		<result property="status" column="STATUS"/>
+		<result property="sWriter" column="USER_ID"/>
+		<result property="sLocation" column="S_LOCATION"/>
+	</resultMap>
+	
+	<resultMap type="StudyReply" id="studyReplyResult">
+		<id property="srId" column="SR_ID"/>
+		<result property="srContent" column="SR_CONTENT"/>
+		<result property="srCreateDate" column="SR_CREATE_DATE"/>
+		<result property="srModifyDate" column="SR_MODIFY_DATE"/>
+		<result property="status" column="STATUS"/>
+		<result property="sId" column="S_ID"/>
+		<result property="srWriter" column="USER_ID"/>
+	</resultMap>
+</mapper>

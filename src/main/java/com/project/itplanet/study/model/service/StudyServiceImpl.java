@@ -1,6 +1,7 @@
 package com.project.itplanet.study.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,5 +39,17 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public Study studyDetail(int sId) {
 		return sDAO.studyDetail(sId);
+	}
+
+	@Override
+	public int deleteStudy(int sId) {
+		return sDAO.deleteStudy(sId);
+	}
+
+
+	@Override
+	public void createChat(HashMap<String, String> map) {
+		sDAO.createChat(map);
+		
 	}
 }

@@ -193,23 +193,28 @@
 			<h2 class="text-center">스터디 상세</h2>
 			<br><br>
 			<p></p>
-			<form action="" method="get" name="SWriter" id="SWriter">
+			<form action="updateStudyView.do" method="get" name="SWriter" id="SWriter">
 				<div class="table table-responsive tdiv" style="border-radius:20px;">
 					<table class="table" style="text-align: center;" id="detailTable">
 						<tr>
 							<th style="width:150px;">제목</th>
 							<td colspan="3">
 								${ study.sTitle }
+								<input type="hidden" name="sId" value="${ study.sId }">
+								<input type="hidden" name="sTitle" value="${ study.sTitle }">
 							</td>
 						</tr>
 						<tr>
 							<th>스터디 종류</th>
 							<td style="width:500px;">
 								${ study.sCategory } - ${ study.sCaName }
+								<input type="hidden" name="sCategory" value="${ study.sCategory }">
+								<input type="hidden" name="sCaName" value="${ study.sCaName }">
 							</td>
 							<th style="width:200px;">작성자</th>
 							<td align="center" style="width:194px;">
 								${ study.sWriter }
+								<input type="hidden" name="sWriter" value="${ study.sWriter }">
 							</td>
 						</tr>
 
@@ -221,6 +226,7 @@
 							</td>
 							<td>
 								[ <!-- chat room 인원 수 -->1 / ${ study.sMember } ]
+								<input type="hidden" name="sMember" value="${ study.sMember }">
 							</td>
 							<td id="studyMem">
 								<input type="button" value="스터디 신청">
@@ -228,20 +234,23 @@
  						</tr>
  						<tr>
  							<th>모임장소</th>
- 							<td colspan="3">${ study.sLocation }</td>
+ 							<td colspan="3">${ study.sLocation }<input type="hidden" name="sLocation" value="${ study.sLocation }"></td>
  						</tr>
 
 						<tr style="background: white;">
 							<th style="border-bottom-left-radius:20px;">글내용</th>
 							<td colspan="3">
+								<input type="hidden" name="sContent" value="${ study.sContent }">
 								<textarea rows="10" cols="50" name="content" class="form-control" readonly style="border-radius:20px; resize: none;">${ study.sContent }</textarea>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="4" class="text-center" align="right">
-								<input type="button" value="수정">
-								<input type="button" value="삭제">
-								<input type="button" value="목록">
+								<c:if test="${ loginUser.userId.equals( study.sWriter) }">
+									<input type="button" value="수정">
+									<input type="button" value="삭제" onclick="deleteBtn();">
+								</c:if>
+								<input type="button" value="목록" onclick="javascript:location.href='studyListView.do'">
 							</td>
 						</tr>
 
@@ -250,20 +259,21 @@
 			</form>
 			
 			<div id="commentDiv">
-      <h2 style="margin-left: -60px; padding-bottom : 10px;">상품문의</h2>
+      <h2 style="margin-left: -60px; padding-bottom : 10px;">댓글</h2>
       <hr>
 
       <div>
         <ul class="commentList">
         <%for(int i = 0 ;i < 5; i++){ %>
           <li class="comment-item">
-            <div class="area-txt">
+            <div class="area-txt" style="border-bottom:2px solid #003458;">
               <span class="name">김수민</span>
               <span class="createDate">2019-07-18</span>
-              <button class="replyBtn">답글</button>
+              <button class="coUpdateBtn">수정</button>
+              <button class="coDelBtn">삭제</button>
               <p class="text">어떤 택배로 발송되나요?</p>
             </div>
-            <ul class="comment-reply">
+            <!-- <ul class="comment-reply">
               <li>
                 <div class="comment-item">
                   <div class="area-user">
@@ -278,7 +288,7 @@
                   </p>
                 </div>
               </li>
-            </ul>
+            </ul> -->
           </li>
           <%} %>
          </ul>
@@ -299,6 +309,16 @@
 		
 		<div class="col-md-3" style="max-width:20.85%;"></div>
 	</div>
+	
+	<script>
+		function deleteBtn(){
+			var bool = confirm("정말로 삭제하시겠습니까?");
+			if(bool){
+				$('#SWriter').attr("action", "deleteStudy.do?sId=${study.sId}");
+				$('#SWriter').submit();
+			}
+		}
+	</script>
 
 </body>
 </html>

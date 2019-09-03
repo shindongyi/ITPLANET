@@ -175,11 +175,10 @@
 				ns(this).parent().css({'background':'none', 'color':'black'});
 			}).click(function(){
 				var sId = ns(this).parent().children().children('input').val();
-				'<c:set var="sId" value=/>'
 				var logUser = '${loginUser}';
 				 
 				if(logUser != ''){
-					location.href="studyDetail.do";
+					location.href="studyDetail.do?sId="+sId;
 				}else{
 					alert("회원만 이용할 수 있는 서비스입니다.");
 				}

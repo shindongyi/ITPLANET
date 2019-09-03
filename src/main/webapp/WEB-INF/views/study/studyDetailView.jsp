@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -198,27 +199,28 @@
 						<tr>
 							<th style="width:150px;">제목</th>
 							<td colspan="3">
-								저희랑 같이 정처기 합격해요
+								${ study.sTitle }
 							</td>
 						</tr>
 						<tr>
 							<th>스터디 종류</th>
 							<td style="width:500px;">
-								자격증 - 정처기
+								${ study.sCategory } - ${ study.sCaName }
 							</td>
 							<th style="width:200px;">작성자</th>
 							<td align="center" style="width:194px;">
-								김개똥
+								${ study.sWriter }
 							</td>
 						</tr>
 
 						<tr>
 							<th>스터디멤버<br>현황</th>
 							<td id="studyMem1">
-								김개똥,아무개,이순신
+								<!-- chat room 멤버쪽 -->
+								${ study.sWriter }
 							</td>
 							<td>
-								[ 3 / 5 ]
+								[ <!-- chat room 인원 수 -->1 / ${ study.sMember } ]
 							</td>
 							<td id="studyMem">
 								<input type="button" value="스터디 신청">
@@ -226,13 +228,13 @@
  						</tr>
  						<tr>
  							<th>모임장소</th>
- 							<td colspan="3">서울 강서구</td>
+ 							<td colspan="3">${ study.sLocation }</td>
  						</tr>
 
 						<tr style="background: white;">
 							<th style="border-bottom-left-radius:20px;">글내용</th>
 							<td colspan="3">
-								<textarea rows="10" cols="50" name="content" class="form-control" readonly style="border-radius:20px; resize: none;"></textarea>
+								<textarea rows="10" cols="50" name="content" class="form-control" readonly style="border-radius:20px; resize: none;">${ study.sContent }</textarea>
 							</td>
 						</tr>
 						<tr>

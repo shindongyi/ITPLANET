@@ -5,8 +5,11 @@
 	<resultMap type="Study" id="studyResultSet">
 		<id property="sId" column="S_ID"/>
 		<result property="sTitle" column="S_TITLE"/>
+		<result property="sMember" column="S_MEMBER"/>
 		<result property="sContent" column="S_CONTENT"/>
 		<result property="sCount" column="S_COUNT"/>
+		<result property="sCategory" column="S_CATEGORY"/>
+		<result property="sCaName" column="S_CANAME"/>
 		<result property="createDate" column="CREATE_DATE"/>
 		<result property="modifyDate" column="MODIFY_DATE"/>
 		<result property="status" column="STATUS"/>
@@ -33,4 +36,29 @@
 		select *
 		from local
 	</select>
+	
+	<insert id="insertStudy" parameterType="Study">
+		insert into study
+		values (SEQ_SID.NEXTVAL, #{sTitle}, #{sMember}, #{sContent}, default, #{sCategory}, #{sCaName}, sysdate, sysdate, default, #{sLocation}, #{sWriter})
+	</insert>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from study
+		where status = 'Y'
+	</select>
+	
+	<select id="selectStudy" resultMap="studyResultSet">
+		select *
+		from study
+		where status = 'Y'
+		order by s_id desc
+	</select>
+	
+	<select id="studyDetail" parameterType="_int" resultMap="studyResultSet">
+		select *
+		from study
+		where status='Y' and s_id=#{sId}
+	</select>
+	
 </mapper>

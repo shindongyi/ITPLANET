@@ -7,10 +7,27 @@
 }
 
 .container {
-	min-height: 1000px;
     margin: 16px auto 16px auto;
     width: 896px;
     display: block;
-	border: 1px solid black;
-	padding: 45px;
+	border: 1px solid #003458;
+	padding: 30px;
 }
+
+.example {
+	min-height: 300px;
+	padding: 20px;
+}
+
+.exampleInsert > tr{
+	margin: 20px;
+}
+
+td, th {
+	padding: 7px;
+}
+
+#bmessage {
+	margin-top: 10px;
+}
+

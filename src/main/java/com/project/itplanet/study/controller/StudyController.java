@@ -1,12 +1,15 @@
 package com.project.itplanet.study.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -67,11 +70,17 @@ public class StudyController {
 	
 	@RequestMapping("studyInsert.do")
 	public String studyInsert(@SessionAttribute("loginUser") Member loginUser,
-							@ModelAttribute Study study) {
+							@ModelAttribute Study study, @RequestParam("cname") String cname) {
 		String id = loginUser.getUserId();
 		study.setsWriter(id);
 		
 		int result = sService.studyInsert(study);
+		
+		String nickName = loginUser.getNickName();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("cname", cname);
+		map.put("nickName", nickName);
+		sService.createChat(map);
 		
 		if(result > 0) {
 			return "redirect:studyListView.do";
@@ -84,9 +93,22 @@ public class StudyController {
 	public ModelAndView studyDetail(@RequestParam("sId") int sId, ModelAndView mv) {
 		Study study = sService.studyDetail(sId);
 		
+		
 		mv.addObject("study", study);
 		mv.setViewName("study/studyDetailView");
 		
 		return mv;
+	}
+	
+	@RequestMapping("deleteStudy.do")
+	public String deleteStudy(@RequestParam("sId") int sId) {
+		int result = sService.deleteStudy(sId);
+		
+		if(result > 0) {
+			return "redirect:studyListView.do";
+		}else {
+			throw new StudyException("게시글 삭제에 실패하였습니다.");
+		}
+		
 	}
 }

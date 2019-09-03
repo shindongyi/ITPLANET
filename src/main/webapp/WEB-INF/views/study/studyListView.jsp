@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +30,7 @@
 	.searchArea{margin-right: 50px;}
 	.searchArea button{background: #D1B2FF; border-radius: 5px; color: white; width: 80px; heigth: 25px; text-align: center;}
 	button:hover{cursor: pointer;}
+	button:disabled{cursor: default;}
 	
 	input[type=button] {
 	  background-color: #003458;
@@ -57,76 +59,109 @@
 		<br><br>
 		<div class="tableArea">
 			<div align="right">
-				<select id="search" style="width:90px;">
-					<option value="1">자격증</option>
-					<option value="2">공모전</option>
+			<!-- 검색 네이버 쇼핑 참고 -->
+				<select id="search" name="search" style="width:90px;">
+					<option value="0">검색</option>
+					<option value="자격증">자격증</option>
+					<option value="공모전">공모전</option>
 				</select>
 			</div>
 			<table class="table" id="listArea">
-				<tr style="background:#003458; color:white;">
-					<th width="100px">No</th>
-					<th width="200px">스터디종류</th>
-					<th width="300px">제목</th>
-					<th width="100px">스터디현황</th>
-					<th width="100px">지역</th>
-					<th width="60px">조회</th>
-					<th width="100px">작성자</th>
-					<th width="100px">작성일</th>
-				</tr>
+				<thead>
+					<tr style="background:#003458; color:white;">
+						<th width="100px">No</th>
+						<th width="200px">스터디종류</th>
+						<th width="300px">제목</th>
+						<th width="100px">스터디현황</th>
+						<th width="100px">지역</th>
+						<th width="60px">조회</th>
+						<th width="100px">작성자</th>
+						<th width="100px">작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="li" items="${ list }">
+						<tr>
+							<td>${ li.sId }<input type="hidden" value="${ li.sId }"></td>
+							<td>${ li.sCategory } - ${ li.sCaName }</td>
+							<td>${ li.sTitle }</td>
+							<td></td>
+							<td>${ li.sLocation}</td>
+							<td>${ li.sCount }</td>
+							<td>${ li.sWriter }</td>
+							<td>${ li.createDate }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 				
-				<% for(int i=0; i< 10; i++){ %>
+				<%-- <c:forEach var="li" items="${ list }">
 				<tr>
-					<td><%= 10-i %></td>
-					<td>자격증-정처기</td>
-					<td>정처기따요</td>
-					<td>3/5</td>
-					<td>서울 강서구</td>
-					<td>10</td>
-					<td>김개똥</td>
-					<td>2019-08-13</td>
+					<td>${ li.sId }</td>
+					<td>${ li.sCategory } - ${ li.sCaName }</td>
+					<td>${ li.sTitle }</td>
+					<td></td>
+					<td>${ li.sLocation}</td>
+					<td>${ li.sCount }</td>
+					<td>${ li.sWriter }</td>
+					<td>${ li.createDate }</td>
 				</tr>
-				<% }%>
-
+				</c:forEach> --%>
 			</table>
 		</div>
 	
 		<div class="pagingArea" align="center">
-			<%-- <% if(!list.isEmpty()){ %>
-				<button onclick="location.href='<%= request.getContextPath() %>/list.to?currentPage=1'">&lt;&lt;</button> &nbsp;
-				<button id="beforeBtn" onclick="location.href='<%= request.getContextPath() %>/list.to?currentPage='">&lt;</button>&nbsp;
-				<script>
-					if(<%= currentPage %> <= 1){
-						$('#beforeBtn').attr("disabled", "true");
-					}
-				</script>
-				<!-- 10개의 페이지 목록 -->
-				<% for(int p = startPage; p <= endPage; p++){%>
-					<% if(p == currentPage){%>
-						<button id="choosen" disabled><%= p %></button>&nbsp;
-					<% }else{ %>
-						<button id="numBtn" onclick="location.href='<%= request.getContextPath() %>/list.to?currentPage=<%= p %>'"><%= p %></button>&nbsp;
-					<% } %>
-				<% } %>
-
-				<button id="afterBtn" onclick="location.href='<%= request.getContextPath() %>/list.to?currentPage='">&gt;</button>&nbsp;
-				<button onclick="location.href='<%= request.getContextPath() %>/list.to?currentPage='">&gt;&gt;</button>&nbsp;
-				<script>
-					if(<%= currentPage %> >= <%=endPage%>){
-						$('#afterBtn').attr("disabled", "true");
-					}
-				</script>
-			<% } %> --%>
-			<button onclick="">&lt;&lt;</button> &nbsp;
-			<button id="beforeBtn" onclick="">&lt;</button>&nbsp;
-			<% for(int i=1; i<=10; i++){ %>
-				<button id="numBtn" onclick=""><%= i %></button>&nbsp;
-			<% } %>
-			<button id="afterBtn" onclick="">&gt;</button>&nbsp;
-			<button onclick="">&gt;&gt;</button>&nbsp;
+			<!-- 처음으로 / 이전-->
+			<c:if test="${ pi.currentPage <= 1 }">
+				<button disabled>&lt;&lt;</button> &nbsp;
+				<button disabled>&lt;</button> &nbsp;
+			</c:if>
+			<c:if test="${ pi.currentPage > 1 }">
+				<c:url var="first" value="studyListView.do">
+					<c:param name="page" value="1"/>
+				</c:url>
+				<c:url var="before" value="studyListView.do">
+					<c:param name="page" value="${ pi.currentPage -1 }"/>
+				</c:url>
+				<button onclick="javascript:location.href='${first}'">&lt;&lt;</button> &nbsp;
+				<button onclick="javascript:location.href='${before}'">&lt;</button> &nbsp;
+			</c:if>
 			
-			<div class="searchArea" align="right">
-				<input type="button" value="모집하기">
-			</div>
+			<!-- 페이징 -->
+			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<button disabled="disabled">${ p }</button>&nbsp;
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:url var="pagination" value="studyListView.do">
+						<c:param name="page" value="${ p }"/>
+					</c:url>
+					<button onclick="javascript:location.href='${ pagination}'">${ p }</button>&nbsp;
+				</c:if>
+			</c:forEach>
+			
+			
+			<!-- 다음 / 마지막 -->
+			<c:if test="${ pi.currentPage >= pi.maxPage }">
+				<button disabled>&gt;</button>&nbsp;
+				<button disabled>&gt;&gt;</button>&nbsp;
+			</c:if>
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<c:url var="next" value="studyListView.do">
+					<c:param name="page" value ="${ pi.currentPage +1 }"/>
+				</c:url>
+				<c:url var="last" value="studyListView.do">
+					<c:param name="page" value="${pi.maxPage}"/>
+				</c:url>
+				<button onclick="javascript:location.href='${next}'">&gt;</button>&nbsp;
+				<button onclick="javascript:location.href='${last}'">&gt;&gt;</button>&nbsp;
+			</c:if>
+			
+			<c:if test="${ !empty sessionScope.loginUser }">
+				<div class="searchArea" align="right">
+					<input type="button" value="모집하기" onclick="javascript:location.href='studyInsertView.do';">
+				</div>
+			</c:if>
+			
 		</div>
 		
 		
@@ -139,7 +174,16 @@
 			}).mouseout(function(){
 				ns(this).parent().css({'background':'none', 'color':'black'});
 			}).click(function(){
-				var tcode = $(this).parent().children().children('input').val();
+				var sId = ns(this).parent().children().children('input').val();
+				'<c:set var="sId" value=/>'
+				var logUser = '${loginUser}';
+				 
+				if(logUser != ''){
+					location.href="studyDetail.do";
+				}else{
+					alert("회원만 이용할 수 있는 서비스입니다.");
+				}
+				
 			});
 		});
 	</script>

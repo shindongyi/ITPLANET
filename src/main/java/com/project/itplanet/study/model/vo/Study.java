@@ -5,8 +5,11 @@ import java.sql.Date;
 public class Study {
 	private int sId; //글번호
 	private String sTitle; // 글제목
+	private int sMember; // 멤버수
 	private String sContent; // 글내용
 	private int sCount; // 조회수
+	private String sCategory; // 자격증 or 공모전
+	private String sCaName; // 스터디 상세명
 	private Date createDate; // 작성일
 	private Date modifyDate; // 수정일
 	private String status; // 삭제여부
@@ -15,18 +18,45 @@ public class Study {
 	
 	public Study() {}
 
-	public Study(int sId, String sTitle, String sContent, int sCount, Date createDate, Date modifyDate, String status,
-			String sWriter, int sLocation) {
+	public Study(int sId, String sTitle, int sMember, String sContent, int sCount, String sCategory, String sCaName,
+			Date createDate, Date modifyDate, String status, String sWriter, int sLocation) {
 		super();
 		this.sId = sId;
 		this.sTitle = sTitle;
+		this.sMember = sMember;
 		this.sContent = sContent;
 		this.sCount = sCount;
+		this.sCategory = sCategory;
+		this.sCaName = sCaName;
 		this.createDate = createDate;
 		this.modifyDate = modifyDate;
 		this.status = status;
 		this.sWriter = sWriter;
 		this.sLocation = sLocation;
+	}
+
+	public String getsCaName() {
+		return sCaName;
+	}
+
+	public void setsCaName(String sCaName) {
+		this.sCaName = sCaName;
+	}
+
+	public String getsCategory() {
+		return sCategory;
+	}
+
+	public void setsCategory(String sCategory) {
+		this.sCategory = sCategory;
+	}
+
+	public int getsMember() {
+		return sMember;
+	}
+
+	public void setsMember(int sMember) {
+		this.sMember = sMember;
 	}
 
 	public int getsId() {
@@ -100,6 +130,13 @@ public class Study {
 	public void setsLocation(int sLocation) {
 		this.sLocation = sLocation;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Study [sId=" + sId + ", sTitle=" + sTitle + ", sMember=" + sMember + ", sContent=" + sContent
+				+ ", sCount=" + sCount + ", sCategory=" + sCategory + ", sCaName=" + sCaName + ", createDate="
+				+ createDate + ", modifyDate=" + modifyDate + ", status=" + status + ", sWriter=" + sWriter
+				+ ", sLocation=" + sLocation + "]";
+	}
 
 }

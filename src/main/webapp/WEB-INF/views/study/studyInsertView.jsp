@@ -111,7 +111,6 @@ td{
 </style>
 </head>
 <body>
-
 <div class="row align-content-center">
 		<div class="col-md-3" style="max-width:20.85%;"></div>
 		<div class="col-md-7">
@@ -119,18 +118,17 @@ td{
 			<h2 class="text-center">스터디 모집</h2>
 			<br>
 			<p></p>
-			<form onsubmit="return check()" action="" method="post" name="writer">
+			<form onsubmit="return check()" action="studyInsert.do" method="post" name="writer">
 				<div class="table table-responsive" style="border-radius:30px;">
 					<table class="table table-striped" style="text-align: center;">
 						<tr>
 							<th style="vertical-align: middle;">제목</th>
-							<td colspan="3"><input type="text" class="form-control" name="title" style="text-align: center;"></td>
+							<td colspan="3"><input type="text" class="form-control" name="sTitle" style="text-align: center;"></td>
 						</tr>
 						<tr>
 							<th style="vertical-align: middle;">모임장소</th>
 							<td>
-								<select id="local" class="local" name="local" style="width:300px;">
-									<!-- <option value="1">서울 강서구</option> -->
+								<select id="local" class="local" name="sLocation" style="width:300px;">
 									<c:forEach items="${ list }" var="lo">
 										<option value="${ lo.lCode }">${ lo.lName }</option>
 									</c:forEach>
@@ -138,35 +136,37 @@ td{
 							</td>
 							<th style="vertical-align: middle;">스터디 멤버</th>
 							<td>
-								<input type="text" placeholder="숫자만 입력하세요(최대모집인원 10)" class="form-control" name="human" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+								<input type="text" placeholder="숫자만 입력하세요(최대모집인원 10)" class="form-control" name="sMember" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+								<input type="hidden" name="cname">
 							</td>
 						</tr>
 
 						<tr>
 							<th style="vertical-align: middle;">스터디 종류</th>
 							<td>
-								<select id="study1" class="studyList" name="study" style="width:300px;">
-									<option value="1">자격증</option>
-									<option value="2">공모전</option>
+								<select id="study1" class="studyList" name="sCategory" style="width:300px;">
+									<option value="자격증">자격증</option>
+									<option value="공모전">공모전</option>
 								</select>
 							</td>
 							<td colspan="2">
-								<select id="study2" class="studyList" name="study" style="width: 300px;">
-									<option value="1">정처기</option>
+								<select id="study2" class="studyList" name="sCaName" style="width: 300px;">
+									<!-- 스터디 선택에 따라 option 정렬 -->
+									<option value="정처기">정처기</option>
 								</select>
 							</td>
 						</tr>
 
 						<tr>
 							<th style="vertical-align:top; border-bottom-left-radius: 30px;">글내용</th>
-							<td colspan="3"><textarea rows="10" cols="50" name="content"
+							<td colspan="3"><textarea rows="10" cols="50" name="sContent"
 									class="form-control" style="border-radius:20px;"></textarea></td>
 							
 						</tr>
 						<tr style="width:77px;">
 							<td colspan="4" class="text-center">
 								<input type="submit" value="작성완료"> &nbsp;
-								<input type="button" value="취소">
+								<input type="button" value="취소" onclick="javascript:location.href='studyListView.do'">
 							</td>
 						</tr>
 
@@ -178,5 +178,38 @@ td{
 		</div>
 		<div class="col-md-3" style="max-width:20.85%;"></div>
 	</div>
+	
+	<!-- footer 넣을 곳 -->
+	
+	<script>
+		function check(f){
+			var f = document.writer;
+			var study1 = document.getElementById("study1");
+
+			if(f.sTitle.value == ""){
+				f.title.focus();
+				alert('제목을 입력하세요.');
+				return false;
+			}else if(f.sMember.value == ""){
+				f.human.focus();
+				alert('모집인원을 입력하세요.');
+				return false;
+			}else if(f.sContent.value == ""){
+				f.content.focus();
+				alert('내용을 입력하세요.');
+				return false;
+			}else if(f.sMember.value >10){
+				f.human.value = "";
+				f.human.focus();
+				alert('모집인원은 최대 10명입니다.');
+				return false;
+			}else{
+				alert('게시물작성이 완료되었습니다.');
+				f.cname.value= f.title.value + f.human.value;
+				f.submit();
+				return true;
+			}
+		}
+	</script>
 </body>
 </html>

@@ -20,6 +20,8 @@ import com.project.itplanet.member.model.exception.MemberException;
 import com.project.itplanet.member.model.service.MemberService;
 import com.project.itplanet.member.model.vo.Member;
 
+
+
 @SessionAttributes("loginUser")
 @Controller
 public class MemberController {
@@ -41,7 +43,7 @@ public class MemberController {
 		return "member/loginView";
 	}
 	// 마이페이지
-	@RequestMapping("myPage.do")
+	@RequestMapping("mypage.do")
 	public String myPageView() {
 		return "member/mypageMainView";
 	}
@@ -56,7 +58,7 @@ public class MemberController {
 		return "member/updatePwdForm";
 	}
 	// 정보 수정 전 회원 확인 페이지
-	@RequestMapping("confirmUser")
+	@RequestMapping("confirmUser.do")
 	public String confirmUser() {
 		return "member/confirmUserForm";
 	}
@@ -149,7 +151,7 @@ public class MemberController {
 		System.out.println(result);
 		
 		if(result > 0) {
-			return "home";
+			return "member/mypageMainView";
 		} else {
 			throw new MemberException("회원가입에 실패하였습니다.");
 		}
@@ -177,9 +179,23 @@ public class MemberController {
 	}
 	
 	// 아이디 찾기
-	
+	@RequestMapping("findId.do")
+	public String findId(@ModelAttribute Member m) {
+		String userId =  mService.findUserId(m);
+		return userId;
+	}
 	
 	// 비밀번호 찾기
+	@RequestMapping("findPwd.do")
+	public String findPwd(@ModelAttribute Member m) {
+		int result = mService.findPwd(m);
+		
+		if(result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
 
 	// 비밀번호 확인
 	@RequestMapping("comfirmUser.do")

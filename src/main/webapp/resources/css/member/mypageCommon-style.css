@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+html, body, blockquote, caption, dd, div, dl, dt, fieldset, form, frame, h1, h2, h3, h4, h5, h6, hr, iframe, 
+input, legend, li, object, ol, p, pre, q, select, table, textarea, tr, td, ul, button {
+    margin: 0;
+    padding: 0;
+}
+
+body, h1, h2, h3, h4{
+	font-size: 12px;
+	line-height: 1.6;
+	color: #555;
+}
+h1, h2, h3, h4, h5{
+	font-style: normal;
+}
+a, a:link, a:active, a:visited {
+	color: #555;
+	text-decoration: none;
+}
+ol, ul{
+	list-style: none;
+}
+img{
+	border: 0;
+}
+input, button{
+	border: 0;
+}
+fieldset, img{
+	border: 0;
+}
+legend {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+.wrap{
+	width: 100%;
+    min-width: 1180px;
+    overflow: hidden;
+}
+.confirmText{
+	padding-bottom: 40px !important;
+}
+.crRed{
+	color: #d50c0c !important;
+}
+.fb{
+	font-weight: bold;
+}
+.tPad{
+	padding-top: 15px;
+}
+.tMar{
+	margin-top: 35px;
+}
+#contentWrap {
+    padding: 30px 0 80px 0;
+    width: 1140px;
+    margin: 0 auto;
+}
+.overHidden{
+	overflow: hidden;
+}
+.tBor{
+	border-top: 3px solid #333;
+}
+.select{
+	border: 1px solid #bbb;
+    color: #666;
+    font-size: 12px;
+    height: 30px;
+    outline-style: none;
+    vertical-align: middle;
+}
+option[disabled=disabled]{
+	display: none;
+}
+.txtInp{
+	outline-style: none;
+	height: 18px;
+    padding: 5px 10px;
+    font-size: 12px;
+ 	 /* border: 1px solid #bbb; */
+  	border: none;
+    background: #f4f4f4;
+    color: #666;
+    vertical-align: middle;
+}
+#wrap input{
+	outline-style: none;
+}
+#wrap input.check, input.radio{
+	vertical-align: middle;
+    margin-top: -3px;
+}

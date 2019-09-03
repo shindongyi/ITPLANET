@@ -27,5 +27,12 @@ public class MemberDAO {
 	public int updatePwd(Member m) {
 		return sqlSession.update("memberMapper.upatePwd", m);
 	}
+	
+	public String findUserId(Member m) {
+		return sqlSession.selectOne("memberMapper.findUserId",m);
+	}
 
+	public int findUserPwd(Member m) {
+		return sqlSession.selectOne("memberMapper.findUserPwd", m);
+	}
 }

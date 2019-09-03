@@ -1,0 +1,241 @@
+@charset "UTF-8";
+.myContent{
+	float: right;
+    width: 848px;
+    min-height: 703px;
+    height: auto !important;
+    padding: 40px 30px;
+    border-top: 2px solid #555;
+    background: #fff;
+    font-size: 11px;
+}
+.myContent .titleSection{
+	margin: 0 -30px 45px;
+    padding: 0 30px 30px;
+    background: url(http://fiximage.10x10.co.kr/web2013/my10x10/bg_double_line.gif) left bottom repeat-x;
+    position: relative;
+}
+#mypageMain .myContent .titleSection h3{
+    color: #000;
+    font-size: 22px;
+	font-weight: 700;
+}
+.myContent .titleSection .list{
+	margin-top: 15px;
+}
+.myContent .list li{
+	margin-top: 1px;
+	padding-left: 13px;
+	background: url(http://fiximage.10x10.co.kr/web2013/common/blt_btn_arr_red03.gif) left 5px no-repeat;
+}
+#primaryContent {
+	float: left;
+	width: 100%;
+	text-align: left;
+}
+/* #primaryContent{
+	margin-top: 30px;
+	float: left;
+	width: 90%;
+	text-align: left;
+} */
+#list_area_wrap{
+	width: 100%;
+	position: relative;
+	clear: both;
+	padding: 4px 7px 2px 0;
+	height: 30px;
+}
+#list_area{
+	position: absolute;
+	top: 7px;
+	right: 17px;		
+}
+.listBtn{
+	background-color: #e9e9e9;
+	color: #191919;
+	border: 1px solid white;
+	margin: 0 -10px 0 -1.5px;
+	width: 80px;
+	height: 30px;
+	border-radius: 10px 10px 0 0;
+	cursor: pointer;
+}
+.selList{
+	background-color: #002358;
+	color: white;
+}
+#bList{
+	clear: both;
+	width: 100%;
+	border-collapse: collapse;
+	position: relative;
+	font-size: 12px !important;
+}
+#bList th{
+	border-color: #d5d5d5;
+	padding: 6px 9px 4px 9px;
+	text-align: center;
+	border-top-width: 2px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	font-weight: normal;
+	letter-spacing: -1px;
+}
+#bList td{
+	padding: 9px 9px 4px 9px;
+	border-width: 1px;
+	border-bottom-style: solid;
+	border-color: #e9e9e9;
+	position: relative;
+}
+#bList .num{
+	text-align: center;
+	padding: 8px 0 5px 8px;
+	font-family: tahoma;
+}
+#bList .title{
+	width: 64%;
+	padding-left: 50px;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+#bList .title a{
+	color: #191919;
+}
+#bList .writer{
+	width: 13%;
+	word-wrap: break-word;
+	text-align: center;
+}
+#bList .date, #bList .count{
+	font-family: tahoma;
+	text-align: center;
+}
+#paging{
+	clear: both;
+	padding: 0 7px 7px 6px;
+	text-align: center;
+	letter-spacing: -1px;
+	width: 100%;
+}
+#paging #num_prev, #paging #num_next{
+	display: inline-block;
+	position: relative;
+	width: 34px;
+	top: 2px;
+} 
+#paging span{
+	white-space: nowrap;
+}
+#paging span, #paging a{
+	vertical-align: middle;
+}
+#paging #num_prev span{
+	color: #8c8c8c;
+	position: absolute;
+	top: -11px;
+	right: 0;
+}
+#paging #num_prev .arrow{
+	position: absolute;
+	top: -11px;
+	right: 22px;
+}
+#paging #num_next span{
+	color: #8c8c8c;
+	position: absolute;
+	top: -11px;
+	left: 0;
+}
+#paging #num_next .arrow{
+	position: absolute;
+	top: -11px;
+	left: 22px;
+}
+.pagingNum{
+	letter-spacing: 0px;
+	float: none;
+	margin: 0;
+	display: inline-block;
+	vertical-align: middle;
+	text-decoration: none;
+	padding: 3px 7px 1px 7px;
+	border-width: 0px;
+	font-weight: bold;
+	color: #191919;
+}
+.pagingNum:hover{
+	border: 1px solid #002358; 
+	color: #002358;
+	padding: 2px 6px 0px 6px;
+}
+#paging .b{
+	background-color: #002358;
+	color: white;
+	margin: 0 2px 0 2px; 
+}
+#paging .b:hover{
+	color: white;
+}
+#search_row{
+	width: 100%;
+	padding: 7px 7px 7px 6px;
+}
+#search_box{
+	padding-left: 40px;
+	display: block;
+	position: relative;
+	width: 300px;
+	height: 46px;
+	border-bottom: 0.5px solid rgb(230,230,230);
+	padding: 10px 14px 10px 14px;
+	box-sizing: border-box;
+	vertical-align: top;
+	margin: 10px auto;
+}
+#search_box:hover{
+	box-shadow: 0px 3px 10px -8px;
+}
+#searchBar{
+	display: block;
+	position: relative; 
+	width: 100%;
+	height: 29px;
+	line-height: 29px;
+	border: none;
+	box-sizing: border-box;
+	padding: 0; margin: 0;
+}
+#searchLbl{
+	left: 0;
+	padding: 0 9px;
+	width: 100%;
+	box-sizing: border-box;
+	display: block;
+	position: absolute;
+	top: 50%;
+	margin-top: 4px;
+	line-height: 13px;
+}
+#step_txt{
+	display: inline-block;
+	position: absolute;
+	top: 1px;
+	right: 33px;
+	line-height: 13px;
+}
+#after{
+	background:  url(../../image/search.png) no-repeat;
+	background-size: cover;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	right: 16px;
+	width: 18px;
+	height: 18px;
+	margin-top: -10px;
+	cursor: pointer;
+	border: none;
+}

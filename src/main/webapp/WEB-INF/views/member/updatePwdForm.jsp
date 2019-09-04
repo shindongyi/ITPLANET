@@ -14,7 +14,7 @@
 		<div id="mypageContentWrap">
 			<div id="myHeader">
 				<h2>
-					<a href="myPage.do">MY PAGE</a>
+					<a href="mypage.do">MY PAGE</a>
 				</h2>
 				<div id="breadcrumb">
 					<a href="#">HOME</a> > 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900|Noto+Sans:400,400i,700,700i&display=swap&subset=korean" rel="stylesheet">
 <link rel="stylesheet" href="${contextPath}/resources/css/member/mypageMenubar-style.css" type="text/css">
 <link rel="stylesheet" href="${contextPath}/resources/css/member/mypageCommon-style.css" type="text/css">
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </head>
 <body>
 <!-- start leftSection 마이페이지 메뉴 -->
@@ -19,16 +21,16 @@
 		<p class="hello">Hello, ${loginUser.nickName }</p>
 		<ul>
 			<li>
-				<a href=""><strong>30개</strong>총 스크랩</a>
+				<a href=""><strong>${ scrapCount.hireCount+scrapCount.compCount+scrapCount.lcsCount }개</strong>총 스크랩</a>
 			</li>
 			<li>
-				<a href=""><strong>10개</strong>공모전</a>
+				<a href=""><strong>${ scrapCount.compCount }개</strong>공모전</a>
 			</li>
 			<li>
-				<a href=""><strong>10개</strong>채용공고</a>
+				<a href=""><strong>${ scrapCount.hireCount }개</strong>채용공고</a>
 			</li>
 			<li>
-				<a href=""><strong>10개</strong>자격증</a>
+				<a href=""><strong>${ scrapCount.lcsCount }개</strong>자격증</a>
 			</li>
 		</ul>
 	</div>
@@ -38,7 +40,8 @@
 		<div class="navContent">
 			<ul>
 				<li>
-					<img class="arrow" src="${contextPath}/resources/images/member/right-arrow.png">
+					<%-- <img class="arrow" src="${contextPath}/resources/images/member/right-arrow.png"> --%>
+					<i class="fas fa-angle-right"></i>
 					<span class="navCt_title">MY INFO</span>
 					<ul style="display:none;">
 						<li>
@@ -53,7 +56,8 @@
 					</ul>
 				</li>
 				<li>
-					<img class="arrow" src="${contextPath}/resources/images/right-arrow.png">
+					<%-- <img class="arrow" src="${contextPath}/resources/images/right-arrow.png"> --%>
+					<i class="fas fa-angle-right"></i>
 					<span class="navCt_title">MY SCRAP</span>
 					<ul style="display:none;">
 						<li>
@@ -73,15 +77,15 @@
 	<!-- end mypageNav -->
 	<script>
 	$('.navCt_title').on('click', function(){
-		console.log(event.target);
 		var a = $(event.target).prev();
-		console.log(a);
 		$(event.target).next().toggle();
 		
 		if($(event.target).next().css('display') == 'none'){
-			$(event.target).prev().attr('src','${contextPath}/resources/image/right-arrow.png');
+			/* $(event.target).prev().attr('src','${contextPath}/resources/image/right-arrow.png'); */
+			$(event.target).prev().attr('class', 'fas fa-angle-right');
 		} else {
-			$(event.target).prev().attr('src','${contextPath}/resources/image/down-arrow.png');
+			/* $(event.target).prev().attr('src','${contextPath}/resources/image/down-arrow.png'); */
+			$(event.target).prev().attr('class', 'fas fa-angle-down');
 		}
 	});
 	</script>

@@ -10,11 +10,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-<script>
-	$(function(){
-		alert('회원탈퇴 페이지 css수정하기, 회원가입 다듬기');
-	});
-</script>
 <div id="wrap">
 		<div id="container">
 			<div id="mypageContentWrap">
@@ -41,7 +36,7 @@
 									</a>
 								</li>
 							</ul>
-							<a href="#" class="more"><span>more</span>></a>
+							<a href="mypageScrapView.do?type=1" class="more"><span>more</span>></a>
 						</div>
 					</div>
 					<!-- end compe 공모전 리스트 -->
@@ -59,7 +54,7 @@
 									</a>
 								</li>
 							</ul>
-							<a href="#" class="more"><span>more</span>></a>
+							<a href="mypageScrapView.do?type=2" class="more"><span>more</span>></a>
 						</div>
 					</div>
 					<!-- end hire 채용정보 리스트 -->
@@ -77,7 +72,7 @@
 									</a>
 								</li>
 							</ul>
-							<a href="#" class="more"><span>more</span>></a>
+							<a href="mypageScrapView.do?type=3" class="more"><span>more</span>></a>
 						</div>
 					</div>
 					<!-- end lcs 자격증 리스트 -->
@@ -87,6 +82,7 @@
 				<div class="section rightSection">
 					<div class="article alarm">
 						<h3>
+							<i class="fas fa-bell"></i>
 							<span></span>
 							MY 알림
 						</h3>

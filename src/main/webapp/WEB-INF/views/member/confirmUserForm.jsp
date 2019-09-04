@@ -15,7 +15,7 @@
 		<div id="mypageContentWrap">
 			<div id="myHeader">
 				<h2>
-					<a href="myPage.do">MY PAGE</a>
+					<a href="mypage.do">MY PAGE</a>
 				</h2>
 				<div id="breadcrumb">
 					<a href="#">HOME</a> > 
@@ -45,6 +45,7 @@
 								<div class="box">
 										<h3 class="update_title"><label for="userPwd">비밀번호</label><!-- <span class="red_mark">*</span> --></h3>
 										<input type="password" id="userPwd" name="userPwd" class="int">
+										<div class="error_box" id="pwdMsg" style="display:none"></div>
 								</div>
 							</fieldset>
 							<p class="handing">
@@ -62,7 +63,22 @@
 				})
 				$('.int').on('keypress',function(key){
 					if(key.keyCode==13){
-						$('#frmLoginConfirm').submit();
+						/* $('#frmLoginConfirm').submit(); */
+						var userPwd = $('#userPwd').val();
+						
+						$.ajax({
+							url: "comfirmUser.do",
+							method: "post",
+							data: {userPwd:userPwd},
+							success: function(data){
+								if(data == "success"){
+									location.href="updateMemberForm.do";
+								} else {
+									$('#pwdMsg').text('비밀번호가 일치하지 않습니다.');
+									$('#pwdMsg').show();
+								}
+							}
+						});
 					}
 				});
 			</script>

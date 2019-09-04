@@ -547,23 +547,44 @@ function showErrorMsg(oMsg, msg){
 	oMsg.attr('style', '');
 	oMsg.text(msg);
 }
-$('#join_btn').on('click', function(){
-	console.log("1: " + check);
-	console.log("2: " + userIdFlag);
-	console.log("3: " + userPwdFlag);
+$(function(){
+	$('#policyY').on('click', function(){
+		if($(this).is(':checked')) $('.policy input').prop('checked', true);
+		else $('.policy input').prop('checked', false);
+	});
+	$('.policy ul .check').on('click', function(){
+		if($('#agreeUseAdult').is(':checked') && $('#agreeUse').is(':checked') && $('#agreePrivate').is(':checked')){
+			$('#policyY').prop('checked', true);
+		} else {
+			$('#policyY').prop('checked', false);
+		}
+	});
+});
+/* function ckCheckbox(){
+	check = false;
+	if($('.policy input[type=checkbox]').is(':checked')){
+		check = true;
+	}
+} */
+/* $('#join_btn').on('click', function(){
+	ckCheckbox();
 	if(check && userIdFlag && userPwdFlag){
-		if($('#agreeUseAdult').is("checked") && $('#agreeUse').is("checked") && $('#agreePrivate').is("checked")){
-			console.log(1234);
+		$('#join_form').submit();
+	} else{
+		alert("모든 항목을 확인해주세요.");
+	}
+}); */
+$('#join_btn').on('click', function(){
+	if(check && userIdFlag && userPwdFlag){
+		if($('#policyY').is(':checked')){
 			$('#join_form').submit();
 		} else{
 			alert('모든 약관에 동의해주세요.');
 		}
 	} else{
-		alert("모든 항목을 알맞게 입력해주세요.");
+		alert("모든 항목을 확인해주세요.");
 	}
 });
-	
 </script>
-
 </body>
 </html>

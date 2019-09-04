@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 		<div id="mypageContentWrap">
 			<div id="myHeader">
 				<h2>
-					<a href="myPage.do">MY PAGE</a>
+					<a href="mypage.do">MY PAGE</a>
 				</h2>
 				<div id="breadcrumb">
 					<a href="#">HOME</a> > 
@@ -37,7 +38,7 @@
 				<div id="primaryContent">
 					<!-- 개인정보 수정 입력 부분 -->
 					<h4>개인정보 관리</h4>
-					<form id="update_form" method="post" action="#">
+					<form id="update_form" method="post" action="updateM.do">
 								<!-- <h2>개인정보 수정</h2> -->
 								<div class="updateForm_content">
 									<div class="row_group">
@@ -60,18 +61,22 @@
 												<h3 class="update_title"><label>생년월일</label><span class="red_mark">*</span></h3>
 												<div class="inner_birth_wrap">
 													<div class="birth_yy">
-														<input type="text" id="birth_yy" name="birth_yy" class="int" maxlength="4">
+														<input type="text" id="birth_yy" name="birth_yy" class="int" maxlength="4" value="${fn:substring(loginUser.birthDay, 0, 4)}">
 													</div>
 													<div class="birth_mm">
 														<select id="birth_mm" name="birth_mm" class="sel">
-														<option disabled selected>월</option>
-														<c:forEach var="i" begin="1" end="12"> 
-															<option>${ i }</option>
+														<c:forEach var="i" begin="1" end="12">
+															<c:if test="${ i eq  fn:substring(loginUser.birthDay, 5, 7)}"> 
+																<option selected="selected">${ i }</option>
+															</c:if>
+															<c:if test="${i ne fn:substring(loginUser.birthDay, 5, 7)}">
+																<option>${ i }</option>
+															</c:if>
 														</c:forEach>
 														</select>
 													</div>
 													<div class="birth_dd">
-														<input type="text" id="birth_dd" name="birth_dd" class="int" maxlength="2">
+														<input type="text" id="birth_dd" name="birth_dd" class="int" maxlength="2" value="${fn:substring(loginUser.birthDay, 8, 10)}">
 													</div>
 												</div>
 											</div>
@@ -92,7 +97,6 @@
 										<script>
 											$(function(){
 												var gender = "${ loginUser.gender}";
-												console.log(gender);
 												if(gender == "남"){
 													$('option[value="남"]').attr('selected', 'true');
 												} else{

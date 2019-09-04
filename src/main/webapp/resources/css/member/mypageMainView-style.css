@@ -77,15 +77,16 @@
 }
 .alarm h3{
 	position: relative;
-	padding: 12px 10px 12px 29px;
+	padding: 12px 10px 12px 25px;
 	/* background: #555; */
 	background: #003458;
 	color: #fff;
 }
 .alarm span{
 	position: relative;
-	top: 11px;
-	left: 10px;
+	/* top: 11px;
+	left: 10px; */
+	padding-left: 10px;
 	width: 13px;
 	height: 14px;
 }
@@ -182,4 +183,7 @@ li.itemPart span.alarmIco{
     color: #aaa;
     font-size: 11px;
     text-align: center;
+}
+.fa-bell{
+	
 }

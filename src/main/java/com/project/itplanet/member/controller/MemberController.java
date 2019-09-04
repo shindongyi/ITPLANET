@@ -1,7 +1,9 @@
 package com.project.itplanet.member.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.project.itplanet.common.Pagination;
+import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.member.model.exception.MemberException;
 import com.project.itplanet.member.model.service.MemberService;
 import com.project.itplanet.member.model.vo.Member;
@@ -49,8 +55,43 @@ public class MemberController {
 	}
 	// 스크랩 페이지
 	@RequestMapping("myPageScrapView.do")
-	public String myPageScrapView() {
-		return "member/mypageScrapView";
+	public ModelAndView myPageScrapView(@RequestParam(value="page", required=false) Integer page,
+									@RequestParam("type") Integer type,
+									ModelAndView mv,
+									HttpSession session) {
+		
+		Member m = (Member)session.getAttribute("loginUser");
+		String userId = m.getUserId();
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		HashMap<String,Integer> scrapCount = mService.countScrap(userId);
+		String str = null;
+		int listCount = 0;
+		if(type == 1) {
+			str = "공모전";
+			listCount = scrapCount.get("compCount");
+		} else if(type == 2) {
+			str = "채용공고";
+			listCount = scrapCount.get("hireCount");
+		} else if(type == 3) {
+			str = "자격증";
+			listCount = scrapCount.get("lcsCount");
+		}
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<HashMap<String, String>> list = new ArrayList();
+		list = mService.selectScrapList(userId, type, pi);
+		
+		mv.addObject("pi", pi);
+		mv.addObject("type", str);
+		mv.addObject("typeNum", type);
+		mv.addObject("list", list);
+		mv.setViewName("member/mypageScrapView");
+		return mv;
 	}
 	// 비밀번호 수정 페이지
 	@RequestMapping("updatePwdForm.do")
@@ -67,15 +108,9 @@ public class MemberController {
 	public String updateMemberForm() {
 		return "member/updateMemberForm";
 	}
-
 	// 아이디 비밀번호 찾기 페이지
 	@RequestMapping("forgetView.do")
 	public String forgetView() {
-//		String[] email = {"hanmail.net", "naver.com", "hotmail.com", "yahoo.co.kr", "hanmir.com", "paran.com", 
-//				"dreamwiz.com", "korea.com", "nate.com", "lycos.co.kr", "empal.com", "netian.com",
-//				"freechal.com","msn.com","gmail.com","etc"};
-//		request.setAttribute("email", email);
-		/* mv.addObject(email); */
 		return "member/forgetView";
 	}
 	// 회원탈퇴 페이지
@@ -83,16 +118,33 @@ public class MemberController {
 	public String deleteMemeberView() {
 		return "member/deleteMemberView";
 	}
+	@RequestMapping("newFile.do")
+	public String newFile() {
+		return "member/NewFile";
+	}
 	
 	// 로그인
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
-	public String memberLogin(Member m, Model model) {
+	public String memberLogin(Member m, Model model, HttpSession session) {
 		
 		Member loginUser = mService.memberLoginUser(m);
 		if(loginUser != null) {
-			System.out.println(loginUser.getUserId());
 			if(bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
 				model.addAttribute("loginUser", loginUser);
+				
+				HashMap<String,Integer> scrapCount = mService.countScrap(loginUser.getUserId());
+				session.setAttribute("scrapCount", scrapCount);
+				
+//				int compCount = mService.countComp(loginUser.getUserId());
+//				int hireCount = mService.countHire(loginUser.getUserId());
+//				int lcsCount = mService.countLcs(loginUser.getUserId());
+				
+//				Map<String, Integer> scrapCount = new HashMap<String,Integer>();
+//				scrapCount.put("compCount", compCount);
+//				scrapCount.put("hireCount", hireCount);
+//				scrapCount.put("lcsCount", lcsCount);
+//				Map<String, Integer> scrapCount = mService.scrapCount(loginUser.getUserId());
+				
 			} else {
 				throw new MemberException("로그인에 실패하였습니다.");
 			}
@@ -106,9 +158,7 @@ public class MemberController {
 	@RequestMapping("checkUserId.do")
 	@ResponseBody
 	public String checkUserId(@RequestParam("userId") String userId) {
-		System.out.println(userId);
 		int result = mService.selectUserId(userId);
-		System.out.println(result);
 		if(result > 0) {
 			return "success";
 		} else {
@@ -120,7 +170,7 @@ public class MemberController {
 	@RequestMapping("checkNickName.do")
 	@ResponseBody
 	public String checkNickName(@RequestParam("nickName") String nickName) {
-		int result = mService.selectUserId(nickName);
+		int result = mService.selectNickName(nickName);
 		
 		if(result > 0) {
 			return "success";
@@ -134,10 +184,8 @@ public class MemberController {
 	public String memeberInsert(@ModelAttribute Member m,
 								@RequestParam("birth_yy") int birth_yy,
 								@RequestParam("birth_mm") int birth_mm,
-								@RequestParam("birth_dd") int birth_dd) {
-		
-		System.out.println(m);
-		System.out.println(m.getGender());
+								@RequestParam("birth_dd") int birth_dd,
+								Model model) {
 		
 		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
 		m.setUserPwd(encPwd);
@@ -145,12 +193,11 @@ public class MemberController {
 		Date birthDay = new Date(new GregorianCalendar(birth_yy, birth_mm-1, birth_dd).getTimeInMillis());
 		m.setBirthDay(birthDay);
 		
-		System.out.println(m);
-		
 		int result = mService.insertMember(m);
-		System.out.println(result);
 		
 		if(result > 0) {
+			Member loginUser = mService.memberLoginUser(m);
+			model.addAttribute("loginUser", loginUser);
 			return "member/mypageMainView";
 		} else {
 			throw new MemberException("회원가입에 실패하였습니다.");
@@ -199,8 +246,63 @@ public class MemberController {
 
 	// 비밀번호 확인
 	@RequestMapping("comfirmUser.do")
-	public String comfirmUser() {
-		return "redirect:updateMemberForm.do";
+	@ResponseBody
+	public String comfirmUser(HttpSession session, @RequestParam("userPwd") String userPwd) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		if(bcryptPasswordEncoder.matches(userPwd, loginUser.getUserPwd())) {
+			return "success";
+		} else {
+			return "fail";
+		}
 	}
 	
+	// 개인정보 수정
+	@RequestMapping("updateM.do")
+	public String updateMember(@ModelAttribute Member m,
+								@RequestParam("birth_yy") int birth_yy,
+								@RequestParam("birth_mm") int birth_mm,
+								@RequestParam("birth_dd") int birth_dd,
+								Model model) {
+		Date birthDay = new Date(new GregorianCalendar(birth_yy, birth_mm-1, birth_dd).getTimeInMillis());
+		m.setBirthDay(birthDay);
+		int result = mService.updateMember(m);
+		if(result>0) {
+			model.addAttribute("loginUser", m);
+			return "redirect:mypage.do";
+		} else {
+			throw new MemberException("개인정보 수정에 실패하였습니다.");
+		}
+	}
+	
+	// 회원 탈퇴전 이메일 체크
+	@RequestMapping("emailCheck.do")
+	@ResponseBody
+	public String emailCheck(HttpSession session, @RequestParam("email") String email) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		if(loginUser.getEmail().equals(email)){
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
+	// 회원 탈퇴
+	@RequestMapping("deleteM.do")
+	public String deleteMember(HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		String userId = loginUser.getUserId();
+		int result = mService.deleteMember(userId);
+		if(result>0) {
+			return "redirect:logout.do";
+		} else{
+			throw new MemberException("회원 탈퇴에 실패하였습니다.");
+		}
+	}
+	
+	// 로그아웃
+	@RequestMapping("logout.do")
+	public String logout(SessionStatus status, HttpSession session) {
+		status.setComplete();
+		return "redirect:mypage.do";
+	}
 }

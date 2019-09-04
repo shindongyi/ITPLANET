@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
-<resultMap type="Member" id="memberResultSet">
+	<resultMap type="Member" id="memberResultSet">
 		<id property="userId" column="USER_ID"/>
 		<result property="userPwd" column="USER_PWD"/>
 		<result property="userName" column="USER_NAME"/>
@@ -15,6 +15,11 @@
 		<result property="black" column="BLACK"/>
 		<result property="grade" column="GRADE"/>
 	</resultMap>
+	<resultMap type="map" id="cScrapResultSet">
+		
+	</resultMap>
+	<resultMap type="map" id="lScrapResultSet"/>
+	<resultMap type="map" id="hScrapResultSet"/>
 	
 	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
 		select * 
@@ -35,6 +40,12 @@
 		where user_id = #{userId}
 	</select>
 	
+	<select id="selectNickName" parameterType="String" resultType="_int">
+		select count(*)
+		from member
+		where nickname = #{nickname} and status='Y'
+	</select>
+	
 	<update id="updatePwd" parameterType="Member">
 		update member set user_id=#{userId}, user_pwd=#{userPwd} 
 	</update>
@@ -49,6 +60,88 @@
 		select count(*)
 		from member
 		where user_Id=#{userId} and email=#{email} and user_name=#{userName} and status='Y'
+	</select>
+	
+	<update id="updateMember" parameterType="Member"> 
+		update member 
+		set user_name=#{userName}, nickname=#{nickName}, birth_day=#{birthDay}, gender=#{gender},
+		email=#{email}
+		where user_id=#{userId} 
+	</update>
+	
+	<update id="deleteMember" parameterType="string">
+		update member
+		set status='N'
+		where user_id = #{userId}
+	</update>
+	
+	<select id="countComp" parameterType="string" resultType="_int">
+		select count(*)
+		from c_scrap
+		where user_id = #{userId}
+	</select>
+	
+	<select id="countHire" parameterType="string" resultType="_int">
+		select count(*)
+		from h_scrap
+		where user_id = #{userId}
+	</select>
+	
+	<select id="countLcs" parameterType="string" resultType="_int">
+		select count(*)
+		from l_scrap
+		where user_id = #{userId}
+	</select>
+	
+<!-- 	<select id="scrapCount" parameterType="Map" resultType="_int">
+		select count(*)
+		<choose>
+			<when test="scrap == h_scrap">
+				from h_scrap
+			</when>
+			<when test="scrap == c_scrap">
+				from c_scrap
+			</when>
+			<otherwise> 
+				from l_scrap
+			</otherwise>
+		</choose>
+		where user_id=#{userId}
+	</select> -->
+	
+	<select id="selectCompScrapList" parameterType="string" resultMap="cScrapResultSet">
+		select c_title as title, c_writer as writer, c_modify_date as modifyDate, c_count as count
+		from c_scrap cs
+		join competition c on(cs.c_id = c.c_id)
+		join member m on (c.c_writer = m.user_id)
+		where cs.user_id = #{userId} and cs.c_id = c.c_id
+		order by cs.cs_id desc
+	</select>
+		
+	<select id="selectHireScrapList" parameterType="string" resultMap="hScrapResultSet">
+		select h_title as title, hs.user_id as writer, h_create_date as modifyDate
+		from h_scrap hs
+		join hire h on(hs.h_id = h.h_id)
+		join member m on (h.user_id = m.user_id)
+		where hs.user_id = #{userId} and hs.h_id = h.h_id
+		order by hs.hs_id desc
+	</select>
+	
+	<select id="selectLcsScrapList" parameterType="string" resultMap="lScrapResultSet">
+		select l.l_name as title, m.nickname as writer, l.modify_date as modifyDate, l.l_count as count
+		from l_scrap ls
+		join license l on(ls.l_id = l.l_id)
+		join member m on (l.user_id = m.user_id)
+		where ls.user_id = #{userId} and ls.l_id=l.l_id
+		order by ls.ls_id desc
+	</select>
+	
+	<select id="recentLcsScrap" parameterType="" resultMap="">
+		select lat.change_name, l.l_name
+		from l_scrap ls
+		join license l on (l.l_id = ls.ls_id)
+		join lattachment lat on (lat.l_id = ls.ls_id)
+		where ls.user_id = #{userId}
 	</select>
 	
 </mapper>

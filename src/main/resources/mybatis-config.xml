@@ -11,6 +11,7 @@
 		<typeAlias type="com.project.itplanet.study.model.vo.StudyReply" alias="StudyReply"/>
 		<typeAlias type="com.project.itplanet.common.model.vo.Local" alias="Local"/>
 		<typeAlias type="com.project.itplanet.member.model.vo.Member" alias="Member"/>
+	<!-- 	<typeAlias type="com.project.itplanet.competition.model.vo.Competition" alias="Commpetiton"/> -->
 	</typeAliases>
 	
 	<mappers>

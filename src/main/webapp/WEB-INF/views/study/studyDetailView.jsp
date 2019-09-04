@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -193,7 +194,7 @@
 			<h2 class="text-center">스터디 상세</h2>
 			<br><br>
 			<p></p>
-			<form action="updateStudyView.do" method="get" name="SWriter" id="SWriter">
+			<form action="studyUpdateView.do" method="get" name="SWriter" id="SWriter">
 				<div class="table table-responsive tdiv" style="border-radius:20px;">
 					<table class="table" style="text-align: center;" id="detailTable">
 						<tr>
@@ -213,28 +214,52 @@
 							</td>
 							<th style="width:200px;">작성자</th>
 							<td align="center" style="width:194px;">
-								${ study.sWriter }
-								<input type="hidden" name="sWriter" value="${ study.sWriter }">
+								${ study.nickName }
 							</td>
 						</tr>
 
 						<tr>
 							<th>스터디멤버<br>현황</th>
 							<td id="studyMem1">
-								<!-- chat room 멤버쪽 -->
-								${ study.sWriter }
+								<c:forEach items="${fn:split(chatMember,',')}" var="cm" varStatus="status">
+									<c:if test="${ !status.last }">
+										${ cm },
+									</c:if>
+									<c:if test="${ status.last }">
+										${ cm }
+									</c:if>
+								</c:forEach>
 							</td>
 							<td>
-								[ <!-- chat room 인원 수 -->1 / ${ study.sMember } ]
+								[ <c:forEach items="${fn:split(chatMember,',') }" var="cm" varStatus="status">
+									<c:if test="${ status.last }">
+										 ${status.index + 1 }
+									</c:if>
+								</c:forEach> / ${ study.sMember } ]
 								<input type="hidden" name="sMember" value="${ study.sMember }">
 							</td>
 							<td id="studyMem">
-								<input type="button" value="스터디 신청">
+								<c:if test="${ loginUser.nickName ne study.nickName }">
+									<c:set var="check" value="1"/>
+									<c:forEach items="${fn:split(chatMember,',') }" var="cm" varStatus="status">
+										<c:if test="${ cm eq loginUser.nickName }">
+											<c:set var="check" value="2"/>
+										</c:if>
+									</c:forEach>
+									
+									<c:if test="${ check eq 2 }">
+										<input type="button" value="스터디 취소" onclick="javascript:location.href='studyCancel.do?sId=${study.sId}'">
+									</c:if>
+									<c:if test="${ check eq 1 }">
+										<input type="button" value="스터디 신청" onclick="javascript:location.href='studyAdd.do?sId=${study.sId}'">
+									</c:if>
+								</c:if>
+								
 							</td>
  						</tr>
  						<tr>
  							<th>모임장소</th>
- 							<td colspan="3">${ study.sLocation }<input type="hidden" name="sLocation" value="${ study.sLocation }"></td>
+ 							<td colspan="3">${ study.lName }<input type="hidden" name="sLocation" value="${ study.sLocation }"></td>
  						</tr>
 
 						<tr style="background: white;">
@@ -247,7 +272,7 @@
 						<tr>
 							<td colspan="4" class="text-center" align="right">
 								<c:if test="${ loginUser.userId.equals( study.sWriter) }">
-									<input type="button" value="수정">
+									<input type="button" value="수정" onclick="SWriter.submit();">
 									<input type="button" value="삭제" onclick="deleteBtn();">
 								</c:if>
 								<input type="button" value="목록" onclick="javascript:location.href='studyListView.do'">
@@ -297,7 +322,7 @@
           <label class="input-text">
             <input type="text" class="input-text" id="add-comment" name="comment" placeholder="댓글을 남겨주세요">
           </label>
-          <button type="submit" class="commentAddBtn">등록</button>
+          <button type="submit" class="commentAddBtn" id="repleSubmit">등록</button>
         </div>
       </form>
       </div>
@@ -317,6 +342,75 @@
 				$('#SWriter').attr("action", "deleteStudy.do?sId=${study.sId}");
 				$('#SWriter').submit();
 			}
+		}
+		
+		$(function(){
+			getReplyList();
+			
+			setInterval(function(){
+				getReplyList();
+			}, 10000);
+		});
+		
+		$("#repleSubmit").on("click", function(){
+			var srContent = $("#add-comment").val();
+			var sId = ${ study.sId};
+			
+			$.ajax({
+				url: "addStudyReple.do",
+				data: {srContent:srContent, sId:sId},
+				type:"post",
+				success: function(data){
+					if(data =="success"){
+						getReplyList();
+						$("#add-comment").val("");
+					}
+				}
+			});
+		});
+		
+		function getReplyList(){
+			var sId = ${ study.sId };
+			
+			$.ajax({
+				url: "studyRepleList.do",
+				data: {sId:sId},
+				dataType: "json",
+				success: function(data){
+					$ulBody = $(".commentList");
+					$ulBody.html("");
+					
+					var $li;
+					var $div;
+					var $spanName;
+					var $spanModifyDate;
+					var $pContent;
+					
+					if(data.length > 0){
+						for(var i in data){
+							$li = $("<li class='comment-item'>")
+							$div = $("<div class='area-txt' style='border-bottom:2px solid #003458;'>");
+							$spanName = $("<span class='name'>").text(decodeURIComponent(data[i].srWriter.replace(/\+/g," ")));
+							$spanModifyDate = $("<span class='createDate'>").text(data[i].srModifyDate);
+							$pContent = $("<p class='text'>").text(decodeURIComponent(data[i].srContent.replace(/\+/g, " ")));
+							
+							$li.append($div);
+							$li.append($spanName);
+							$li.append($spanModifyDate);
+							$li.append($pContent);
+							$ulBody.append($li);
+						}
+					}else{
+						$li = $("<li class='comment-item'>")
+						$div = $("<div class='area-txt' style='border-bottom:2px solid #003458;'>");
+						$pContent = $("<p class='text'>").text("등록된 댓글이 없습니다.");
+						
+						$li.append($div);
+						$li.append($pContent);
+						$ulBody.append($li);
+					}
+				}
+			});
 		}
 	</script>
 

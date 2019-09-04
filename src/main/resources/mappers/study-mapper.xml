@@ -30,6 +30,24 @@
 		<result property="status" column="STATUS"/>
 		<result property="nickName" column="NICKNAME"/>
 		<result property="lName" column="L_NAME"/>
+		<result property="chatMember" column="CHAT_MEMBER"/>
+	</resultMap>
+	
+	<resultMap type="Study" id="studyResultSet3">
+		<id property="sId" column="S_ID"/>
+		<result property="sTitle" column="S_TITLE"/>
+		<result property="sMember" column="S_MEMBER"/>
+		<result property="sContent" column="S_CONTENT"/>
+		<result property="sCount" column="S_COUNT"/>
+		<result property="sCategory" column="S_CATEGORY"/>
+		<result property="sCaName" column="S_CANAME"/>
+		<result property="createDate" column="CREATE_DATE"/>
+		<result property="modifyDate" column="MODIFY_DATE"/>
+		<result property="status" column="STATUS"/>
+		<result property="sWriter" column="USER_ID"/>
+		<result property="nickName" column="NICKNAME"/>
+		<result property="sLocation" column="S_LOCATION"/>
+		<result property="lName" column="L_NAME"/>
 	</resultMap>
 	
 	<resultMap type="StudyReply" id="studyReplyResult">
@@ -39,7 +57,7 @@
 		<result property="srModifyDate" column="SR_MODIFY_DATE"/>
 		<result property="status" column="STATUS"/>
 		<result property="sId" column="S_ID"/>
-		<result property="srWriter" column="USER_ID"/>
+		<result property="srWriter" column="NICKNAME"/>
 	</resultMap>
 	
 	<resultMap type="Local" id="localResult">
@@ -63,17 +81,23 @@
 		where status = 'Y'
 	</select>
 	
-	<select id="selectStudy" resultMap="studyResultSet">
-		select *
+	<select id="selectStudy" resultMap="studyResultSet2">
+	
+		select s_id, s_title, s_member, s_content, s_count, s_category, s_caname, study.create_date as CREATE_DATE, study.modify_date as MODIFY_DATE, study.status as STATUS, nickname, l_name, chat_member
 		from study
-		where status = 'Y'
+		join member using(user_id)
+		join local on(l_code = s_location)
+		join studychat using(s_id)
+		where study.status = 'Y'
 		order by s_id desc
 	</select>
 	
-	<select id="studyDetail" parameterType="_int" resultMap="studyResultSet">
-		select *
+	<select id="studyDetail" parameterType="_int" resultMap="studyResultSet3">
+		select s_id, s_title, s_member, s_content, s_count, s_category, s_caname, study.create_date as CREATE_DATE, study.modify_date as MODIFY_DATE, study.status as STATUS, user_id, nickname, s_location, l_name
 		from study
-		where status='Y' and s_id=#{sId}
+		join member using(user_id)
+		join local on(l_code = s_location)
+		where study.status = 'Y' and s_id=#{sId}
 	</select>
 	
 	<update id="deleteStudy" parameterType="_int">
@@ -84,7 +108,49 @@
 	
 	<insert id="createChat" parameterType="map">
 		insert into studychat
-		values(seq_sid.currval, #{cname}, #{nickName})
+		values(seq_sid.currval, #{ cname}, #{ nickName})
+	</insert>
+	
+	<update id="updateStudy" parameterType="Study">
+		update study
+		set s_title=#{sTitle} , s_member=#{sMember}, s_content = #{sContent}, s_category=#{sCategory}, s_caname=#{sCaName}, modify_date = sysdate, s_location = #{sLocation}
+		where s_id=#{sId}
+	</update>
+	
+	<update id="addReadCount" parameterType="_int">
+		update study
+		set s_count = s_count+1
+		where s_id=#{sId}
+	</update>
+	
+	<select id="chatMember" parameterType="_int" resultType="string">
+		select chat_Member
+		from studychat
+		where s_id=#{sId}
+	</select>
+	
+	<update id="studyAdd" parameterType="map">
+		update studychat
+		set chat_member = chat_member || ',' || #{nickname}
+		where s_id = #{sId}
+	</update>
+	
+	<update id="studyCancel" parameterType="map">
+		update studychat
+		set chat_member = #{chatMember}
+		where s_id = #{sId}
+	</update>
+	
+	<select id="studyRepleList" parameterType="_int" resultMap="studyReplyResult">
+		select sr_id, sr_content, sr_create_date, sr_modify_date, studyReply.status as status, s_id, nickname
+		from studyReply
+		join member using(user_id)
+		where s_id =#{sId}
+	</select>
+	
+	<insert id="addReply" parameterType="StudyReply">
+		insert into studyreply
+		values(seq_srid.nextval, #{srContent}, sysdate, sysdate, default, #{sId}, #{srWriter})
 	</insert>
 	
 </mapper>

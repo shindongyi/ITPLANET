@@ -187,25 +187,25 @@ td{
 			var study1 = document.getElementById("study1");
 
 			if(f.sTitle.value == ""){
-				f.title.focus();
+				f.sTitle.focus();
 				alert('제목을 입력하세요.');
 				return false;
 			}else if(f.sMember.value == ""){
-				f.human.focus();
+				f.sMember.focus();
 				alert('모집인원을 입력하세요.');
 				return false;
 			}else if(f.sContent.value == ""){
-				f.content.focus();
+				f.sContent.focus();
 				alert('내용을 입력하세요.');
 				return false;
 			}else if(f.sMember.value >10){
-				f.human.value = "";
-				f.human.focus();
+				f.sMember.value = "";
+				f.sMember.focus();
 				alert('모집인원은 최대 10명입니다.');
 				return false;
 			}else{
 				alert('게시물작성이 완료되었습니다.');
-				f.cname.value= f.title.value + f.human.value;
+				f.cname.value= f.sTitle.value + f.sMember.value;
 				f.submit();
 				return true;
 			}

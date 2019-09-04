@@ -1,20 +1,23 @@
 package com.project.itplanet.study.controller;
 
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.project.itplanet.common.Pagination;
 import com.project.itplanet.common.model.vo.Local;
 import com.project.itplanet.common.model.vo.PageInfo;
@@ -22,6 +25,7 @@ import com.project.itplanet.member.model.vo.Member;
 import com.project.itplanet.study.model.exception.StudyException;
 import com.project.itplanet.study.model.service.StudyService;
 import com.project.itplanet.study.model.vo.Study;
+import com.project.itplanet.study.model.vo.StudyReply;
 
 
 @Controller
@@ -64,8 +68,12 @@ public class StudyController {
 	}
 	
 	@RequestMapping("studyUpdateView.do")
-	public String studyUpdateView() {
-		return "study/studyUpdateView";
+	public ModelAndView studyUpdateView(ModelAndView mv, @ModelAttribute Study study) {
+		ArrayList<Local> list = sService.selectLocal();
+		mv.addObject("study", study);
+		mv.addObject("list", list);
+		mv.setViewName("study/studyUpdateView");
+		return mv;
 	}
 	
 	@RequestMapping("studyInsert.do")
@@ -91,10 +99,12 @@ public class StudyController {
 	
 	@RequestMapping("studyDetail.do")
 	public ModelAndView studyDetail(@RequestParam("sId") int sId, ModelAndView mv) {
+		sService.addReadCount(sId);
 		Study study = sService.studyDetail(sId);
-		
+		String chatMember = sService.chatMember(sId);
 		
 		mv.addObject("study", study);
+		mv.addObject("chatMember", chatMember);
 		mv.setViewName("study/studyDetailView");
 		
 		return mv;
@@ -110,5 +120,102 @@ public class StudyController {
 			throw new StudyException("게시글 삭제에 실패하였습니다.");
 		}
 		
+	}
+	
+	@RequestMapping("updateStudy.do")
+	public ModelAndView updateStudy(@ModelAttribute Study study, ModelAndView mv) {
+		int result = sService.updateStudy(study);
+		int sId = study.getsId();
+		if(result >0) {
+			mv.addObject("sId", sId);
+			mv.setViewName("redirect:studyDetail.do");
+		}else {
+			throw new StudyException("게시글 수정에 실패하였습니다.");
+		}
+		return mv;
+	}
+	
+	@RequestMapping("studyCancel.do")
+	public ModelAndView studyCancel(@RequestParam("sId") int sId,ModelAndView mv,@SessionAttribute("loginUser") Member loginUser) {
+		String nickName = loginUser.getNickName();
+		String chatMember = sService.chatMember(sId);
+		String[] chatMem = chatMember.split(",");
+		
+		String newChatMember = null;
+		
+		for(int i=0; i< chatMem.length; i++) {
+			if(chatMem[i].equals(nickName)) {
+				continue;
+			}else {
+				if(newChatMember == null) {
+					newChatMember = chatMem[i];
+				}else {
+					newChatMember += "," + chatMem[i];
+				}
+			}
+		}
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("sId", sId);
+		map.put("chatMember", newChatMember);
+		int result = sService.studyCancel(map);
+		if(result > 0) {
+			mv.addObject("sId", sId);
+			mv.setViewName("redirect:studyDetail.do");
+		}else {
+			throw new StudyException("스터디 취소에 실패하였습니다.");
+		}
+		return mv;
+	}
+	
+	@RequestMapping("studyAdd.do")
+	public ModelAndView studyAdd(@RequestParam("sId") int sId, @SessionAttribute("loginUser") Member loginUser, ModelAndView mv) {
+		String nickname = loginUser.getNickName();
+		
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("sId", sId);
+		map.put("nickname", nickname);
+		
+		int result = sService.studyAdd(map);
+		if(result > 0) {
+			mv.addObject("sId", sId);
+			mv.setViewName("redirect:studyDetail.do");
+		}else {
+			throw new StudyException("스터디 멤버신청을 실패하였습니다.");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("studyRepleList.do")
+	public void studyRepleList(HttpServletResponse response, @RequestParam("sId") int sId) throws IOException {
+		System.out.println(sId);
+		ArrayList<StudyReply> repleList = sService.studyRepleList(sId);
+		
+		for(StudyReply sr : repleList) {
+			sr.setSrContent(URLEncoder.encode(sr.getSrContent(), "utf-8"));
+			sr.setSrWriter(URLEncoder.encode(sr.getSrWriter(), "utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(repleList, response.getWriter());
+		
+	}
+	
+	@RequestMapping("addStudyReple.do")
+	public ModelAndView addReply(StudyReply r, @SessionAttribute("loginUser") Member loginUser, ModelAndView mv) {
+		String rWriter = loginUser.getUserId();
+		r.setSrWriter(rWriter);
+		int result = sService.addReply(r);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		if(result > 0) {
+			
+		}else {
+			throw new StudyException("댓글 작성에 실패하였습니다.");
+		}
+		
+		return mv;
 	}
 }

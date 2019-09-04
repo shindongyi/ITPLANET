@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -203,19 +203,25 @@ public class StudyController {
 	}
 	
 	@RequestMapping("addStudyReple.do")
-	public ModelAndView addReply(StudyReply r, @SessionAttribute("loginUser") Member loginUser, ModelAndView mv) {
+	@ResponseBody
+	public String addReply(StudyReply r, @SessionAttribute("loginUser") Member loginUser, ModelAndView mv, HttpServletResponse response) {
 		String rWriter = loginUser.getUserId();
 		r.setSrWriter(rWriter);
 		int result = sService.addReply(r);
 		
-		Map<String, Object> map = new HashMap<String, Object>();
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("success", "success");
+//		map.put("sId", r.getsId());
 		
 		if(result > 0) {
-			
+//			mv.addAllObjects(map);
+//			
+//			mv.setViewName("jsonView");
+//			response.setContentType("application/json; charset=utf-8");
+			return "success";
 		}else {
 			throw new StudyException("댓글 작성에 실패하였습니다.");
 		}
 		
-		return mv;
 	}
 }

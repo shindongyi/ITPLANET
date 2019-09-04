@@ -317,14 +317,14 @@
           </li>
           <%} %>
          </ul>
-        <form class="comment-form">
+        <!-- <form class="comment-form"> -->
         <div class="inner" id="deliveryAng">
           <label class="input-text">
             <input type="text" class="input-text" id="add-comment" name="comment" placeholder="댓글을 남겨주세요">
           </label>
-          <button type="submit" class="commentAddBtn" id="repleSubmit">등록</button>
+          <button class="commentAddBtn" id="repleSubmit">등록</button>
         </div>
-      </form>
+      <!-- </form> -->
       </div>
 
       <br>
@@ -361,7 +361,7 @@
 				data: {srContent:srContent, sId:sId},
 				type:"post",
 				success: function(data){
-					if(data =="success"){
+					if(data == "success"){
 						getReplyList();
 						$("#add-comment").val("");
 					}

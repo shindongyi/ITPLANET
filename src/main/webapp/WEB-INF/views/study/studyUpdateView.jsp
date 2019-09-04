@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,50 +116,66 @@ td{
 			<h2 class="text-center">스터디 수정</h2>
 			<br>
 			<p></p>
-			<form onsubmit="return check()" action="" method="post" name="writer">
+			<form onsubmit="return check()" action="updateStudy.do" method="post" name="writer">
 				<div class="table table-responsive" style="border-radius:30px;">
 					<table class="table table-striped" style="text-align: center;">
 						<tr>
 							<th style="vertical-align: middle;">제목</th>
-							<td colspan="3"><input type="text" class="form-control" name="title" style="text-align: center;"></td>
+							<td colspan="3">
+								<input type="text" class="form-control" name="sTitle" style="text-align: center;" value="${ study.sTitle }">
+								<input type="hidden" name="sId" value="${ study.sId }">
+							</td>
 						</tr>
 						<tr>
 							<th style="vertical-align: middle;">모임장소</th>
 							<td>
-								<select id="local" class="local" name="local" style="width:300px;">
-									<option value="1">서울 강서구</option>
+								<select id="local" class="local" name="sLocation" style="width:300px;">
+									<c:forEach items="${ list }" var="lo">
+										<c:if test="${ study.sLocation == lo.lCode}">
+											<option value="${ lo.lCode }" selected="selected">${ lo.lName }</option>
+										</c:if>
+										<c:if test="${ study.sLocation != lo.lCode }">
+											<option value="${ lo.lCode }">${ lo.lName }</option>
+										</c:if>
+									</c:forEach>
 								</select>
 							</td>
 							<th style="vertical-align: middle;">스터디 멤버</th>
 							<td>
-								<input type="text" placeholder="숫자만 입력하세요(최대모집인원 10)" class="form-control" name="human" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+								<input type="text" placeholder="숫자만 입력하세요(최대모집인원 10)" class="form-control" name="sMember" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${ study.sMember }">
 							</td>
 						</tr>
 
 						<tr>
 							<th style="vertical-align: middle;">스터디 종류</th>
 							<td>
-								<select id="study1" class="studyList" name="study" style="width:300px;">
-									<option value="1">자격증</option>
-									<option value="2">공모전</option>
+								<select id="study1" class="studyList" name="sCategory" style="width:300px;">
+									<c:if test="${ study.sCategory eq '자격증' }">
+										<option value="자격증" selected="selected">자격증</option>
+										<option value="공모전">공모전</option>
+									</c:if>
+									<c:if test="${ study.sCategory eq '공모전' }">
+										<option value="자격증">자격증</option>
+										<option value="공모전" selected="selected">공모전</option>
+									</c:if>
 								</select>
 							</td>
 							<td colspan="2">
-								<select id="study2" class="studyList" name="study" style="width: 300px;">
-									<option value="1">정처기</option>
+								<select id="study2" class="studyList" name="sCaName" style="width: 300px;">
+									<option value="정처기">정처기</option>
 								</select>
 							</td>
 						</tr>
 
 						<tr>
 							<th style="vertical-align:top; border-bottom-left-radius: 30px;">글내용</th>
-							<td colspan="3"><textarea rows="10" cols="50" name="content"
-									class="form-control" style="border-radius:20px;"></textarea></td>
+							<td colspan="3"><textarea rows="10" cols="50" name="sContent"
+									class="form-control" style="border-radius:20px;">${ study.sContent }</textarea></td>
 						</tr>
 						<tr style="width:77px;">
 							<td colspan="4" class="text-center">
 								<input type="submit" value="수정완료"> &nbsp;
-								<input type="button" value="취소">
+								<input type="button" value="취소" onclick="cancelBtn();">
 							</td>
 						</tr>
 
@@ -172,6 +189,40 @@ td{
 	</div>
 	
 	<%-- 멤버가 있을때 해당 멤버보다 적게 다시 설정하는건 막아놓기  --%>
+	<script>
+		function cancelBtn(){
+			var bool = confirm("수정을 취소하시겠습니까? 취소하시면 이전페이지로 돌아갑니다.");
+			if(bool){
+				location.href='javascript:history.go(-1)';
+			}
+		}
+		
+		function check(f){
+			var f = document.writer;
+			if(f.sTitle.value == ""){
+				f.sTitle.focus();
+				alert('제목을 입력하세요.');
+				return false;
+			}else if(f.sMember.value == ""){
+				f.sMember.focus();
+				alert('모집인원을 입력하세요.');
+				return false;
+			}else if(f.sContent.value == ""){
+				f.sContent.focus();
+				alert('내용을 입력하세요.');
+				return false;
+			}else if(f.sMember.value >10){
+				f.sMember.value = "";
+				f.sMember.focus();
+				alert('모집인원은 최대 10명입니다.');
+				return false;
+			}else{
+				alert('게시물수정이 완료되었습니다.');
+				f.submit();
+				return true;
+			}
+		}
+	</script>
 
 </body>
 </html>

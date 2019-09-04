@@ -10,6 +10,7 @@ import com.project.itplanet.common.model.vo.Local;
 import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.study.model.dao.StudyDAO;
 import com.project.itplanet.study.model.vo.Study;
+import com.project.itplanet.study.model.vo.StudyReply;
 
 @Service("sService")
 public class StudyServiceImpl implements StudyService{
@@ -52,4 +53,41 @@ public class StudyServiceImpl implements StudyService{
 		sDAO.createChat(map);
 		
 	}
+
+	@Override
+	public int updateStudy(Study study) {
+		return sDAO.updateStudy(study);
+	}
+
+	@Override
+	public void addReadCount(int sId) {
+		sDAO.addReadCount(sId);
+	}
+
+	@Override
+	public String chatMember(int sId) {
+		return sDAO.chatMember(sId);
+	}
+
+	@Override
+	public int studyAdd(HashMap<String, Object> map) {
+		return sDAO.studyAdd(map);
+	}
+
+	@Override
+	public int studyCancel(HashMap<String, Object> map) {
+		return sDAO.studyCancel(map);
+	}
+
+	@Override
+	public ArrayList<StudyReply> studyRepleList(int sId) {
+		return sDAO.studyRepleList(sId);
+	}
+
+	@Override
+	public int addReply(StudyReply r) {
+		return sDAO.addReply(r);
+	}
+
+
 }

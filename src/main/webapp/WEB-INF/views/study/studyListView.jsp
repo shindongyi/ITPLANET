@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,39 +74,38 @@
 						<th width="200px">스터디종류</th>
 						<th width="300px">제목</th>
 						<th width="100px">스터디현황</th>
-						<th width="100px">지역</th>
+						<th width="150px">지역</th>
 						<th width="60px">조회</th>
 						<th width="100px">작성자</th>
 						<th width="100px">작성일</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="li" items="${ list }">
+					<c:if test="${ !empty list }">
+						<c:forEach var="li" items="${ list }">
+							<tr>
+								<td>${ li.sId }<input type="hidden" value="${ li.sId }"></td>
+								<td>${ li.sCategory } - ${ li.sCaName }</td>
+								<td>${ li.sTitle }</td>
+								<td><c:forEach items="${fn:split(li.chatMember,',') }" var="cm" varStatus="status">
+										<c:if test="${ status.last }">
+											 ${status.index + 1 }
+										</c:if>
+									</c:forEach> / ${ li.sMember }</td>
+								<td>${ li.lName}</td>
+								<td>${ li.sCount }</td>
+								<td>${ li.nickName }</td>
+								<td>${ li.createDate }</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${ empty list }">
 						<tr>
-							<td>${ li.sId }<input type="hidden" value="${ li.sId }"></td>
-							<td>${ li.sCategory } - ${ li.sCaName }</td>
-							<td>${ li.sTitle }</td>
-							<td></td>
-							<td>${ li.sLocation}</td>
-							<td>${ li.sCount }</td>
-							<td>${ li.sWriter }</td>
-							<td>${ li.createDate }</td>
+							<td colspan=8>등록된 게시글이 없습니다.</td>
 						</tr>
-					</c:forEach>
+					</c:if>
 				</tbody>
 				
-				<%-- <c:forEach var="li" items="${ list }">
-				<tr>
-					<td>${ li.sId }</td>
-					<td>${ li.sCategory } - ${ li.sCaName }</td>
-					<td>${ li.sTitle }</td>
-					<td></td>
-					<td>${ li.sLocation}</td>
-					<td>${ li.sCount }</td>
-					<td>${ li.sWriter }</td>
-					<td>${ li.createDate }</td>
-				</tr>
-				</c:forEach> --%>
 			</table>
 		</div>
 	

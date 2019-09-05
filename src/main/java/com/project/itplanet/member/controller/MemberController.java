@@ -249,7 +249,6 @@ public class MemberController {
 	@ResponseBody
 	public String findId(@ModelAttribute Member m) {
 		String userId =  mService.findUserId(m);
-		String user
 		return userId;
 	}
 	

@@ -109,7 +109,6 @@
 </style>
 </head>
 <body>
-
 	<div class="outer align-content-center">
 		<br>
 		<h2 align="center">스터디</h2>
@@ -328,7 +327,6 @@
 		});
 		
 	</script>
-	
 	
 </body>
 </html>

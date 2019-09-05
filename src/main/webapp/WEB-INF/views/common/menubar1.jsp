@@ -9,8 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/views/common/css/common.css">
-<script type="text/javascript" src="<%=request.getContextPath()%>/views/common/js/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="${ contextPath }/resources/css/mainView/common.css">
+<script type="text/javascript" src="${ contextPath }/resources/js/jquery-3.4.1.min.js"></script>
 <style>
 .subLyr{
 	display: block;
@@ -100,7 +100,7 @@ $(window).scroll(function(event) {
 			<h1 class="sd">
 				<a href="<%=request.getContextPath()%>/index.jsp"><img
 					style="margin-top: -30px; width: 220px; height: 90px;"
-					src="<%=request.getContextPath()%>/views/common/image/itplanet.png"
+					src="${ contextPath }/resources/images/itplanet.png"
 					alt="IT PLANET"></a>
 			</h1>
 		</div>

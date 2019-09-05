@@ -93,6 +93,22 @@ public class MemberServiceImpl implements MemberService{
 		return mDAO.countScrap(userId);
 	}
 
+	@Override
+	public ArrayList<HashMap<String, String>> recentComp(String userId) {
+		return mDAO.recentComp(userId);
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> recentHire(String userId) {
+		return mDAO.recentHire(userId);
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> recentLcs(String userId) {
+		return mDAO.recentLcs(userId);
+	}
+
+	
 
 
 

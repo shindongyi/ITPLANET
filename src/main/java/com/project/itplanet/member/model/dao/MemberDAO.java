@@ -2,6 +2,7 @@ package com.project.itplanet.member.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -64,6 +65,18 @@ public class MemberDAO {
 //	public int countLcs(String userId) {
 //		return sqlSession.selectOne("memberMapper.countLcs", userId);
 //	}
+	
+	public HashMap<String, Integer> countScrap(String userId) {
+		int compCount = sqlSession.selectOne("memberMapper.countComp", userId);
+		int hireCount =sqlSession.selectOne("memberMapper.countHire", userId);
+		int lcsCount = sqlSession.selectOne("memberMapper.countLcs", userId);
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("compCount", compCount);
+		map.put("hireCount", hireCount);
+		map.put("lcsCount", lcsCount);
+		
+		return map;
+	}
 
 //	public ArrayList selectScrapList(String userId, int type) {
 //		if(type==1) {
@@ -88,16 +101,33 @@ public class MemberDAO {
 		}
 	}
 	
-	public HashMap<String, Integer> countScrap(String userId) {
-		int compCount = sqlSession.selectOne("memberMapper.countComp", userId);
-		int hireCount =sqlSession.selectOne("memberMapper.countHire", userId);
-		int lcsCount = sqlSession.selectOne("memberMapper.countLcs", userId);
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("compCount", compCount);
-		map.put("hireCount", hireCount);
-		map.put("lcsCount", lcsCount);
+
+	public ArrayList recentScrap(String userId) {
+		ArrayList list = new ArrayList<HashMap<String, Object>>();
+//		Map<String, Object> recentComp = sqlSession.selectMap("memberMapper.recentCompScrap", userId, "recentComp");
+//		Map<String, Object> recentLcs = sqlSession.selectMap("memberMapper.recentLcsScrap", userId, "recentLcs");
+//		Map<String, Object> recentHire = sqlSession.selectMap("memberMapper.recentHireScrap", userId, "recentHire");
+//		list.add(recentComp);
 		
-		return map;
+		ArrayList<HashMap<String, String>> recentLcs = (ArrayList)sqlSession.selectList("memberMapper.recentLcsScrap", userId);
+		ArrayList<HashMap<String, String>> recentComp = (ArrayList)sqlSession.selectList("memberMapper.recentCompScrap", userId);
+		ArrayList<HashMap<String, String>> recentHire = (ArrayList)sqlSession.selectList("memberMapper.recentHireScrap", userId);
+		list.add(recentComp);
+		list.add(recentLcs);
+		list.add(recentHire);
+		
+		return list;
+	}
+
+	public ArrayList<HashMap<String, String>> recentComp(String userId) {
+		String keyword = "day1";
+		return (ArrayList)sqlSession.selectList("memberMapper.recentCompScrap", userId);
+	}
+	public ArrayList<HashMap<String, String>> recentHire(String userId) {
+		return (ArrayList)sqlSession.selectList("memberMapper.recentHireScrap", userId);
+	}
+	public ArrayList<HashMap<String, String>> recentLcs(String userId) {
+		return (ArrayList)sqlSession.selectList("memberMapper.recentLcsScrap", userId);
 	}
 
 

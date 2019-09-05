@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-<%  %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>ITPLANET</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="${contextPath}/resources/css/member/forgetView-style.css" type="text/css">
 <link rel="stylesheet" href="${contextPath}/resources/css/member/mypageCommon-style.css" type="text/css">
 </head>
@@ -68,20 +68,22 @@
 											findId();
 										});
 										
-										function() findId{
+										function findId(){
+											var userName = $('#fidName').val();
+											var email = $('#fidMail').val();
 											$.ajax({
 												url: "findId.do",
 												type: "post",
-												data: {userName:fidName, email:txEmail1},
+												data: {userName:userName, email:email},
 												success: function(data){
 													if(data != null){
 														$('#resultIdList strong').text('');
-														$('#resultIdList strong').text('${data}');
+														$('#resultIdList strong').text(data);
 														$('#idResult').show();
 													}
 												}
 											});
-										});
+										}
 									</script>
 								</form>
 							</div>
@@ -146,10 +148,10 @@
 									</div>
 									<script>
 										$('#fPwdBtn').on('click', function(){
-											findId();
+											findPwd();
 										});
 										
-										function() findPwd{
+										function findPwd(){
 											var userId = $('#fpwId').val(); 
 											var userName = $('#fpwName').val(); 
 											var email = $('#fpwMail2').val();
@@ -166,7 +168,7 @@
 													}
 												}
 											});
-										});
+										}
 									</script>
 								</form>
 							</div>
@@ -177,7 +179,7 @@
 					<div id="idResult" class="findResult overHidden">
 						<p><strong>아이디 조회 결과 입력하신 정보와 일치하는 아이디는 아래와 같습니다.</strong><p>
 						<ul id="resultIdList" class="idList">
-							<li>- <strong>유저아이디</strong>(가입일자 : 0000년 0월 00일)</li>
+							<li>- <strong>${ userId }</strong>(가입일자 : 0000년 0월 00일)</li>
 						</ul>
 					</div>
 					<!-- end id search result -->
@@ -226,13 +228,13 @@
 						</div>
 					</div>
 					<script>
-						$('.findPwdBtn').on('click', function(){
+						/* $('.findPwdBtn').on('click', function(){
 							findPwd();
 						});
 						
 						function findPwd(){
 							$.ajax
-						}
+						} */
 					</script>
 					<!-- end pwd search result -->
 				</div>

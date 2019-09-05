@@ -37,6 +37,12 @@ public interface MemberService {
 
 	ArrayList<HashMap<String, String>> selectScrapList(String userId, Integer type, PageInfo pi);
 
+//	ArrayList recentScrap(String userId);
+
+	ArrayList<HashMap<String, String>> recentComp(String userId);
+	ArrayList<HashMap<String, String>> recentHire(String userId);
+	ArrayList<HashMap<String, String>> recentLcs(String userId);
+
 //	Map<String, Integer> scrapCount(String userId);
 
 }

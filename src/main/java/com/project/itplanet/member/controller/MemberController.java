@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -50,8 +51,26 @@ public class MemberController {
 	}
 	// 마이페이지
 	@RequestMapping("mypage.do")
-	public String myPageView() {
-		return "member/mypageMainView";
+	public ModelAndView myPageView(ModelAndView mv, HttpSession session) {
+		Member m = (Member)session.getAttribute("loginUser");
+		String userId = m.getUserId();
+//		ArrayList list = mService.recentScrap(userId);
+//		mv.addObject("list", list);
+		
+		ArrayList<HashMap<String, String>> recentComp = mService.recentComp(userId);
+		ArrayList<HashMap<String, String>> recentHire = mService.recentHire(userId);
+		ArrayList<HashMap<String, String>> recentLcs = mService.recentLcs(userId);
+		
+		
+//		ArrayList<HashMap<String, String>> alarmComp = mService.recentComp(userId);
+//		ArrayList<HashMap<String, String>> alarmHire = mService.recentHire(userId);
+//		ArrayList<HashMap<String, String>> alarmLcs = mService.recentLcs(userId);
+		
+		mv.addObject("recentComp", recentComp);
+		mv.addObject("recentHire", recentHire);
+		mv.addObject("recentLcs", recentLcs);
+		mv.setViewName("member/mypageMainView");
+		return mv;
 	}
 	// 스크랩 페이지
 	@RequestMapping("myPageScrapView.do")
@@ -151,7 +170,7 @@ public class MemberController {
 		} else {
 			throw new MemberException("존재하지 않는 아이디입니다.");
 		}
-		return "member/mypageMainView";
+		return "redirect:mypage.do";
 	}
 
 	// 아이디 체크
@@ -227,8 +246,10 @@ public class MemberController {
 	
 	// 아이디 찾기
 	@RequestMapping("findId.do")
+	@ResponseBody
 	public String findId(@ModelAttribute Member m) {
 		String userId =  mService.findUserId(m);
+		String user
 		return userId;
 	}
 	
@@ -305,4 +326,5 @@ public class MemberController {
 		status.setComplete();
 		return "redirect:mypage.do";
 	}
+	
 }

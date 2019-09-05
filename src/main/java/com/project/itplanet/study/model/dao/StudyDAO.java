@@ -77,6 +77,17 @@ public class StudyDAO {
 		return sqlSession.insert("studyMapper.addReply", r);
 	}
 
+	public int getSearchResultListCount(HashMap<String, String> map) {
+		return sqlSession.selectOne("studyMapper.searchResultListCount", map);
+	}
+
+	public ArrayList<Study> selectSearchResultList(HashMap<String, String> map, PageInfo pi) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("studyMapper.selectSearchResultList", map, rowBounds);
+	}
+
 
 
 }

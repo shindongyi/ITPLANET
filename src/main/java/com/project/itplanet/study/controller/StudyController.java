@@ -54,9 +54,10 @@ public class StudyController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Study> list = sService.selectStudy(pi);
-		
+		ArrayList<Local> local = sService.selectLocal();
 		if(list != null) {
 			mv.addObject("list", list);
+			mv.addObject("local", local);
 			mv.addObject("pi", pi);
 			mv.setViewName("study/studyListView");
 		}else {
@@ -204,24 +205,52 @@ public class StudyController {
 	
 	@RequestMapping("addStudyReple.do")
 	@ResponseBody
-	public String addReply(StudyReply r, @SessionAttribute("loginUser") Member loginUser, ModelAndView mv, HttpServletResponse response) {
+	public String addReply(StudyReply r, @SessionAttribute("loginUser") Member loginUser, HttpServletResponse response) {
 		String rWriter = loginUser.getUserId();
 		r.setSrWriter(rWriter);
 		int result = sService.addReply(r);
 		
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("success", "success");
-//		map.put("sId", r.getsId());
-		
 		if(result > 0) {
-//			mv.addAllObjects(map);
-//			
-//			mv.setViewName("jsonView");
-//			response.setContentType("application/json; charset=utf-8");
 			return "success";
 		}else {
 			throw new StudyException("댓글 작성에 실패하였습니다.");
 		}
+	}
+	
+	@RequestMapping("searchStudyResult.do")
+	public ModelAndView searchStudyResult(ModelAndView mv, @RequestParam("result1") String result1,
+										@RequestParam("result2") String result2, @RequestParam("result3") String result3,
+										@RequestParam("result4") String result4, @RequestParam("result5") String result5,
+										@RequestParam(value="page", required=false) Integer page) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("result1", result1);
+		map.put("result2", result2);
+		map.put("result3", result3);
+		map.put("result4", result4);
+		map.put("result5", result5);
 		
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int listCount = sService.getSearchResultListCount(map);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Study> list = sService.selectSearchResultList(map, pi);
+		ArrayList<Local> local = sService.selectLocal();
+		System.out.println(pi);
+		System.out.println(list);
+		if(list != null) {
+			mv.addObject("list", list);
+			mv.addObject("local", local);
+			mv.addObject("pi", pi);
+			mv.setViewName("study/studyListView");
+		}else {
+			throw new StudyException("스터디 검색에 실패하였습니다.");
+		}
+		
+		return mv;
 	}
 }

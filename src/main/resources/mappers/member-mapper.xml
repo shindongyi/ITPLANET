@@ -134,6 +134,7 @@
 		order by ls.ls_id desc
 	</select>
 	
+
 	<select id="recentLcsScrap" parameterType="string" resultType="map">
 		<!-- <![CDATA[ -->
         select l.l_name as TITLE, l.l_address as LINK
@@ -175,6 +176,7 @@
 		</if>   -->
 		order by cs.cs_id desc 
 	</select>
+
 	
 	<select id="recentHireScrap" parameterType="string" resultType="map">
 		<!-- <![CDATA[ -->

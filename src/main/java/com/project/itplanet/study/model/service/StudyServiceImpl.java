@@ -89,5 +89,15 @@ public class StudyServiceImpl implements StudyService{
 		return sDAO.addReply(r);
 	}
 
+	@Override
+	public int getSearchResultListCount(HashMap<String, String> map) {
+		return sDAO.getSearchResultListCount(map);
+	}
+
+	@Override
+	public ArrayList<Study> selectSearchResultList(HashMap<String, String> map, PageInfo pi) {
+		return sDAO.selectSearchResultList(map, pi);
+	}
+
 
 }

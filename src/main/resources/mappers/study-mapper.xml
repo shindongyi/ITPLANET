@@ -82,7 +82,6 @@
 	</select>
 	
 	<select id="selectStudy" resultMap="studyResultSet2">
-	
 		select s_id, s_title, s_member, s_content, s_count, s_category, s_caname, study.create_date as CREATE_DATE, study.modify_date as MODIFY_DATE, study.status as STATUS, nickname, l_name, chat_member
 		from study
 		join member using(user_id)
@@ -152,5 +151,57 @@
 		insert into studyreply
 		values(seq_srid.nextval, #{srContent}, sysdate, sysdate, default, #{sId}, #{srWriter})
 	</insert>
+	
+	<select id="searchResultListCount" parameterType="map" resultType="_int">
+		select count(*)
+		from study
+		join member using(user_id)
+		join local on(s_location = l_code)
+		where study.status='Y'
+		<if test='!result1.equals("x") and !result2.equals("x")'>
+			<if test='result1.equals("title")'>
+				and s_title like '%' || #{result2} || '%'
+			</if>
+			<if test='result1.equals("content")'>
+				and s_content like '%' || #{result2} || '%'
+			</if>
+			<if test='result1.equals("writer")'>
+				and nickname = #{result2}
+			</if>
+		</if>
+		<if test='!result3.equals("x")'>
+			and s_category = #{result3} and s_caname = #{result4}
+		</if>
+		<if test='!result5.equals("x")'>
+			and l_name = #{result5}
+		</if>
+	</select>
+	
+	<select id="selectSearchResultList" parameterType="map" resultMap="studyResultSet2">
+		select s_id, s_title, s_member, s_content, s_count, s_category, s_caname, study.create_date as CREATE_DATE, study.modify_date as MODIFY_DATE, study.status as STATUS, nickname, l_name, chat_member
+		from study
+		join member using(user_id)
+		join local on(l_code = s_location)
+		join studychat using(s_id)
+		where study.status = 'Y'
+		<if test='!result1.equals("x") and !result2.equals("x")'>
+			<if test='result1.equals("title")'>
+				and s_title like '%' || #{result2} || '%'
+			</if>
+			<if test='result1.equals("content")'>
+				and s_content like '%' || #{result2} || '%'
+			</if>
+			<if test='result1.equals("writer")'>
+				and nickname = #{result2}
+			</if>
+		</if>
+		<if test='!result3.equals("x")'>
+			and s_category = #{result3} and s_caname = #{result4}
+		</if>
+		<if test='!result5.equals("x")'>
+			and l_name = #{result5}
+		</if>
+		order by s_id desc
+	</select>
 	
 </mapper>

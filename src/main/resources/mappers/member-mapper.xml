@@ -136,12 +136,12 @@
 		order by ls.ls_id desc
 	</select>
 	
-	<select id="recentLcsScrap" parameterType="" resultMap="">
+	<!-- <select id="recentLcsScrap" parameterType="" resultMap="">
 		select lat.change_name, l.l_name
 		from l_scrap ls
 		join license l on (l.l_id = ls.ls_id)
 		join lattachment lat on (lat.l_id = ls.ls_id)
 		where ls.user_id = #{userId}
-	</select>
+	</select> -->
 	
 </mapper>

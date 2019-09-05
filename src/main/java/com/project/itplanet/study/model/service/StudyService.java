@@ -38,5 +38,9 @@ public interface StudyService {
 
 	int addReply(StudyReply r);
 
+	int getSearchResultListCount(HashMap<String, String> map);
+
+	ArrayList<Study> selectSearchResultList(HashMap<String, String> map, PageInfo pi);
+
 
 }

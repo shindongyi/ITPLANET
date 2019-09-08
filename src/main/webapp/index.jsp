@@ -40,7 +40,7 @@
 	
 	<button onclick="javascript:location.href='insertCT.do'">코딩테스트 글 작성</button>
 	<button onclick="javascript:location.href='codingTestView.do'">코딩테스트</button>
-	
+	<button onclick="javascript:location.href='codingTestList.do'">코딩테스트 목록</button>
 	<hr>
 	
 	<button onclick="javascript:location.href='mypage.do'">마이페이지</button>

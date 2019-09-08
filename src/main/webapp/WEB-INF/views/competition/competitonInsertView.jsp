@@ -176,7 +176,7 @@ input[type=text] {
 <body>
 
 	<!-- header -->
-	<%@ include file="/views/common/menubar1.jsp"%>
+	<%@ include file="/views/common/menubar.jsp"%>
 
 	<div class="boardbox">
 

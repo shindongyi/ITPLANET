@@ -33,13 +33,13 @@ import com.project.itplanet.member.model.vo.Member;
 @SessionAttributes("loginUser")
 @Controller
 public class MemberController {
-	
+
 	@Autowired
 	private MemberService mService;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
-	
+
 	// 회원가입 페이지
 	@RequestMapping("joinView.do")
 	public String joinView() {
@@ -49,7 +49,7 @@ public class MemberController {
 	@RequestMapping("loginView.do")
 	public ModelAndView loginView(HttpServletRequest request, ModelAndView mv) {
 		String referer = request.getHeader("Referer");
-		
+
 		System.out.println("1234 : " + referer);
 		mv.addObject("url", referer);
 		mv.setViewName("member/loginView");
@@ -63,67 +63,67 @@ public class MemberController {
 
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("userId", userId);
-		
+
 		ArrayList<HashMap<String, String>> recentComp = mService.recentComp(map);
 		ArrayList<HashMap<String, String>> recentHire = mService.recentHire(map);
 		ArrayList<HashMap<String, String>> recentLcs = mService.recentLcs(map);
-		
+
 		String keyword = "day1";
 		map.put("keyword", keyword);
-		
+
 		ArrayList<HashMap<String, String>> day1Lcs = mService.recentLcs(map);
 		ArrayList<HashMap<String, String>> day1Hire = mService.recentHire(map);
 		ArrayList<HashMap<String, String>> day1Comp = mService.recentComp(map);
-		
+
 		ArrayList day1List = new ArrayList();
 		day1List.addAll(day1Lcs);
 		day1List.addAll(day1Comp);
 		day1List.addAll(day1Hire);
-		
+
 		keyword = "day2";
 		map.put("keyword", keyword);
-		
+
 		ArrayList<HashMap<String, String>> day2Lcs = mService.recentLcs(map);
 		ArrayList<HashMap<String, String>> day2Hire = mService.recentHire(map);
 		ArrayList<HashMap<String, String>> day2Comp = mService.recentComp(map);
-		
+
 		ArrayList day2List = new ArrayList();
 		day2List.addAll(day2Lcs);
 		day2List.addAll(day2Comp);
 		day2List.addAll(day2Hire);
-		
+
 		mv.addObject("day1List", day1List);
 		mv.addObject("day2List", day2List);
-		
+
 		mv.addObject("recentComp", recentComp);
 		mv.addObject("recentHire", recentHire);
 		mv.addObject("recentLcs", recentLcs);
 		mv.setViewName("member/mypageMainView");
-		
+
 		return mv;
 	}
 	// 스크랩 페이지
 	@RequestMapping("myPageScrapView.do")
 	public ModelAndView myPageScrapView(@RequestParam(value="page", required=false) Integer page,
 									@RequestParam("type") Integer type,
-									@RequestParam(value="keyword", required=false) String keyword, 
+									@RequestParam(value="keyword", required=false) String keyword,
 									ModelAndView mv,
 									HttpSession session) {
 		System.out.println(type);
 		Member m = (Member)session.getAttribute("loginUser");
 		String userId = m.getUserId();
-		
+
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
-		
+
 		HashMap<String, String> map = new HashMap();
 		map.put("userId", userId);
 		if(keyword != null) {
 			map.put("keyword", keyword);
 		}
-		
+
 		HashMap<String,Integer> scrapCount = mService.countScrap(map);
 		String str = null;
 		int listCount = 0;
@@ -137,9 +137,9 @@ public class MemberController {
 			str = "자격증";
 			listCount = scrapCount.get("lcsCount");
 		}
-		
+
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		
+
 		ArrayList<HashMap<String, String>> list = new ArrayList();
 		HashMap map2 = new HashMap();
 		map2.put("userId", userId);
@@ -147,7 +147,7 @@ public class MemberController {
 		map2.put("pi", pi);
 		map2.put("keyword", keyword);
 		list = mService.selectScrapList(map2);
-		
+
 		mv.addObject("pi", pi);
 		mv.addObject("type", str);
 		mv.addObject("typeNum", type);
@@ -185,34 +185,34 @@ public class MemberController {
 	public String newFile() {
 		return "member/NewFile";
 	}
-	
+
 	// 로그인
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
 	public String memberLogin(Member m, Model model, HttpSession session, HttpServletRequest request,
 								@RequestParam(value="url", required = false) String url) {
-		
+
 		Member loginUser = mService.memberLoginUser(m);
 		if(loginUser != null) {
 			if(bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
 				model.addAttribute("loginUser", loginUser);
-				
+
 				HashMap<String, String>map = new HashMap<String, String>();
 				map.put("userId", loginUser.getUserId());
-				
+
 				HashMap<String,Integer> scrapCount = mService.countScrap(map);
 				session.setAttribute("scrapCount", scrapCount);
 				session.setMaxInactiveInterval(600);
-				
+
 				String referer = request.getHeader("Referer");
 				System.out.println("url : " + url);
 				System.out.println("referer : " + referer);
-				
+
 				if(url != null) {
 					return "redirect:"+ url;
 				} else {
 					return "redirect:"+ referer;
 				}
-				
+
 			} else {
 				throw new MemberException("로그인에 실패하였습니다.");
 			}
@@ -232,20 +232,20 @@ public class MemberController {
 			return "fail";
 		}
 	}
-	
+
 	// 닉네임 체크
 	@RequestMapping("checkNickName.do")
 	@ResponseBody
 	public String checkNickName(@RequestParam("nickName") String nickName) {
 		int result = mService.selectNickName(nickName);
-		
+
 		if(result > 0) {
 			return "success";
 		} else {
 			return "fail";
 		}
 	}
-	
+
 	// 회원가입
 	@RequestMapping(value="minsert.do", method=RequestMethod.POST)
 	public String memeberInsert(@ModelAttribute Member m,
@@ -253,15 +253,15 @@ public class MemberController {
 								@RequestParam("birth_mm") int birth_mm,
 								@RequestParam("birth_dd") int birth_dd,
 								Model model) {
-		
+
 		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
 		m.setUserPwd(encPwd);
-		
+
 		Date birthDay = new Date(new GregorianCalendar(birth_yy, birth_mm-1, birth_dd).getTimeInMillis());
 		m.setBirthDay(birthDay);
-		
+
 		int result = mService.insertMember(m);
-		
+
 		if(result > 0) {
 			Member loginUser = mService.memberLoginUser(m);
 			model.addAttribute("loginUser", loginUser);
@@ -270,7 +270,7 @@ public class MemberController {
 			throw new MemberException("회원가입에 실패하였습니다.");
 		}
 	}
-	
+
 	// 비밀번호 변경
 	@RequestMapping("updatePwd.do")
 	@ResponseBody
@@ -283,22 +283,22 @@ public class MemberController {
 		} else {
 			userId = id;
 		}
-		
+
 		String encPwd = bcryptPasswordEncoder.encode(newPwd);
-		
+
 		Member m = new Member();
 		m.setUserId(userId);
 		m.setUserPwd(encPwd);
-		
+
 		int result = mService.updatePwd(m);
-		
+
 		if(result > 0) {
 			return "success";
 		} else {
 			throw new MemberException("비밀번호 변경에 실패하였습니다.");
 		}
 	}
-	
+
 	// 아이디 찾기
 	@RequestMapping("findId.do")
 	@ResponseBody
@@ -310,14 +310,18 @@ public class MemberController {
 		} else {
 			return member;
 		}
+
+	public String findId(@ModelAttribute Member m) {
+		String userId =  mService.findUserId(m);
+		return userId;
 	}
-	
+
 	// 비밀번호 찾기
 	@RequestMapping("findPwd.do")
 	@ResponseBody
 	public String findPwd(@ModelAttribute Member m) {
 		int result = mService.findPwd(m);
-		
+
 		if(result > 0) {
 			return "success";
 		} else {
@@ -336,7 +340,7 @@ public class MemberController {
 			return "fail";
 		}
 	}
-	
+
 	// 개인정보 수정
 	@RequestMapping("updateM.do")
 	public String updateMember(@ModelAttribute Member m,
@@ -358,7 +362,7 @@ public class MemberController {
 			throw new MemberException("개인정보 수정에 실패하였습니다.");
 		}
 	}
-	
+
 	// 회원 탈퇴전 이메일 체크
 	@RequestMapping("emailCheck.do")
 	@ResponseBody
@@ -370,7 +374,7 @@ public class MemberController {
 			return "fail";
 		}
 	}
-	
+
 	// 회원 탈퇴
 	@RequestMapping("deleteM.do")
 	public String deleteMember(HttpSession session) {
@@ -383,7 +387,7 @@ public class MemberController {
 			throw new MemberException("회원 탈퇴에 실패하였습니다.");
 		}
 	}
-	
+
 	// 로그아웃
 	@RequestMapping("logout.do")
 	public String logout(SessionStatus status, HttpSession session) {
@@ -401,21 +405,21 @@ public class MemberController {
 								ModelAndView mv) {
 		Member m = (Member)session.getAttribute("loginUser");
 		String userId= m.getUserId();
-		
+
 		String[] dList = list.split("/");
 		List<Integer> aList = new ArrayList();
 		for(int i = 0; i < dList.length; i++) {
 			aList.add(Integer.parseInt(dList[i]));
 		}
-		
+
 		HashMap map = new HashMap();
 		map.put("userId", userId);
 		map.put("aList", aList);
 		map.put("type", type);
-		
+
 		String from = null;
 		int typeNum = 0;
-		
+
 		if(type.equals("공모전")) {
 			from = "c_scrap";
 			map.put("from", from);
@@ -429,10 +433,10 @@ public class MemberController {
 			map.put("from", from);
 			typeNum = 3;
 		}
-		
+
 		int result = mService.deleteScrap(map);
-		
-		if(result > 0) {	
+
+		if(result > 0) {
 			mv.addObject("type", typeNum);
 			mv.addObject("page", page);
 			mv.addObject("keyword", keyword);

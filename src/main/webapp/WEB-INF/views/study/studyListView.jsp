@@ -79,7 +79,7 @@
 	  border-radius:20px;
 	}
 	
-	input[name=search] {
+	#searchText {
 	  width: 130px;
 	  box-sizing: border-box;
 	  border: 2px solid #ccc;
@@ -95,21 +95,24 @@
 	  transition: width 0.4s ease-in-out;
 	}
 	
-	input[name=search]:focus {
+	#searchText:focus {
 	  width: 80%;
 	}
 	
-	.searchResult{
+	#result2, #result3, #result4, #result5{
 		border-top: none;
 		border-left: none;
 		border-right: none;
+		outline: none;
+		font-size: 15px;
+		background: #fff;
 	}
 	
 	
 </style>
 </head>
 <body>
-
+	<c:import url="../common/menubar.jsp"/>
 	<div class="outer align-content-center">
 		<br>
 		<h2 align="center">스터디</h2>
@@ -148,36 +151,186 @@
 		    </div>
 		    <div id="menu2" class="container tab-pane fade"><br>
 		      	 <ul class="list-group list-group-horizontal list-group-flush">
-				 <li class="list-group-item" style="border-top:none; border-bottom:none;"><a href="#" class="list-group-item list-group-item-action">First item</a></li>
-				 <li class="list-group-item" style="border-top:none; border-bottom:none;"><a href="#" class="list-group-item list-group-item-action">Second item</a></li>
-				 <li class="list-group-item" style="border-top:none; border-bottom:none;"><a href="#" class="list-group-item list-group-item-action">Third item</a></li>
-				 <li class="list-group-item" style="border-top:none; border-bottom:none;"><a href="#" class="list-group-item list-group-item-action">Fourth item</a></li>
-				 <li class="list-group-item" style="border-top:none; border-bottom:none;"><a href="#" class="list-group-item list-group-item-action">First item</a></li>
+					 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">정처기</span></li>
 				</ul>
 		    </div>
 		    <div id="menu3" class="container tab-pane fade"><br>
 		       <ul class="list-group list-group-horizontal list-group-flush">
-				 <li class="list-group-item" style="border-top:none; border-bottom:none;"><a href="#" class="list-group-item list-group-item-action">First item</a></li>
-				 <li class="list-group-item" style="border-top:none; border-bottom:none;"><a href="#" class="list-group-item list-group-item-action">Second item</a></li>
-				 <li class="list-group-item" style="border-top:none; border-bottom:none;"><a href="#" class="list-group-item list-group-item-action">Third item</a></li>
-				 <li class="list-group-item" style="border-top:none; border-bottom:none;"><a href="#" class="list-group-item list-group-item-action">Fourth item</a></li>
-				 <li class="list-group-item" style="border-top:none; border-bottom:none;"><a href="#" class="list-group-item list-group-item-action">First item</a></li>
-				</ul>
+				 	<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">정처기</span></li>
+			   </ul>
 		    </div>
-		    <div id="menu4" class="container tab-pane fade" style="overflow-x:hidden; overflow-y:scroll; height:200px;"><br>
-		    	<c:forEach items="${ local }" var="lo" varStatus="sta">
-		    		<c:if test="${ (sta.index +1) mod 7 eq 1}">
-		    			<ul class="list-group list-group-horizontal list-group-flush">
-		    			<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
-		    		</c:if>
-		    		<c:if test="${ (sta.index +1) mod 7 ne 1 && (sta.index +1) mod 7 ne 0 }">
-		    			<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
-		    		</c:if>
-		    		<c:if test="${ (sta.index +1) % 7 eq 0}">
-		    			 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
-		    			 </ul>
-		    		</c:if>
-		    	</c:forEach>
+		    <div id="menu4" class="container tab-pane fade"><br>
+		    	<div class="container">
+				  <ul class="nav nav-tabs" role="tablist">
+				    <li class="nav-item">
+				      <a class="nav-link active" data-toggle="tab" href="#local1">서울</a>
+				    </li>
+				    <li class="nav-item">
+				      <a class="nav-link" data-toggle="tab" href="#local2">경기</a>
+				    </li>
+				    <li class="nav-item">
+				      <a class="nav-link" data-toggle="tab" href="#local3">강원</a>
+				    </li>
+				    <li class="nav-item">
+				      <a class="nav-link" data-toggle="tab" href="#local4">충북</a>
+				    </li>
+				    <li class="nav-item">
+				      <a class="nav-link" data-toggle="tab" href="#local5">충남</a>
+				    </li>
+				    <li class="nav-item">
+				      <a class="nav-link" data-toggle="tab" href="#local6">전북</a>
+				    </li>
+				    <li class="nav-item">
+				      <a class="nav-link" data-toggle="tab" href="#local7">전남</a>
+				    </li>
+				    <li class="nav-item">
+				      <a class="nav-link" data-toggle="tab" href="#local8">경북</a>
+				    </li>
+				    <li class="nav-item">
+				      <a class="nav-link" data-toggle="tab" href="#local9">경남</a>
+				    </li>
+				  </ul>
+				
+				  <!-- Tab panes -->
+				  <div class="tab-content">
+				    <div id="local1" class="container tab-pane active" style="overflow-x:hidden; overflow-y:scroll; height:200px;"><br>
+				      <c:forEach items="${ local }" var="lo" varStatus="sta" begin="0" end="24">
+				    	<c:if test="${ (sta.index +1) mod 6 eq 1}">
+				    		<ul class="list-group list-group-horizontal list-group-flush">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) mod 6 ne 1 && (sta.index +1) mod 6 ne 0 }">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) % 6 eq 0}">
+				    		 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    		 </ul>
+				    	</c:if>
+			    	 </c:forEach>
+				    </div>
+				    <div id="local2" class="container tab-pane fade" style="overflow-x:hidden; overflow-y:scroll; height:200px;"><br>
+				      <c:forEach items="${ local }" var="lo" varStatus="sta" begin="25" end="55">
+				    	<c:if test="${ (sta.index +1) mod 6 eq 2}">
+				    		<ul class="list-group list-group-horizontal list-group-flush">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) mod 6 ne 2 && (sta.index +1) mod 6 ne 1 }">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) % 6 eq 1}">
+				    		 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    		 </ul>
+				    	</c:if>
+			    	 </c:forEach>
+				    </div>
+				    <div id="local3" class="container tab-pane fade" style="overflow-x:hidden; overflow-y:scroll; height:200px;"><br>
+				      <c:forEach items="${ local }" var="lo" varStatus="sta" begin="56" end="73">
+				    	<c:if test="${ (sta.index +1) mod 6 eq 3}">
+				    		<ul class="list-group list-group-horizontal list-group-flush">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) mod 6 ne 3 && (sta.index +1) mod 6 ne 2 }">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) % 6 eq 2}">
+				    		 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    		 </ul>
+				    	</c:if>
+			    	 </c:forEach>
+				    </div>
+				    <div id="local4" class="container tab-pane fade" style="overflow-x:hidden; overflow-y:scroll; height:200px;"><br>
+				      <c:forEach items="${ local }" var="lo" varStatus="sta" begin="74" end="84">
+				    	<c:if test="${ (sta.index +1) mod 6 eq 3}">
+				    		<ul class="list-group list-group-horizontal list-group-flush">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) mod 6 ne 3 && (sta.index +1) mod 6 ne 2 }">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) % 6 eq 2}">
+				    		 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    		 </ul>
+				    	</c:if>
+			    	 </c:forEach>
+				    </div>
+				    <div id="local5" class="container tab-pane fade" style="overflow-x:hidden; overflow-y:scroll; height:200px;"><br>
+				      <c:forEach items="${ local }" var="lo" varStatus="sta" begin="85" end="99">
+				    	<c:if test="${ (sta.index +1) mod 6 eq 2}">
+				    		<ul class="list-group list-group-horizontal list-group-flush">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) mod 6 ne 2 && (sta.index +1) mod 6 ne 1 }">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) % 6 eq 1}">
+				    		 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    		 </ul>
+				    	</c:if>
+			    	 </c:forEach>
+				    </div>
+				    <div id="local6" class="container tab-pane fade" style="overflow-x:hidden; overflow-y:scroll; height:200px;"><br>
+				      <c:forEach items="${ local }" var="lo" varStatus="sta" begin="100" end="113">
+				    	<c:if test="${ (sta.index +1) mod 6 eq 5}">
+				    		<ul class="list-group list-group-horizontal list-group-flush">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) mod 6 ne 5 && (sta.index +1) mod 6 ne 4 }">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) % 6 eq 4}">
+				    		 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    		 </ul>
+				    	</c:if>
+			    	 </c:forEach>
+				    </div>
+				    <div id="local7" class="container tab-pane fade" style="overflow-x:hidden; overflow-y:scroll; height:200px;"><br>
+				      <c:forEach items="${ local }" var="lo" varStatus="sta" begin="114" end="135">
+				    	<c:if test="${ (sta.index +1) mod 6 eq 1}">
+				    		<ul class="list-group list-group-horizontal list-group-flush">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) mod 6 ne 1 && (sta.index +1) mod 6 ne 0 }">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) % 6 eq 0}">
+				    		 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    		 </ul>
+				    	</c:if>
+			    	 </c:forEach>
+				    </div>
+				    <div id="local8" class="container tab-pane fade" style="overflow-x:hidden; overflow-y:scroll; height:200px;"><br>
+				      <c:forEach items="${ local }" var="lo" varStatus="sta" begin="136" end="158">
+				    	<c:if test="${ (sta.index +1) mod 6 eq 5}">
+				    		<ul class="list-group list-group-horizontal list-group-flush">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) mod 6 ne 5 && (sta.index +1) mod 6 ne 4 }">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) % 6 eq 4}">
+				    		 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    		 </ul>
+				    	</c:if>
+			    	 </c:forEach>
+				    </div>
+				    <div id="local9" class="container tab-pane fade" style="overflow-x:hidden; overflow-y:scroll; height:200px;"><br>
+				      <c:forEach items="${ local }" var="lo" varStatus="sta" begin="159" end="176">
+				    	<c:if test="${ (sta.index +1) mod 6 eq 4}">
+				    		<ul class="list-group list-group-horizontal list-group-flush">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) mod 6 ne 4 && (sta.index +1) mod 6 ne 3 }">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) % 6 eq 3}">
+				    		 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lo.lName }</span></li>
+				    		 </ul>
+				    	</c:if>
+			    	 </c:forEach>
+				    </div>
+				  </div>
+				</div>
+		    	
 		    </div>
 		  </div>
 		  <br>
@@ -322,13 +475,22 @@
 				$("#searchCategoryDe").slideToggle("slow");
 			});
 			
+			$("#menu2 span").click(function(){
+				$("#result3").val("공모전");
+				$("#result4").val($(this).text());
+			});
+			
+			$("#menu3 span").click(function(){
+				$("#result3").val("자격증");
+				$("#result4").val($(this).text());
+			});
+			
 			$("#menu4 span").click(function(){
 				$("#result5").val($(this).text());
 			});
 		});
 		
 	</script>
-	
-	
+	<c:import url="../common/footer.jsp"/>
 </body>
 </html>

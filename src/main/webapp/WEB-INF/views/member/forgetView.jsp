@@ -76,9 +76,22 @@
 												type: "post",
 												data: {userName:userName, email:email},
 												success: function(data){
-													if(data != null){
+													if(data != ""){
+														var time = data.birthDay;
+														var date = new Date(data.birthDay).toLocaleDateString();
 														$('#resultIdList strong').text('');
-														$('#resultIdList strong').text(data);
+														$('#resultIdList strong').text("- " + data.userId+" ");
+														$('#resultIdList br').remove();
+														$('#resultIdList span').text('');
+														$('#resultIdList span').text(' (가입일자 : ' + date+")");
+														$('#idResult').show();
+													} else {
+/* 														$('#idResult p strong').text('');
+														$('#idResult p strong').text('회원 정보 조회 실패에 실패했습니다.');
+ */														$('#resultIdList strong').text('');
+														$('#resultIdList strong').text('회원정보 조회에 실패했습니다.');
+														$('#resultIdList strong').after('<br>');
+														$('#resultIdList span').text('입력하신 정보가 회원정보와 일치하는지 확인해 주세요.');
 														$('#idResult').show();
 													}
 												}
@@ -158,7 +171,7 @@
 											
 											$.ajax({
 												url: "findPwd.do",
-												type: "post",
+												method: "post",
 												data: {userId:userId, userName:userName, email:email},
 												success: function(data){
 													if(data == "success"){
@@ -179,7 +192,7 @@
 					<div id="idResult" class="findResult overHidden">
 						<p><strong>아이디 조회 결과 입력하신 정보와 일치하는 아이디는 아래와 같습니다.</strong><p>
 						<ul id="resultIdList" class="idList">
-							<li>- <strong>${ userId }</strong>(가입일자 : 0000년 0월 00일)</li>
+							<li><strong></strong><span></span></li>
 						</ul>
 					</div>
 					<!-- end id search result -->
@@ -205,8 +218,10 @@
 													<label for="newPwd1">새 비밀번호</label>
 												</dt>
 												<dd>
-													<input type="text" name="newPwd1" id="newPwd1" class="txtInp" autocomplete="off"  style="width: 201px" title="새 비밀번호 입력">
-													
+													<input type="password" name="newPwd1" id="newPwd1" class="txtInp" autocomplete="off"  style="width: 201px" title="새 비밀번호 입력">
+												</dd>
+												<dd>
+													<div class="error_box" id="userPwdMsg" style="display: none;"></div>
 												</dd>
 											</dl>
 											<dl class="frmType overHidden">
@@ -214,13 +229,15 @@
 													<label for="newPwd2">새 비밀번호 확인</label>
 												</dt>
 												<dd>
-													<input type="text" name="newPwd2" id="newPwd2" class="txtInp" autocomplete="off"  style="width: 201px" title="새 비밀번호 확인">
-													
+													<input type="password" name="newPwd2" id="newPwd2" class="txtInp" autocomplete="off"  style="width: 201px" title="새 비밀번호 확인">
+												</dd>
+												<dd>
+													<div class="error_box" id="userPwd2Msg" style="display: none;"></div>
 												</dd>
 											</dl>
 										</fieldset>
 										<p class="btnAlign">
-											<span id="findPwdBtn" class="findIdSubBtn">확인</span>
+											<span id="changePwdBtn" class="findIdSubBtn">확인</span>
 										</p>
 									</div>
 								</form>
@@ -228,13 +245,78 @@
 						</div>
 					</div>
 					<script>
-						/* $('.findPwdBtn').on('click', function(){
-							findPwd();
+						var userPwdFlag = false;
+						var userPwdFlag2 = false;
+						
+						$("#newPwd1").blur(function(){
+							checkUserPwd();
 						});
 						
-						function findPwd(){
-							$.ajax
-						} */
+						$("#newPwd2").blur(function(){
+							checkUserPwd2();
+						});
+						
+						function checkUserPwd(){
+							userPwdFlag = false;
+							
+							var userPwd = $('#newPwd1').val();
+							var oMsg = $('#userPwdMsg');
+							
+							var isUserPwd = /^(?=.*[a-z])((?=.*\d)(?=.*\W)).{6,20}$/gi;
+							
+							if(!isUserPwd.test(userPwd)){
+								showErrorMsg(oMsg, "8~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+							} else {
+								oMsg.hide();
+								userPwdFlag = true;
+							} 
+							console.log("1:"+userPwdFlag);
+						}
+	
+						function checkUserPwd2(){
+							userPwdFlag2 = false;
+							
+							var userPwd = $('#newPwd1').val();
+							var userPwd2 = $('#newPwd2').val();
+							var oMsg = $('#userPwd2Msg');
+							
+							if(userPwd != userPwd2){
+								showErrorMsg(oMsg, "비밀번호가 일치하지 않습니다.");
+							} else{
+								oMsg.hide();
+								userPwdFlag2 = true;
+							}
+							console.log("2:"+userPwdFlag);
+						}
+						
+						function showErrorMsg(oMsg, msg){
+							oMsg.attr('style', '');
+							oMsg.text(msg);
+						}
+						
+						 $('#changePwdBtn').on('click', function(){
+							 alert("3:"+userPwdFlag);
+							 if(userPwdFlag){
+								 changedPwd();
+							 } else{
+								 alert('모든 항목을 확인해주세요');
+							 }
+						});
+						
+						function changedPwd(){
+							var newPwd = $('#newPwd1').val();
+							var userId = $('#fpwId').val();
+							
+							$.ajax({
+								url: "updatePwd.do",
+								method: "post",
+								data: {newPwd:newPwd, userId:userId},
+								success: function(data){
+									alert("비밀번호 변경에 성공했습니다.");
+									location.href="/itplanet/";
+								}
+							});
+						} 
 					</script>
 					<!-- end pwd search result -->
 				</div>

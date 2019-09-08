@@ -316,6 +316,7 @@
 <script>
 var userIdFlag = false;
 var userPwdFlag = false;
+var userPwdFlag2 = false;
 var check = false;
 
 $("#userId").blur(function(){
@@ -370,7 +371,6 @@ function checkUserId(event){
 	} else {
 		oMsg.hide();
 		var a = checkUserIdAjax();
-		console.log("a: " + a);
 	}
 }
 
@@ -415,7 +415,7 @@ function checkUserPwd(){
 }
 
 function checkUserPwd2(){
-	userPwdFlag = false;
+	userPwdFlag2 = false;
 	
 	var userPwd = $('#userPwd').val();
 	var userPwd2 = $('#userPwd2').val();
@@ -425,7 +425,7 @@ function checkUserPwd2(){
 		showErrorMsg(oMsg, "비밀번호가 일치하지 않습니다.");
 	} else{
 		oMsg.hide();
-		userPwdFlag = true;
+		userPwdFlag2 = true;
 	}
 }
 
@@ -453,7 +453,7 @@ function checkNickName(){
 		showErrorMsg(oMsg, "닉네임을 입력해주세요.");
 	} else {
 		oMsg.hide();
-		check = checkNickNameAjax();
+		checkNickNameAjax();
 	}
 }
 
@@ -468,11 +468,11 @@ function checkNickNameAjax(){
 		success: function(data){
 			if(data == "success"){
 				showErrorMsg(oMsg, "이미 사용중인 닉네임입니다.");
-				return false;
+				check = false;
 			} else{
 				showErrorMsg(oMsg, "사용 가능한 닉네임입니다.");
 				oMsg.css('color', 'green');
-				return true;
+				check = true;
 			}
 		}
 	});
@@ -575,7 +575,7 @@ $(function(){
 	}
 }); */
 $('#join_btn').on('click', function(){
-	if(check && userIdFlag && userPwdFlag){
+	if(check && userIdFlag && userPwdFlag && userPwdFlag2){
 		if($('#policyY').is(':checked')){
 			$('#join_form').submit();
 		} else{

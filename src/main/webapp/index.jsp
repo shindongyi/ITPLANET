@@ -6,8 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
+	<script type="text/javascript">
+		$(function(){
+			var msg = "<%= request.getAttribute("msg")%>";
+			if(msg != "null"){
+				alert(msg);
+			}
+		});
+	</script>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 	<h1>hi</h1>
 	<button onclick="javascript:location.href='loginView.do';">로그인</button>
@@ -21,7 +30,8 @@
 			<h3 align="right">
 				<c:out value="${ loginUser.userName }님 환영합니다."/>
 
-				<button onclick="location.href='${logout}'">로그아웃</button>
+				<%-- <button onclick="location.href='${logout}'">로그아웃</button> --%>
+				<button onclick="location.href='logout.do'">로그아웃</button>
 			</h3>
 		</c:if>
 	
@@ -45,5 +55,9 @@
 	
 	<button onclick="javascript:location.href='mypage.do'">마이페이지</button>
 	<button onclick="javascript:location.href='joinView.do'">회원가입</button>
+	
+	<hr>
+	
+	<button onclick="javascript:location.href='lcsView.do'">자격증 목록</button>
 </body>
 </html>

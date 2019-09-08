@@ -3,6 +3,7 @@
 <%@ page import="java.util.Date" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="today"  value="<%=new Date()%>"/>
 <c:set var="day1" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
 <c:set var="day2" value="<%=new Date(new Date().getTime() + 60*60*24*2000)%>"/>
@@ -34,16 +35,18 @@
 						<h3>최근 공모전 스크랩</h3>
 						<div class="detail">
 							<ul class="scpList"> 
-							<c:forEach var="i" items="${ recentComp }">
 								<li>
-									<a href="${ i.LINK }" class="figure">
-										<img src="${ i.FILEPATH/i.IMAGENAME }" width="106" height="106" alt="${ i.TITLE }">
+								<c:if test="${fn:length(recentComp) > 0 }">
+								<c:forEach var="j" items="${ recentComp }" >
+									<a href="${ j.LINK }" class="figure">
+										<img src="${ j.FILEPATH/j.IMAGENAME }" width="106" height="106" alt="${ j.TITLE }">
 									</a>
-									<a href="${ i.LINK }">
-										<span class="scpName">${ i.TITLE }</span>
+									<a href="${ j.LINK }">
+										<span class="scpName">${ j.TITLE }</span>
 									</a>
+								</c:forEach>
+								</c:if>
 								</li>
-							</c:forEach>
 							</ul>
 							<a href="myPageScrapView.do?type=1" class="more"><span>more</span>></a>
 						</div>
@@ -54,16 +57,18 @@
 						<h3>최근 채용공고 스크랩</h3>
 						<div class="detail">
 							<ul class="scpList">
-								<c:forEach var="i" items="${ recentHire }">
-									<li>
-										<a href="${ i.LINK }" class="figure">
-											<span class="scpName">${ i.TITLE }</span>
-											<span class="scpName">${ i.LOCATION }</span>
-											<span class="scpName">${ i.INFO }</span>
-											<span class="scpName">${ i.HTYPE }</span>
-										</a>
-									</li>
-								</c:forEach> 
+								<c:if test="${fn:length(recentHire) > 0 }">
+								<c:forEach var="j" items="${ recentHire }" >
+								<li>
+									<a href="${ j.LINK }" class="figure">
+										<span class="scpName">${ j.TITLE }</span>
+										<span class="scpName">${ j.LOCATION }</span>
+										<span class="scpName">${ j.INFO }</span>
+										<span class="scpName">${ j.HTYPE }</span>
+									</a>
+								</li>
+								</c:forEach>
+								</c:if>
 							</ul>
 							<a href="myPageScrapView.do?type=2" class="more"><span>more</span>></a>
 						</div>
@@ -74,16 +79,18 @@
 						<h3>최근 자격증 스크랩</h3>
 						<div class="detail">
 							<ul class="scpList">
-								<c:forEach var="i" items="${ recentLcs }">
-									<li>
-										<a href="${ i.LINK }" class="figure">
-											<img src="${ i.FILEPATH/i.IMAGENAME }" width="106" height="106" alt="${ i.TITLE }">
+								<c:if test="${fn:length(recentLcs) > 0 }">
+								<c:forEach var="j" items="${ recentLcs }" >
+								<li>
+										<a href="${ j.LINK }" class="figure">
+											<img src="${ k.FILEPATH/k.IMAGENAME }" width="106" height="106" alt="${ j.TITLE }">
 										</a>
-										<a href="${ i.LINK }">
-											<span class="scpName">${ i.TITLE }</span>
+										<a href="${ j.LINK }">
+											<span class="scpName">${ j.TITLE }</span>
 										</a>
-									</li>
+								</li>
 								</c:forEach> 
+								</c:if>
 							</ul>
 							<a href="myPageScrapView.do?type=3" class="more"><span>more</span>></a>
 						</div>
@@ -92,7 +99,7 @@
 				</div>
 				<!-- end middleSection -->
 				<!-- start rightSection -->
-				<%--<div class="section rightSection">
+				<div class="section rightSection">
 					<div class="article alarm">
 						<h3>
 							<i class="fas fa-bell"></i>
@@ -100,67 +107,75 @@
 							MY 알림
 						</h3>
 					 	<div class="myAlarm">
-							<div class="alarmList">
-								<div class="almToday">
-									<p class="todayBox">${day11}</p> 
-								</div>
-								<ul class="alarmUnit">
-									<li class="itemPart">
-										<a href="#">
-											<span class="alarmIco"></span>
-											<dl>
-												<dt>공고만료예정</dt>
-												<dd>${ TITLE }</dd>
-											</dl>
-											<p>이 공고의 만료일이 D-1일 남았어요!</p>
-										</a>
-									</li>
-								</ul>
-							</div>
 							<c:forEach var="i" begin="1" end="2">
-								<div class="alarmList">
+							<c:if test="${i eq'1' }">
 									<div class="almToday">
-										<c:if test="i eq 1">
-											<p class="todayBox">${day11}</p>
-										</c:if>
-										<c:if test="i eq 2">
-											<p class="todayBox">${day22}</p> 
-										</c:if>
+										<p class="todayBox">${day11}</p>
 									</div>
-									<ul class="alarmUnit">
-										<li class="itemPart">
-											<a href="#">
-											<span class="alarmIco">
-												<c:if test="${ CHANGENAME ne null }">
-													<img src="" alt="${ TITLE }이미지">
-												</c:if>
-												<c:if test="${ CHANGENAME eq null}">
-													<div class="scpName">${ TITLE }</div>
-													<div class="scpName">${ LOCATION }</div>
-													<div class="scpName">${ INFO }</div>
-													<div class="scpName">${ HTYPE }</div>
-												</c:if>
-											</span>
-												<dl>
-													<dt>공고만료예정</dt>
-													<dd>${ TITLE }</dd>
-												</dl>
-												<c:if test="i eq 1">
+									<c:forEach var="j" items="${ day1List }" varStatus="hStatus">
+									<div class="alarmList">
+										<ul class="alarmUnit">
+											<li class="itemPart">
+												<a href="#">
+												<span class="alarmIco">
+													<c:if test="${ j.CHANGENAME ne null }">
+														<img src="" alt="${ j.TITLE }이미지">
+													</c:if>
+													<c:if test="${ j.CHANGENAME eq null}">
+														<div class="scpName">${ j.TITLE }</div>
+														<div class="scpName">${ j.LOCATION }</div>
+														<div class="scpName">${ j.INFO }</div>
+														<div class="scpName">${ j.HTYPE }</div>
+													</c:if>
+												</span>
+													<dl>
+														<dt>공고만료예정</dt>
+														<dd>${ j.TITLE }</dd>
+													</dl>
 													<p>이 공고의 만료일이 D-1일 남았어요!</p>
-												</c:if>
-												<c:if test="i eq 2">
-													<p>이 공고의 만료일이 D-2일 남았어요!</p> 
-												</c:if>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</c:forEach>
+												</a>
+											</li>
+										</ul>
+									</div>
+									</c:forEach>
+									</c:if>
+											<c:if test="${i eq'2' }">
+									<div class="almToday">
+										<p class="todayBox">${day22}</p>
+									</div>
+									<c:forEach var="j" items="${ day2List }" varStatus="hStatus">
+									<div class="alarmList">
+										<ul class="alarmUnit">
+											<li class="itemPart">
+												<a href="#">
+												<span class="alarmIco">
+													<c:if test="${ j.CHANGENAME ne null }">
+														<img src="" alt="${ j.TITLE }이미지">
+													</c:if>
+													<c:if test="${ j.CHANGENAME eq null}">
+														<div class="scpName">${ j.TITLE }</div>
+														<div class="scpName">${ j.LOCATION }</div>
+														<div class="scpName">${ j.INFO }</div>
+														<div class="scpName">${ j.HTYPE }</div>
+													</c:if>
+												</span>
+													<dl>
+														<dt>공고만료예정</dt>
+														<dd>${ j.TITLE }</dd>
+													</dl>
+													<p>이 공고의 만료일이 D-2일 남았어요!</p>
+												</a>
+											</li>
+										</ul>
+									</div>
+									</c:forEach>
+									</c:if>
+									</c:forEach>
 						<p class="expire">수신일로부터 5일이 지난 알림은 자동 삭제됩니다.</p>
 						</div>
 					</div>
 				</div>	
-				<!-- end rightSection --> --%>
+				<!-- end rightSection -->
 			</div>
 		</div>
 	</div>

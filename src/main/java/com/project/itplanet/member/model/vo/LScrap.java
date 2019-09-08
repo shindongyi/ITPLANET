@@ -1,46 +1,47 @@
 package com.project.itplanet.member.model.vo;
 
 public class LScrap {
-	private String lsId;
-	private String userId;
-	private String lId;
+	private String ls_id;
+	private String user_id;
+	private String l_Id;
 	
 	public LScrap() {}
 
-	public LScrap(String lsId, String userId, String lId) {
+	public LScrap(String ls_id, String user_id, String l_Id) {
 		super();
-		this.lsId = lsId;
-		this.userId = userId;
-		this.lId = lId;
+		this.ls_id = ls_id;
+		this.user_id = user_id;
+		this.l_Id = l_Id;
 	}
 
-	public String getLsId() {
-		return lsId;
+	public String getLs_id() {
+		return ls_id;
 	}
 
-	public void setLsId(String lsId) {
-		this.lsId = lsId;
+	public void setLs_id(String ls_id) {
+		this.ls_id = ls_id;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
-	public String getlId() {
-		return lId;
+	public String getL_Id() {
+		return l_Id;
 	}
 
-	public void setlId(String lId) {
-		this.lId = lId;
+	public void setL_Id(String l_Id) {
+		this.l_Id = l_Id;
 	}
 
 	@Override
 	public String toString() {
-		return "LScrap [lsId=" + lsId + ", userId=" + userId + ", lId=" + lId + "]";
+		return "LScrap [ls_id=" + ls_id + ", user_id=" + user_id + ", l_Id=" + l_Id + "]";
 	}
+
 	
 }

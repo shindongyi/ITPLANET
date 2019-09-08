@@ -135,7 +135,6 @@
 	</div>
 </div>
 <script>
-var pwFlag = false;
 var check = false;
 
 $("#userName").blur(function(){
@@ -186,7 +185,7 @@ function checkNickName(){
 		showErrorMsg(oMsg, "닉네임을 입력해주세요.");
 	} else {
 		oMsg.hide();
-		check = checkNickNameAjax();
+		checkNickNameAjax();
 	}
 }
 
@@ -201,11 +200,11 @@ function checkNickNameAjax(){
 		success: function(data){
 			if(data == "success"){
 				showErrorMsg(oMsg, "이미 사용중인 닉네임입니다.");
-				return false;
+				check= false;
 			} else{
-				showErrorMsg(oMsg, "멋진 닉네임입니다!");
+				showErrorMsg(oMsg, "사용 가능한 닉네임입니다.");
 				oMsg.css('color', 'green');
-				return true;
+				check= true;
 			}
 		}
 	});
@@ -218,8 +217,6 @@ function checkBirth(){
 	var birth_mm = $('#birth_mm').val();
 	var birth_dd = $('#birth_dd').val();
 	var oMsg = $('#birthMsg');
-	
-	console.log(birth_mm);
 	
 	var isBirth_yy = /^[1-2]{1}[90]{1}[0-9]{2}/;
 	var isBirth_mm = /^[0-9]+$/;
@@ -291,9 +288,11 @@ function showErrorMsg(oMsg, msg){
 
 $('#update_btn').on('click', function(){
 	if(check){
-		$('#update_btn').submit();
+		console.log("2:"+check);
+		$('#update_form').submit();
 	} else {
-		alert("모든 항목을 확인해주세요.");
+		console.log(check);
+		alert("모든 항목을 확인해주세요."+check);
 	}
 });
 </script>

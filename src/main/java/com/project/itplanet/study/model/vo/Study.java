@@ -14,9 +14,7 @@ public class Study {
 	private Date modifyDate; // 수정일
 	private String status; // 삭제여부
 	private String sWriter; // 글 작성자
-	private String nickName;
 	private int sLocation; // 모임장소 번호
-	private String lName; // 모임장소 이름
 	
 	public Study() {}
 
@@ -35,41 +33,6 @@ public class Study {
 		this.status = status;
 		this.sWriter = sWriter;
 		this.sLocation = sLocation;
-	}
-	
-
-	public Study(int sId, String sTitle, int sMember, String sContent, int sCount, String sCategory, String sCaName,
-			Date createDate, Date modifyDate, String status, String nickName, String lName) {
-		super();
-		this.sId = sId;
-		this.sTitle = sTitle;
-		this.sMember = sMember;
-		this.sContent = sContent;
-		this.sCount = sCount;
-		this.sCategory = sCategory;
-		this.sCaName = sCaName;
-		this.createDate = createDate;
-		this.modifyDate = modifyDate;
-		this.status = status;
-		this.nickName = nickName;
-		this.lName = lName;
-	}
-	
-
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-
-	public String getlName() {
-		return lName;
-	}
-
-	public void setlName(String lName) {
-		this.lName = lName;
 	}
 
 	public String getsCaName() {

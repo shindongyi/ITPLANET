@@ -1,7 +1,6 @@
 package com.project.itplanet.study.model.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.project.itplanet.common.model.vo.Local;
 import com.project.itplanet.common.model.vo.PageInfo;
@@ -18,9 +17,5 @@ public interface StudyService {
 	ArrayList<Study> selectStudy(PageInfo pi);
 
 	Study studyDetail(int sId);
-
-	int deleteStudy(int sId);
-
-	void createChat(HashMap<String, String> map);
 
 }

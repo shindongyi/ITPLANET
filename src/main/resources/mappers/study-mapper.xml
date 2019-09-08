@@ -17,21 +17,6 @@
 		<result property="sLocation" column="S_LOCATION"/>
 	</resultMap>
 	
-	<resultMap type="Study" id="studyResultSet2">
-		<id property="sId" column="S_ID"/>
-		<result property="sTitle" column="S_TITLE"/>
-		<result property="sMember" column="S_MEMBER"/>
-		<result property="sContent" column="S_CONTENT"/>
-		<result property="sCount" column="S_COUNT"/>
-		<result property="sCategory" column="S_CATEGORY"/>
-		<result property="sCaName" column="S_CANAME"/>
-		<result property="createDate" column="CREATE_DATE"/>
-		<result property="modifyDate" column="MODIFY_DATE"/>
-		<result property="status" column="STATUS"/>
-		<result property="nickName" column="NICKNAME"/>
-		<result property="lName" column="L_NAME"/>
-	</resultMap>
-	
 	<resultMap type="StudyReply" id="studyReplyResult">
 		<id property="srId" column="SR_ID"/>
 		<result property="srContent" column="SR_CONTENT"/>
@@ -75,16 +60,5 @@
 		from study
 		where status='Y' and s_id=#{sId}
 	</select>
-	
-	<update id="deleteStudy" parameterType="_int">
-		update study
-		set status = 'N'
-		where s_id =#{sId}
-	</update>
-	
-	<insert id="createChat" parameterType="map">
-		insert into studychat
-		values(seq_sid.currval, #{cname}, #{nickName})
-	</insert>
 	
 </mapper>

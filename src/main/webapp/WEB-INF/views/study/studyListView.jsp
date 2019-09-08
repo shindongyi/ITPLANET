@@ -79,7 +79,7 @@
 	  border-radius:20px;
 	}
 	
-	#searchText {
+	input[name=search] {
 	  width: 130px;
 	  box-sizing: border-box;
 	  border: 2px solid #ccc;
@@ -95,24 +95,21 @@
 	  transition: width 0.4s ease-in-out;
 	}
 	
-	#searchText:focus {
+	input[name=search]:focus {
 	  width: 80%;
 	}
 	
-	#result2, #result3, #result4, #result5{
+	.searchResult{
 		border-top: none;
 		border-left: none;
 		border-right: none;
 		outline: none;
-		font-size: 15px;
-		background: #fff;
 	}
 	
 	
 </style>
 </head>
 <body>
-	<c:import url="../common/menubar.jsp"/>
 	<div class="outer align-content-center">
 		<br>
 		<h2 align="center">스터디</h2>
@@ -492,6 +489,6 @@
 		});
 		
 	</script>
-	<c:import url="../common/footer.jsp"/>
+	
 </body>
 </html>

@@ -14,7 +14,6 @@
 		<typeAlias type="com.project.itplanet.member.model.vo.CScrap" alias="CScrap"/>
 		<typeAlias type="com.project.itplanet.member.model.vo.LScrap" alias="LScrap"/>
 		<typeAlias type="com.project.itplanet.member.model.vo.HScrap" alias="HScrap"/>
-		<typeAlias type="com.project.itplanet.coding.model.vo.Coding" alias="Coding"/>
 	</typeAliases>
 	
 	<mappers>

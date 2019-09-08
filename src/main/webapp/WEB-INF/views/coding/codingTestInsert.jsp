@@ -19,16 +19,16 @@
 	<h2 style="text-align:center">코딩테스트 글 작성하기</h2>
 	<div class="container">
 		
-		<form id="contact-form" class="contact-form col-lg-12 mx-lg-auto" method="post" action="">					
+		<form id="contact-form" class="contact-form col-lg-12 mx-lg-auto" method="post" action="codingInsert.do">					
 			        <div class="form-row">
 		                <div class="form-group col-md-12">
 		                    <label for="cname">제목</label>
-		                    <input type="text" class="form-control" id="cname" name="name" >
+		                    <input type="text" class="form-control" id="cname" name="qTitle" >
 		                </div>                    
 		                
 		                <div class="form-group col-md-12">
 		                	<label for="amessage">문제 설명</label>
-		                    <textarea class="form-control" id="amessage" name="message"  rows="6" style="resize:none;"></textarea>
+		                    <textarea class="form-control" id="amessage" name="qContent" rows="6" style="resize:none;"></textarea>
 		                </div>
 		                <div class="form-group col-md-12" id="limit">
 		                    <label for="bmessage">제한 사항</label>
@@ -106,11 +106,14 @@
 						// property와 attribute의 차이!!
 						$('<a>').prop('href', '#list_table').addClass('delete-link').append('Delete')
 						// <a href="#" class="delete-link">Delete</a>
-					)
+					),
+					$('<input type="hidden" name="exData">').val($('#add_no').val()),
+					$('<input type="hidden" name="exResult">').val($('#add_name').val())
 				)
 			);
 			
-			
+			$('#add_no').val("");
+			$('#add_name').val("");
 		});
 		
 		$('#list_table').on("click", ".delete-link", function () {
@@ -154,7 +157,7 @@
 				$('#list_table tr:last').remove();
 			}
 		});
-		
+	
 	</script>
 </body>
 </html>

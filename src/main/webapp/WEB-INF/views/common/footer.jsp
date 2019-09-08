@@ -24,7 +24,7 @@
 <body>
 <!-- 푸터 스타트 -->
 <footer id="footer" class="footer_wrap ">
-            <div class="information_area wide_max_width_area" style="margin-left: 20%;">
+            <div class="information_area wide_max_width_area" style="padding-left:250px;">
 
                 <ul class="company_links info_lists">
                     <li class="list_item"><a href="http://corp.onoffmix.com/" target="_blank">회사소개</a></li>

@@ -35,9 +35,10 @@ a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
 .temp.debs>li:hover{
 	cursor: pointer;
 }
-a {display:block;position:relative;padding:0 20px;font-size:14px;line-height:43px;
-	color:#ffffff;z-index:2;cursor:pointer;text-decoration:none;}
 
+.menubar_li>a{display:block;position:relative;padding:0 20px;font-size:14px;line-height:43px;
+	color:#ffffff;z-index:2;cursor:pointer;text-decoration:none;}
+	
 dd{position:relative;float:left; margin-inline-start: 1px;}
 
 .menubar_li{

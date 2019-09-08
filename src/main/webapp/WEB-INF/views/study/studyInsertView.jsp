@@ -9,6 +9,7 @@
 <script src="${contextPath}/resources/js/select2.min.js"></script>
 <link rel='stylesheet' href="${contextPath}/resources/css/bootstrap.css">
 <link href="${contextPath}/resources/css/select2.min.css" rel="stylesheet"/>
+<!-- <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script> -->
 
 <script>
 	
@@ -111,6 +112,7 @@ td{
 </style>
 </head>
 <body>
+<c:import url="../common/menubar.jsp"/>
 <div class="row align-content-center">
 		<div class="col-md-3" style="max-width:20.85%;"></div>
 		<div class="col-md-7">
@@ -159,7 +161,7 @@ td{
 
 						<tr>
 							<th style="vertical-align:top; border-bottom-left-radius: 30px;">글내용</th>
-							<td colspan="3"><textarea rows="10" cols="50" name="sContent"
+							<td colspan="3"><textarea rows="10" cols="50" name="sContent" id="sContent"
 									class="form-control" style="border-radius:20px;"></textarea></td>
 							
 						</tr>
@@ -169,6 +171,7 @@ td{
 								<input type="button" value="취소" onclick="javascript:location.href='studyListView.do'">
 							</td>
 						</tr>
+						
 
 					</table>
 
@@ -187,29 +190,35 @@ td{
 			var study1 = document.getElementById("study1");
 
 			if(f.sTitle.value == ""){
-				f.title.focus();
+				f.sTitle.focus();
 				alert('제목을 입력하세요.');
 				return false;
 			}else if(f.sMember.value == ""){
-				f.human.focus();
+				f.sMember.focus();
 				alert('모집인원을 입력하세요.');
 				return false;
 			}else if(f.sContent.value == ""){
-				f.content.focus();
+				f.sContent.focus();
 				alert('내용을 입력하세요.');
 				return false;
 			}else if(f.sMember.value >10){
-				f.human.value = "";
-				f.human.focus();
+				f.sMember.value = "";
+				f.sMember.focus();
 				alert('모집인원은 최대 10명입니다.');
 				return false;
 			}else{
 				alert('게시물작성이 완료되었습니다.');
-				f.cname.value= f.title.value + f.human.value;
+				f.cname.value= f.sTitle.value + f.sMember.value;
 				f.submit();
 				return true;
 			}
 		}
+		
+       /*  ClassicEditor.create( document.querySelector( '#sContent' ) )
+        .catch( error => {
+                console.error( error );
+            }); */
 	</script>
+	<c:import url="../common/footer.jsp"/>
 </body>
 </html>

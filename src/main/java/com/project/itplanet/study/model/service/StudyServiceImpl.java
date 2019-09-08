@@ -9,6 +9,7 @@ import com.project.itplanet.common.model.vo.Local;
 import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.study.model.dao.StudyDAO;
 import com.project.itplanet.study.model.vo.Study;
+import com.project.itplanet.study.model.vo.StudyReply;
 
 @Service("sService")
 public class StudyServiceImpl implements StudyService{
@@ -39,4 +40,63 @@ public class StudyServiceImpl implements StudyService{
 	public Study studyDetail(int sId) {
 		return sDAO.studyDetail(sId);
 	}
+
+	@Override
+	public int deleteStudy(int sId) {
+		return sDAO.deleteStudy(sId);
+	}
+
+
+	@Override
+	public void createChat(HashMap<String, String> map) {
+		sDAO.createChat(map);
+		
+	}
+
+	@Override
+	public int updateStudy(Study study) {
+		return sDAO.updateStudy(study);
+	}
+
+	@Override
+	public void addReadCount(int sId) {
+		sDAO.addReadCount(sId);
+	}
+
+	@Override
+	public String chatMember(int sId) {
+		return sDAO.chatMember(sId);
+	}
+
+	@Override
+	public int studyAdd(HashMap<String, Object> map) {
+		return sDAO.studyAdd(map);
+	}
+
+	@Override
+	public int studyCancel(HashMap<String, Object> map) {
+		return sDAO.studyCancel(map);
+	}
+
+	@Override
+	public ArrayList<StudyReply> studyRepleList(int sId) {
+		return sDAO.studyRepleList(sId);
+	}
+
+	@Override
+	public int addReply(StudyReply r) {
+		return sDAO.addReply(r);
+	}
+
+	@Override
+	public int getSearchResultListCount(HashMap<String, String> map) {
+		return sDAO.getSearchResultListCount(map);
+	}
+
+	@Override
+	public ArrayList<Study> selectSearchResultList(HashMap<String, String> map, PageInfo pi) {
+		return sDAO.selectSearchResultList(map, pi);
+	}
+
+
 }

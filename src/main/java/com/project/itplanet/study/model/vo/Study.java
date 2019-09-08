@@ -15,6 +15,8 @@ public class Study {
 	private String status; // 삭제여부
 	private String sWriter; // 글 작성자
 	private int sLocation; // 모임장소 번호
+	private String lName; // 모임장소 이름
+	private String chatMember; // 채팅멤버현황
 	
 	public Study() {}
 
@@ -33,6 +35,72 @@ public class Study {
 		this.status = status;
 		this.sWriter = sWriter;
 		this.sLocation = sLocation;
+	}
+	
+
+	public Study(int sId, String sTitle, int sMember, String sContent, int sCount, String sCategory, String sCaName,
+			Date createDate, Date modifyDate, String status, String sWriter, String nickName, int sLocation,
+			String lName) {
+		super();
+		this.sId = sId;
+		this.sTitle = sTitle;
+		this.sMember = sMember;
+		this.sContent = sContent;
+		this.sCount = sCount;
+		this.sCategory = sCategory;
+		this.sCaName = sCaName;
+		this.createDate = createDate;
+		this.modifyDate = modifyDate;
+		this.status = status;
+		this.sWriter = sWriter;
+		this.nickName = nickName;
+		this.sLocation = sLocation;
+		this.lName = lName;
+	}
+
+	public Study(int sId, String sTitle, int sMember, String sContent, int sCount, String sCategory, String sCaName,
+			Date createDate, Date modifyDate, String status, String nickName, String lName, String chatMember) {
+		super();
+		this.sId = sId;
+		this.sTitle = sTitle;
+		this.sMember = sMember;
+		this.sContent = sContent;
+		this.sCount = sCount;
+		this.sCategory = sCategory;
+		this.sCaName = sCaName;
+		this.createDate = createDate;
+		this.modifyDate = modifyDate;
+		this.status = status;
+		this.nickName = nickName;
+		this.lName = lName;
+		this.chatMember = chatMember;
+	}
+	
+	
+	
+
+	public String getChatMember() {
+		return chatMember;
+	}
+
+	public void setChatMember(String chatMember) {
+		this.chatMember = chatMember;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getlName() {
+		return lName;
+	}
+
+	public void setlName(String lName) {
+		this.lName = lName;
 	}
 
 	public String getsCaName() {
@@ -136,7 +204,8 @@ public class Study {
 		return "Study [sId=" + sId + ", sTitle=" + sTitle + ", sMember=" + sMember + ", sContent=" + sContent
 				+ ", sCount=" + sCount + ", sCategory=" + sCategory + ", sCaName=" + sCaName + ", createDate="
 				+ createDate + ", modifyDate=" + modifyDate + ", status=" + status + ", sWriter=" + sWriter
-				+ ", sLocation=" + sLocation + "]";
+				+ ", nickName=" + nickName + ", sLocation=" + sLocation + ", lName=" + lName + ", chatMember="
+				+ chatMember + "]";
 	}
 
 }

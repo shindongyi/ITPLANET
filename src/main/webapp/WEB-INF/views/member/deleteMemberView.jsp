@@ -15,7 +15,7 @@
 		<div id="mypageContentWrap">
 			<div id="myHeader">
 				<h2>
-					<a href="myPage.do">MY PAGE</a>
+					<a href="mypage.do">MY PAGE</a>
 				</h2>
 				<div id="breadcrumb">
 					<a href="#">HOME</a> > 
@@ -29,9 +29,7 @@
 					<div class="titleSection">
 						<h3>회원탈퇴</h3>
 						<div>
-							<p>
-								그 동안 ITPLANET을 이용해주셔서 감사합니다. 
-							</p>
+							<p>그 동안 ITPLANET을 이용해주셔서 감사합니다.</p>
 						</div>
 						<div class="dropGuide">
 							<h4>회원 탈퇴 안내</h4>
@@ -62,8 +60,8 @@
 								<div class="row_group">
 									<div class="update_row">
 										<div class="box">
-										<h3 class="update_title">아이디</h3>
-											<strong>로그인 유저 아이디</strong>
+											<h3 class="update_title">아이디</h3>
+											<strong>${ loginUser.userId }</strong>
 										</div>
 									</div>
 									<div class="update_row">
@@ -89,6 +87,25 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$('#drop_btn').on('click', function(){
+			var email = $('#email').val();
+			
+			$.ajax({
+				url: "emailCheck.do",
+				method: "post",
+				data: {email : email},
+				success: function(data){
+					if(data == "success"){
+						if(confirm("정말 탈퇴하시겠습니까?"))
+						location.href="deleteM.do";
+					} else {
+						$('#confirmUser').text('회원정보에 등록된 이메일과 일치하지 않습니다.');
+					}
+				}
+			});
+		});	
+	</script>
 </div>		
 </body>
 </html>

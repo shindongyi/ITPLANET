@@ -112,6 +112,7 @@ td{
 </style>
 </head>
 <body>
+<c:import url="../common/menubar.jsp"/>
 <div class="row align-content-center">
 		<div class="col-md-3" style="max-width:20.85%;"></div>
 		<div class="col-md-7">
@@ -218,5 +219,6 @@ td{
                 console.error( error );
             }); */
 	</script>
+	<c:import url="../common/footer.jsp"/>
 </body>
 </html>

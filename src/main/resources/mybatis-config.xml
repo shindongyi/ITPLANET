@@ -17,6 +17,7 @@
 		<typeAlias type="com.project.itplanet.license.model.vo.License" alias="License"/>
 		<typeAlias type="com.project.itplanet.license.model.vo.LAttachment" alias="LAttachment"/>
 	<!-- 	<typeAlias type="com.project.itplanet.competition.model.vo.Competition" alias="Commpetiton"/> -->
+
 	</typeAliases>
 	
 	<mappers>

@@ -4,25 +4,25 @@
 	display: block;
 	float: none;
 }
-.section h3{
+#wrap .section h3{
 	padding: 0 10px;
 }
-.middleSection{
+#wrap .middleSection{
 	width: 598px;
 	margin-left: 20px;
 }
-.middleSection .article{
+#wrap .middleSection .article{
 	position: relative;
 	padding-top: 11px;
 	border-top: 2px solid #555;
 }
-.section .article{
+#wrap .section .article{
 	/* margin-top: 20px; */
 }
-.article{
+#wrap .article{
 	min-height: 232px;
 }
-.compe h3, .hire h3, .lcs h3{
+#wrap .compe h3, .hire h3, .lcs h3{
 	padding-left: 28px;
 } 
 .scpList {

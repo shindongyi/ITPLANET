@@ -95,15 +95,15 @@
 					<div class="join_row">
 						<div class="box">
 							<h3 class="join_title"><label for="email">본인 확인 이메일</label><span class="red_mark">*</span></h3>
+							<button class="join_btn" type="button" id="emailNumBtn" title="인증번호 전송버튼">인증번호 전송</button>
 							<input type="text" id="email" name="email" class="int">
-							<button class="join_btn" id="emailNumBtn" title="인증번호 전송버튼">인증번호 전송</button>
 						</div>
-						<div class="box">
+						<div class="box" style="display:none;">
 							<span></span>
+							<button type="button" class="join_btn" id="confirmNum">확인</button>
 							<input id="emailNum" class="int" type="text" placeholder="인증번호를 입력해주세요.">
-							<button type="button" id="confirmNum">확인</button>
 						</div>
-						<div class="error_box" id="emailMsg" style="display: none;"></div>
+						<div class="error_box" id="emailMsg" style="display: none; color:#555;"></div>
 					</div>
 				</div>
 			</div>
@@ -563,6 +563,50 @@ $(function(){
 	});
 });
 
+// 이메일 인증
+var randomNum;
+$('#emailNumBtn').on('click', function(){
+	$(this).parent().next().show();
+	var oMsg = $('#emailMsg');
+	var email = $('#email').val();
+	console.log("email : " + email);
+	
+	$.ajax({
+		url: "sendEmail.do",
+		type: "post",
+		data:{email:email},
+		/* async:false, */
+		success:function(data){
+			if(data != null && data != ""){
+				showErrorMsg(oMsg, "입력하신 이메일로 인증번호를 전송하였습니다. 확인 후 입력해주세요. 최대 5분이 걸릴 수 있습니다.");
+				console.log("결과 : " + data);
+				randomNum = data;
+				/* Set_Default_Return(data); */
+			} else{
+				showErrorMsg(oMsg, "인증번호 전송에 실패하였습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+			}
+		}
+	});
+});
+
+/* function Set_Default_Return(data){
+	randomNum = data;  
+    alert(randomNum);
+} */
+
+$('#confirmNum').on('click', function(){
+	var number1 = $('#emailNum').val();
+	var number2 = randomNum;
+	
+	console.log("num1 : " + number1);
+	console.log("num2 : " + number2);
+	var oMsg = $('#emailMsg');
+	if(number1 == number2){
+		showErrorMsg(oMsg, "인증에 성공하였습니다. 회원가입을 진행해주세요.");
+	} else {
+		showErrorMsg(oMsg, "인증번호가 일치하지 않습니다. 다시 확인해 주세요.");
+	}
+});
 $('#join_btn').on('click', function(){
 	if(check && userIdFlag && userPwdFlag && userPwdFlag2){
 		if($('#policyY').is(':checked')){

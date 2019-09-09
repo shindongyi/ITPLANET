@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,9 @@ import com.project.itplanet.common.Pagination;
 import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.member.model.exception.MemberException;
 import com.project.itplanet.member.model.service.MemberService;
+import com.project.itplanet.member.model.vo.MailUtils;
 import com.project.itplanet.member.model.vo.Member;
+import com.project.itplanet.member.model.vo.TempKey;
 
 
 
@@ -39,6 +42,9 @@ public class MemberController {
 
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 
 	// 회원가입 페이지
 	@RequestMapping("joinView.do")
@@ -280,6 +286,37 @@ public class MemberController {
 			throw new MemberException("회원가입에 실패하였습니다.");
 		}
 	}
+	
+	
+	// 이메일 전송
+	@RequestMapping("sendEmail.do")
+	@ResponseBody
+	public String sendEmail(HttpServletRequest request,
+							@RequestParam("email") String email) throws Exception {
+		
+		System.out.println("controller : " + email);
+		// 임의의 키 생성
+		String authkey = new TempKey().getKey(50, false);
+		
+		// mail 작성 관련 
+				MailUtils sendMail = new MailUtils(mailSender);
+
+				sendMail.setSubject("[ITPLANET] 회원가입 이메일 인증");
+				sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
+						.append("<h3>아래 문자를 회원가입 페이지에 입력하시면 이메일 인증이 완료됩니다.</h3>")
+						.append("<h2>")
+						.append(authkey)
+						.append("</h2>")
+						.toString());
+				sendMail.setFrom("gunteakim@gmail.com", "ITPLANET");
+				sendMail.setTo(email);
+				sendMail.send();
+
+		System.out.println("authkey : " + authkey);
+		
+		return authkey;
+	}
+	
 
 	// 비밀번호 변경
 	@RequestMapping("updatePwd.do")
@@ -452,4 +489,5 @@ public class MemberController {
 			throw new MemberException("스크랩 삭제에 실패했습니다.");
 		}
 	}
+
 }

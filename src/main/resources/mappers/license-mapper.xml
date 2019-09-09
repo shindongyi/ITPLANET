@@ -1,4 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="licenseMapper">
+
+	<resultMap type="License" id="lcsResultSet">
+		<id property="l_id" column="l_id"/>
+		<result property="l_name" column="l_name"/>
+		<result property="l_round" column="l_round"/>
+		<result property="start_date" column="start_date"/>
+		<result property="end_date" column="end_date"/>
+		<result property="results" column="results"/>
+		<result property="l_address" column="l_address"/>
+		<result property="l_count" column="l_count"/>
+		<result property="reg_date" column="reg_date"/>
+		<result property="modify_date" column="modify_date"/>
+		<result property="status" column="status"/>
+		<result property="user_id" column="user_id"/>
+		<collection property="latList" javaType="java.util.ArrayList" resultMap="latResultset"/>		
+	</resultMap>
+ 	<resultMap type="LAttachment" id="latResultset">
+		<id property="l_fid" column="l_fid"/>
+		<result property="origin_name" column="origin_name"/>
+		<result property="change_name" column="change_name"/>
+		<result property="file_path" column="file_path"/>
+		<result property="update_date" column="update_date"/>
+		<result property="l_id" column="l_id"/>
+	</resultMap> 
+	
+	<select id="getListCount" parameterType="map" resultType="_int">
+		select count(*)
+		from license
+		where status = 'Y'
+		<if test='keyword != null and keyword != ""'>
+			and l_name like '%' || #{keyword} || '%'
+		</if>
+		<choose>
+			<when test='sort != null and sort != ""'>
+				order by #{ sort } desc
+			</when>
+			<otherwise>
+				order by modify_date desc
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="selectList" parameterType="map" resultMap="lcsResultSet">
+   		select l_id, l_name, l_round, start_date, end_date,
+				results, l_fid, l_address,
+				change_name, file_path, reg_date
+        from(
+		select l.l_id as l_id, l.l_name as l_name, l.l_round as l_round, l.start_date as start_date, 
+				l.end_date as end_date, l.results as results, lat.l_fid as l_fid, l.l_address as l_address,
+				lat.change_name as change_name, lat.file_path as file_path, l.reg_date as reg_date
+		from license l
+		join lattachment lat on(l.l_id = lat.l_id)
+		where l.status = 'Y') 
+		<where>
+		<if test='keyword !=null and leyword != ""'>
+			l_name like '%' || #{keyword} || '%'
+		</if>
+		<if test='choice == "first"'>
+		and sysdate BETWEEN start_date and end_date
+		</if>
+		<if test='choice == "second"'>
+		<![CDATA[and sysdate < start_date]]>
+		</if>
+		</where>
+		<if test='choice == null and choice ==""'>
+		order by reg_date
+		</if>
+		<if test='choice != null and choice != ""'>
+		order by end_date
+		</if>
+	</select>
+	
+	<insert id="insertScrapLcs" parameterType="map">
+		insert into l_scrap
+		values(seq_lsid.nextval, #{userId}, #{lId})
+	</insert>
+	
+	<select id="confirmScrap" parameterType="map" resultType="_int">
+		select count(*)
+		from l_scrap
+		where user_id = #{userId} and l_id =#{lId}
+	</select>
+	
+	<select id="userScrap" parameterType="string" resultType="map">
+		select l_id as l_id
+		from l_scrap
+		where user_id = #{userId}
+	</select>
+	
 </mapper>

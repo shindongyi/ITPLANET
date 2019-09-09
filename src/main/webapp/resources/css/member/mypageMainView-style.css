@@ -156,6 +156,7 @@ li.itemPart span.alarmIco{
 	height: 66px;
 	background-image: url(../../image/changePwd6.png);
 	background-repeat: no-repeat;
+	padding: 0;
 }
 .alarmUnit li dl{
 	padding-bottom: 5px;

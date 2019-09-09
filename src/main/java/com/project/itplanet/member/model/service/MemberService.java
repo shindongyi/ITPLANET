@@ -2,6 +2,7 @@ package com.project.itplanet.member.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.member.model.vo.Member;
@@ -15,7 +16,7 @@ public interface MemberService {
 
 	int updatePwd(Member m);
 
-	String findUserId(Member m);
+	Member findUserId(Member m);
 
 	int findPwd(Member m);
 
@@ -25,24 +26,17 @@ public interface MemberService {
 
 	int selectNickName(String nickName);
 
-//	int countComp(String userId);
-//
-//	int countHire(String userId);
-//
-//	int countLcs(String userId);
+	HashMap<String, Integer> countScrap(HashMap<String, String> map);
 
-//	ArrayList selectScrapList(String userId, int type, PageInfo pi);
+	ArrayList<HashMap<String, String>> selectScrapList(HashMap<String, String> map2);
 
-	HashMap<String, Integer> countScrap(String userId);
+	ArrayList<HashMap<String, String>> recentComp(HashMap<String, String> map);
+	ArrayList<HashMap<String, String>> recentHire(HashMap<String, String> map);
+	ArrayList<HashMap<String, String>> recentLcs(HashMap<String, String> map);
 
-	ArrayList<HashMap<String, String>> selectScrapList(String userId, Integer type, PageInfo pi);
+	ArrayList recentScrap(HashMap map);
 
-//	ArrayList recentScrap(String userId);
+	int deleteScrap(HashMap map);
 
-	ArrayList<HashMap<String, String>> recentComp(String userId);
-	ArrayList<HashMap<String, String>> recentHire(String userId);
-	ArrayList<HashMap<String, String>> recentLcs(String userId);
-
-//	Map<String, Integer> scrapCount(String userId);
 
 }

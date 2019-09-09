@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/member/deleteMemberView-style.css" type="text/css">
 </head>
 <body>	
+<c:import url="/WEB-INF/views/common/menubar.jsp"/>
 <div id="wrap">
 	<div id="container">
 		<div id="mypageContentWrap">
@@ -107,5 +108,6 @@
 		});	
 	</script>
 </div>		
+<c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

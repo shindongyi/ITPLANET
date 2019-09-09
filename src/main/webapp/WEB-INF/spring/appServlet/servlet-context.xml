@@ -23,4 +23,11 @@
 	
 	<context:component-scan base-package="com.project.itplanet" />
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/mypage.do"/>
+			<beans:bean id="loginInterceptor" class="com.project.itplanet.common.interceptor.LoginInterceptor"/>
+		</interceptor>
+	</interceptors>	
+	
 </beans:beans>

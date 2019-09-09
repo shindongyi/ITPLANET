@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%@ page import='member.model.vo.*' %>
-<%
-	Member loginUser = (Member)session.getAttribute("loginUser");
-%> --%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,19 +114,19 @@ $(window).scroll(function(event) {
 		<ul id="menubar">
 
 			<!-- 공모전 -->
-			<li class="menubar_li"><a>공모전</a></li>
+			<li class="menubar_li" style="color:white;"><a>공모전</a></li>
 			
 			<!-- 공모전 -->
-			<li class="menubar_li"><a>자격증</a></li>
+			<li class="menubar_li" style="color:white;"><a>자격증</a></li>
 
 			<!-- 채용공고 -->
-			<li class="menubar_li"><a onclick="javascript:location.href='hList.do'">채용공고</a></li>
+			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='hList.do'">채용공고</a></li>
 
 			<!-- 스터디 -->
-			<li class="menubar_li"><a onclick="javascript:location.href='studyListView.do';">스터디</a></li>
+			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='studyListView.do';">스터디</a></li>
 
 			<!-- 코딩테스트 -->
-			<li class="menubar_li"><a onclick="javascript:location.href='codingTestView.do'">코딩테스트</a>
+			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='codingTestView.do'">코딩테스트</a>
 		</ul>
 	</div>
 </div>

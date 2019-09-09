@@ -12,11 +12,11 @@
 <link rel="stylesheet" href="${ contextPath }/resources/css/mainView/common.css">
 <script type="text/javascript" src="${ contextPath }/resources/js/jquery-3.4.1.min.js"></script>
 <style>
-.subLyr{
+#header .subLyr{
 	display: block;
 	 max-height: 280px;
 }
-.debsss{
+#header .debsss{
 	 margin-top:5px;
 	 font-weight:bold;
 	 font-size:15px;
@@ -25,23 +25,23 @@
 	 line-height: 30px;
 	 padding: 0 30px;
 }
-a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
+#header a:not([href]):not([tabindex]):hover,#header a:not([href]):not([tabindex]):focus {
     color: white;
     text-decoration: none;
 }
-.header{
+#header .header{
 	transition: All 0.2s ease;
 }
-.temp.debs>li:hover{
+#header .temp.debs>li:hover{
 	cursor: pointer;
 }
 
-.menubar_li>a{display:block;position:relative;padding:0 20px;font-size:14px;line-height:43px;
+#header .menubar_li>a{display:block;position:relative;padding:0 20px;font-size:14px;line-height:43px;
 	color:#ffffff;z-index:2;cursor:pointer;text-decoration:none;}
 	
-dd{position:relative;float:left; margin-inline-start: 1px;}
+#header dd{position:relative;float:left; margin-inline-start: 1px;}
 
-.menubar_li{
+#header .menubar_li{
 	padding: 0 50px;
 }
 </style>
@@ -116,7 +116,7 @@ $(window).scroll(function(event) {
 
 			<!-- 공모전 -->
 			<li class="menubar_li"><a>공모전</a>
-				<div class="subLyr">
+				<div class="subLyr" style="display:none;">
 					<div class="inn">
 						<ul class="temp debs">
 							<li><a>전체 공모전</a></li>
@@ -132,7 +132,7 @@ $(window).scroll(function(event) {
 
 			<!-- 스터디 -->
 			<li class="menubar_li"><a>스터디</a>
-				<div class="subLyr">
+				<div class="subLyr" style="display:none;">
 					<div class="inn">
 						<ul class="temp debs">
 							<li><a href="https://nextstylemag.com/">임시1</a></li>

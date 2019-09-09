@@ -19,6 +19,7 @@
 
 </head>
 <body>
+<c:import url="/WEB-INF/views/common/menubar.jsp"/>
 	<div id="wrap">
 		<div id="primaryContent">
 			<div id="lcs_date_list">
@@ -229,5 +230,6 @@
 		<!-- end primaryContent -->
 	</div>
 	<!-- end wrap -->
+	<c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

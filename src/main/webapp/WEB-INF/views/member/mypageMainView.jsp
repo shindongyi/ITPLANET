@@ -18,6 +18,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
+<c:import url="/WEB-INF/views/common/menubar.jsp"/>
 <div id="wrap">
 		<div id="container">
 			<div id="mypageContentWrap">
@@ -180,5 +181,6 @@
 		</div>
 	</div>
 </div>
+<c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

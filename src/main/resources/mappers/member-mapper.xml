@@ -118,7 +118,7 @@
 		where user_id=#{userId}
 	</select> -->
 	
-	<select id="selectCompScrapList" parameterType="string" resultMap="cScrapResultSet">
+<!-- 	<select id="selectCompScrapList" parameterType="string" resultMap="cScrapResultSet">
 		select c_title as TITLE, c_writer as WRITER, c_modify_date as MODIFYDATE, c_count as COUNT
 		from c_scrap cs
 		join competition c on(cs.c_id = c.c_id)
@@ -143,7 +143,7 @@
 		join member m on (l.user_id = m.user_id)
 		where ls.user_id = #{userId} and ls.l_id=l.l_id
 		order by ls.ls_id desc
-	</select>
+	</select> -->
 	
 <!-- 	<select id="recentScrap" parameterType="map" resultType="map">
 		<if test='listName.equals("comp")'>

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/member/mypageCommon-style.css" type="text/css">
 </head>
 <body>
+<c:import url="/WEB-INF/views/common/menubar.jsp"/>
 	<div class="wrap">
 		<div class="container">
 			<div class="contentWrap">
@@ -323,5 +324,6 @@
 			</div>
 		</div>
 	</div>
+	<c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

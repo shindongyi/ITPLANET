@@ -14,6 +14,7 @@
 </style>
 </head>
 <body>
+<c:import url="/WEB-INF/views/common/menubar.jsp"/>
 <div id="wrap">
 	<div id="contentWrap">
 		<form id="join_form" method="post" action="minsert.do">
@@ -586,5 +587,6 @@ $('#join_btn').on('click', function(){
 	}
 });
 </script>
+<c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

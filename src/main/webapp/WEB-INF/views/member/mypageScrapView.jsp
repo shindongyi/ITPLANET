@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/member/mypageCommon-style.css" type="text/css">
 </head>
 <body>
+<c:import url="/WEB-INF/views/common/menubar.jsp"/>
 <div id="wrap">
 	<div id="container">
 		<div id="mypageContentWrap">
@@ -224,5 +225,6 @@
 		
 	}); 
 </script>
+<c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

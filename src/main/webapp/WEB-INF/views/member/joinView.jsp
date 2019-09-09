@@ -96,12 +96,13 @@
 						<div class="box">
 							<h3 class="join_title"><label for="email">본인 확인 이메일</label><span class="red_mark">*</span></h3>
 							<input type="text" id="email" name="email" class="int">
+							<button class="join_btn" id="emailNumBtn" title="인증번호 전송버튼">인증번호 전송</button>
 						</div>
-						<!-- <div class="box">
+						<div class="box">
 							<span></span>
 							<input id="emailNum" class="int" type="text" placeholder="인증번호를 입력해주세요.">
 							<button type="button" id="confirmNum">확인</button>
-						</div> -->
+						</div>
 						<div class="error_box" id="emailMsg" style="display: none;"></div>
 					</div>
 				</div>
@@ -309,7 +310,7 @@
 				</ul>
 			</div>
 			<div id="btn_area">
-				<button type="button" id="join_btn">ITPLANET 회원가입</button>
+				<button type="button" class="join_btn" id="join_btn">ITPLANET 회원가입</button>
 			</div>
 		</form>
 	</div>
@@ -561,20 +562,7 @@ $(function(){
 		}
 	});
 });
-/* function ckCheckbox(){
-	check = false;
-	if($('.policy input[type=checkbox]').is(':checked')){
-		check = true;
-	}
-} */
-/* $('#join_btn').on('click', function(){
-	ckCheckbox();
-	if(check && userIdFlag && userPwdFlag){
-		$('#join_form').submit();
-	} else{
-		alert("모든 항목을 확인해주세요.");
-	}
-}); */
+
 $('#join_btn').on('click', function(){
 	if(check && userIdFlag && userPwdFlag && userPwdFlag2){
 		if($('#policyY').is(':checked')){

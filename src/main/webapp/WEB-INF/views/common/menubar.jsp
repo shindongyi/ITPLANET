@@ -65,31 +65,33 @@ $(window).scroll(function(event) {
 		<dl class="hd_my">
 			<dt class="ir">마이메뉴</dt>
 			
-			<dd class="arw">
-				<a onclick="javascript:location.href='mypage.do'">마이페이지</a>
-			</dd>
-			<dd id="header_loginbtn">
-				<a onclick="javascript:location.href='loginView.do';">로그인</a>
-			</dd>
 			<c:if test="${ empty sessionScope.loginUser }">
+			<dd id="header_loginbtn">
+				<a href='loginView.do'>로그인</a>
+			</dd>
+			<dd id="header_joinbtn">
+				<a href='joinView.do'>회원가입</a>
+			</dd>
 <%-- 				<h3 align="right">
 					<c:out value="로그인 계정 없음"/>
 				</h3> --%>
 			</c:if>
 			<c:if test="${ !empty sessionScope.loginUser }">
-				<c:out value="${ loginUser.userName }님 환영합니다."/>
 			<dd>
-				<a onclick="location.href='${logout}'">로그아웃</a>
+				<a style="font-size:12px;"> ${ loginUser.userName }님 환영합니다.</a>
+			</dd>
+			<dd class="arw">
+				<a href='mypage.do'>마이페이지</a>
+			</dd>
+			<dd>
+				<a href='logout.do'>로그아웃</a>
 			</dd>
 			</c:if>
 
-			<dd id="header_joinbtn">
-				<a onclick="javascript:location.href='joinView.do'">회원가입</a>
-			</dd>
 			<%-- <%} %> --%>
 
 			<dd class="arw">
-				<a href="">고객센터<em class="ir">메뉴보기</em></a>
+				<!-- <a href="">고객센터<em class="ir">메뉴보기</em></a> -->
 				<div class="lys" style="display: none;"></div>
 			</dd>
 		</dl>
@@ -116,8 +118,8 @@ $(window).scroll(function(event) {
 			<!-- 공모전 -->
 			<li class="menubar_li" style="color:white;"><a>공모전</a></li>
 			
-			<!-- 공모전 -->
-			<li class="menubar_li" style="color:white;"><a>자격증</a></li>
+			<!-- 자격증 -->
+			<li class="menubar_li" style="color:white;"><a href="lcsView.do">자격증</a></li>
 
 			<!-- 채용공고 -->
 			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='hList.do'">채용공고</a></li>

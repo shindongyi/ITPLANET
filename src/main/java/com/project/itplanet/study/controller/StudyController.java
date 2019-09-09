@@ -25,6 +25,7 @@ import com.project.itplanet.member.model.vo.Member;
 import com.project.itplanet.study.model.exception.StudyException;
 import com.project.itplanet.study.model.service.StudyService;
 import com.project.itplanet.study.model.vo.Study;
+import com.project.itplanet.study.model.vo.StudyChat;
 import com.project.itplanet.study.model.vo.StudyReply;
 
 
@@ -251,6 +252,13 @@ public class StudyController {
 			throw new StudyException("스터디 검색에 실패하였습니다.");
 		}
 		
+		return mv;
+	}
+	
+	@RequestMapping("chatListView.do")
+	public ModelAndView chatListView(ModelAndView mv, @SessionAttribute("loginUser") Member loginUser) {
+		String nickName = loginUser.getNickName();
+		ArrayList<StudyChat> chatList = sService.getChatList(nickName);
 		return mv;
 	}
 }

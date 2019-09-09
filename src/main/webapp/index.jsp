@@ -395,7 +395,9 @@ dd {
 			<li class="menubar_li"><a onclick="javascript:location.href='studyListView.do';">스터디</a></li>
 
 			<!-- 코딩테스트 -->
-			<li class="menubar_li"><a onclick="javascript:location.href='codingTestList.do'">코딩테스트</a>
+			<li class="menubar_li"><a onclick="javascript:location.href='codingTestView.do'">코딩테스트</a>
+			
+			<li class="menubar_li"><a onclick="javascript:location.href='chatListView.do'">채팅리스트 체크</a>
 		</ul>
 	</div>
 </div>

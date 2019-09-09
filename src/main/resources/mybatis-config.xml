@@ -9,6 +9,7 @@
 		<!-- VO객체 별칭 지정 -->
 		<typeAlias type="com.project.itplanet.study.model.vo.Study" alias="Study"/>
 		<typeAlias type="com.project.itplanet.study.model.vo.StudyReply" alias="StudyReply"/>
+		<typeAlias type="com.project.itplanet.study.model.vo.StudyChat" alias="StudyChat"/>
 		<typeAlias type="com.project.itplanet.common.model.vo.Local" alias="Local"/>
 		<typeAlias type="com.project.itplanet.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.project.itplanet.member.model.vo.CScrap" alias="CScrap"/>

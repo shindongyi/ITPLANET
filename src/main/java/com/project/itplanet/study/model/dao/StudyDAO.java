@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import com.project.itplanet.common.model.vo.Local;
 import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.study.model.vo.Study;
-import com.project.itplanet.study.model.vo.StudyChat;
 import com.project.itplanet.study.model.vo.StudyReply;
 
 @Repository("sDAO")
@@ -87,10 +86,6 @@ public class StudyDAO {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("studyMapper.selectSearchResultList", map, rowBounds);
-	}
-
-	public ArrayList<StudyChat> getChatList(String nickName) {
-		return (ArrayList)sqlSession.selectList("studyMapper.getChatList", nickName);
 	}
 
 

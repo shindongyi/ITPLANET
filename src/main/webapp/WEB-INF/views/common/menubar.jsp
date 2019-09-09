@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%@ page import='member.model.vo.*' %>
-<%
-	Member loginUser = (Member)session.getAttribute("loginUser");
-%> --%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,8 +116,7 @@ $(window).scroll(function(event) {
 		<ul id="menubar">
 
 			<!-- 공모전 -->
-			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='competitionView.do'">공모전</a></li>
-
+			<li class="menubar_li" style="color:white;"><a href="competitionView.do">공모전</a></li>
 			
 			<!-- 공모전 -->
 			<li class="menubar_li" style="color:white;"><a href="lcsView.do">자격증</a></li>

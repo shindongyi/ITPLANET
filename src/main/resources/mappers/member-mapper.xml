@@ -129,7 +129,7 @@
 		</if>
 			and <![CDATA[rownum < 5]]>
 		order by sid desc
-	</select>  --> 
+	</select>  -->
 	
  	<select id="recentLcsScrap" parameterType="map" resultType="map">
 		select imagename, filepath, title, duedate, sid, link

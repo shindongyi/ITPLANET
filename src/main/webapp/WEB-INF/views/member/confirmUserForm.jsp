@@ -41,6 +41,7 @@
 									회원님의 정보를 안전하게 보호하기 위해 
 									계정을 다시 한 번 확인합니다.
 								</p>
+								<div class="join_row">
 								<div class="box">
 										<h3 class="update_title"><label for="userPwd">비밀번호</label><!-- <span class="red_mark">*</span> --></h3>
 										<input type="password" id="userPwd" name="userPwd" class="int">

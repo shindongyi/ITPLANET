@@ -142,7 +142,7 @@ public class MemberController {
 			str = "자격증";
 			listCount = scrapCount.get("lcsCount");
 		}
-
+		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 		ArrayList<HashMap<String, String>> list = new ArrayList();
@@ -152,6 +152,8 @@ public class MemberController {
 		map2.put("pi", pi);
 		map2.put("keyword", keyword);
 		list = mService.selectScrapList(map2);
+		
+		System.out.println(list);
 
 		mv.addObject("pi", pi);
 		mv.addObject("type", str);

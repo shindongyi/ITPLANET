@@ -10,7 +10,6 @@ import com.project.itplanet.common.model.vo.Local;
 import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.study.model.dao.StudyDAO;
 import com.project.itplanet.study.model.vo.Study;
-import com.project.itplanet.study.model.vo.StudyChat;
 import com.project.itplanet.study.model.vo.StudyReply;
 
 @Service("sService")
@@ -98,11 +97,6 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public ArrayList<Study> selectSearchResultList(HashMap<String, String> map, PageInfo pi) {
 		return sDAO.selectSearchResultList(map, pi);
-	}
-
-	@Override
-	public ArrayList<StudyChat> getChatList(String nickName) {
-		return sDAO.getChatList(nickName);
 	}
 
 

@@ -42,8 +42,12 @@ public class MemberController {
 
 	// 회원가입 페이지
 	@RequestMapping("joinView.do")
-	public String joinView() {
-		return "member/joinView";
+	public ModelAndView joinView(HttpServletRequest request, ModelAndView mv) {
+		String referer = request.getHeader("Referer");
+
+		mv.addObject("url", referer);
+		mv.setViewName("member/joinView");
+		return mv;
 	}
 	// 로그인 페이지
 	@RequestMapping("loginView.do")
@@ -127,6 +131,7 @@ public class MemberController {
 		HashMap<String,Integer> scrapCount = mService.countScrap(map);
 		String str = null;
 		int listCount = 0;
+		System.out.println("type : " + type);
 		if(type == 1) {
 			str = "공모전";
 			listCount = scrapCount.get("compCount");
@@ -137,7 +142,7 @@ public class MemberController {
 			str = "자격증";
 			listCount = scrapCount.get("lcsCount");
 		}
-
+		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 		ArrayList<HashMap<String, String>> list = new ArrayList();
@@ -147,6 +152,8 @@ public class MemberController {
 		map2.put("pi", pi);
 		map2.put("keyword", keyword);
 		list = mService.selectScrapList(map2);
+		
+		System.out.println(list);
 
 		mv.addObject("pi", pi);
 		mv.addObject("type", str);
@@ -252,6 +259,7 @@ public class MemberController {
 								@RequestParam("birth_yy") int birth_yy,
 								@RequestParam("birth_mm") int birth_mm,
 								@RequestParam("birth_dd") int birth_dd,
+								@RequestParam(value="url", required = false) String url,
 								Model model) {
 
 		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
@@ -265,7 +273,11 @@ public class MemberController {
 		if(result > 0) {
 			Member loginUser = mService.memberLoginUser(m);
 			model.addAttribute("loginUser", loginUser);
-			return "member/mypageMainView";
+			if(url != null) {
+				return "redirect:"+ url;
+			} else {
+				return "redirect:/";
+			}
 		} else {
 			throw new MemberException("회원가입에 실패하였습니다.");
 		}
@@ -347,9 +359,9 @@ public class MemberController {
 								HttpSession session) {
 		Date birthDay = new Date(new GregorianCalendar(birth_yy, birth_mm-1, birth_dd).getTimeInMillis());
 		m.setBirthDay(birthDay);
-		session.getAttribute("loginUser");
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		m.setUserId(loginUser.getUserId());
+		m.setUserPwd(loginUser.getUserPwd());
 		int result = mService.updateMember(m);
 		if(result>0) {
 			model.addAttribute("loginUser", m);

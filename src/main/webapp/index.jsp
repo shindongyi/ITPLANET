@@ -367,7 +367,7 @@ dd {
 		<!-- 상단 로고입니다 (로고 이미지 임시) -->
 		<div class="hd_top">
 			<h1 class="sd">
-				<a href="<%=request.getContextPath()%>/index1.jsp"><img
+				<a href="<%=request.getContextPath()%>/index.jsp"><img
 					style="margin-top: -20px; width: 220px; height: 90px;"
 					src="<%=request.getContextPath()%>/resources/images/itplanet.png"
 					alt="IT PLANET"></a>
@@ -383,30 +383,16 @@ dd {
 		<ul id="menubar">
 
 			<!-- 공모전 -->
-			<li class="menubar_li"><a>공모전</a>
-				<div class="subLyr">
-					<div class="inn">
-						<ul class="temp debs">
-							<li><a>전체 공모전</a></li>
-							<li><a href="<%=request.getContextPath()%>/list.no">임시1</a></li>
-							<li><a href="<%=request.getContextPath()%>/list.pr">임시2</a></li>
-						</ul>
-					</div>
-				</div></li>
+			<li class="menubar_li"><a>공모전</a></li>
+			
+			<!-- 공모전 -->
+			<li class="menubar_li"><a>자격증</a></li>
 
 			<!-- 채용공고 -->
 			<li class="menubar_li"><a onclick="javascript:location.href='hList.do'">채용공고</a></li>
 
 			<!-- 스터디 -->
-			<li class="menubar_li"><a onclick="javascript:location.href='studyInsertView.do';">스터디</a>
-				<div class="subLyr">
-					<div class="inn">
-						<ul class="temp debs">
-							<li><a href="https://nextstylemag.com/">임시1</a></li>
-							<li><a href="<%=request.getContextPath()%>/List.pt">임시2</a></li>
-						</ul>
-					</div>
-				</div></li>
+			<li class="menubar_li"><a onclick="javascript:location.href='studyListView.do';">스터디</a></li>
 
 			<!-- 코딩테스트 -->
 			<li class="menubar_li"><a onclick="javascript:location.href='codingTestView.do'">코딩테스트</a>

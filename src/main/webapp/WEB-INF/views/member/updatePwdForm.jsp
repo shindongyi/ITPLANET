@@ -95,7 +95,7 @@
 		function checkNewPwd(){
 			userPwdFlag = false;
 			
-			var userPwd = $('#newPwd').val();
+			var newPwd = $('#newPwd').val();
 			var oMsg = $('#newPwdMsg');
 			
 			var isUserPwd = /^(?=.*[a-z])((?=.*\d)(?=.*\W)).{6,20}$/gi;
@@ -111,12 +111,14 @@
 		function checkNewPwd2(){
 			userPwdFlag = false;
 			
-			var userPwd = $('#newPwd').val();
-			var userPwd2 = $('#newPwd2').val();
+			var newPwd = $('#newPwd').val();
+			var newPwd2 = $('#newPwd2').val();
 			var oMsg = $('#newPwd2Msg');
 			
 			if(newPwd != newPwd2){
-				showErrorMsg(oMsg, "비밀번호가 일치하지 않습니다.");
+				showErrorMsg(oMsg, "비밀번호가 일치하지 않습니다.")
+				console.log("1번 : " + newPwd);
+				console.log("2번 : " + newPwd2);
 			} else{
 				oMsg.hide();
 				userPwdFlag = true;
@@ -130,7 +132,7 @@
 		
 		$('#update_btn').on('click', function(){
 			if(userPwdFlag){
-				$('#update_btn').submit();		
+				$('#update_form	').submit();		
 			} else {
 				alert('모든 항목을 확인해주세요');
 			}

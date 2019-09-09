@@ -47,7 +47,7 @@
 	padding: 0 0 10px 178px;
 	font-size: 12px;
 	line-height: 14px;
-	color: red;
+	color: #555;
 }
 .box{
 	display: block;
@@ -119,12 +119,7 @@ option[disabled]{
 	box-sizing: border-box;
 	color: #fff;
 }
-#emailNumBtn{
-	float: right;
-	width: 15%;
-	font-size: 12px;
-	padding: 14.5px 0 14.4px 0;
-}
+
 .policy {
 	position: relative;
     margin-top: 35px;
@@ -154,7 +149,13 @@ option[disabled]{
     overflow: auto;
     white-space: pre-line;
 }
-	.int{
+#confirmNum, #emailNumBtn{
+	float: right;
+	width: 15%;
+	font-size: 12px;
+	padding: 14.5px 0 14.4px 0;
+}
+.int{
 	display: inline-block;
 	position: relative;
 	float: right;
@@ -167,7 +168,8 @@ option[disabled]{
 	box-sizing: border-box;
 	padding-left: 14px;
 }
-#email{
+
+#email, #emailNum{
 	width: 60%;
 }
 .sel{

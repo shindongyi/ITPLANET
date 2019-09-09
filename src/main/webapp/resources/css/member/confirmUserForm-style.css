@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#wrap .myContent{
+.myContent{
 	float: right;
     width: 848px;
     min-height: 703px;
@@ -10,27 +10,27 @@
     background: #fff;
     font-size: 11px;
 }
-#wrap .myContent .titleSection{
+.myContent .titleSection{
 	margin: 0 -30px 45px;
     padding: 0 30px 30px;
     background: url(http://fiximage.10x10.co.kr/web2013/my10x10/bg_double_line.gif) left bottom repeat-x;
     position: relative;
 }
-#wrap #mypageMain .myContent .titleSection h3{
+#mypageMain .myContent .titleSection h3{
     color: #000;
     font-size: 22px;
 	font-weight: 700;
 }
-#wrap .pwdConfirm{
+.pwdConfirm{
 	font-size: 12px;
 	text-align: center;
 }
-#wrap .pwdConfirm h2{
+.pwdConfirm h2{
 	padding-bottom: 14px;
 	font-size: 18px;
 	font-weight: 700;
 }
-#wrap .box{
+.box{
 	display: block;
 	position: relative;
 	padding: 10px 14px 10px 14px;
@@ -42,10 +42,10 @@
 	vertical-align: top;
 	margin: 0 auto;
 }
-#wrap .box input{
+.box input{
 	outline: 0;
 }
-#wrap #mypageMain .update_title{
+#mypageMain .update_title{
 	/* margin: 19px 0 8px; */
 	margin-left: -48px;
 	display: inline;
@@ -53,7 +53,7 @@
 	font-size: 12px;
 	font-weight: normal;
 }
-#wrap .int{
+.int{
 	display: inline-block;
 	position: relative;
 	float: right;
@@ -66,7 +66,7 @@
 	box-sizing: border-box;
 	z-index: 10;
 }
-#wrap .handing{
+.handing{
 	margin-top: 35px;
     padding: 22px 0;
     border-top: 1px solid #e5e5e5;

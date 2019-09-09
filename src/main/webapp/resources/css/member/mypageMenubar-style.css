@@ -4,94 +4,94 @@
 	margin:0;
 	paddig:0;
 }
-#wrap #container{
+#container{
 	width: 100%;
 	margin: 0 auto;
 	padding: 40px 0 80px 0;
 }
-#wrap #mypageContentWrap{
+#mypageContentWrap{
 	width: 1140px;
 	margin: 0 auto;
 }
-#wrap #mypageContentWrap h2{
+#mypageContentWrap h2{
 	line-height: 16px;
 }
-#wrap #mypageContentWrap #myHeader{
+#mypageContentWrap #myHeader{
 	width: 1140px;
 	margin: 0 auto;
 }
-#wrap #myHeader{
+#myHeader{
 	overflow: hidden;
 	/* height: 1%; */
 }
-#wrap #myHeader h2 {
+#myHeader h2 {
     float: left;
     width: 232px;
     /* text-align: center; */
 }
-#wrap #myHeader h2 a{
+#myHeader h2 a{
 	/* margin-left: -20px; */
     font-size: 20px;
 	font-weight: 700;
 } 
-#wrap #mypageMain{
+#mypageMain{
 	overflow: hidden;
 	margin-top: 4px;
 	padding-top: 18px;
 }
-#wrap #mypageMain h3{
+#mypageMain h3{
 	font-size: 12px;
 	line-height: 1.25em;
 }
-#wrap .leftSection{
+.leftSection{
 	float: left;
 	width: 212px;
 	border-top: 1px solid #ccdbe1;
 }
-#wrap .leftSection .profile{
+.leftSection .profile{
 	margin-top: 20px;
 	padding-top: 17px;
 	text-align: center;
 }
-#wrap .leftSection .hello{
+.leftSection .hello{
 	color: #000;
 	font-weight: bold;
 	line-height: 1.25;
 }
-#wrap .leftSection .profile ul{
+.leftSection .profile ul{
 	margin-top: 39px;
 	border-top: 1px dotted #ccdbe1;
 	margin-left: -1px;
 }
-#wrap .leftSection .profile ul:after{
+.leftSection .profile ul:after{
 	clear: both;
 	display: block;
 	content: '';
 }
-#wrap .leftSection .profile ul li{
+.leftSection .profile ul li{
 	float: left;
 	width: 50%;
 	border-bottom: 1px solid #ccdbe1;
 }
-#wrap .leftSection .profile ul li:hover{
+.leftSection .profile ul li:hover{
 	background-color: #f8f8f8;
 }
-#wrap .leftSection .profile ul li a{
+.leftSection .profile ul li a{
 	display: block;
 	padding: 13px 0;
 	border-left: 1px solid #ccdbe1;
 	color: #555;
 	font-size: 11px; 
 }
-#wrap .leftSection .profile ul li a strong{
+.leftSection .profile ul li a strong{
 	display: block;
 	color: #000;
 	font-size: 12px;
 }
-#wrap .leftSection .mypageNav{
+.leftSection .mypageNav{
 	margin-top: 20px;
 }
-#wrap .leftSection .navTitle{
+.leftSection .navTitle{
 	display: block;
 	overflow: hidden;
 	position: relative;
@@ -103,47 +103,47 @@
 	line-height: 38px;
 	text-align: center;
 }
-#wrap .leftSection .navContent{
+.leftSection .navContent{
 	position: relative;
 	padding-bottom: 27px;
 }
-#wrap .leftSection .navContent ul{
+.leftSection .navContent ul{
 	padding: 20px;
 	background-color: #f8f8f8;
 }
-#wrap .leftSection .navContent ul li{
+.leftSection .navContent ul li{
 	margin-top: 20px;
 	font-size: 12px;
 	line-height: 1.25em;
 }
-#wrap .leftSection .navContent ul li:first-child{
+.leftSection .navContent ul li:first-child{
 	margin-top: 0;
 }
-#wrap .leftSection .navContent ul li .navCt_title{
+.leftSection .navContent ul li .navCt_title{
 	color: #3a3a3a;
 	font-weight: bold;
 	cursor: pointer;
 }
-#wrap .leftSection .navContent ul li ul{
+.leftSection .navContent ul li ul{
 	margin-top: 0;
 	padding: 0;
 }
-#wrap .leftSection .navContent ul li ul li:first-child{
+.leftSection .navContent ul li ul li:first-child{
 	margin-top: 10px;
 }
-#wrap .leftSection .navContent ul li ul li{
+.leftSection .navContent ul li ul li{
 	margin-top: 10px;
 	font-size: 11px;
 }
-#wrap .leftSection .navContent ul li ul li a{
+.leftSection .navContent ul li ul li a{
 	padding-left: 12px;
     background: none;
     font-weight: normal;
 }
-#wrap .arrow{
+.arrow{
 	width: 10px;
 	height: 10px;
 }
-#wrap .section{
+.section{
 	float: left;
 }

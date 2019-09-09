@@ -311,10 +311,6 @@ public class MemberController {
 			return member;
 		}
 	}
-//	public String findId(@ModelAttribute Member m) {
-//		String userId =  mService.findUserId(m);
-//		return userId;
-//	}
 
 	// 비밀번호 찾기
 	@RequestMapping("findPwd.do")

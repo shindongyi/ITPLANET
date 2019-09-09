@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/views/common/competiton.css">	
-<%@ include file="/WEB-INF/views/common/menubar1.jsp" %>	
+
 <title>Insert title here</title>
 </head>
 <body>

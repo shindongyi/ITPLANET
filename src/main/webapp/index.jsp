@@ -385,7 +385,7 @@ dd {
 		<ul id="menubar">
 
 			<!-- 공모전 -->
-			<li class="menubar_li"><a>공모전</a></li>
+			<li class="menubar_li"><a href="competitionView.do">공모전</a></li>
 			
 			<!-- 자격증 -->
 			<li class="menubar_li"><a href="lcsView.do">자격증</a></li>

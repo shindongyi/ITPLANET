@@ -383,7 +383,7 @@ dd {
 		<ul id="menubar">
 
 			<!-- 공모전 -->
-			<li class="menubar_li"><a>공모전</a></li>
+			<li class="menubar_li"><a onclick="javascript:location.href='competitionView.do'">공모전</a></li>
 			
 			<!-- 공모전 -->
 			<li class="menubar_li"><a>자격증</a></li>

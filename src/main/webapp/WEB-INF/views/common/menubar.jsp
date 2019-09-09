@@ -116,7 +116,7 @@ $(window).scroll(function(event) {
 		<ul id="menubar">
 
 			<!-- 공모전 -->
-			<li class="menubar_li"><a onclick="javascript:location.href='competitionView.do'">공모전</a></li>
+			<li class="menubar_li" style="color:white;"><a>공모전</a></li>
 			
 			<!-- 공모전 -->
 			<li class="menubar_li" style="color:white;"><a href="lcsView.do">자격증</a></li>

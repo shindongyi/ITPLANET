@@ -78,7 +78,6 @@
 		     </div>
 		    </div>
 		  </div>
-		  
 		  <div class="run-section">
 		    <div id="tour3" class="code-section">
 		      <div class="editor">
@@ -117,6 +116,7 @@
 		      </div>
 		    </div>
 		  </div>
+		  
 		</div>
 		
 		<div class="button-section">
@@ -127,7 +127,7 @@
 		    <a id="tour8" class="btn btn-dark" style="color:white;" data-toggle="tooltip" data-placement="top" title="힌트를 보시려면 클릭 하시면 열립니다.">힌트보기</a>
 		    <button name="button" type="submit" id="reset-code" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="에디터의 코드가 초기화됩니다. 초기화 버튼을 누르기 이전 코드 복원하려면 코드 에디터에 커서를 두고 Ctrl-Z를 눌러 보세요.">코드 초기화</button>
 		    <div id="tour4">
-		      <button id="startBtn" name="button" type="submit" id="run-code" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="기본 테스트 케이스가 정상 동작하는지 확인합니다.">실행</button>
+		      <button name="button" type="submit" id="run-code" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="기본 테스트 케이스가 정상 동작하는지 확인합니다.">실행</button>
 		    </div>
 		    <div id="tour5">
 		      <button name="button" type="submit" id="submit-code" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="코드를 완성하였으면 제출을 할 수 있습니다.">완성 후 제출</button>
@@ -147,9 +147,6 @@
 			 lineNumbers : true
 		  }).setSize("780", "300");
 		  
-		  $("#startBtn").on("click", function(){
-			 alert(editor.lineCount()); 
-		  });
 		  
 		});
 		

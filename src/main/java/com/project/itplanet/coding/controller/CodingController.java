@@ -29,7 +29,6 @@ public class CodingController {
 	@RequestMapping("codingTestList.do")
 	public String codingTestList() {
 		return "coding/codingTestList";
-		
 	}
 	
 	@RequestMapping("codingInsert.do")

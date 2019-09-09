@@ -9,9 +9,12 @@
 	<meta charset="utf-8">
 	<title>코딩 테스트</title>
 	<link rel="stylesheet" media="all" href="${ contextPath }/resources/css/coding.css" />
+	<link href="${ contextPath }/resources/codemirror/lib/codemirror.css"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="${ contextPath }/resources/codemirror/lib/codemirror.js"></script>
+	<script type="text/javascript" src="${ contextPath }/resources/codemirror/mode/clike.js"></script>
 </head>
 <body class="skill-checks skill-checks-show"
       data-ns=""
@@ -75,9 +78,8 @@
 		     </div>
 		    </div>
 		  </div>
-		  
 		  <div class="run-section">
-		    <div id="tour3" class="code-section" onkeyup="Hera.tryoutChallenges.resizeEditor(this);">
+		    <div id="tour3" class="code-section">
 		      <div class="editor">
 		        <ul class="nav nav-pills editor-nav-pills tap-form">
 				    <li class="nav-item">
@@ -88,8 +90,7 @@
 				    </li>
 				</ul>
 		        <br>
-		          <textarea id="code" name="code" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}"
-		          style="width:890px; height:300px; border-radius: 15px; outline: none; background: #899ca9; color:white; padding: 15px;">public class Solution {
+		          <textarea id="code" name="code" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}">public class Solution {
 
 	public static void main(String[] args) {
 		
@@ -115,6 +116,7 @@
 		      </div>
 		    </div>
 		  </div>
+		  
 		</div>
 		
 		<div class="button-section">
@@ -138,11 +140,20 @@
 	<script>
 		$(document).ready(function(){
 		  $('[data-toggle="tooltip"]').tooltip();   
+		  
+		  var code = $("#code")[0];
+		  var editor = CodeMirror.fromTextArea(code, {
+			  mode: "text/x-java",
+			 lineNumbers : true
+		  }).setSize("780", "300");
+		  
+		  
 		});
 		
 		$("#submit-code").click(function(){
 			alert($.trim($("textarea").val()));
 		});
+		
 	</script>
 
 	

@@ -3,6 +3,7 @@ package com.project.itplanet.member.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public String findUserId(Member m) {
+	public Member findUserId(Member m) {
 		return mDAO.findUserId(m);
 	}
 
@@ -63,55 +64,39 @@ public class MemberServiceImpl implements MemberService{
 		return mDAO.selectNickName(nickName);
 	}
 
-//	@Override
-//	public int countComp(String userId) {
-//		return mDAO.countComp(userId);
-//	}
-//
-//	@Override
-//	public int countHire(String userId) {
-//		return mDAO.countHire(userId);
-//	}
-//
-//	@Override
-//	public int countLcs(String userId) {
-//		return mDAO.countLcs(userId);
-//	}
-
-//	@Override
-//	public ArrayList selectScrapList(String userId, int type) {
-//		return mDAO.selectScrapList(userId, type);
-//	}
-
 	@Override
-	public ArrayList<HashMap<String, String>> selectScrapList(String userId, Integer type, PageInfo pi) {
-		return mDAO.selectScrapList(userId, type, pi);
+	public ArrayList<HashMap<String, String>> selectScrapList(HashMap map2) {
+		return mDAO.selectScrapList(map2);
 	}
 	
 	@Override
-	public HashMap<String, Integer> countScrap(String userId) {
-		return mDAO.countScrap(userId);
+	public HashMap<String, Integer> countScrap(HashMap<String, String> map) {
+		return mDAO.countScrap(map);
 	}
 
 	@Override
-	public ArrayList<HashMap<String, String>> recentComp(String userId) {
-		return mDAO.recentComp(userId);
+	public ArrayList<HashMap<String, String>> recentComp(HashMap<String, String> map) {
+		return mDAO.recentComp(map);
 	}
 
 	@Override
-	public ArrayList<HashMap<String, String>> recentHire(String userId) {
-		return mDAO.recentHire(userId);
+	public ArrayList<HashMap<String, String>> recentHire(HashMap<String, String> map) {
+		return mDAO.recentHire(map);
 	}
 
 	@Override
-	public ArrayList<HashMap<String, String>> recentLcs(String userId) {
-		return mDAO.recentLcs(userId);
+	public ArrayList<HashMap<String, String>> recentLcs(HashMap<String, String> map) {
+		return mDAO.recentLcs(map);
 	}
 
-	
+	@Override
+	public int deleteScrap(HashMap map) {
+		return mDAO.deleteScrap(map);
+	}
 
-
-
-
+	@Override
+	public ArrayList recentScrap(HashMap map) {
+		return mDAO.recentScrap(map);
+	}
 
 }

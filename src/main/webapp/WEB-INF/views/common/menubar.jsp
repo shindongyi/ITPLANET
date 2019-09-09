@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- <%@ page import='member.model.vo.*' %>
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
@@ -66,26 +67,27 @@ $(window).scroll(function(event) {
 	<div class="contain">
 		<dl class="hd_my">
 			<dt class="ir">마이메뉴</dt>
-
-			<!-- 로그인여부에 따라 보여주는 메뉴가 다릅니다. 이부분 주석풀고 상단에 변수선언한 것도 주석 푸셔야해요.. -->
-			<%-- <% if(loginUser != null){ %>
-				<dd class="grd" id="header_usernm">
-					<strong id="header_mbr_nm"><%=loginUser.getUserName() %>님 환영합니다.</strong>
-					<span id="header_grade_nm" class="silver"><em class="ir">silver</em></span>
-				</dd> --%>
+			
 			<dd class="arw">
-				<a href="<%=request.getContextPath()%>/views/mypage/myPageCheck.jsp">마이페이지</a>
+				<a onclick="javascript:location.href='mypage.do'">마이페이지</a>
 			</dd>
-			<dd>
-				<a href="<%=request.getContextPath()%>/Logout.me">로그아웃</a>
-			</dd>
-			<%-- <%}else{ %> --%>
 			<dd id="header_loginbtn">
-				<a href="<%=request.getContextPath()%>/views/member/loginForm.jsp">로그인</a>
+				<a onclick="javascript:location.href='loginView.do';">로그인</a>
 			</dd>
+			<c:if test="${ empty sessionScope.loginUser }">
+<%-- 				<h3 align="right">
+					<c:out value="로그인 계정 없음"/>
+				</h3> --%>
+			</c:if>
+			<c:if test="${ !empty sessionScope.loginUser }">
+				<c:out value="${ loginUser.userName }님 환영합니다."/>
+			<dd>
+				<a onclick="location.href='${logout}'">로그아웃</a>
+			</dd>
+			</c:if>
+
 			<dd id="header_joinbtn">
-				<a
-					href="<%=request.getContextPath()%>/views/member/Terms_of_Service.jsp">회원가입</a>
+				<a onclick="javascript:location.href='joinView.do'">회원가입</a>
 			</dd>
 			<%-- <%} %> --%>
 
@@ -100,8 +102,8 @@ $(window).scroll(function(event) {
 		<div class="hd_top">
 			<h1 class="sd">
 				<a href="<%=request.getContextPath()%>/index.jsp"><img
-					style="margin-top: -30px; width: 220px; height: 90px;"
-					src="${ contextPath }/resources/images/itplanet.png"
+					style="margin-top: -20px; width: 220px; height: 90px;"
+					src="<%=request.getContextPath()%>/resources/images/itplanet.png"
 					alt="IT PLANET"></a>
 			</h1>
 		</div>
@@ -115,34 +117,19 @@ $(window).scroll(function(event) {
 		<ul id="menubar">
 
 			<!-- 공모전 -->
-			<li class="menubar_li"><a>공모전</a>
-				<div class="subLyr">
-					<div class="inn">
-						<ul class="temp debs">
-							<li><a>전체 공모전</a></li>
-							<li><a href="<%=request.getContextPath()%>/list.no">임시1</a></li>
-							<li><a href="<%=request.getContextPath()%>/list.pr">임시2</a></li>
-						</ul>
-					</div>
-				</div></li>
+			<li class="menubar_li"><a>공모전</a></li>
+			
+			<!-- 공모전 -->
+			<li class="menubar_li"><a>자격증</a></li>
 
 			<!-- 채용공고 -->
-			<li class="menubar_li"><a
-				href="<%=request.getContextPath()%>/list.st">채용공고</a></li>
+			<li class="menubar_li"><a onclick="javascript:location.href='hList.do'">채용공고</a></li>
 
 			<!-- 스터디 -->
-			<li class="menubar_li"><a>스터디</a>
-				<div class="subLyr">
-					<div class="inn">
-						<ul class="temp debs">
-							<li><a href="https://nextstylemag.com/">임시1</a></li>
-							<li><a href="<%=request.getContextPath()%>/List.pt">임시2</a></li>
-						</ul>
-					</div>
-				</div></li>
+			<li class="menubar_li"><a onclick="javascript:location.href='studyListView.do';">스터디</a></li>
 
 			<!-- 코딩테스트 -->
-			<li class="menubar_li"><a>코딩테스트</a>
+			<li class="menubar_li"><a onclick="javascript:location.href='codingTestView.do'">코딩테스트</a>
 		</ul>
 	</div>
 </div>

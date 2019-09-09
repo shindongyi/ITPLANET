@@ -4,7 +4,7 @@
 /* RESET CSS */
 
 abbr, acronym{border:0;}
-hr{display:none;}
+#footer hr, #header hr{display:none;}
 
 
 a:hover{color:#999;text-decoration:underline;}

@@ -71,7 +71,7 @@ body.app section.tab>div.wrap>a.active>span.text {
 @media only screen and (min-width: 896px) {
 	#container {
 		margin: 16px auto;
-		width: 1096px;
+		width: 1280px;
 	}
 }
 
@@ -251,7 +251,7 @@ body.app section.tab>div.wrap>a.active>span.text {
 		display: inline-block;
 		margin-right: 16px;
 		margin-bottom: 16px;
-		width: 440px;
+		width: 600px;
 		vertical-align: top;
 		box-sizing: border-box;
 		border-top: 1px solid #d8d8d8;

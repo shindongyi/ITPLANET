@@ -45,8 +45,8 @@
 								<div class="box">
 										<h3 class="update_title"><label for="userPwd">비밀번호</label><!-- <span class="red_mark">*</span> --></h3>
 										<input type="password" id="userPwd" name="userPwd" class="int">
-								</div>
-								<div class="error_box" id="pwdMsg" style="display:none"></div>
+										</div>
+										<div class="error_box" id="pwdMsg" style="display:none"></div>
 								</div>
 							</fieldset>
 							<p class="handing">

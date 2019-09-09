@@ -99,13 +99,13 @@
 			from lscrapview
 		</if>
 		where user_id = #{userId}
-		<if test="keyword != null">
+        <if test="keyword != null">
 			and title like '%' || #{keyword} || '%'
 		</if> 
 		order by sid desc
 	</select>
 	
- <!-- 	<select id="recentScrap" parameterType="map" resultType="map">
+<!-- 	<select id="recentScrap" parameterType="map" resultType="map">
 		<if test='listName.equals("comp")'>
 			select imagename, filepath, title, duedate, sid, link
 			from r_c_scrap_view

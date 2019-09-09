@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- <%
-   Member member = (Member)session.getAttribute("loginUser");
-%> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -176,7 +175,7 @@ input[type=text] {
 <body>
 
 	<!-- header -->
-	<%@ include file="/views/common/menubar1.jsp"%>
+	<c:import url="../common/menubar.jsp"/>
 
 	<div class="boardbox">
 
@@ -186,17 +185,17 @@ input[type=text] {
 			</div>
 			<!--  enctype은 전송되는 데이터 형식을 설정한다. -->
 			<form name='writeform' id='writeform'
-				action='<%=request.getContextPath()%>/insert.st' method='post'
-				ENCTYPE='multipart/form-data'>
+				action='${ contextPath }/competitionInsert.do' method='post'
+				enctype="Multipart/form-data">
 
 				<table class="pnaw_box" summary="">
 					<tbody>
 
 						<tr>
 							<th scope="row">공모전 이름</th>
-							<td class="pnawtd"><input name="subject" value=""
+							<td class="pnawtd"><input name="cTitle"
 								class="inputTypeText" style='width: 80%;' maxLength="125"
-								type="text" msg="제목을 입력해주세요." valch="yes" /></td>
+								type="text" placeholder="공모전 이름을 입력하세요." /></td>
 						</tr>
 						<tr class="first">
 							<th>공모전 접수기간</th>
@@ -205,25 +204,17 @@ input[type=text] {
 						</tr>
 
 						<tr>
-							<th scope="row">기관명</th>
-							<td class="pnawtd"><input name="mem_name" value=""
-								class="inputTypeText" maxLength="125" type="text"
-								placeholder="주최"> <input name="mem_name" value=""
-								class="inputTypeText" maxLength="125" type="text"
-								placeholder="주관"> <input name="mem_name" value=""
-								class="inputTypeText" maxLength="125" type="text"
-								placeholder="후원/협찬"></td>
+							<th scope="row">공모전 주소</th>
+							<td class="pnawtd"><input name="cAddress"
+								class="inputTypeText" style="width:80%;" type="text"
+								placeholder="공모전 주소"></td>
 						</tr>
 
 						<tr>
-							<th scope="row">시상</th>
-							<td class="pnawtd"><input name="mem_name" value=""
-								class="inputTypeText" maxLength="125" type="text"
-								placeholder="1등시상금"> <input name="mem_name" value=""
-								class="inputTypeText" maxLength="125" type="text"
-								placeholder="총시상금"> <input name="mem_name" value=""
-								class="inputTypeText" maxLength="125" type="text"
-								placeholder="특전"></td>
+							<th scope="row">공모전 전화번호</th>
+							<td class="pnawtd"><input name="cPhone"
+								class="inputTypeText" style="width: 80%;" type="text"
+								placeholder="전화번호"></td>
 						</tr>
 
 						<tr>
@@ -237,8 +228,8 @@ input[type=text] {
 						</tr>
 						<tr>
 							<th scope="row">상세내용</th>
-							<td class="write pnawtd"><textarea name='memo'
-									style='width: 100%; height: 200px;'></textarea></td>
+							<td class="write pnawtd"><textarea name='cContent'
+									style='width: 100%; height: 200px; resize:none;'></textarea></td>
 						</tr>
 						<tr>
 							<th>사진 첨부</th>
@@ -269,31 +260,29 @@ input[type=text] {
 				</table>
 
 				<div class="joinbox" style="max-width: 100%;">
-					<ul class="ul01">
-						<li><input class="inputbox02 btn btn-outline-dark"
-							type="button" value="등록" onclick="register();"></li>
-						<li><input class="inputbox02 btn btn-outline-dark"
-							type="button" value="취소" onclick="javascript:history.back()"></li>
-					</ul>
+					<input class="inputbox02 btn btn-outline-dark"
+							type="button" style="width: 40%;" value="등록" onclick="register();">
+						<input class="inputbox02 btn btn-outline-dark"
+							type="button" style="width: 40%;" value="취소" onclick="javascript:history.back()">
 				</div>
 				<div id="fileArea">
 					<input type="file" id="thumbnailImg1" multiple="multiple"
-						name="thumbnailImg1" onchange="LoadImg(this,1)"> <input
+						name="titleImg" onchange="LoadImg(this,1)"> <input
 						type="file" id="thumbnailImg2" multiple="multiple"
-						name="thumbnailImg2" onchange="LoadImg(this,2)"> <input
+						name="contentImg1" onchange="LoadImg(this,2)"> <input
 						type="file" id="thumbnailImg3" multiple="multiple"
-						name="thumbnailImg3" onchange="LoadImg(this,3)"> <input
+						name="contentImg2" onchange="LoadImg(this,3)"> <input
 						type="file" id="thumbnailImg4" multiple="multiple"
-						name="thumbnailImg4" onchange="LoadImg(this,4)"> <input
+						name="contentImg3" onchange="LoadImg(this,4)"> <input
 						type="file" id="thumbnailImg5" multiple="multiple"
-						name="thumbnailImg5" onchange="LoadImg(this,5)">
+						name="contentImg4" onchange="LoadImg(this,5)">
 				</div>
 			</form>
 		</div>
 	</div>
 
 	<!-- 푸터  -->
-	<%@ include file="/views/common/footer.jsp"%>
+	<c:import url="../common/footer.jsp"/>
 	<!-- /푸터 -->
 
 	<script>

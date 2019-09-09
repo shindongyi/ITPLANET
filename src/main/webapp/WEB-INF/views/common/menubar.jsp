@@ -116,7 +116,7 @@ $(window).scroll(function(event) {
 
 			<!-- 공모전 -->
 			<li class="menubar_li"><a>공모전</a>
-				<div class="subLyr" style="display:none;">
+			<%-- 	<div class="subLyr" style="display:none;">
 					<div class="inn">
 						<ul class="temp debs">
 							<li><a>전체 공모전</a></li>
@@ -124,7 +124,8 @@ $(window).scroll(function(event) {
 							<li><a href="<%=request.getContextPath()%>/list.pr">임시2</a></li>
 						</ul>
 					</div>
-				</div></li>
+				</div> --%>
+			</li>
 
 			<!-- 채용공고 -->
 			<li class="menubar_li"><a
@@ -132,14 +133,15 @@ $(window).scroll(function(event) {
 
 			<!-- 스터디 -->
 			<li class="menubar_li"><a>스터디</a>
-				<div class="subLyr" style="display:none;">
+				<%-- <div class="subLyr" style="display:none;">
 					<div class="inn">
 						<ul class="temp debs">
 							<li><a href="https://nextstylemag.com/">임시1</a></li>
 							<li><a href="<%=request.getContextPath()%>/List.pt">임시2</a></li>
 						</ul>
 					</div>
-				</div></li>
+				</div> --%>
+			</li>
 
 			<!-- 코딩테스트 -->
 			<li class="menubar_li"><a>코딩테스트</a>

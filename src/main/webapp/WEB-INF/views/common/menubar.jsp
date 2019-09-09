@@ -116,7 +116,7 @@ $(window).scroll(function(event) {
 		<ul id="menubar">
 
 			<!-- 공모전 -->
-			<li class="menubar_li"><a onclick="javascript:location.href='competitionView.do'">공모전</a></li>
+			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='competitionView.do'">공모전</a></li>
 			
 			<!-- 공모전 -->
 			<li class="menubar_li" style="color:white;"><a href="lcsView.do">자격증</a></li>
@@ -129,6 +129,8 @@ $(window).scroll(function(event) {
 
 			<!-- 코딩테스트 -->
 			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='codingTestView.do'">코딩테스트</a>
+			
+			<li class="menubar_li"><a onclick="javascript:location.href='chatListView.do'">채팅리스트 체크</a>
 		</ul>
 	</div>
 </div>

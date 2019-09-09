@@ -1,14 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="competitionMapper">
-
-	<insert id="insertCompetition" parameterType="Competition">
-		insert into competition
-		values(seq_cid.nextval, #{cTitle}, #{cContent}, #{cPhone}, #{cAddress}, default, #{cStartDate}, #{cDueDate}, sysdate, sysdate, default, #{cWriter})
-	</insert>
-	
-	<insert id="insertCattachment" parameterType="Cattachment">
-		insert into cattachment
-		values(seq_cpid.nextval, #{originName}, #{changeName}, #{filePath}, sysdate, seq_cid.currval)
-	</insert>
 </mapper>

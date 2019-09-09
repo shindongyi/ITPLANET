@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%-- <c:import url="/WEB-INF/views/member/mypageMenubar.jsp"/> --%>
 <link rel="stylesheet" href="${contextPath}/resources/css/member/confirmUserForm-style.css" type="text/css">
 </head>
 <body>
@@ -31,6 +32,7 @@
 					<h3>개인정보 수정</h3>
 				</div>
 				<div class="mySection">
+					<form name="frmLoginConfirm" id="frmLoginConfirm" method="post" action="comfirmUser.do">
 						<div class="pwdConfirm">
 							<fieldset>
 								<legend>비밀번호 확인</legend>
@@ -41,12 +43,10 @@
 									회원님의 정보를 안전하게 보호하기 위해 
 									계정을 다시 한 번 확인합니다.
 								</p>
-								<div class="join_row">
 								<div class="box">
 										<h3 class="update_title"><label for="userPwd">비밀번호</label><!-- <span class="red_mark">*</span> --></h3>
 										<input type="password" id="userPwd" name="userPwd" class="int">
-								</div>
-								<div class="error_box" id="pwdMsg" style="display:none"></div>
+										<div class="error_box" id="pwdMsg" style="display:none"></div>
 								</div>
 							</fieldset>
 							<p class="handing">
@@ -55,6 +55,7 @@
 								기재하신 회원정보를 공개 및 변경하지 않습니다.
 							</p>
 						</div>
+					</form>
 				</div>
 			</div>	
 			<script>

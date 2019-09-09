@@ -334,33 +334,31 @@ dd {
 		<dl class="hd_my">
 			<dt class="ir">마이메뉴</dt>
 			
-			<c:if test="${ empty sessionScope.loginUser }">
+			<dd class="arw">
+				<a onclick="javascript:location.href='mypage.do'">마이페이지</a>
+			</dd>
 			<dd id="header_loginbtn">
-				<a href='loginView.do'>로그인</a>
+				<a onclick="javascript:location.href='loginView.do';">로그인</a>
 			</dd>
-			<dd id="header_joinbtn">
-				<a href='joinView.do'>회원가입</a>
-			</dd>
+			<c:if test="${ empty sessionScope.loginUser }">
 <%-- 				<h3 align="right">
 					<c:out value="로그인 계정 없음"/>
 				</h3> --%>
 			</c:if>
 			<c:if test="${ !empty sessionScope.loginUser }">
+				<c:out value="${ loginUser.userName }님 환영합니다."/>
 			<dd>
-				<a style="font-size:12px;"> ${ loginUser.userName }님 환영합니다.</a>
-			</dd>
-			<dd class="arw">
-				<a href='mypage.do'>마이페이지</a>
-			</dd>
-			<dd>
-				<a href='logout.do'>로그아웃</a>
+				<a onclick="location.href='${logout}'">로그아웃</a>
 			</dd>
 			</c:if>
 
+			<dd id="header_joinbtn">
+				<a onclick="javascript:location.href='joinView.do'">회원가입</a>
+			</dd>
 			<%-- <%} %> --%>
 
 			<dd class="arw">
-				<!-- <a href="">고객센터<em class="ir">메뉴보기</em></a> -->
+				<a href="">고객센터<em class="ir">메뉴보기</em></a>
 				<div class="lys" style="display: none;"></div>
 			</dd>
 		</dl>
@@ -385,10 +383,10 @@ dd {
 		<ul id="menubar">
 
 			<!-- 공모전 -->
-			<li class="menubar_li"><a onclick="javascript:location.href='competitionView.do'">공모전</a></li>
+			<li class="menubar_li"><a>공모전</a></li>
 			
-			<!-- 자격증 -->
-			<li class="menubar_li"><a href="lcsView.do">자격증</a></li>
+			<!-- 공모전 -->
+			<li class="menubar_li"><a>자격증</a></li>
 
 			<!-- 채용공고 -->
 			<li class="menubar_li"><a onclick="javascript:location.href='hList.do'">채용공고</a></li>
@@ -397,7 +395,7 @@ dd {
 			<li class="menubar_li"><a onclick="javascript:location.href='studyListView.do';">스터디</a></li>
 
 			<!-- 코딩테스트 -->
-			<li class="menubar_li"><a onclick="javascript:location.href='codingTestView.do'">코딩테스트</a>
+			<li class="menubar_li"><a onclick="javascript:location.href='codingTestList.do'">코딩테스트</a>
 		</ul>
 	</div>
 </div>
@@ -918,6 +916,26 @@ dd {
 <!-- 333333333333333333333333333333333333 공모전 / 스터디 / 채용공고 / 코딩테스트 4개 같이 있는 부분  CSS파일명 : asdf.css  @@@@@@@@@@@@@@@@@@@@@@@@33333333333333333333333333 -->
 <div id="container" data-campus-id="0">
 
+				<button onclick="location.href='${logout}'">로그아웃</button>
+			</h3>
+		</c:if>
+	
+	<hr>
+	<button onclick="javascript:location.href='home.do';">홈 컨트롤러</button>
+	<button onclick="javascript:location.href='studyInsertView.do';">스터디 작성</button>
+	<button onclick="javascript:location.href='studyListView.do';">스터디 리스트</button>
+	<button onclick="javascript:location.href='studyUpdateView.do';">스터디 수정</button>
+	
+	<hr>
+	
+	<button onclick="javascript:location.href='hList.do'">채용 목록</button>
+	<button onclick="javascript:location.href='hDetail.do'">채용 상세</button>
+	
+	<hr>
+	
+	<button onclick="javascript:location.href='insertCT.do'">코딩테스트 글 작성</button>
+	<button onclick="javascript:location.href='codingTestView.do'">코딩테스트</button>
+	<button onclick="javascript:location.href='codingTestList.do'">코딩테스트 목록</button>
 	<hr>
 	<div class="section" data-category1="1">
 		<h2>공모전</h2>

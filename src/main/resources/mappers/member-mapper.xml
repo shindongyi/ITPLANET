@@ -99,13 +99,53 @@
 			from lscrapview
 		</if>
 		where user_id = #{userId}
-		<if test="keyword != null">
-			and title like '%' || #{keyword} || '%'
-		</if> 
-		order by sid desc
+        
 	</select>
 	
- <!-- 	<select id="recentScrap" parameterType="map" resultType="map">
+<!-- 	<select id="scrapCount" parameterType="Map" resultType="_int">
+		select count(*)
+		<choose>
+			<when test="scrap == h_scrap">
+				from h_scrap
+			</when>
+			<when test="scrap == c_scrap">
+				from c_scrap
+			</when>
+			<otherwise> 
+				from l_scrap
+			</otherwise>
+		</choose>
+		where user_id=#{userId}
+	</select> -->
+	
+<!-- 	<select id="selectCompScrapList" parameterType="string" resultMap="cScrapResultSet">
+		select c_title as TITLE, c_writer as WRITER, c_modify_date as MODIFYDATE, c_count as COUNT
+		from c_scrap cs
+		join competition c on(cs.c_id = c.c_id)
+		join member m on (c.c_writer = m.user_id)
+		where cs.user_id = #{userId} and cs.c_id = c.c_id
+		order by cs.cs_id desc
+	</select>
+		
+	<select id="selectHireScrapList" parameterType="string" resultMap="hScrapResultSet">
+		select h_title as TITLE, hs.user_id as WRITER, h_create_date as MODIFYDATE
+		from h_scrap hs
+		join hire h on(hs.h_id = h.h_id)
+		join member m on (h.user_id = m.user_id)
+		where hs.user_id = #{userId} and hs.h_id = h.h_id
+		order by hs.hs_id desc
+	</select>
+	
+	<select id="selectLcsScrapList" parameterType="string" resultMap="lScrapResultSet">
+		select l.l_name as TITLE, m.nickname as WRITER, l.modify_date as MODIFYDATE, l.l_count as COUNT
+		from l_scrap ls
+		join license l on(ls.l_id = l.l_id)
+		join member m on (l.user_id = m.user_id)
+		where ls.user_id = #{userId} and ls.l_id=l.l_id
+		order by ls.ls_id desc
+	</select> -->
+	
+<!-- 	<select id="recentScrap" parameterType="map" resultType="map">
 		<if test='listName.equals("comp")'>
 			select imagename, filepath, title, duedate, sid, link
 			from r_c_scrap_view
@@ -129,7 +169,7 @@
 		</if>
 			and <![CDATA[rownum < 5]]>
 		order by sid desc
-	</select>  -->
+	</select>  --> 
 	
  	<select id="recentLcsScrap" parameterType="map" resultType="map">
 		select imagename, filepath, title, duedate, sid, link
@@ -158,6 +198,22 @@
 		and <![CDATA[rownum < 5]]> 
 		order by sid desc 
 	</select>
+	
+	<!-- <select id="recentHireScrap" parameterType="string" resultType="map">
+		<![CDATA[
+     	select h.h_title as TITLE, h.location as LOCATION, h.h_info as INFO, h.h_type as HTYPE
+		from h_scrap hs
+		join hire h on (h.h_id = hs.h_id)
+		where hs.user_id = #{userId} and <![CDATA[rownum < 5]]>
+		<if test="keyword == day1">
+		and to_date(h.h_duedate,'YYYY-mm-DD') = to_date(sysdate-1,'YYYY-mm-DD')
+		</if>
+		<if test="keyword == day2">
+		and to_date(h.h_duedate,'YYYY-mm-DD') = to_date(sysdate-2,'YYYY-mm-DD')
+		</if>
+		order by hs.hs_id desc
+		]]>
+	</select> -->
 	
 	<select id="recentHireScrap" parameterType="map" resultType="map">
      	select title, location, info, htype, duedate, sid, link

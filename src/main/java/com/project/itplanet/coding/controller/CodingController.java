@@ -26,6 +26,11 @@ public class CodingController {
 		return "coding/codingTestView";
 	}
 	
+	@RequestMapping("codingTestList.do")
+	public String codingTestList() {
+		return "coding/codingTestList";
+	}
+	
 	@RequestMapping("codingInsert.do")
 	public String codingInsert(@RequestParam("qTitle") String qTitle, @RequestParam("qContent") String qContent, @RequestParam("limitList") String[] limitList,
 							@RequestParam("exData") String[] exData, @RequestParam("exResult") String[] exResult,

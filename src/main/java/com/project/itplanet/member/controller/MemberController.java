@@ -153,8 +153,6 @@ public class MemberController {
 		map2.put("keyword", keyword);
 		list = mService.selectScrapList(map2);
 		
-		System.out.println(list);
-
 		mv.addObject("pi", pi);
 		mv.addObject("type", str);
 		mv.addObject("typeNum", type);

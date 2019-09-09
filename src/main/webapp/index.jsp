@@ -326,8 +326,17 @@ dd {
 </style>
 
 
+
 </head>
 <body>
+	<script type="text/javascript">
+		$(function(){
+			var msg = "<%= request.getAttribute("msg")%>";
+			if(msg != "null"){
+				alert(msg);
+			}
+		});
+	</script>
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 	<%-- <h1>hi</h1>
 	<button onclick="javascript:location.href='loginView.do';">로그인</button>
@@ -341,7 +350,8 @@ dd {
 			<h3 align="right">
 				<c:out value="${ loginUser.userName }님 환영합니다."/>
 
-				<button onclick="location.href='${logout}'">로그아웃</button>
+				<%-- <button onclick="location.href='${logout}'">로그아웃</button> --%>
+				<button onclick="location.href='logout.do'">로그아웃</button>
 			</h3>
 		</c:if>
 	
@@ -1072,6 +1082,6 @@ dd {
 
 <!-- 푸터  -->
  <%@ include file="/WEB-INF/views/common/footer.jsp" %>	    
-<!-- /푸터 -->
+
 </body>
 </html>

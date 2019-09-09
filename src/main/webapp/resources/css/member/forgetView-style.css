@@ -106,7 +106,12 @@
 .changePwdSection{
 	width: 420px;
 } 
-
+.error_box{
+	padding: 5px 0 0 87px;
+}
+#userPwd2Msg{
+	padding-left: 185px;
+}
 
 
 

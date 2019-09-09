@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/member/updateMemberForm-style.css" type="text/css">
 </head>
 <body>
+<c:import url="/WEB-INF/views/common/menubar.jsp"/>
 <div id="wrap">
 	<div id="container">
 		<div id="mypageContentWrap">
@@ -116,7 +117,6 @@
 			
 			if(newPwd != newPwd2){
 				showErrorMsg(oMsg, "비밀번호가 일치하지 않습니다.");
-				return false
 			} else{
 				oMsg.hide();
 				userPwdFlag = true;
@@ -132,11 +132,10 @@
 			if(userPwdFlag){
 				$('#update_btn').submit();		
 			} else {
-				checkUserPwd();
-				checkNewPwd();
-				checkNewPwd2();
+				alert('모든 항목을 확인해주세요');
 			}
 		});
 	</script>
+	<c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

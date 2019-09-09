@@ -1,0 +1,268 @@
+@charset "EUC-KR";
+
+#wrap{
+	width: 100%;
+	clear: both;
+	text-align: left;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+#wrap *:focus {
+	outline: none;
+}
+#wrap a:hover{
+	font-weight: 600;
+}
+#primaryContent{
+	margin-top: 42px;
+	float: left;
+	width: 100%;
+	text-align: left;
+}
+#lcs_date_list{
+	position: relative;
+	margin: auto;
+	width: 970px;
+}
+.lcs_date{
+	float: left;
+	width: 400px;
+	height: 230px;
+	margin: 0 30px 10px 0;
+	border: 1px solid #d5d5d5;
+	padding: 25px 25px 0 25px; 
+	position: relative;
+}
+.lcs_date:nth-of-type(2){
+	margin: 0 0 10px 30px;
+}
+.lcs_date h2{
+	margin: 0 0 10px;
+	padding: 0;
+	font-weight: 400;
+	display: inline-block;
+	font-size: 20px;
+}
+.lcs_date h3, .license .lcs_title{
+	font-weight: 400;
+	display: inline;
+	font-size: 20px;
+}
+.more{
+	color: #777;
+   	font-size: 11px;
+   	float: right;
+   }
+.lcs_title{
+	padding-bottom: 10px;
+}
+.lcs_date hr{
+	border: 0.5px solid #E6ECF0;
+}
+.license hr{
+	border: 0.5px solid #555;
+	margin: 4px 0 12px 0;
+	color: #807979;
+	clear: both;
+}
+.lcs{
+	padding: 10px 0 30px 0;
+}
+.lcs_upper_title:not(:last-of-type):after{
+	content:"|";
+	margin-left: 5px;
+	color: gray;
+	font-size: 10px;
+}
+.lcs_upper_title a{
+	 color: #777;
+  		 font-size: 12px;
+}
+.lcs_bt_wrap{
+	width: 100%;
+	position: absolute;
+	bottom: 25px;
+}
+.lcs_txt{
+	font-size: 13px;
+	font-weight: 300;
+}
+.lcs_btn{
+	border: 0.5px solid #d5d5d5;
+	color: #002358;
+	background: none;
+	width: 80px;
+	height: 35px;
+	border-radius: 5px;
+	cursor: pointer;
+	position: absolute;
+	bottom: 0px;
+	right: 50px;
+}
+.lcs_btn:hover{
+	background: #002358;
+	color: white !important;
+}
+.serchArea{
+	clear:both;
+	width: 970px;
+	margin: auto;
+	padding-top: 20px;
+}
+#search_box {
+    padding-left: 40px;
+    display: block;
+    position: relative;
+    width: 300px;
+    height: 46px;
+    border-bottom: 0.5px solid rgb(230,230,230);
+    padding: 10px 14px 10px 14px;
+    box-sizing: border-box;
+    vertical-align: top;
+    margin: 10px auto;
+}
+#search_box:hover{
+	box-shadow: 0px 3px 10px -8px;
+}
+#searchBar{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 29px;
+    line-height: 29px;
+    border: none;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+#searchBar{
+	text-align: center;
+}
+#after{
+	background-color: #fff;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+}
+#searchLbl {
+    left: 0;
+    padding: 0 9px;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    top: 50%;
+    margin-top: 4px;
+    line-height: 13px;
+}
+#step_txt {
+    display: inline-block;
+    position: absolute;
+    top: 1px;
+    right: 33px;
+    line-height: 13px;
+}
+#license_list_wrap{
+	clear: both;
+	/* 	text-align: center; */
+	margin: auto;
+	width: 100%;
+}
+#license_list{
+	background: #f1f1f1;
+	text-align: left;
+	position: relative;
+	margin: auto;
+	width: 880px; 
+	padding: 50px 45px 0 45px;
+	/* float: left; */
+}
+.license {
+	width: 206px;
+	height: 210px;
+	padding: 30px;
+	/* margin: 0 15px 10px 0; */
+	margin-bottom: 30px;
+	/* border: 0.5px solid #d5d5d5; */
+	position: relative;
+	display: inline-block;
+	clear: both;
+	background: #ffffff8a;
+}
+.license img{
+    top:0;
+    left:0;
+    position:absolute;
+    background-size:100%;
+    opacity:0.3 !important;
+    filter:alpha(opacity=50);
+    z-index:-999;
+    content:"";
+    width:100%;
+    height:100%;
+}
+.license_txtWrap div{
+	display:none;
+}
+.license_txtWrap .lcs_title{
+	display: block;
+	padding: 0;
+}
+.lcs_round{
+	font-weight: 400;
+	font-size: 20px;
+	float: right;
+}
+.hoverDiv{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0, 0.8);
+	display: none;
+	
+}
+.hoverDiv a{
+	font-size: 20px;
+	font-weight: 400;
+    color: #efefef;
+    position: absolute;
+    top: 45%;
+    left: 10%;
+}
+.license:nth-of-type(3n-1){
+    margin-left: 39px;
+    margin-right: 40px;
+}
+.license:nth-of-type(3n){
+	float: right;
+}
+.scrapBtn span{
+	font-size: 18px;
+}
+.license_txtWrap{
+	padding-top: 30px;
+}
+.license_txtWrap a{
+	padding-top: 20px;
+	float: right;
+	font-size: 12px;
+	font-weight: 500;
+}
+.scrapBtn{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	background: none;
+	font-size: 35px;
+}

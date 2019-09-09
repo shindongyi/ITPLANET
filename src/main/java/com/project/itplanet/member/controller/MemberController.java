@@ -359,9 +359,9 @@ public class MemberController {
 								HttpSession session) {
 		Date birthDay = new Date(new GregorianCalendar(birth_yy, birth_mm-1, birth_dd).getTimeInMillis());
 		m.setBirthDay(birthDay);
-		session.getAttribute("loginUser");
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		m.setUserId(loginUser.getUserId());
+		m.setUserPwd(loginUser.getUserPwd());
 		int result = mService.updateMember(m);
 		if(result>0) {
 			model.addAttribute("loginUser", m);

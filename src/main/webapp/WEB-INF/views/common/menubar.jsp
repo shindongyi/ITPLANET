@@ -118,7 +118,7 @@ $(window).scroll(function(event) {
 			<!-- 공모전 -->
 			<li class="menubar_li" style="color:white;"><a>공모전</a></li>
 			
-			<!-- 자격증 -->
+			<!-- 공모전 -->
 			<li class="menubar_li" style="color:white;"><a href="lcsView.do">자격증</a></li>
 
 			<!-- 채용공고 -->

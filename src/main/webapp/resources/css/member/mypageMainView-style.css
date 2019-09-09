@@ -1,24 +1,24 @@
 @charset "UTF-8";
 
-#wrap .section h3{
+.section h3{
 	padding: 0 10px;
 }
-#wrap .middleSection{
+.middleSection{
 	width: 598px;
 	margin-left: 20px;
 }
-#wrap .middleSection .article{
+.middleSection .article{
 	position: relative;
 	padding-top: 11px;
 	border-top: 2px solid #555;
 }
-#wrap .section .article{
+.section .article{
 	/* margin-top: 20px; */
 }
-#wrap .article{
+.article{
 	min-height: 232px;
 }
-#wrap .compe h3, .hire h3, .lcs h3{
+.compe h3, .hire h3, .lcs h3{
 	padding-left: 28px;
 } 
 .scpList {

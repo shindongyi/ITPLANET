@@ -1,33 +1,33 @@
 @charset "UTF-8";
 
-#wrap .dropGuide{
+.dropGuide{
 	margin-top: 40px;
 }
-#wrap .dropGuide h4{
+.dropGuide h4{
 	margin-bottom: 15px;
 	color: #000;
 	font-size: 14px;
 }
-#wrap .titleSection h3{
+.titleSection h3{
 	margin-bottom: 10px;
 }
-#wrap .guide li{
+.guide li{
 	text-indent: -16px;
 	padding: 0 0 3px 16px;
 }
-#wrap #update_form .box .guideMsg{
+#update_form .box .guideMsg{
 	color: #555;
 }
-#wrap .box strong{
+.box strong{
 	padding-left: 159px;
 }
-#wrap #update_form .update_row .email_title{
+#update_form .update_row .email_title{
 	line-height: 20px;
 }
-#wrap .guideMsg{
+.guideMsg{
 	padding: 10px 0 10px 208px;
 }
-#wrap #drop_btn{
+#drop_btn{
 	margin: 0 auto;
 	display: block;
 	background-color: #002358;

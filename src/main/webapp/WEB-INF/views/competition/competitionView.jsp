@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${contextPath }/resources/css/mainView/competiton.css">	
+<link rel="stylesheet" href="<%=request.getContextPath()%>/views/common/competiton.css">	
+<%@ include file="/WEB-INF/views/common/menubar1.jsp" %>	
 <title>Insert title here</title>
 </head>
 <body>
-	<c:import url="../common/menubar.jsp"/>
 	<div id="container" data-target="1" data-target-name="공모전"
 		data-target-path="contest" data-category="" data-keyword=""
 		style="padding-top: 0px;">
@@ -507,11 +506,10 @@
 				</div>
 			</div>
 		</div>
-		<button onclick="javascript:location.href='competitionInsertView.do'" style="font-size: 15px;">공모전 작성</button>
 	</div>
 	
 <!-- 푸터  -->
-	<c:import url="../common/footer.jsp"/>
+ <%@ include file="/WEB-INF/views/common/footer.jsp" %>	    
 <!-- /푸터 -->
 </body>
 </html>

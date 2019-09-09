@@ -17,8 +17,7 @@
 		<typeAlias type="com.project.itplanet.member.model.vo.HScrap" alias="HScrap"/>
 		<typeAlias type="com.project.itplanet.license.model.vo.License" alias="License"/>
 		<typeAlias type="com.project.itplanet.license.model.vo.LAttachment" alias="LAttachment"/>
-		<typeAlias type="com.project.itplanet.competition.model.vo.Competition" alias="Competition"/>
-		<typeAlias type="com.project.itplanet.competition.model.vo.Cattachment" alias="Cattachment"/>
+		<!-- <typeAlias type="com.project.itplanet.competition.model.vo.Competition" alias="Commpetiton"/> -->
 		<typeAlias type="com.project.itplanet.coding.model.vo.Coding" alias="Coding"/>
 
 	</typeAliases>

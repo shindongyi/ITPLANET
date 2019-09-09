@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+#wrap dd{
+	display: block;
+	float: none;
+}
 .section h3{
 	padding: 0 10px;
 }

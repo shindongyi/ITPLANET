@@ -3,7 +3,7 @@ package com.project.itplanet.member.model.service;
 import java.util.ArrayList;
 
 import com.project.itplanet.blacklist.model.vo.Black;
-import com.project.itplanet.competition.model.vo.Competiton;
+import com.project.itplanet.competition.model.vo.Competition;
 import com.project.itplanet.member.model.vo.Member;
 
 public interface AdminService {
@@ -16,13 +16,13 @@ public interface AdminService {
 
 	int black(String blkId);
 
-	ArrayList<Competiton> alist();
+	ArrayList<Competition> alist();
 
 	ArrayList<Black> selecBlist();
 
 	int gongmoYes(int gongNum);
 
-	ArrayList<Competiton> selectClist();
+	ArrayList<Competition> selectClist();
 
 	int gongmoNo(int gongNum2);
 

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.itplanet.blacklist.model.vo.Black;
-import com.project.itplanet.competition.model.vo.Competiton;
+import com.project.itplanet.competition.model.vo.Competition;
 import com.project.itplanet.member.model.vo.Member;
 
 @Repository("aDAO")
@@ -33,7 +33,7 @@ public class AdminDAO {
 		return sqlSession.update("memberMapper.black",blkId);
 	}
 
-	public ArrayList<Competiton> alist() {
+	public ArrayList<Competition> alist() {
 		return (ArrayList)sqlSession.selectList("memberMapper.alist");
 	}
 
@@ -45,7 +45,7 @@ public class AdminDAO {
 		return sqlSession.update("memberMapper.gongmoYes",gongNum);
 	}
 
-	public ArrayList<Competiton> selectClist() {
+	public ArrayList<Competition> selectClist() {
 		return (ArrayList)sqlSession.selectList("memberMapper.clist");
 	}
 

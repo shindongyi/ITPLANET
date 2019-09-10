@@ -10,11 +10,11 @@
 
 
 #container{
-	min-height: 1000px;
 	margin: 16px auto 16px auto; 
-	width: 896px;
+	width: 1280px;
 	display: block;
   	.center-block();
+  	overflow:scroll
 }
 
 .center-block() {
@@ -78,7 +78,7 @@
 
 #container > div.list > div.item {
 	display: inline-block;
-	width: 400px;
+	width: 500px;
 	border: 1px solid #003458;
 	margin: 0 10px 10px 10px;
 	vertical-align: top;
@@ -102,17 +102,37 @@
 .fa-bookmark {
 	display: block;
 	width: 50px;
-    margin-inline-start: 330px;
+    margin-inline-start: 430px;
     font-size: 25px;
 }
 
 #container p.info > span {
-  display: inline-block; margin-right: 8px; line-height: 18px; color: #FE2E2E; font-size: 15px; letter-spacing: 0;
+  display: inline-block; margin-right: 8px; line-height: 18px;  font-size: 15px; letter-spacing: 0;
   margin-left: 25px;
 }
 #container p.info > span.dday {
   font-weight: bold;
+  color: #FE2E2E;
 }
 
+.item #desc {
+	margin-top: 4px;
+	margin-left: 0px;
+	padding-inline-start: 0px;
+}
+ 
+.item #desc li:first-child, .item #desc li:second-child{
+	margin-left: 0px;
+	
+} 
 
+.item #desc li {
+    float: left;
+    margin-left: 20px;
+    font-size: 12px;
+    color: #949494;
+    letter-spacing: -1px;
+    line-height: 17px;
+    line-style: none;
+}
 

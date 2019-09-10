@@ -18,8 +18,8 @@
 					<a href="mypage.do">MY PAGE</a>
 				</h2>
 				<div id="breadcrumb">
-					<a href="#">HOME</a> > 
-					<a href="myPage.do">MY PAGE</a> > MY INFO > 
+					<a href="/">HOME</a> > 
+					<a href="mypage.do">MY PAGE</a> > MY INFO > 
 					<strong>비밀번호 변경</strong>
 				</div>
 			</div>

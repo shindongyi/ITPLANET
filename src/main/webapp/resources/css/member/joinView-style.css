@@ -47,7 +47,7 @@
 	padding: 0 0 10px 178px;
 	font-size: 12px;
 	line-height: 14px;
-	color: red;
+	color: #555;
 }
 .box{
 	display: block;
@@ -104,7 +104,7 @@ option[disabled]{
 #btn_area{
 	margin: 50px 0 9px;
 }
-#join_btn{
+.join_btn{
 	margin: 0 auto;
 	display: block;
 	background-color: #002358;
@@ -119,6 +119,7 @@ option[disabled]{
 	box-sizing: border-box;
 	color: #fff;
 }
+
 .policy {
 	position: relative;
     margin-top: 35px;
@@ -148,6 +149,12 @@ option[disabled]{
     overflow: auto;
     white-space: pre-line;
 }
+#confirmNum, #emailNumBtn{
+	float: right;
+	width: 15%;
+	font-size: 12px;
+	padding: 14.5px 0 14.4px 0;
+}
 .int{
 	display: inline-block;
 	position: relative;
@@ -160,6 +167,10 @@ option[disabled]{
 	font-size: 15px;
 	box-sizing: border-box;
 	padding-left: 14px;
+}
+
+#email, #emailNum{
+	width: 60%;
 }
 .sel{
 	background: #f8f8f8;

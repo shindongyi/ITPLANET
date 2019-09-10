@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.project.itplanet.common.model.vo.Local;
 import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.study.model.vo.Study;
+import com.project.itplanet.study.model.vo.StudyChat;
 import com.project.itplanet.study.model.vo.StudyReply;
 
 public interface StudyService {
@@ -41,6 +42,10 @@ public interface StudyService {
 	int getSearchResultListCount(HashMap<String, String> map);
 
 	ArrayList<Study> selectSearchResultList(HashMap<String, String> map, PageInfo pi);
+
+	int getChatListCount(String nickName);
+
+	ArrayList<StudyChat> getChatList(String nickName, PageInfo pi);
 
 
 }

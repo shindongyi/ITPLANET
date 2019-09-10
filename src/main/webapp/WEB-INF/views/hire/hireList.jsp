@@ -28,37 +28,37 @@
 		
 		<div class="filter">
 			<select class="form-control" >
-				<option value="직무">직무</option>
-				<option>1</option>
+				<option value="직무" selected>직무</option>
+				<option >1</option>
 				<option>2</option>
 				<option>3</option>
 			</select>
 			<select class="form-control" >
-				<option value="지역">지역</option>
+				<option value="지역" selected>지역</option>
+				<option>서울</option>
+				<option>경기</option>
+				<option></option>
+			</select>
+			<select class="form-control">
+				<option value="학력" selected>학력</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
 			</select>
 			<select class="form-control">
-				<option value="학력">학력</option>
+				<option value="경력" selected>경력</option>
 				<option>1</option>
 				<option>2</option>
 				<option>3</option>
 			</select>
 			<select class="form-control">
-				<option value="경력">경력</option>
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-			</select>
-			<select class="form-control">
-				<option value="근무형태">근무형태</option>
+				<option value="근무형태" selected>근무형태</option>
 				<option>신입</option>
 				<option>경력</option>
 			</select>
 		</div>
 		<div class="list" id="hListBox">
-			<div class="item">
+			<!-- <div class="item">
 				<a class="top" href="#">
 					<i class="far fa-bookmark"></i>
 					<p class="company">서울문화재단</p>
@@ -71,18 +71,34 @@
 				<p class="info">
 					<span class="dday highlight">D-3</span>
 				</p>
-			</div>
+			</div> -->
 		</div>
+		<div class="pow">Powered by <a href="http://www.saramin.co.kr" target="_blank">취업 사람인</a></div>
 	</div>
 	
 	
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>	    
 	
-	<script>
+	<script type="text/javascript">
+
 		$(document).ready(function(){
+			// "https://oapi.saramin.co.kr/job-search?access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa&ind_cd=3&start=1&count=50";
+			var uri ="https://oapi.saramin.co.kr/job-search?";
+			var key ="access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa";
+			var ind_cd = "&ind_cd=3";
+			var start = "&start=1";
+			var count = "&count=100";
+			
+			var resultURL = uri + key + ind_cd + start + count;
+		
+			hListView(resultURL);
+		}); 
+		
+		function hListView(resultURL){
 			$.ajax({
 				url: "hJsonList.do",
 				type: "POST",
+				data: {"resultURL" : resultURL},
 				dataType: "json",
 				success: function(data){
 					$hListBox = $("#hListBox");
@@ -117,7 +133,7 @@
 							$info = $("<p class='info'>")
 							
 							$name = $("<p class='company'>").text(decodeURIComponent(data[i].name));
-							$title = $("<span class='hTitle'>").text(decodeURIComponent(data[i].title));
+							$title = $("<span class='hTitle'>").text(decodeURIComponent(data[i].title).replace(/[+]/gi," "));
 							$location = $("<li>").text((decodeURIComponent(data[i].location)).replace(/[+&gt;+]/gi," "));
 							// .replace('+&gt;+',' ').replace('+',' ').replace('&gt;',' ')
 							$industry = $("<li>").text(decodeURIComponent(data[i].industry));
@@ -144,7 +160,7 @@
 							$desc.append($industry);
 							$desc.append($experience);
 							$desc.append($required);
-							$info.append($hScrap);
+							//$info.append($hScrap);
 							$info.append($jobType);
 							$info.append($salary);
 							$info.append($expiration_date);
@@ -163,10 +179,9 @@
 				error: function(jqXHR, textStatus, errorThrown){
 					alert("에러 발생 ! \n" + textStatus + " : " + errorThrown);
 				}
-				
-			})
-		});
+			});
+		}
 	</script>
-	
+
 </body>
 </html>

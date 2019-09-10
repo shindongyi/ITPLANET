@@ -18,6 +18,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -143,11 +144,12 @@ public class HireController {
 	}
 	
 	@RequestMapping(value="hJsonList.do")
-	public void outputJsonList(ModelAndView modelAndView , HttpServletResponse response) throws JsonIOException, IOException {
+	public void outputJsonList(ModelAndView modelAndView , HttpServletResponse response, @RequestParam("resultURL") String resultURL) throws JsonIOException, IOException {
 		
 		String url = "https://oapi.saramin.co.kr/job-search?access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa&ind_cd=3&start=1&count=50";
 		// http://oapi.saramin.co.kr/job-search?access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa&keyword=%EA%B0%9C%EB%B0%9C%EC%9E%90&start=1&count=50
-		String result = httpConnection(url);
+		
+		String result = httpConnection(resultURL);
 		ArrayList<HashMap<String, String>> json = method(result);
 		System.out.println(json);
 		

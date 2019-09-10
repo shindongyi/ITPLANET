@@ -105,32 +105,6 @@
 		order by sid desc
 	</select>
 	
- <!-- 	<select id="recentScrap" parameterType="map" resultType="map">
-		<if test='listName.equals("comp")'>
-			select imagename, filepath, title, duedate, sid, link
-			from r_c_scrap_view
-		</if>
-		<if test='listName.equals("hire")'>
-			select title, location, info, htype, duedate, sid, link
-			from r_h_scrap_view
-		</if>
-		<if test='listName.equals("lcs")'>
-			select imagename, filepath, title, duedate, sid, link
-			from r_l_scrap_view
-		</if>
-		where user_id = #{ userId }  
-		<if test='keyword != null and keyword!=""'>
-			<if test='keyword.equals("day1")'>
-			and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate-1,'YYYY-mm-DD')
-			</if>
-			<if test='keyword.equals("day2")'>
-			and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate-2,'YYYY-mm-DD')
-			</if>
-		</if>
-			and <![CDATA[rownum < 5]]>
-		order by sid desc
-	</select>  -->
-	
  	<select id="recentLcsScrap" parameterType="map" resultType="map">
 		select imagename, filepath, title, duedate, sid, link
 		from r_l_scrap_view

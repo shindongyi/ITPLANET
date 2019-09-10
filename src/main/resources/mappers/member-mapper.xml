@@ -224,7 +224,7 @@
 		where blk_id=#{singoNum2}
 	</update>
 	
-	<resultMap type="Competiton" id="cResultSet">
+	<resultMap type="Competition" id="cResultSet">
 		<id property="cId" column="C_ID"/>
 		<result property="cTitle" column="C_TITLE"/>
 		<result property="cContent" column="C_CONTENT"/>

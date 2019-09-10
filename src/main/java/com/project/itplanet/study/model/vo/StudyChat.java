@@ -4,6 +4,9 @@ public class StudyChat {
 	private int sId; // 스터디 글번호
 	private String chatRoom; // 채팅방
 	private String chatMember; // 채팅멤버
+	private String sTitle; // 글제목
+	private String sCategory; // 글 카테고리
+	private String sCaname; // 카테고리 상세
 
 	public StudyChat() {}
 
@@ -12,6 +15,50 @@ public class StudyChat {
 		this.sId = sId;
 		this.chatRoom = chatRoom;
 		this.chatMember = chatMember;
+	}
+
+	public StudyChat(int sId, String chatRoom, String chatMember, String sCategory, String sCaname) {
+		super();
+		this.sId = sId;
+		this.chatRoom = chatRoom;
+		this.chatMember = chatMember;
+		this.sCategory = sCategory;
+		this.sCaname = sCaname;
+	}
+
+	
+	public StudyChat(int sId, String chatRoom, String chatMember, String sTitle, String sCategory, String sCaname) {
+		super();
+		this.sId = sId;
+		this.chatRoom = chatRoom;
+		this.chatMember = chatMember;
+		this.sTitle = sTitle;
+		this.sCategory = sCategory;
+		this.sCaname = sCaname;
+	}
+
+	public String getsTitle() {
+		return sTitle;
+	}
+
+	public void setsTitle(String sTitle) {
+		this.sTitle = sTitle;
+	}
+
+	public String getsCategory() {
+		return sCategory;
+	}
+
+	public void setsCategory(String sCategory) {
+		this.sCategory = sCategory;
+	}
+
+	public String getsCaname() {
+		return sCaname;
+	}
+
+	public void setsCaname(String sCaname) {
+		this.sCaname = sCaname;
 	}
 
 	public int getsId() {

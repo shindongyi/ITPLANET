@@ -256,9 +256,26 @@ public class StudyController {
 	}
 	
 	@RequestMapping("chatListView.do")
-	public ModelAndView chatListView(ModelAndView mv, @SessionAttribute("loginUser") Member loginUser) {
+	public ModelAndView chatListView(@RequestParam(value="page", required=false) Integer page, ModelAndView mv, @SessionAttribute("loginUser") Member loginUser) {
 		String nickName = loginUser.getNickName();
-		ArrayList<StudyChat> chatList = sService.getChatList(nickName);
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = sService.getChatListCount(nickName);
+		
+		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
+		
+		ArrayList<StudyChat> chatList = sService.getChatList(nickName, pi);
+		System.out.println(chatList);
+		if(chatList != null) {
+			mv.addObject("chatList", chatList);
+			mv.addObject("pi", pi);
+			mv.setViewName("study/studyChatListView");
+		}else {
+			throw new StudyException("스터디 채팅목록 조회에 실패하였습니다.");
+		}
 		return mv;
 	}
 }

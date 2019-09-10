@@ -2,7 +2,7 @@ package com.project.itplanet.competition.model.vo;
 
 import java.sql.Date;
 
-public class Competiton {
+public class Competition {
 	
 	private int cId; // 글 번호
 	private String cTitle; // 글제목
@@ -17,9 +17,9 @@ public class Competiton {
 	private String cStatus; // 공모전 삭제여부
 	private String cWriter; // 공모전 작성자
 	
-	public Competiton() {}
+	public Competition() {}
 
-	public Competiton(int cId, String cTitle, String cContent, String cPhone, String cAddress, int cCount,
+	public Competition(int cId, String cTitle, String cContent, String cPhone, String cAddress, int cCount,
 			Date cStartDate, Date cDueDate, Date cCreateDate, Date cModifyDate, String cStatus, String cWriter) {
 		super();
 		this.cId = cId;

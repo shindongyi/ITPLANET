@@ -132,7 +132,7 @@
 		
 		$('#update_btn').on('click', function(){
 			if(userPwdFlag){
-				$('#update_form	').submit();		
+				$('#update_form').submit();		
 			} else {
 				alert('모든 항목을 확인해주세요');
 			}

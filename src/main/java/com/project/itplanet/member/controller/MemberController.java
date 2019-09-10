@@ -259,8 +259,7 @@ public class MemberController {
 								@RequestParam("birth_yy") int birth_yy,
 								@RequestParam("birth_mm") int birth_mm,
 								@RequestParam("birth_dd") int birth_dd,
-								@RequestParam(value="url", required = false) String url,
-								Model model) {
+								@RequestParam(value="url", required = false) String url,Model model) {
 
 		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
 		m.setUserPwd(encPwd);

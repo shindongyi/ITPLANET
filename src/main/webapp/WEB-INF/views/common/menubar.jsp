@@ -10,11 +10,11 @@
 <link rel="stylesheet" href="${ contextPath }/resources/css/mainView/common.css">
 <script type="text/javascript" src="${ contextPath }/resources/js/jquery-3.4.1.min.js"></script>
 <style>
-.subLyr{
+#header .subLyr{
 	display: block;
 	 max-height: 280px;
 }
-.debsss{
+#header .debsss{
 	 margin-top:5px;
 	 font-weight:bold;
 	 font-size:15px;
@@ -23,23 +23,23 @@
 	 line-height: 30px;
 	 padding: 0 30px;
 }
-a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
+#header a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
     color: white;
     text-decoration: none;
 }
-.header{
+#header .header{
 	transition: All 0.2s ease;
 }
-.temp.debs>li:hover{
+#header .temp.debs>li:hover{
 	cursor: pointer;
 }
 
-.menubar_li>a{display:block;position:relative;padding:0 20px;font-size:14px;line-height:43px;
+#header .menubar_li>a{display:block;position:relative;padding:0 20px;font-size:14px;line-height:43px;
 	color:#ffffff;z-index:2;cursor:pointer;text-decoration:none;}
 	
-dd{position:relative;float:left; margin-inline-start: 1px;}
+#header dd{position:relative;float:left; margin-inline-start: 1px;}
 
-.menubar_li{
+#header .menubar_li{
 	padding: 0 50px;
 }
 </style>
@@ -129,6 +129,8 @@ $(window).scroll(function(event) {
 
 			<!-- 코딩테스트 -->
 			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='codingTestView.do'">코딩테스트</a>
+			
+			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='chatListView.do'">채팅리스트 체크</a>
 		</ul>
 	</div>
 </div>

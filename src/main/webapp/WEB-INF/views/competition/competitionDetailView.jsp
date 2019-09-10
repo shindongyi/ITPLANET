@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/views/common/activity.css">
 
-<%@ include file="/WEB-INF/views/common/menubar1.jsp" %>
+<%@ include file="/WEB-INF/views/common/menubar.jsp" %>
 <title>Insert title here</title>
 </head>
 <body>

@@ -8,78 +8,94 @@
 <meta charset="UTF-8">
 <link rel='stylesheet' href="${ contextPath }/resources/css/bootstrap.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <link rel="stylesheet" href="${ contextPath }/resources/css/hire/hireList.css">
-<title>Insert title here</title>
+<script src="https://kit.fontawesome.com/77f9f5360f.js"></script>
+<title>ITPlanet StudyChat</title>
 <style type="text/css">
-	/* .outer{
-		width: 1200px; height: auto;min-height:500px; background: rgba(255, 255, 255, 0.4); border: 5px solid white;
-		margin-left: auto; margin-right: auto; margin-top: 50px;
+
+	.fa-sms {
+		display: block;
+		width: 50px;
+	    margin-inline-start: 330px;
+	    font-size: 40px;
+	    color: #003458;
 	}
-	#listArea{text-align: center; margin:auto;}
-	table#listArea{background-color:white; box-shadow:-1px 8px 20px 0px #FF5E00;}
-	#listArea td{line-height: 43px;}
-	.tableArea{width:1200px; height:auto; margin-left:auto;	margin-right:auto; margin-bottom:15px;}
-	.pagingArea{margin-bottom:20px;}
-	.pagingArea button{border-radius: 5px; background: white; width:auto;}
-	.searchArea{margin-right: 50px;}
-	.searchArea button{background: #D1B2FF; border-radius: 5px; color: white; width: 80px; heigth: 25px; text-align: center;}
-	button:hover{cursor: pointer;} */
+	
+	#container p.info > span {
+	    display: inline-block;
+	    margin-right: 8px;
+	    line-height: 18px;
+	    color: black;
+	    font-size: 15px;
+	    letter-spacing: 0;
+	    margin-left: 25px;
+	    text-shadow:1px -5px 12px #0c1091;
+	}
+	
 </style>
 </head>
 <body>
 	<c:import url="../common/menubar.jsp"/>
-	<div class="outer align-content-center">
+	<div id="container" style="margin-left:150px; min-height:auto;">
 		<br>
+		
+		<div class="list" style="width:169vh;">
 		<h2 align="center">나의 스터디</h2>
 		<br><br>
-		
-		<div class="list">
-			<div class="item">
-				<a class="top" href="#">
-					<i class="far fa-bookmark"></i>
-					<p class="company">서울문화재단</p>
-					<span class="hTitle">[서울문화재단] 2019년 제3차 직원 공개 채용 </span>
-				</a>
-				<hr>
-				<p class="info">
-					<span class="dday highlight">D-3</span>
-				</p>
-			</div>
-			<div class="item">
-				<a class="top" href="#">
-					<i class="far fa-bookmark"></i>
-					<p class="company">서울문화재단</p>
-					<span class="hTitle">[서울문화재단] 2019년 제3차 직원 공개 채용 </span>
-				</a>
-				<hr>
-				<p class="info">
-					<span class="dday highlight">D-3</span>
-				</p>
-			</div>
-			<div class="item">
-				<a class="top" href="#">
-					<i class="fas fa-bookmark"></i>
-					<p class="company">서울문화재단</p>
-					<span class="hTitle">[서울문화재단] 2019년 제3차 직원 공개 채용 </span>
-				</a>
-				<hr>
-				<p class="info">
-					<span class="dday highlight">D-3</span>
-				</p>
-			</div>
-			<div class="item">
-				<a class="top" href="#">
-					<i class="far fa-bookmark"></i>
-					<p class="company">서울문화재단</p>
-					<span class="hTitle">[서울문화재단] 2019년 제3차 직원 공개 채용 </span>
-				</a>
-				<hr>
-				<p class="info">
-					<span class="dday highlight">D-3</span>
-				</p>
-			</div>
+			<c:forEach items="${ chatList }" var="chatList">
+				<div class="item">
+					<a class="top" href="#">
+						<i class="fas fa-sms"></i>
+						<p class="company">${chatList.sCategory} - ${ chatList.sCaname }</p>
+						<span class="hTitle">[스터디멤버] ${ chatList.chatMember }</span>
+					</a>
+					<hr>
+					<p class="info">
+						<span class="dday highlight">${ chatList.sTitle }</span>
+					</p>
+				</div>
+			</c:forEach>
+			
+			<div align="center">
+			<ul class="pagination justify-content-center">
+				<c:if test="${ pi.currentPage <=1 }">
+					<li class="page-item disabled"><a class="page-link" href="javascript:void(0);">Previous</a></li>
+				</c:if>
+				<c:if test="${ pi.currentPage > 1 }">
+					<c:url var="before" value="chatListView.do">
+						<c:param name="page" value="${ pi.currentPage -1 }"/>
+					</c:url>
+					<li class="page-item"><a class="page-link" href="${ before }">Previous</a></li>
+				</c:if>
+				<c:forEach var ="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+					<c:if test="${ p eq pi.currentPage }">
+						<li class="page-item disabled"><a class="page-link" href="javascript:void(0);">${ p }</a></li>
+					</c:if>
+					<c:if test="${ p ne pi.currentPage }">
+						<c:url var="pagination" value="chatListView.do">
+							<c:param name="page" value="${ p }"/>
+						</c:url>
+						<li class="page-item"><a class="page-link" href="${ pagination }">${ p }</a></li>
+					</c:if>
+				</c:forEach>
+				<c:if test="${ pi.currentPage >= pi.maxPage }">
+					 <li class="page-item disabled"><a class="page-link" href="javascript:void(0);">Next</a></li>
+				</c:if>
+				<c:if test="${ pi.currentPage < pi.maxPage }">
+					<c:url var="next" value="chatListView.do">
+						<c:param name="page" value="${ pi.currentPage + 1 }"/>
+					</c:url>
+					 <li class="page-item"><a class="page-link" href="${ next }">Next</a></li>
+				</c:if>
+			 </ul>
 		</div>
-	
+			
+		</div>
+		
+		
 		<%-- <div class="pagingArea" align="center">
 			<% if(!list.isEmpty()){ %>
 				<button onclick="location.href='<%= request.getContextPath() %>/list.to?currentPage=1'">&lt;&lt;</button> &nbsp;

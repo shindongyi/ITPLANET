@@ -100,9 +100,15 @@ public class StudyServiceImpl implements StudyService{
 		return sDAO.selectSearchResultList(map, pi);
 	}
 
+
 	@Override
-	public ArrayList<StudyChat> getChatList(String nickName) {
-		return sDAO.getChatList(nickName);
+	public int getChatListCount(String nickName) {
+		return sDAO.getChatListCount(nickName);
+	}
+
+	@Override
+	public ArrayList<StudyChat> getChatList(String nickName, PageInfo pi) {
+		return sDAO.getChatList(nickName, pi);
 	}
 
 

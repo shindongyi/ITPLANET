@@ -204,4 +204,27 @@
 		order by s_id desc
 	</select>
 	
+	<resultMap type="StudyChat" id="StudyChatResult">
+		<id property="sId" column="S_ID"/>
+		<result property="chatRoom" column="CHAT_ROOM"/>
+		<result property="chatMember" column="CHAT_MEMBER"/>
+		<result property="sTitle" column="S_TITLE"/>
+		<result property="sCategory" column="S_CATEGORY"/>
+		<result property="sCaname" column="S_CANAME"/>
+	</resultMap>
+	
+	<select id="getChatList" parameterType="string" resultMap="StudyChatResult">
+		select s_id, chat_room, chat_member, s_title, s_category, s_caname
+		from studychat
+		join study using(s_id)
+		where chat_member like '%'|| #{nickName} ||'%'
+		order by s_id desc
+	</select>
+	
+	<select id="getChatListCount" parameterType="string" resultType="_int">
+		select count(*)
+		from studychat
+		where chat_member like '%' || #{nickName} || '%'
+	</select>
+	
 </mapper>

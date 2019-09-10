@@ -89,8 +89,15 @@ public class StudyDAO {
 		return (ArrayList)sqlSession.selectList("studyMapper.selectSearchResultList", map, rowBounds);
 	}
 
-	public ArrayList<StudyChat> getChatList(String nickName) {
-		return (ArrayList)sqlSession.selectList("studyMapper.getChatList", nickName);
+	public int getChatListCount(String nickName) {
+		return sqlSession.selectOne("studyMapper.getChatListCount", nickName);
+	}
+
+	public ArrayList<StudyChat> getChatList(String nickName, PageInfo pi) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("studyMapper.getChatList", nickName, rowBounds);
 	}
 
 

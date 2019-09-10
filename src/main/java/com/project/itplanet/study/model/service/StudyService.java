@@ -43,7 +43,9 @@ public interface StudyService {
 
 	ArrayList<Study> selectSearchResultList(HashMap<String, String> map, PageInfo pi);
 
-	ArrayList<StudyChat> getChatList(String nickName);
+	int getChatListCount(String nickName);
+
+	ArrayList<StudyChat> getChatList(String nickName, PageInfo pi);
 
 
 }

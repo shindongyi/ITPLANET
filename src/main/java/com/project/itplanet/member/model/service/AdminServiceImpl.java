@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.itplanet.blacklist.model.vo.Black;
-import com.project.itplanet.competition.model.vo.Competiton;
+import com.project.itplanet.competition.model.vo.Competition;
 import com.project.itplanet.member.model.dao.AdminDAO;
 import com.project.itplanet.member.model.vo.Member;
 
@@ -38,7 +38,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public ArrayList<Competiton> alist() {
+	public ArrayList<Competition> alist() {
 		return aDAO.alist();
 	}
 	
@@ -53,7 +53,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public ArrayList<Competiton> selectClist() {
+	public ArrayList<Competition> selectClist() {
 		return aDAO.selectClist();
 	}
 	

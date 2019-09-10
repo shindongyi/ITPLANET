@@ -1,20 +1,14 @@
 package com.project.itplanet.member.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.project.itplanet.blacklist.model.vo.Black;
-import com.project.itplanet.competition.model.vo.Competiton;
+import com.project.itplanet.competition.model.vo.Competition;
 import com.project.itplanet.member.model.exception.AdminException;
 import com.project.itplanet.member.model.service.AdminService;
 import com.project.itplanet.member.model.vo.Member;
@@ -35,7 +29,7 @@ public class AdminController {
 
 		ArrayList<Member> list = aService.selecMemtList();
 		ArrayList<Black> blist = aService.selecBlist();
-		ArrayList<Competiton> clist = aService.selectClist();
+		ArrayList<Competition> clist = aService.selectClist();
 		
 		
 		if (list != null) {

@@ -4,7 +4,7 @@
 
 	<insert id="insertCompetition" parameterType="Competition">
 		insert into competition
-		values(seq_cid.nextval, #{cTitle}, #{cContent}, #{cPhone}, #{cAddress}, default, #{cStartDate}, #{cDueDate}, sysdate, sysdate, default, #{cWriter})
+		values(seq_cid.nextval, #{cTitle}, #{cContent}, #{cPhone}, #{cAddress}, default, #{cStartDate}, #{cDueDate}, sysdate, sysdate, default, null, #{cWriter})
 	</insert>
 	
 	<insert id="insertCattachment" parameterType="Cattachment">

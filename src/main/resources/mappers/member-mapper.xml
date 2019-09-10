@@ -1,201 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
-	<resultMap type="Member" id="memberResultSet">
-		<id property="userId" column="USER_ID"/>
-		<result property="userPwd" column="USER_PWD"/>
-		<result property="userName" column="USER_NAME"/>
-		<result property="nickName" column="NICKNAME"/>
-		<result property="birthDay" column="BIRTH_DAY"/>
-		<result property="gender" column="GENDER"/>
-		<result property="email" column="EMAIL"/>
-		<result property="enrollDate" column="ENROLL_DATE"/>
-		<result property="modifyDate" column="MODIFY_DATE"/>
-		<result property="status" column="STATUS"/>
-		<result property="black" column="BLACK"/>
-		<result property="grade" column="GRADE"/>
-	</resultMap>
-	
-	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
-		select * 
-		from member
-		where user_id=#{userId} and status='Y'
-	</select>
-	
-	<insert id="insertMember" parameterType="Member">
-		insert into member
-		values(#{userId}, #{userPwd}, #{userName}, 
-				#{nickName}, #{birthDay}, #{gender}, 
-				#{email}, sysdate, sysdate, default, default, default)
-	</insert>
-	
-	<select id="selectUserId" parameterType="String" resultType="_int">
-		select count(*)
-		from member
-		where user_id = #{userId}
-	</select>
-	
-	<select id="selectNickName" parameterType="String" resultType="_int">
-		select count(*)
-		from member
-		where nickname = #{nickname} and status='Y'
-	</select>
-	
-	<update id="updatePwd" parameterType="Member">
-		update member set user_pwd=#{userPwd} where user_id=#{userId} 
-	</update>
-	
-	<select id="findUserId" parameterType="Member" resultMap="memberResultSet">
-		select * 
-		from member
-		where user_name=#{userName} and email=#{email} and status='Y'
-	</select>
-	
-	<select id="findUserPwd" parameterType="Member" resultType="_int">
-		select count(*)
-		from member
-		where user_Id=#{userId} and email=#{email} and user_name=#{userName} and status='Y'
-	</select>
-	
-	<update id="updateMember" parameterType="Member"> 
-		update member 
-		set user_name=#{userName}, nickname=#{nickName}, birth_day=#{birthDay}, gender=#{gender},
-		email=#{email}
-		where user_id=#{userId} 
-	</update>
-	
-	<update id="deleteMember" parameterType="string">
-		update member
-		set status='N'
-		where user_id = #{userId}
-	</update>
-	
-	<select id="countScrap" parameterType="map" resultType="_int">
-		select count(*)
-		<if test='count.equals("comp")'>
-			from cscrapview
-		</if>
-		<if test='count.equals("hire")'>
-			from hscrapview
-		</if>
-		<if test='count.equals("lcs")'>
-			from lscrapview
-		</if>
-		where user_id = #{userId}
-		<if test='keyword != null and keyword != ""'>
-			and title like '%' || #{keyword} || '%'
-		</if>
-	</select>
-	
-	<select id="selectScrapList" parameterType="map" resultType="map">
-		select title, writer, sid, id, modify_date as modifydate
-		<if test='listName.equals("comp")'>
-			from cscrapview
-		</if> 
-		<if test='listName.equals("hire")'>
-			from hscrapview
-		</if>
-		<if test='listName.equals("lcs")'>
-			from lscrapview
-		</if>
-		where user_id = #{userId}
-        <if test="keyword != null">
-			and title like '%' || #{keyword} || '%'
-		</if> 
-		order by sid desc
-	</select>
-	
-<!-- 	<select id="recentScrap" parameterType="map" resultType="map">
-		<if test='listName.equals("comp")'>
-			select imagename, filepath, title, duedate, sid, link
-			from r_c_scrap_view
-		</if>
-		<if test='listName.equals("hire")'>
-			select title, location, info, htype, duedate, sid, link
-			from r_h_scrap_view
-		</if>
-		<if test='listName.equals("lcs")'>
-			select imagename, filepath, title, duedate, sid, link
-			from r_l_scrap_view
-		</if>
-		where user_id = #{ userId }  
-		<if test='keyword != null and keyword!=""'>
-			<if test='keyword.equals("day1")'>
-			and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate-1,'YYYY-mm-DD')
-			</if>
-			<if test='keyword.equals("day2")'>
-			and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate-2,'YYYY-mm-DD')
-			</if>
-		</if>
-			and <![CDATA[rownum < 5]]>
-		order by sid desc
-	</select>  -->
-	
- 	<select id="recentLcsScrap" parameterType="map" resultType="map">
-		select imagename, filepath, title, duedate, sid, link
-		from r_l_scrap_view
-		where user_id = #{ userId }
-		<if test='keyword != null and keyword.equals("day1")'>
-		and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+1,'YYYY-mm-DD')
-		</if>
-		<if test='keyword != null and keyword.equals("day2")'>
-		and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+2,'YYYY-mm-DD')
-		</if>
-		and <![CDATA[rownum < 5]]>  
-		order by sid desc
-	</select>
+   <resultMap type="Member" id="memberResultSet">
+      <id property="userId" column="USER_ID"/>
+      <result property="userPwd" column="USER_PWD"/>
+      <result property="userName" column="USER_NAME"/>
+      <result property="nickName" column="NICKNAME"/>
+      <result property="birthDay" column="BIRTH_DAY"/>
+      <result property="gender" column="GENDER"/>
+      <result property="email" column="EMAIL"/>
+      <result property="enrollDate" column="ENROLL_DATE"/>
+      <result property="modifyDate" column="MODIFY_DATE"/>
+      <result property="status" column="STATUS"/>
+      <result property="black" column="BLACK"/>
+      <result property="grade" column="GRADE"/>
+   </resultMap>
+   
+   <select id="selectOne" parameterType="Member" resultMap="memberResultSet">
+      select * 
+      from member
+      where user_id=#{userId} and status='Y'
+   </select>
+   
+   <insert id="insertMember" parameterType="Member">
+      insert into member
+      values(#{userId}, #{userPwd}, #{userName}, 
+            #{nickName}, #{birthDay}, #{gender}, 
+            #{email}, sysdate, sysdate, default, default, default)
+   </insert>
+   
+   <select id="selectUserId" parameterType="String" resultType="_int">
+      select count(*)
+      from member
+      where user_id = #{userId}
+   </select>
+   
+   <select id="selectNickName" parameterType="String" resultType="_int">
+      select count(*)
+      from member
+      where nickname = #{nickname} and status='Y'
+   </select>
+   
+   <update id="updatePwd" parameterType="Member">
+      update member set user_pwd=#{userPwd} where user_id=#{userId} 
+   </update>
+   
+   <select id="findUserId" parameterType="Member" resultMap="memberResultSet">
+      select * 
+      from member
+      where user_name=#{userName} and email=#{email} and status='Y'
+   </select>
+   
+   <select id="findUserPwd" parameterType="Member" resultType="_int">
+      select count(*)
+      from member
+      where user_Id=#{userId} and email=#{email} and user_name=#{userName} and status='Y'
+   </select>
+   
+   <update id="updateMember" parameterType="Member"> 
+      update member 
+      set user_name=#{userName}, nickname=#{nickName}, birth_day=#{birthDay}, gender=#{gender},
+      email=#{email}
+      where user_id=#{userId} 
+   </update>
+   
+   <update id="deleteMember" parameterType="string">
+      update member
+      set status='N'
+      where user_id = #{userId}
+   </update>
+   
+   <select id="countScrap" parameterType="map" resultType="_int">
+      select count(*)
+      <if test='count.equals("comp")'>
+         from cscrapview
+      </if>
+      <if test='count.equals("hire")'>
+         from hscrapview
+      </if>
+      <if test='count.equals("lcs")'>
+         from lscrapview
+      </if>
+      where user_id = #{userId}
+      <if test='keyword != null and keyword != ""'>
+         and title like '%' || #{keyword} || '%'
+      </if>
+   </select>
+   
+   <select id="selectScrapList" parameterType="map" resultType="map">
+      select title, writer, sid, id, modify_date as modifydate
+      <if test='listName.equals("comp")'>
+         from cscrapview
+      </if> 
+      <if test='listName.equals("hire")'>
+         from hscrapview
+      </if>
+      <if test='listName.equals("lcs")'>
+         from lscrapview
+      </if>
+      where user_id = #{userId}
+      <if test="keyword != null">
+         and title like '%' || #{keyword} || '%'
+      </if> 
+      order by sid desc
+   </select>
+   
+    <select id="recentLcsScrap" parameterType="map" resultType="map">
+      select imagename, filepath, title, duedate, sid, link
+      from r_l_scrap_view
+      where user_id = #{ userId }
+      <if test='keyword != null and keyword.equals("day1")'>
+      and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+1,'YYYY-mm-DD')
+      </if>
+      <if test='keyword != null and keyword.equals("day2")'>
+      and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+2,'YYYY-mm-DD')
+      </if>
+      and <![CDATA[rownum < 5]]>  
+      order by sid desc
+   </select>
 
-	<select id="recentCompScrap" parameterType="map" resultType="map">
-		select imagename, filepath, title, duedate, sid, link
-		from r_c_scrap_view
-		where user_id = #{ userId }  
- 		<if test='keyword != null and keyword.equals("day1")'>
-		and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+1,'YYYY-mm-DD')
-		</if>
-		<if test='keyword != null and keyword.equals("day2")'>
-		and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+2,'YYYY-mm-DD')
-		</if>
-		and <![CDATA[rownum < 5]]> 
-		order by sid desc 
-	</select>
-	
-	<select id="recentHireScrap" parameterType="map" resultType="map">
-     	select title, location, info, htype, duedate, sid, link
-		from r_h_scrap_view
-		where user_id = #{ userId }  
-		<if test='keyword != null and keyword.equals("day1")'>
-		and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+1,'YYYY-mm-DD')
-		</if>
-		<if test='keyword != null and keyword.equals("day2")'>
-		and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+2,'YYYY-mm-DD')
-		</if>
-		and <![CDATA[rownum < 5]]>
-		order by sid desc
-	</select> 
-	
-	<delete id="deleteScrap" parameterType="map">
-		delete 
-		<if test='from.equals("c_scrap")'>
-		from c_scrap
-		</if>
-		<if test='from.equals("h_scrap")'>
-		from h_scrap
-		</if>
-		<if test='from.equals("l_scrap")'>
-		from l_scrap
-		</if>
-		where user_id = #{ userId } and 
-		<if test='type.equals("공모전")'>
-			cs_id in
-		</if>
-		<if test='type.equals("채용공고")'>
-			hs_id in
-		</if>
-		<if test='type.equals("자격증")'>
-			ls_id in
-		</if>
-		<foreach item="item" index="index" collection="aList" open="(" separator="," close=")" >
-			#{item}
-		</foreach> 
-	</delete>
+   <select id="recentCompScrap" parameterType="map" resultType="map">
+      select imagename, filepath, title, duedate, sid, link
+      from r_c_scrap_view
+      where user_id = #{ userId }  
+       <if test='keyword != null and keyword.equals("day1")'>
+      and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+1,'YYYY-mm-DD')
+      </if>
+      <if test='keyword != null and keyword.equals("day2")'>
+      and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+2,'YYYY-mm-DD')
+      </if>
+      and <![CDATA[rownum < 5]]> 
+      order by sid desc 
+   </select>
+   
+   <select id="recentHireScrap" parameterType="map" resultType="map">
+        select title, location, info, htype, duedate, sid, link
+      from r_h_scrap_view
+      where user_id = #{ userId }  
+      <if test='keyword != null and keyword.equals("day1")'>
+      and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+1,'YYYY-mm-DD')
+      </if>
+      <if test='keyword != null and keyword.equals("day2")'>
+      and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+2,'YYYY-mm-DD')
+      </if>
+      and <![CDATA[rownum < 5]]>
+      order by sid desc
+   </select> 
+   
+   <delete id="deleteScrap" parameterType="map">
+      delete 
+      <if test='from.equals("c_scrap")'>
+      from c_scrap
+      </if>
+      <if test='from.equals("h_scrap")'>
+      from h_scrap
+      </if>
+      <if test='from.equals("l_scrap")'>
+      from l_scrap
+      </if>
+      where user_id = #{ userId } and 
+      <if test='type.equals("공모전")'>
+         cs_id in
+      </if>
+      <if test='type.equals("채용공고")'>
+         hs_id in
+      </if>
+      <if test='type.equals("자격증")'>
+         ls_id in
+      </if>
+      <foreach item="item" index="index" collection="aList" open="(" separator="," close=")" >
+         #{item}
+      </foreach> 
+   </delete>
 </mapper>

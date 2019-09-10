@@ -47,7 +47,7 @@
 		<br><br>
 			<c:forEach items="${ chatList }" var="chatList">
 				<div class="item">
-					<a class="top" href="#">
+					<a class="top" href="chatRoomView.do?sId=${ chatList.sId }">
 						<i class="fas fa-sms"></i>
 						<p class="company">${chatList.sCategory} - ${ chatList.sCaname }</p>
 						<span class="hTitle">[스터디멤버] ${ chatList.chatMember }</span>
@@ -94,38 +94,6 @@
 		</div>
 			
 		</div>
-		
-		
-		<%-- <div class="pagingArea" align="center">
-			<% if(!list.isEmpty()){ %>
-				<button onclick="location.href='<%= request.getContextPath() %>/list.to?currentPage=1'">&lt;&lt;</button> &nbsp;
-				<button id="beforeBtn" onclick="location.href='<%= request.getContextPath() %>/list.to?currentPage='">&lt;</button>&nbsp;
-				<script>
-					if(<%= currentPage %> <= 1){
-						$('#beforeBtn').attr("disabled", "true");
-					}
-				</script>
-				<!-- 10개의 페이지 목록 -->
-				<% for(int p = startPage; p <= endPage; p++){%>
-					<% if(p == currentPage){%>
-						<button id="choosen" disabled><%= p %></button>&nbsp;
-					<% }else{ %>
-						<button id="numBtn" onclick="location.href='<%= request.getContextPath() %>/list.to?currentPage=<%= p %>'"><%= p %></button>&nbsp;
-					<% } %>
-				<% } %>
-
-				<button id="afterBtn" onclick="location.href='<%= request.getContextPath() %>/list.to?currentPage='">&gt;</button>&nbsp;
-				<button onclick="location.href='<%= request.getContextPath() %>/list.to?currentPage='">&gt;&gt;</button>&nbsp;
-				<script>
-					if(<%= currentPage %> >= <%=endPage%>){
-						$('#afterBtn').attr("disabled", "true");
-					}
-				</script>
-			<% } %>
-			
-			
-		</div> --%>
-		
 		
 	</div>
 	<c:import url="../common/footer.jsp"/>

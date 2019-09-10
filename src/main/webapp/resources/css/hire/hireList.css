@@ -14,7 +14,6 @@
 	width: 1280px;
 	display: block;
   	.center-block();
-  	overflow:scroll
 }
 
 .center-block() {
@@ -86,7 +85,6 @@
 
 .list {
 	margin-top: 20px;
-	height: 100vh;
 }
 
 .top {
@@ -134,5 +132,9 @@
     letter-spacing: -1px;
     line-height: 17px;
     line-style: none;
+}
+
+#container > .pow {
+	margin: 16px;
 }
 

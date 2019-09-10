@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/views/common/activity.css">
+<link rel="stylesheet" href="${ contextPath }/resources/css/mainView/activity.css">
 
-<%@ include file="/WEB-INF/views/common/menubar1.jsp" %>
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="../common/menubar.jsp"/>
 <section class="title" style="top: -170px; transform: none;">
     <div class="wrap">
       <p class="badges"><span>기획/아이디어</span><span>IT/소프트웨어/게임</span></p>
@@ -34,7 +35,7 @@
 
 
 <!-- 푸터  -->
- <%@ include file="/WEB-INF/views/common/footer.jsp" %>	    
+<c:import url="../common/footer.jsp"/>
 <!-- /푸터 -->
 </body>
 </html>

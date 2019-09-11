@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% 
+<%-- <% 
 	String tcode = request.getParameter("tcode");
 	String cname = request.getParameter("cname");
-%>
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,8 +26,8 @@
 	
 	<script>
 		
-		var tcode = <%= tcode %>;
-		var cname = '<%= cname %>';
+		<%-- var tcode = <%= tcode %>; --%>
+		var cname = '${chatName}';
 		var nickname = '${ loginUser.nickName }';
 		
 		$(document).ready(function() {

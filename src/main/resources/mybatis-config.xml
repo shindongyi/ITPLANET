@@ -9,6 +9,7 @@
 		<!-- VO객체 별칭 지정 -->
 		<typeAlias type="com.project.itplanet.study.model.vo.Study" alias="Study"/>
 		<typeAlias type="com.project.itplanet.study.model.vo.StudyReply" alias="StudyReply"/>
+		<typeAlias type="com.project.itplanet.study.model.vo.StudyChat" alias="StudyChat"/>
 		<typeAlias type="com.project.itplanet.common.model.vo.Local" alias="Local"/>
 		<typeAlias type="com.project.itplanet.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.project.itplanet.member.model.vo.CScrap" alias="CScrap"/>
@@ -19,7 +20,7 @@
 		<typeAlias type="com.project.itplanet.competition.model.vo.Competition" alias="Competition"/>
 		<typeAlias type="com.project.itplanet.competition.model.vo.Cattachment" alias="Cattachment"/>
 		<typeAlias type="com.project.itplanet.coding.model.vo.Coding" alias="Coding"/>
-
+		<typeAlias type="com.project.itplanet.blacklist.model.vo.Black" alias="Black"/>
 	</typeAliases>
 	
 	<mappers>

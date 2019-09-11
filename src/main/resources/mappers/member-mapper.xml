@@ -173,4 +173,90 @@
          #{item}
       </foreach>
    </delete>
+   
+   <!-- ====================================관리자==================================== -->
+	<select id="selectList" resultMap="memberResultSet">
+		select * 
+		from member 
+		where status='Y' and grade in(1,2)
+	</select> 
+	
+	
+	<resultMap type="Black" id="blackResultSet">
+		<id property="blkId" column="BLK_ID"/>
+		<result property="blkTitle" column="BLK_TITLE"/>
+		<result property="blkContent" column="BLK_CONTENT"/>
+		<result property="blkWriter" column="BLK_WRITER"/>
+		<result property="blkTargetId" column="BLK_TARGET_ID"/>
+		<result property="blkType" column="BLK_TYPE"/>
+		<result property="blkCreateDate" column="BLK_CREATE_DATE"/>
+		<result property="blkModifyDate" column="BLK_MODIFY_DATE"/>
+		<result property="blkstatus" column="BLK_STATUS"/>
+	</resultMap>
+	
+	<select id="blist" resultMap="blackResultSet">
+		select * 
+		from blacklist 
+		where blk_status is null
+	</select>
+	
+	<update id="blackOff"  parameterType="string">
+		update member 
+		set grade=1 
+		where user_id=#{blkTargetId}
+	</update>
+	
+	<update id="black" parameterType="string">
+		update member
+		set grade=2
+		where user_id=#{blkId}
+	</update>
+	
+	<update id="shingoYes">
+		update blacklist
+		set blk_status='Y'
+		where blk_id=#{singoNum}
+	</update>
+	
+	<update id="shingoNo">
+		update blacklist
+		set blk_status='N'
+		where blk_id=#{singoNum2}
+	</update>
+	
+	<resultMap type="Competition" id="cResultSet">
+		<id property="cId" column="C_ID"/>
+		<result property="cTitle" column="C_TITLE"/>
+		<result property="cContent" column="C_CONTENT"/>
+		<result property="cPhone" column="C_PHONE"/>
+		<result property="cAddress" column="C_ADDRESS"/>
+		<result property="cCount" column="C_COUNT"/>
+		<result property="cStartDate" column="C_STARTDATE"/>
+		<result property="cDueDate" column="C_DUEDATE"/>
+		<result property="cCreateDate" column="C_CREATE_DATE"/>
+		<result property="cModifyDate" column="C_MODIFY_DATE"/>
+		<result property="cStatus" column="C_STATUS"/>
+		<result property="cCheck" column="C_CHECK"/>
+		<result property="cWriter" column="C_WRITER"/>
+	</resultMap>
+	
+	<select id="clist" resultMap="cResultSet">
+		select * 
+		from competition
+		where c_check is null
+	</select>
+	
+	<update id="gongmoYes">
+		update competition
+		set c_check='Y'
+		where c_id=#{gongNum}
+	</update>
+	
+	<update id="gongmoNo">
+		update competition
+		set c_check='N'
+		where c_id=#{gongNum2}
+	</update>
+	
+	<!-- ====================================관리자끝==================================== -->
 </mapper>

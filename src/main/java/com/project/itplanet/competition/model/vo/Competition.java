@@ -15,12 +15,14 @@ public class Competition {
 	private Date cCreateDate; // 공모전 작성일
 	private Date cModifyDate; // 공모전 수정일
 	private String cStatus; // 공모전 삭제여부
+	private String cCheck; // 공모전 수락여부
 	private String cWriter; // 공모전 작성자
 	
 	public Competition() {}
 
 	public Competition(int cId, String cTitle, String cContent, String cPhone, String cAddress, int cCount,
-			Date cStartDate, Date cDueDate, Date cCreateDate, Date cModifyDate, String cStatus, String cWriter) {
+			Date cStartDate, Date cDueDate, Date cCreateDate, Date cModifyDate, String cStatus, String cCheck,
+			String cWriter) {
 		super();
 		this.cId = cId;
 		this.cTitle = cTitle;
@@ -33,7 +35,16 @@ public class Competition {
 		this.cCreateDate = cCreateDate;
 		this.cModifyDate = cModifyDate;
 		this.cStatus = cStatus;
+		this.cCheck = cCheck;
 		this.cWriter = cWriter;
+	}
+
+	public String getcCheck() {
+		return cCheck;
+	}
+
+	public void setcCheck(String cCheck) {
+		this.cCheck = cCheck;
 	}
 
 	public int getcId() {

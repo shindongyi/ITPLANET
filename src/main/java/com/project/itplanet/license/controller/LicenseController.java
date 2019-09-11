@@ -23,6 +23,7 @@ import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.license.model.exception.LicenseException;
 import com.project.itplanet.license.model.service.LicenseService;
 import com.project.itplanet.license.model.vo.License;
+import com.project.itplanet.member.model.service.MemberService;
 import com.project.itplanet.member.model.vo.LScrap;
 import com.project.itplanet.member.model.vo.Member;
 
@@ -31,12 +32,16 @@ public class LicenseController {
 	@Autowired
 	private LicenseService lService;
 	
+	@Autowired
+	private MemberService mService;
+	
 	// 자격증 페이지 메인 뷰
 	@RequestMapping("lcsView.do")
 	public ModelAndView lcsView(ModelAndView mv,
 								@RequestParam(value="page", required=false) Integer page,
 								@RequestParam(value="keyword", required=false) String keyword,
 								@RequestParam(value="sort", required=false) String sort,
+								@RequestParam(value="more", required=false) String more,
 								HttpSession session) {
 		Member m = (Member)session.getAttribute("loginUser");
 		if(m != null) {
@@ -69,7 +74,11 @@ public class LicenseController {
 		map.put("keyword", keyword);
 		
 		map.remove("choice");
-		ArrayList<License> allList = lService.selectList(map);
+		
+		if(more != null) {
+			map.put("choice",more);
+		}
+		ArrayList<License> allList 	= lService.selectList(map);
 		
 		
 		if(firstList != null && secondList != null) {
@@ -79,12 +88,14 @@ public class LicenseController {
 			mv.addObject("pi", pi);
 			mv.addObject("keyword", keyword);
 			mv.setViewName("license/licenseMainView");
+			System.out.println("list size : " + allList.size());
 		} else {
 			throw new LicenseException("게시판 조회에 실패했습니다.");
 		}
 		return mv;
 	}
 	
+	// ajax로 페이지 더 불러올때
 	@RequestMapping("getListMore.do")
 	public void getListMore(HttpServletResponse response, 
 							HttpServletRequest request,
@@ -116,13 +127,15 @@ public class LicenseController {
 		gson.toJson(list, response.getWriter());
 	}
 	
+	// 스크랩하기
 	@RequestMapping("scrapLcs.do")
 	@ResponseBody
 	public String insertScrapLcs(HttpSession session, @RequestParam("lId") int lId) {
 		
 		Member m = (Member)session.getAttribute("loginUser");
+		String userId = m.getUserId();
 		HashMap map = new HashMap(); 
-		map.put("userId", m.getUserId());
+		map.put("userId", userId);
 		map.put("lId", lId);
 		
 		int confirmResult = lService.confirmScrap(map);
@@ -132,6 +145,12 @@ public class LicenseController {
 			int result = lService.insertScrapLcs(map);
 			
 			if(result > 0) {
+				HashMap<String, String>scrapCountMap = new HashMap<String, String>();
+				scrapCountMap.put("userId", userId);
+
+				HashMap<String,Integer> scrapCount = mService.countScrap(scrapCountMap);
+				session.setAttribute("scrapCount", scrapCount);
+				
 				return "success";
 			} else {
 				return "fail";

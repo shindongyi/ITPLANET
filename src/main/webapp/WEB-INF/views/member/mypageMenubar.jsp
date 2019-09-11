@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ITPLANET</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900|Noto+Sans:400,400i,700,700i&display=swap&subset=korean" rel="stylesheet">

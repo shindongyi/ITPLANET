@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ITPLANET</title>
 <link rel="stylesheet" href="${contextPath}/resources/css/member/updateMemberForm-style.css" type="text/css">
 </head>
 <body>
@@ -77,6 +77,7 @@
 </div>		
 	<script>
 		var userPwdFlag = false;
+		var checkUserPwd = false;
 		
 		$("#userPwd").blur(function(){
 			checkUserPwd();
@@ -89,7 +90,22 @@
 		});
 		
 		function checkUserPwd(){
-			/* 세션의 로그인유저의 비밀번호 가져오기 */
+			checkUserPwd = false;
+			var userPwd = $('#userPwd').val();
+			
+			$.ajax({
+				url: "checkUserPwd.do",
+				method:"post",
+				data:{userPwd:userPwd},
+				success:function(data){
+					if(data == "success"){
+						checkUserPwd = true;
+					} else {
+						checkUserPwd = false;
+					}
+				}
+				
+			});
 		}
 		
 		function checkNewPwd(){
@@ -131,10 +147,14 @@
 		}
 		
 		$('#update_btn').on('click', function(){
-			if(userPwdFlag){
+			if(userPwdFlag && checkUserPwd){
 				$('#update_form').submit();		
 			} else {
-				alert('모든 항목을 확인해주세요');
+				if(!userPwdFlag){
+					alert('모든 항목을 확인해주세요');
+				} else if(!checkUserPwd){
+					alert('현재 비밀번호와 일치하지 않습니다. 다시 확인해주세요.');
+				}
 			}
 		});
 	</script>

@@ -564,9 +564,7 @@ $('#emailNumBtn').on('click', function(){
 		success:function(data){
 			if(data != null && data != ""){
 				showErrorMsg(oMsg, "입력하신 이메일로 인증번호를 전송하였습니다. 확인 후 입력해주세요. 최대 5분이 걸릴 수 있습니다.");
-				console.log("결과 : " + data);
 				randomNum = data;
-				/* Set_Default_Return(data); */
 			} else{
 				showErrorMsg(oMsg, "인증번호 전송에 실패하였습니다. 잠시 후 다시 시도해주시기 바랍니다.");
 			}
@@ -581,8 +579,6 @@ $('#confirmNum').on('click', function(){
 	var number1 = $('#emailNum').val();
 	var number2 = randomNum;
 	
-	console.log("num1 : " + number1);
-	console.log("num2 : " + number2);
 	var oMsg = $('#emailMsg');
 	if(number1 == number2){
 		showErrorMsg(oMsg, "인증에 성공하였습니다. 회원가입을 진행해주세요.");

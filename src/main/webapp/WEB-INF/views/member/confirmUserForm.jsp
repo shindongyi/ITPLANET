@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ITPLANET</title>
 <link rel="stylesheet" href="${contextPath}/resources/css/member/confirmUserForm-style.css" type="text/css">
 </head>
 <body>

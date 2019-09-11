@@ -22,4 +22,6 @@ public interface LicenseService {
 
 	ArrayList userScrap(String userId);
 
+	int deleteLcs(int eventId);
+
 }

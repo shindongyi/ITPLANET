@@ -39,6 +39,10 @@ public class LicenseDAO {
 	public ArrayList userScrap(String userId) {
 		return (ArrayList)sqlSession.selectList("licenseMapper.userScrap",userId);
 	}
+
+	public int deleteLcs(int eventId) {
+		return sqlSession.update("licenseMapper.deleteLcs",eventId);
+	}
 	
 
 }

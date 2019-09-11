@@ -11,32 +11,98 @@
 <head>
 <meta charset="UTF-8">
 <title>ITPLANET</title>
+<!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900|Noto+Sans:400,400i,700,700i&display=swap&subset=korean" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.css" />
+<!-- 풀캘린더 css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/list/main.min.css" />
+<!-- 페이지 css -->
 <link rel="stylesheet" href="${contextPath}/resources/css/license/licenseMainView-style.css" type="text/css">
 <link rel="stylesheet" href="${contextPath}/resources/css/member/mypageCommon-style.css" type="text/css">
+<!-- icon -->
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 </head>
 <body>
 <c:import url="/WEB-INF/views/common/menubar.jsp"/>
-<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
-<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
-<script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
-<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+<!-- <script src='https://momentjs.com/downloads/moment.min.js'></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/list/main.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/locales/ko.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#calendar').fullCalendar({
-            defaultDate: new Date(),
-            editable: true,
-            eventLimit: true, // allow "more" link when too many events
-        });
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'dayGrid', 'list' ],
+      header: {
+    	  left: 'prev',
+    	  center: 'title',
+    	  right: 'next'
+      },
+      editable: true,
+      droppable: true,
+      drop: function(info){
+    	  if(checkbox.check){
+    		  info.draggedEl.parentNode.removeChild(info.draggedEl);
+    	  }
+      },
+      eventClick: function(e){
+    	  var eventId = e.event.id
+    	  console.log("event : " + eventId);
+    	  if(confirm("자격증 공고를 삭제하시겠습니까?")){
+    		  $.ajax({
+    	    		 url: "deleteLcs.do",
+    	    		 data:{eventId:eventId},
+    	    		 type: "get",
+    	    		 success:function(data){
+    	    			 if(data == "success"){
+    	    				 alert('공고가 정상적으로 삭제되었습니다.');
+    	    				 location.href= "lcsView.do";
+    	    			 } else{
+    	    				 alert('공고 삭제에 실패하였습니다. 잠시 후 다시 시도해주세요.');
+    	    			 }
+    	    		 }
+    	    	  });  
+    	  }
+      },
+     /*  eventMouseEnter: function(e){
+    	  $('#popLayer').show();
+      },
+      eventMouseLeave: function(e){
+    	  $('#popLayer').css('display', 'none');
+      }, */
+      locale: 'ko'
+/*       dateClick: function() {
+    	  confirm('스크랩 하시겠습니까?');
+      } */
     });
+    calendar.render();
+	  var titleNum;
+	  var start_dateSubstr;
+	  $(function(){
+		 readList(); 
+	  });
+	  function readList(){
+		  <c:forEach var ="i" items="${allList}">
+	    	titleNum = $('.fc-center').text().substr(-3, 3).match(/\d+/) *1;
+	    	start_dateSubstr = '${i.start_date}'.substr(5,2) *1;
+			  console.log(typeof titleNum +  " / " + titleNum);
+			  console.log(typeof start_dateSubstr + " / " + start_dateSubstr);
+	    	calendar.addEvent({'id':'${i.l_id}','title':'${i.l_name} ${i.l_round}회차','start':'${i.start_date}','end':'${ i.end_date}','color':'#f1f1f1'});
+	    	var aaa = calendar.getEventById(28);
+	    	console.log(aaa);
+		  </c:forEach>	  
+	  }
+  }); 
 </script>
 	<div id="wrap">
 		<div id="primaryContent">
-		<div id="calendar"></div>
 			<div id="lcs_date_list">
+				<div id="calendar"></div>
+				<div id="popLayer"></div>
 			 	<div class="lcs_date nowList">
 					<h2>접수 중인 시험 안내</h2>
 					<hr>
@@ -63,7 +129,7 @@
 						<button class="lcs_btn lcs_txt" onclick="location.href='${firstList[0].l_address}'">접수하기</button>
 					</div>
 				</div>
-				<div class="lcs_date soonList">
+			<%-- 	<div class="lcs_date soonList">
 					<h2>접수 예정 시험 안내</h2>
 					<hr>
 				<div class="lcs">
@@ -88,7 +154,7 @@
 						</c:choose>
 						<button class="lcs_btn lcs_txt" onclick="location.href='${secondList[0].l_address}'">살펴보기</button>
 					</div>
-				</div> 
+				</div>  --%>
 			</div>
 			<div class="serchArea">
 				<span id="search_box">
@@ -201,12 +267,21 @@
 						})
 					});
 					
-					// 스크랩 하기
+					// 스크랩 확인
 					$(document).on('click', '.scrapBtn', function(e){
-						var lId = e.currentTarget.id; 
 						var loginUser = "${loginUser}";
 						if(loginUser != null && loginUser!="" && confirm("스크랩 하시겠습니까?")){
-							
+							scrap();
+						} else{
+							if(confirm("스크랩은 로그인 하신 회원만 가능합니다. 로그인하시겠습니까?")){
+								location.href="loginView.do";
+							}
+						}
+					});
+					
+					// 스크랩 하기
+					function scrap(){
+						var lId = e.currentTarget.id; 
 						$.ajax({
 							url:"scrapLcs.do",
 							type:"post",
@@ -221,12 +296,8 @@
 								}
 							}
 						});
-						} else{
-							if(confirm("스크랩은 로그인 하신 회원만 가능합니다. 로그인하시겠습니까?")){
-								location.href="loginView.do";
-							}
-						}
-					});
+					};
+					
 					
 					// 검색
 					$('#searchBar').on('keypress', function(key){

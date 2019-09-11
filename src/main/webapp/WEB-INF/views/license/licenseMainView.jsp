@@ -5,34 +5,48 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="today" value="<%=new Date()%>"/>
+<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ITPLANET</title>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900|Noto+Sans:400,400i,700,700i&display=swap&subset=korean" rel="stylesheet">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.css" />
 <link rel="stylesheet" href="${contextPath}/resources/css/license/licenseMainView-style.css" type="text/css">
 <link rel="stylesheet" href="${contextPath}/resources/css/member/mypageCommon-style.css" type="text/css">
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 </head>
 <body>
 <c:import url="/WEB-INF/views/common/menubar.jsp"/>
+<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
+<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
+<script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+<script>
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+            defaultDate: new Date(),
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+        });
+    });
+</script>
 	<div id="wrap">
 		<div id="primaryContent">
+		<div id="calendar"></div>
 			<div id="lcs_date_list">
 			 	<div class="lcs_date nowList">
 					<h2>접수 중인 시험 안내</h2>
-					<c:if test="${fn:length(firstList) > '1'}">
-						<span class="more">more</span>
-					</c:if>
 					<hr>
 					<div class="lcs">
 						<c:forEach var="i" items="${firstList}" end="1">
 							<span class="lcs_upper_title"><a href="${i.l_address}">${i.l_name} ${firstList[1].l_round}회차</a></span>
 						</c:forEach>
+						<c:if test="${fn:length(firstList) > '2'}">
+							<span class="more" id="more1">more</span>
+						</c:if>
 					</div>
 					<div class="lcs_bt_wrap">
 						<div class="lcs_title"><h3>${firstList[1].l_name } ${firstList[1].l_round}회차</h3></div>
@@ -51,14 +65,14 @@
 				</div>
 				<div class="lcs_date soonList">
 					<h2>접수 예정 시험 안내</h2>
-					<c:if test="${fn:length(secondList) > '1'}">
-						<span class="more">more</span>
-					</c:if>
 					<hr>
 				<div class="lcs">
 						<c:forEach var="i" items="${secondList}" end="1">
 							<span class="lcs_upper_title"><a href="${i.l_address}">${i.l_name}</a></span>
 						</c:forEach>
+						<c:if test="${fn:length(secondList) > '2'}">
+							<span class="more" id="more2">more</span>
+						</c:if>
 					</div>
 					<div class="lcs_bt_wrap">
 						<div class="lcs_title"><h3>${secondList[0].l_name}</h3></div>
@@ -222,6 +236,16 @@
 							location.href = "lcsView.do?keyword="+keyword+"&sort="+sort;
 						}
 					}); 
+					
+					$('.more').on('click', function(){
+						var more;
+						if($(this).id == "more1"){
+							more = "first";
+						} else{
+							more = "second";
+						}
+							location.href = "lcsView.do?more="+more;
+					});
 				</script>
 				<!-- end license_list -->
 			</div>

@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ITPLANET</title>
 <link rel="stylesheet" href="${contextPath}/resources/css/member/mypageMainView-style.css" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -108,6 +108,7 @@
 							MY 알림
 						</h3>
 					 	<div class="myAlarm">
+					 		<c:if test="${!empty day1List or !empty day2List}">
 							<c:forEach var="i" begin="1" end="2">
 							<c:if test="${i eq'1' }">
 									<div class="almToday">
@@ -172,6 +173,15 @@
 									</c:forEach>
 									</c:if>
 									</c:forEach>
+									</c:if>
+									<c:if test="${empty day1List or empty day2List}">
+										<div class="alarmIsNull">
+											<p>NO DATA</p>
+											<div class="alaramList">
+												<span>마감이 임박한 공고가 없습니다.</span>
+											</div>
+										</div>
+									</c:if>
 						<p class="expire">수신일로부터 5일이 지난 알림은 자동 삭제됩니다.</p>
 						</div>
 					</div>

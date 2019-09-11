@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 페이지</title>
+<title>ITPLANET</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="${contextPath}/resources/css/member/updateMemberForm-style.css" type="text/css">
 </head>
@@ -39,7 +39,7 @@
 				<div id="primaryContent">
 					<!-- 개인정보 수정 입력 부분 -->
 					<h4>개인정보 관리</h4>
-					<form id="update_form" method="post" action="updateM.do">
+					<!-- <form id="update_form" method="post" action="updateM.do"> -->
 								<!-- <h2>개인정보 수정</h2> -->
 								<div class="updateForm_content">
 									<div class="row_group">
@@ -125,7 +125,7 @@
 									<button type="button" id="update_btn">수정하기</button>
 								</div>
 							<!-- end updateForm_content -->
-					</form>
+					<!-- </form> -->
 				</div>
 				<!-- end primaryContent -->
 				</div>
@@ -287,7 +287,7 @@ function showErrorMsg(oMsg, msg){
 	oMsg.text(msg);
 }
 
-$('#update_btn').on('click', function(){
+/* $('#update_btn').on('click', function(){
 	if(check){
 		console.log("2:"+check);
 		$('#update_form').submit();
@@ -295,7 +295,36 @@ $('#update_btn').on('click', function(){
 		console.log(check);
 		alert("모든 항목을 확인해주세요."+check);
 	}
+}); */
+
+$('#update_btn').on('click', function(){
+	if(check){
+		var userName = $('#userName').val();
+		var nickName = $('#nickName').val();
+		var gender = $('#gender').val();
+		var email = $('#email').val();
+		var birth_yy = $('#birth_yy').val();
+		var birth_mm = $('#birth_mm').val();
+		var birth_dd = $('#birth_dd').val();
+		
+		$.ajax({
+			url: "updateM.do",
+			data:{userName:userName, nickName:nickName, gender:gender, email:email, birth_yy:birth_yy, birth_mm:birth_mm, birth_dd:birth_dd},
+			method: "post",
+			success: function(data){
+				if(data == "success"){
+					location.href = "mypage.do";
+				} else{
+					alert(data);
+				}
+			}
+		});
+	} else {
+		console.log(check);
+		alert("모든 항목을 확인해주세요.");
+	}
 });
+
 </script>
 <c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>

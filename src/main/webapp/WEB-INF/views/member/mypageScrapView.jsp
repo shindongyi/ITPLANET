@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>ITPLANET</title>
 <link rel="stylesheet" href="${contextPath}/resources/css/member/myPageScrapView-style.css" type="text/css">
 <link rel="stylesheet" href="${contextPath}/resources/css/member/mypageCommon-style.css" type="text/css">
 </head>

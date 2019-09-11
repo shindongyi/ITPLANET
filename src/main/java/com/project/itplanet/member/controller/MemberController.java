@@ -199,12 +199,14 @@ public class MemberController {
 
 	// 로그인
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
+	@ResponseBody
 	public String memberLogin(Member m, Model model, HttpSession session, HttpServletRequest request,
 								@RequestParam(value="url", required = false) String url) {
 
 		Member loginUser = mService.memberLoginUser(m);
 		if(loginUser != null) {
 			if(bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
+				System.out.println(url);
 				model.addAttribute("loginUser", loginUser);
 
 				HashMap<String, String>map = new HashMap<String, String>();
@@ -215,20 +217,18 @@ public class MemberController {
 				session.setMaxInactiveInterval(600);
 
 				String referer = request.getHeader("Referer");
-				System.out.println("url : " + url);
-				System.out.println("referer : " + referer);
 
 				if(url != null) {
-					return "redirect:"+ url;
+					return url;
 				} else {
-					return "redirect:"+ referer;
+					return referer;
 				}
 
 			} else {
-				throw new MemberException("로그인에 실패하였습니다.");
+				return "fail";
 			}
 		} else {
-			throw new MemberException("존재하지 않는 아이디입니다.");
+			return "fail";
 		}
 	}
 
@@ -345,6 +345,17 @@ public class MemberController {
 			throw new MemberException("비밀번호 변경에 실패하였습니다.");
 		}
 	}
+	
+	@RequestMapping("checkUserPwd.do")
+	@ResponseBody
+	public String checkUserPwd(HttpSession session, @RequestParam("userPwd") String userPwd) {
+		Member m = (Member)session.getAttribute("loginUser");
+		if(bcryptPasswordEncoder.matches(userPwd, m.getUserPwd())) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
 
 	// 아이디 찾기
 	@RequestMapping("findId.do")
@@ -384,27 +395,50 @@ public class MemberController {
 		}
 	}
 
+//	// 개인정보 수정
+//	@RequestMapping("updateM.do")
+//	public String updateMember(@ModelAttribute Member m,
+//								@RequestParam("birth_yy") int birth_yy,
+//								@RequestParam("birth_mm") int birth_mm,
+//								@RequestParam("birth_dd") int birth_dd,
+//								Model model,
+//								HttpSession session) {
+//		Date birthDay = new Date(new GregorianCalendar(birth_yy, birth_mm-1, birth_dd).getTimeInMillis());
+//		m.setBirthDay(birthDay);
+//		Member loginUser = (Member)session.getAttribute("loginUser");
+//		m.setUserId(loginUser.getUserId());
+//		m.setUserPwd(loginUser.getUserPwd());
+//		int result = mService.updateMember(m);
+//		if(result>0) {
+//			model.addAttribute("loginUser", m);
+//			return "redirect:mypage.do";
+//		} else {
+//			throw new MemberException("개인정보 수정에 실패하였습니다.");
+//		}
+//	}
+	
 	// 개인정보 수정
-	@RequestMapping("updateM.do")
-	public String updateMember(@ModelAttribute Member m,
-								@RequestParam("birth_yy") int birth_yy,
-								@RequestParam("birth_mm") int birth_mm,
-								@RequestParam("birth_dd") int birth_dd,
-								Model model,
-								HttpSession session) {
-		Date birthDay = new Date(new GregorianCalendar(birth_yy, birth_mm-1, birth_dd).getTimeInMillis());
-		m.setBirthDay(birthDay);
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		m.setUserId(loginUser.getUserId());
-		m.setUserPwd(loginUser.getUserPwd());
-		int result = mService.updateMember(m);
-		if(result>0) {
-			model.addAttribute("loginUser", m);
-			return "redirect:mypage.do";
-		} else {
-			throw new MemberException("개인정보 수정에 실패하였습니다.");
+		@RequestMapping("updateM.do")
+		@ResponseBody
+		public String updateMember(@ModelAttribute Member m,
+									@RequestParam("birth_yy") int birth_yy,
+									@RequestParam("birth_mm") int birth_mm,
+									@RequestParam("birth_dd") int birth_dd,
+									Model model,
+									HttpSession session) {
+			Date birthDay = new Date(new GregorianCalendar(birth_yy, birth_mm-1, birth_dd).getTimeInMillis());
+			m.setBirthDay(birthDay);
+			Member loginUser = (Member)session.getAttribute("loginUser");
+			m.setUserId(loginUser.getUserId());
+			m.setUserPwd(loginUser.getUserPwd());
+			int result = mService.updateMember(m);
+			if(result>0) {
+				model.addAttribute("loginUser", m);
+				return "success";
+			} else {
+				return "개인정보 수정에 실패하였습니다.";
+			}
 		}
-	}
 
 	// 회원 탈퇴전 이메일 체크
 	@RequestMapping("emailCheck.do")
@@ -480,6 +514,12 @@ public class MemberController {
 		int result = mService.deleteScrap(map);
 
 		if(result > 0) {
+			HashMap<String, String>scrapCountMap = new HashMap<String, String>();
+			scrapCountMap.put("userId", userId);
+
+			HashMap<String,Integer> scrapCount = mService.countScrap(scrapCountMap);
+			session.setAttribute("scrapCount", scrapCount);
+			
 			mv.addObject("type", typeNum);
 			mv.addObject("page", page);
 			mv.addObject("keyword", keyword);

@@ -11,4 +11,74 @@
 		insert into cattachment
 		values(seq_cpid.nextval, #{originName}, #{changeName}, #{filePath}, sysdate, seq_cid.currval)
 	</insert>
+	
+	<resultMap type="Competition" id="CompetitionResult">
+		<id property="cId" column="C_ID"/>
+		<result property="cTitle" column="C_TITLE"/>
+		<result property="cContent" column="C_CONTENT"/>
+		<result property="cPhone" column="C_PHONE"/>
+		<result property="cAddress" column="C_ADDRESS"/>
+		<result property="cCount" column="C_COUNT"/>
+		<result property="cStartDate" column="C_STARTDATE"/>
+		<result property="cDueDate" column="C_DUEDATE"/>
+		<result property="cCreateDate" column="C_CREATE_DATE"/>
+		<result property="cModifyDate" column="C_MODIFY_DATE"/>
+		<result property="cStatus" column="C_STATUS"/>
+		<result property="cCheck" column="C_CHECK"/>
+		<result property="cWriter" column="NICKNAME"/>
+	</resultMap>
+	
+	<select id="allCompetition" resultMap="CompetitionResult">
+		select c_id, c_title, c_content, c_phone, c_address, c_count, c_startDate, c_duedate, c_create_date, c_modify_date, c_status, c_check, nickname
+		from competition
+		join member on(user_id = c_writer)
+		where c_check='Y' and c_status='Y'
+		order by c_id desc
+	</select>
+	
+	<resultMap type="Cattachment" id="CattachmentResult">
+		<id property="cpId" column="CP_ID"/>
+		<result property="originName" column="ORIGIN_NAME"/>
+		<result property="changeName" column="CHANGE_NAME"/>
+		<result property="filePath" column="FILE_PATH"/>
+		<result property="updateDate" column="UPDATE_DATE"/>
+		<result property="cId" column="C_ID"/>
+	</resultMap>
+	
+	<select id="allCattachment" resultMap="CattachmentResult">
+		select * from cattachment
+	</select>
+	
+	<select id="topCompetition" resultMap="CompetitionResult">
+		select c_id, c_title, c_content, c_phone, c_address, c_count, c_startDate, c_duedate, c_create_date, c_modify_date, c_status, c_check, nickname
+		from competition
+		join member on(user_id = c_writer)
+		where c_check='Y' and c_status='Y'
+		order by c_count desc
+	</select>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from competition
+		where c_check='Y' and c_status='Y'
+	</select>
+	
+	<select id="selectCompetition" parameterType="_int" resultMap="CompetitionResult">
+		select c_id, c_title, c_content, c_phone, c_address, c_count, c_startDate, c_duedate, c_create_date, c_modify_date, c_status, c_check, nickname
+		from competition
+		join member on(user_id = c_writer)
+		where c_check = 'Y' and c_status='Y' and c_id =#{cId}
+	</select>
+	
+	<select id="selectCattachment" parameterType="_int" resultMap="CattachmentResult">
+		select *
+		from cattachment
+		where c_id = #{cId}
+	</select>
+	
+	<update id="addCount" parameterType="_int">
+		update competition
+		set c_count = c_count + 1
+		where c_id = #{cId}
+	</update>
 </mapper>

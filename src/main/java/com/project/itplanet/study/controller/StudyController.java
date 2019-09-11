@@ -56,6 +56,7 @@ public class StudyController {
 		
 		ArrayList<Study> list = sService.selectStudy(pi);
 		ArrayList<Local> local = sService.selectLocal();
+		
 		if(list != null) {
 			mv.addObject("list", list);
 			mv.addObject("local", local);
@@ -276,6 +277,13 @@ public class StudyController {
 		}else {
 			throw new StudyException("스터디 채팅목록 조회에 실패하였습니다.");
 		}
+		return mv;
+	}
+	
+	@RequestMapping("chatRoomView.do")
+	public ModelAndView chatRoomView(ModelAndView mv, @RequestParam("chatName") String chatName) {
+		mv.addObject("chatName", chatName);
+		mv.setViewName("study/studyChatRoom");
 		return mv;
 	}
 

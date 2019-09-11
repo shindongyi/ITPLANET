@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.project.itplanet.common.Pagination;
+import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.competition.model.service.CompetitionService;
 import com.project.itplanet.competition.model.vo.Cattachment;
 import com.project.itplanet.competition.model.vo.Competition;
@@ -27,9 +31,27 @@ public class CompetitionController {
 	
 	
 	@RequestMapping("competitionView.do")
-	public String competitionView() {
+	public ModelAndView competitionView(ModelAndView mv, @RequestParam(value="page", required=false) Integer page) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
 		
-		return "competition/competitionView";
+		int listCount = cService.getListCount();
+		
+		PageInfo pi = Pagination.getPageInfo3(currentPage, listCount);
+		
+		ArrayList<Competition> allCompetition = cService.allCompetition(pi);
+		ArrayList<Competition> topCompetition = cService.topCompetition();
+		ArrayList<Cattachment> allCattachment = cService.allCattachment();
+		
+		System.out.println(pi);
+		mv.addObject("competitionList", allCompetition);
+		mv.addObject("topCompetition", topCompetition);
+		mv.addObject("cattachmentList", allCattachment);
+		mv.addObject("pi", pi);
+		mv.setViewName("competition/competitionView");
+		return mv;
 	}
 	
 	@RequestMapping("competitionInsertView.do")
@@ -70,7 +92,7 @@ public class CompetitionController {
 			saveFile(contentImg4, request);
 		}
 		
-		return "competition/competitionInsertView";
+		return "redirect:competitionView.do";
 	}
 
 	private void saveFile(MultipartFile file, HttpServletRequest request) {
@@ -101,6 +123,22 @@ public class CompetitionController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping("competitionDetail.do")
+	public ModelAndView competitionDetail(ModelAndView mv, @RequestParam("cId") Integer cId) {
+		System.out.println(cId);
+		
+		cService.addCount(cId);
+		
+		Competition competition = cService.selectCompetition(cId);
+		Cattachment cAttachment = cService.selectCattachment(cId);
+		
+		mv.addObject("competition", competition);
+		mv.addObject("cAttachment", cAttachment);
+		mv.setViewName("competition/competitionDetailView");
+		
+		return mv;
 	}
 
 }

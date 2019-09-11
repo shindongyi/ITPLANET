@@ -97,7 +97,7 @@ dd {
 	position: absolute;
 	bottom: 1.4em;
 	color: #fff;
-	font-size: 1.3em;
+	font-size: 1.7em;
 	font-weight: 600;
 	left: 0;
 	right: 0;
@@ -105,7 +105,7 @@ dd {
 	margin-right: auto;
 	text-align: center;
 	max-width: 70%;
-}
+}	
 
 .slick-active #banner-desc0, .slick-active #banner-desc4, .slick-active #banner-desc3,
 	.slick-active #banner-desc2, .slick-active #banner-desc1 {
@@ -195,76 +195,79 @@ dd {
 .banner-img0 {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/3e75c9b7-6acd-4eac-a477-cf7eb258e4e4.jpg");
+		url("https://www.blockmedia.co.kr/wp-content/uploads/2018/08/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-2-1200x640.jpg");
 	background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/3e75c9b7-6acd-4eac-a477-cf7eb258e4e4.jpg");
+		url("https://www.blockmedia.co.kr/wp-content/uploads/2018/08/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-2-1200x640.jpg");
 	background-image: -o-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/3e75c9b7-6acd-4eac-a477-cf7eb258e4e4.jpg");
+		url("https://www.blockmedia.co.kr/wp-content/uploads/2018/08/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-2-1200x640.jpg");
 	background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/3e75c9b7-6acd-4eac-a477-cf7eb258e4e4.jpg");
+		url("https://www.blockmedia.co.kr/wp-content/uploads/2018/08/%EB%B8%94%EB%A1%9D%EC%B2%B4%EC%9D%B8-2-1200x640.jpg");
 }
 
 .banner-img1 {
+	
+	
+	
 	background-image: linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/d28394b2-8350-4abe-9da9-05566d62625d.jpg");
+		url("https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/1P88/image/QP_7oaorQ5z40tyuQ6qVMs4cKyw.jpg");
 	background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/d28394b2-8350-4abe-9da9-05566d62625d.jpg");
+		url("https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/1P88/image/QP_7oaorQ5z40tyuQ6qVMs4cKyw.jpg");
 	background-image: -o-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/d28394b2-8350-4abe-9da9-05566d62625d.jpg");
+		url("https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/1P88/image/QP_7oaorQ5z40tyuQ6qVMs4cKyw.jpg");
 	background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/d28394b2-8350-4abe-9da9-05566d62625d.jpg");
+		url("https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/1P88/image/QP_7oaorQ5z40tyuQ6qVMs4cKyw.jpg");
 }
 
 .banner-img2 {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/08beb843-128f-4fdf-82ab-9b579809cfb1.png");
+		url("http://thegear.mygoodnews.com/imgdata/thegear_co_kr/201603/2016031341072233.jpg");
 	background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/08beb843-128f-4fdf-82ab-9b579809cfb1.png");
+		url("http://thegear.mygoodnews.com/imgdata/thegear_co_kr/201603/2016031341072233.jpg");
 	background-image: -o-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/08beb843-128f-4fdf-82ab-9b579809cfb1.png");
+		url("http://thegear.mygoodnews.com/imgdata/thegear_co_kr/201603/2016031341072233.jpg");
 	background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/08beb843-128f-4fdf-82ab-9b579809cfb1.png");
+		url("http://thegear.mygoodnews.com/imgdata/thegear_co_kr/201603/2016031341072233.jpg");
 }
 
 .banner-img3 {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/0103fd71-b61c-4b1d-86eb-dd1f3f506810.jpg");
+		url("https://file.okky.kr/images/1531961894271.jpg");
 	background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/0103fd71-b61c-4b1d-86eb-dd1f3f506810.jpg");
+		url("https://file.okky.kr/images/1531961894271.jpg");
 	background-image: -o-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/0103fd71-b61c-4b1d-86eb-dd1f3f506810.jpg");
+		url("https://file.okky.kr/images/1531961894271.jpg");
 	background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/0103fd71-b61c-4b1d-86eb-dd1f3f506810.jpg");
+		url("https://file.okky.kr/images/1531961894271.jpg");
 }
 
 .banner-img4 {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/7005c905-6ee3-4152-8304-6de7d5b4dcbc.jpg");
+		url("https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/ERG/image/aJ-9bekGziAyqXHKWLlN-motqTQ.jpg");
 	background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/7005c905-6ee3-4152-8304-6de7d5b4dcbc.jpg");
+		url("https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/ERG/image/aJ-9bekGziAyqXHKWLlN-motqTQ.jpg");
 	background-image: -o-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/7005c905-6ee3-4152-8304-6de7d5b4dcbc.jpg");
+		url("https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/ERG/image/aJ-9bekGziAyqXHKWLlN-motqTQ.jpg");
 	background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.00) 60%,
 		rgba(0, 0, 0, 0.64) 100%),
-		url("https://dispatch.cdnser.be/cms-content/uploads/2019/08/13/7005c905-6ee3-4152-8304-6de7d5b4dcbc.jpg");
+		url("https://t1.daumcdn.net/thumb/R1280x0/?fname=http://t1.daumcdn.net/brunch/service/user/ERG/image/aJ-9bekGziAyqXHKWLlN-motqTQ.jpg");
 }
 
 .banner-img0, .banner-img1, .banner-img2, .banner-img3, .banner-img4 {
@@ -370,8 +373,8 @@ dd {
 		<div class="hd_top">
 			<h1 class="sd">
 				<a href="<%=request.getContextPath()%>/index.jsp"><img
-					style="margin-top: -20px; width: 220px; height: 90px;"
-					src="<%=request.getContextPath()%>/resources/images/itplanet.png"
+					style="margin-top: -20px; width: 270px; height:98px;"
+					src="<%=request.getContextPath()%>/resources/images/mainlogo.jpg"
 					alt="IT PLANET"></a>
 			</h1>
 		</div>
@@ -451,7 +454,7 @@ dd {
 </script>
 <!--  끝 메뉴바 관련 JS 끝 -->
 <div style="margin-top:150px"></div>
-	<br clear="all">
+	<!-- <br clear="all"> 메뉴바랑 슬라이드랑 띄는--> 
 
 <!-- News 부분 -->
 
@@ -460,39 +463,36 @@ dd {
 	<div class="banner-carousel-wrapper">
 		<div class="banner-carousel">
 
-			<a href="/2036435">
+			<a href="https://www.blockmedia.co.kr/archives/41160">
 				<div class="banner-img0 banner-img">
 					<div id="banner-desc0"
-						class="line-clamp line-clamp-2-md line-clamp-2">오달수, 독립영화 출연
-						결정…&#34;미투, 혐의없음 판단 받아&#34;</div>
+						class="line-clamp line-clamp-2-md line-clamp-2">한국 대학생들&#44; &#39;블록체인&#39;에 흠뻑 빠져&#46;&#46;&#46; 블록체인 활용한 연구에 개발까지</div> 
+						<!-- &#34; : "표시임  -->
 				</div>
 				<div class="overlay"></div>
-			</a> <a href="/2036388">
+			</a> <a href="https://1boon.kakao.com/appstory/180413_2">
 				<div class="banner-img1 banner-img">
 					<div id="banner-desc1"
-						class="line-clamp line-clamp-2-md line-clamp-2">&#39;봉오동
-						전투&#39;, 역주행으로 1위...&#39;엑시트&#39;, 600만 돌파</div>
+						class="line-clamp line-clamp-2-md line-clamp-2">&#91;기자대담&#93; 올해부터 시작되는 코딩 교육&#44; 왜 해야 할까&#63;</div>
 				</div>
 				<div class="overlay"></div>
-			</a> <a href="/2036405">
+			</a> <a href="http://thegear.mygoodnews.com/11255">
 				<div class="banner-img2 banner-img">
 					<div id="banner-desc2"
-						class="line-clamp line-clamp-2-md line-clamp-2">박정민,
-						&#39;타짜3&#39; 스틸 공개…&#34;내가, 전설의 짝귀 아들&#34;</div>
+						class="line-clamp line-clamp-2-md line-clamp-2">초보 사원에게 가장 많은
+						 연봉 주는 IT 업체는?</div>
 				</div>
 				<div class="overlay"></div>
-			</a> <a href="/2036399">
+			</a> <a href="http://okjsp.pe.kr:8080/article/484307">
 				<div class="banner-img3 banner-img">
 					<div id="banner-desc3"
-						class="line-clamp line-clamp-2-md line-clamp-2">&#39;리틀
-						포레스트&#39;, 첫방 6.8%…&#34;최고의 1분은, 이서진&#34;</div>
+						class="line-clamp line-clamp-2-md line-clamp-2">&#91;KH정보교육원&#93; 이공계 전문 기술 연수 사업-자바 FRAMEWOKR 기반 웹 응용SW 개발자 양성과정 모집</div>
 				</div>
 				<div class="overlay"></div>
-			</a> <a href="/2036423">
+			</a> <a href="https://brunch.co.kr/@neo3xdh/22">
 				<div class="banner-img4 banner-img">
 					<div id="banner-desc4"
-						class="line-clamp line-clamp-2-md line-clamp-2">김동률, 20일
-						&#39;여름의 끝자락&#39; 발표…피아니스트 김정원과 협연</div>
+						class="line-clamp line-clamp-2-md line-clamp-2">&#34;IT업계 지원자를 위한 5가지 조언&#34;</div>
 				</div>
 				<div class="overlay"></div>
 			</a>

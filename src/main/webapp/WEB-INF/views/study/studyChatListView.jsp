@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<link rel="stylesheet" href="${ contextPath }/resources/css/hire/hireList.css">
+<link rel="stylesheet" href="${ contextPath }/resources/css/studyList.css">
 <script src="https://kit.fontawesome.com/77f9f5360f.js"></script>
 <title>ITPlanet StudyChat</title>
 <style type="text/css">
@@ -47,7 +47,7 @@
 		<br><br>
 			<c:forEach items="${ chatList }" var="chatList">
 				<div class="item">
-					<a class="top" href="chatRoomView.do?sId=${ chatList.sId }">
+					<a class="top" href="chatRoomView.do?chatName=${ chatList.chatRoom }">
 						<i class="fas fa-sms"></i>
 						<p class="company">${chatList.sCategory} - ${ chatList.sCaname }</p>
 						<span class="hTitle">[스터디멤버] ${ chatList.chatMember }</span>
@@ -98,19 +98,7 @@
 	</div>
 	<c:import url="../common/footer.jsp"/>
 	
-	<script>
-		$(function(){
-			$('#listArea td').mouseenter(function(){
-				$(this).parent().css({'background': 'rgba(38, 112, 251, 0.24)', 'cursor':'pointer'});
-			}).mouseout(function(){
-				$(this).parent().css('background', 'none');
-			}).click(function(){
-				var tcode = $(this).parent().children().children('#tcode').val();
-				var cname= $(this).parent().children().children('#cname').val();
-				location.href="<%= request.getContextPath() %>/views/chat/chatRoom.jsp?tcode="+tcode+"&cname="+cname;
-			});
-		});
-	</script>
+	
 	<script src='${ contextPath }/resources/js/bootstrap.js'></script>
 
 </body>

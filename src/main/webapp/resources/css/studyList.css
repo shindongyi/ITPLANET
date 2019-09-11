@@ -1,9 +1,17 @@
 @charset "UTF-8";
 
+.header {
+	
+	width: 100%;
+	height: 150px;
+	background: #003458;
+}
+
+
 
 #container{
 	margin: 16px auto 16px auto; 
-	width: 1150px;
+	width: 1280px;
 	display: block;
   	.center-block();
 }
@@ -14,12 +22,11 @@
   margin-right: auto;
 }
 
-#container .filter {
+.filter {
 	margin: 10px auto 16px auto;
-	padding: 0 20px;
 }
 
-#container .filter select {
+.filter select {
 	width: 110px; 
 	height: 41px;
 	display: inline-block;
@@ -33,7 +40,7 @@
 
 
 
-#container .search-box {
+.search-box {
 	background:#003458;
 	height: 60px;
 	width: 270px;
@@ -43,44 +50,42 @@
 	margin: 15px;
 }
 
-#container .filter .search-btn {
+.search-btn {
 	color: #e84118;
+	float: right;
 	width: 45px;
 	height: 45px;
 	border-radius: 50%;
 	background: #2f3640;
-	display: inline-block;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	
 }
-#container .filter #search-txt{
-	border: 2px solid #ddd;
+.search-txt{
+	border:none;
 	background: none;
-	padding: 15px;
-	color: #999;
-	border-radius: 40px;
+	outlint: none;
+	float: left;
+	padding: 0;
+	color: white;
 	font-size: 16px;
+	transition: 0.4x;
 	width: 240px;
-	height: 41px;
 	
-}
-
-#container .filter .search-btn .fa-search{
-	diplay
 }
 
 #container > div.list > div.item {
 	display: inline-block;
-	width: 500px;
+	width: 400px;
 	border: 1px solid #003458;
 	margin: 0 10px 10px 10px;
 	vertical-align: top;
 }
 
-#container .list {
+.list {
 	margin-top: 20px;
-	padding: 20px;
+	height: 100vh;
 }
 
 .top {
@@ -109,13 +114,13 @@
   color: #FE2E2E;
 }
 
-#container .item #desc {
+.item #desc {
 	margin-top: 4px;
 	margin-left: 0px;
 	padding-inline-start: 0px;
 }
  
-#container .item #desc li:first-child, #container .item #desc li:second-child{
+.item #desc li:first-child, .item #desc li:second-child{
 	margin-left: 0px;
 	
 } 
@@ -128,9 +133,5 @@
     letter-spacing: -1px;
     line-height: 17px;
     line-style: none;
-}
-
-#container > .pow {
-	margin: 16px;
 }
 

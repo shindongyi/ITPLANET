@@ -154,20 +154,38 @@ public class HireController {
 		System.out.println(json);
 		
 		for(HashMap<String, String> map : json) {
-			map.put("jobType", URLEncoder.encode(map.get("job-type"),"UTF-8"));
-			map.put("name",URLEncoder.encode(map.get("name"),"UTF-8"));
-			map.put("industry", URLEncoder.encode(map.get("industry"),"UTF-8"));
-			map.put("location", URLEncoder.encode(map.get("location"),"UTF-8"));
-			map.put("href", URLEncoder.encode(map.get("href"),"UTF-8"));
-			map.put("title", URLEncoder.encode(map.get("title"),"UTF-8"));
-			map.put("experience", URLEncoder.encode(map.get("experience"),"UTF-8"));
-			if(map.get("salary") != null) {
+			if(map.get("job-type") != null) 
+				map.put("jobType", URLEncoder.encode(map.get("job-type"),"UTF-8"));
+			
+			if(map.get("name") != null)
+				map.put("name",URLEncoder.encode(map.get("name"),"UTF-8"));
+			
+			if(map.get("industry") != null)
+				map.put("industry", URLEncoder.encode(map.get("industry"),"UTF-8"));
+			
+			if(map.get("location") != null)
+				map.put("location", URLEncoder.encode(map.get("location"),"UTF-8"));
+			
+			if(map.get("href") != null)
+				map.put("href", URLEncoder.encode(map.get("href"),"UTF-8"));
+			
+			if(map.get("title") != null)
+				map.put("title", URLEncoder.encode(map.get("title"),"UTF-8"));
+			
+			if(map.get("experience") != null)
+				map.put("experience", URLEncoder.encode(map.get("experience"),"UTF-8"));
+			
+			if(map.get("salary") != null) 
 				map.put("salary", URLEncoder.encode(map.get("salary"),"UTF-8"));
-			}
-			map.put("job_category", URLEncoder.encode(map.get("job_category"),"UTF-8"));
-			map.put("required", URLEncoder.encode(map.get("required"),"UTF-8"));
+			
+			if(map.get("job_category") != null)
+				map.put("job_category", URLEncoder.encode(map.get("job_category"),"UTF-8"));
+			
+			if(map.get("required") != null)
+				map.put("required", URLEncoder.encode(map.get("required"),"UTF-8"));
+			
 			if(map.get("expiation_date") != null) {
-			map.put("expiration_date", URLEncoder.encode(map.get("expiration_date"),"UTF-8"));
+				map.put("expiration_date", URLEncoder.encode(map.get("expiration_date"),"UTF-8"));
 			}
 		}
 		

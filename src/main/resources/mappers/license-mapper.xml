@@ -65,12 +65,13 @@
 		<![CDATA[and sysdate < start_date]]>
 		</if>
 		</where>
-		<if test='choice == null and choice ==""'>
+		<!-- <if test='choice == null and choice ==""'>
 		order by reg_date
 		</if>
 		<if test='choice != null and choice != ""'>
 		order by end_date
-		</if>
+		</if> -->
+		order by reg_date
 	</select>
 	
 	<insert id="insertScrapLcs" parameterType="map">
@@ -89,5 +90,11 @@
 		from l_scrap
 		where user_id = #{userId}
 	</select>
+	
+	<update id="deleteLcs" parameterType="_int">
+		update license
+		set status='N'
+		where l_id = #{eventid}
+	</update>
 	
 </mapper>

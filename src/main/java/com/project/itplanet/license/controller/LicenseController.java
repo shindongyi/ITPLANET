@@ -157,5 +157,17 @@ public class LicenseController {
 			}
 		}
 	}
-
+	
+	// 자격증 공고 삭제 
+	@RequestMapping("deleteLcs.do")
+	@ResponseBody
+	public String deleteLcs(@RequestParam("eventId") int eventId) {
+		int result = lService.deleteLcs(eventId);
+		
+		if(result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
 }

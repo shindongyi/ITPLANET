@@ -41,4 +41,9 @@ public class LicenseServiceImpl implements LicenseService{
 		return lDAO.userScrap(userId);
 	}
 
+	@Override
+	public int deleteLcs(int eventId) {
+		return lDAO.deleteLcs(eventId);
+	}
+
 }

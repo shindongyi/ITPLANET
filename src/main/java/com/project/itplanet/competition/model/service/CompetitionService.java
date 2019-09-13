@@ -26,4 +26,6 @@ public interface CompetitionService {
 
 	void addCount(Integer cId);
 
+	int deleteCompetition(Integer cId);
+
 }

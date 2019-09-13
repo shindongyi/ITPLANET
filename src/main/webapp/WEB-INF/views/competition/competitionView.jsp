@@ -44,56 +44,70 @@
 		<div class="horizontal">
 			<h2>인기 공모전</h2>
 			<div class="items" style="border: 1px solid black; padding-top: 7px;">
-				<c:forEach var="top" items="${ topCompetition }" begin="0" end="4">
-					<a class="item" href="competitionDetail.do?cId=${ top.cId }">
-						<c:forEach var="ima" items="${ cattachmentList }">
-							<c:if test="${ ima.cId == top.cId }">
-								<figure style="background-image: url('${ contextPath }/resources/compeloadFiles/${ima.changeName }')"></figure>
-							</c:if>
-						</c:forEach>
-						<h3>${ top.cTitle }</h3>
-						<p class="info">
-							<span class="dday highlight">${ top.cStartDate } ~ ${ top.cDueDate }</span><br>
-							<span class="viewcount">조회수 : ${ top.cCount }</span>
-						</p>
-						
-					</a>
-				</c:forEach>
+				<c:if test="${ topCompetition.isEmpty() }">
+					<p class="info">
+						<span class="viewcount">등록된 게시글이 없습니다.</span>
+					</p>
+				</c:if>
+				<c:if test="${ !topCompetition.isEmpty() }">
+					<c:forEach var="top" items="${ topCompetition }" begin="0" end="4">
+						<a class="item" href="competitionDetail.do?cId=${ top.cId }">
+							<c:forEach var="ima" items="${ cattachmentList }">
+								<c:if test="${ ima.cId == top.cId }">
+									<figure style="background-image: url('${ contextPath }/resources/compeloadFiles/${ima.changeName }')"></figure>
+								</c:if>
+							</c:forEach>
+							<h3>${ top.cTitle }</h3>
+							<p class="info">
+								<span class="dday highlight">${ top.cStartDate } ~ ${ top.cDueDate }</span><br>
+								<span class="viewcount">조회수 : ${ top.cCount }</span>
+							</p>
+							
+						</a>
+					</c:forEach>
+				</c:if>
 				
 			</div>
 		</div>
 		
 		<div class="list" style="width: 1000px;">
 		
-			<c:forEach items="${ competitionList }" var="cList">
-				<div class="item" style="border: 1px solid #a8a8a8;">
-					<a class="top" href="competitionDetail.do?cId=${ cList.cId }">
-						<c:forEach var="ima" items="${ cattachmentList }">
-							<c:if test="${ ima.cId == cList.cId }">
-								<figure style="background-image: url('${ contextPath }/resources/compeloadFiles/${ima.changeName }')"></figure>
-							</c:if>
-						</c:forEach>
-						<p class="badges">
-							<span>공모전</span>
-						</p>
-						<h2>${ cList.cTitle }</h2>
-						<p style="height:30px; font-size:small;"><span>${ cList.cWriter }</span></p>
-						<p class="info">
-							<span class="dday highlight">${ cList.cStartDate } ~ ${ cList.cDueDate }</span>
-							<span class="viewcount">${ cList.cCount }</span>
-						</p>
-						<hr>
-					</a>
-					<div class="bottom">
-						<a href="/contest/view?id=5996">
-							<span class="text">상세</span>
+			<c:if test="${ competitionList.isEmpty() }">
+				<h2>등록된 게시글이 없습니다.</h2>
+			</c:if>
+			
+			<c:if test="${ !competitionList.isEmpty() }">
+				<c:forEach items="${ competitionList }" var="cList">
+					<div class="item" style="border: 1px solid #a8a8a8;">
+						<a class="top" href="competitionDetail.do?cId=${ cList.cId }">
+							<c:forEach var="ima" items="${ cattachmentList }">
+								<c:if test="${ ima.cId == cList.cId }">
+									<figure style="background-image: url('${ contextPath }/resources/compeloadFiles/${ima.changeName }')"></figure>
+								</c:if>
+							</c:forEach>
+							<p class="badges">
+								<span>공모전</span>
+							</p>
+							<h2>${ cList.cTitle }</h2>
+							<p style="height:30px; font-size:small;"><span>${ cList.cWriter }</span></p>
+							<p class="info">
+								<span class="dday highlight">${ cList.cStartDate } ~ ${ cList.cDueDate }</span>
+								<span class="viewcount">${ cList.cCount }</span>
+							</p>
+							<hr>
 						</a>
-						<a href="/contest/view?id=5996&amp;menu=team">
-							<span class="text">스터디 모집</span>
-						</a>
-					</div>
-				</div>			
-			</c:forEach>
+						<div class="bottom">
+							<a href="/contest/view?id=5996">
+								<span class="text">상세</span>
+							</a>
+							<a href="/contest/view?id=5996&amp;menu=team">
+								<span class="text">스터디 모집</span>
+							</a>
+						</div>
+					</div>			
+				</c:forEach>
+			</c:if>
+		
 		</div>
 		<div align="center">
 			<ul class="pagination justify-content-center">

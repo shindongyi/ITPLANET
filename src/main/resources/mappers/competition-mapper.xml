@@ -81,4 +81,10 @@
 		set c_count = c_count + 1
 		where c_id = #{cId}
 	</update>
+	
+	<update id="deleteCompetition" parameterType="_int">
+		update competition
+		set c_status = 'N'
+		where c_id = #{cId}
+	</update>
 </mapper>

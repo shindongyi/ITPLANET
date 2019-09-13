@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.itplanet.common.Pagination;
 import com.project.itplanet.common.model.vo.PageInfo;
+import com.project.itplanet.competition.model.exception.CompetitionException;
 import com.project.itplanet.competition.model.service.CompetitionService;
 import com.project.itplanet.competition.model.vo.Cattachment;
 import com.project.itplanet.competition.model.vo.Competition;
@@ -45,7 +46,6 @@ public class CompetitionController {
 		ArrayList<Competition> topCompetition = cService.topCompetition();
 		ArrayList<Cattachment> allCattachment = cService.allCattachment();
 		
-		System.out.println(pi);
 		mv.addObject("competitionList", allCompetition);
 		mv.addObject("topCompetition", topCompetition);
 		mv.addObject("cattachmentList", allCattachment);
@@ -139,6 +139,18 @@ public class CompetitionController {
 		mv.setViewName("competition/competitionDetailView");
 		
 		return mv;
+	}
+	
+	@RequestMapping("delectCompetition.do")
+	public String deleteCompetition(@RequestParam("cId") Integer cId) {
+		int result = cService.deleteCompetition(cId);
+		
+		if(result > 0) {
+			return "redirect:competitionView.do";
+		}else {
+			throw new CompetitionException("게시글 삭제에 실패하였습니다.");
+		}
+		
 	}
 
 }

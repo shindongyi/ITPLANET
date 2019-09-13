@@ -289,42 +289,13 @@
 
       <div>
         <ul class="commentList">
-        <%for(int i = 0 ;i < 5; i++){ %>
-          <li class="comment-item">
-            <div class="area-txt" style="border-bottom:2px solid #003458;">
-              <span class="name">김수민</span>
-              <span class="createDate">2019-07-18</span>
-              <button class="coUpdateBtn">수정</button>
-              <button class="coDelBtn">삭제</button>
-              <p class="text">어떤 택배로 발송되나요?</p>
-            </div>
-            <!-- <ul class="comment-reply">
-              <li>
-                <div class="comment-item">
-                  <div class="area-user">
-                    <strong class="name">임규짱</strong>
-                    <span class="createDate">2019-07-18</span>
-                    <button class="coUpdateBtn">수정</button>
-                    <button class="coDelBtn">삭제</button>
-                  </div>
-                  <p class="text">
-                    <b>김수민님</b>
-                    우체국 택배로 보내드립니다~^^
-                  </p>
-                </div>
-              </li>
-            </ul> -->
-          </li>
-          <%} %>
          </ul>
-        <!-- <form class="comment-form"> -->
         <div class="inner" id="deliveryAng">
           <label class="input-text">
             <input type="text" class="input-text" id="add-comment" name="comment" placeholder="댓글을 남겨주세요">
           </label>
           <button class="commentAddBtn" id="repleSubmit">등록</button>
         </div>
-      <!-- </form> -->
       </div>
 
       <br>

@@ -53,4 +53,8 @@ public class CompetitionDAO {
 	public void addCount(Integer cId) {
 		sqlSession.update("competitionMapper.addCount", cId);
 	}
+
+	public int deleteCompetition(Integer cId) {
+		return sqlSession.update("competitionMapper.deleteCompetition", cId);
+	}
 }

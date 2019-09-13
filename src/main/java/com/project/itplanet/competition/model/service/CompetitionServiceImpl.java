@@ -59,5 +59,10 @@ public class CompetitionServiceImpl implements CompetitionService{
 	public void addCount(Integer cId) {
 		cDAO.addCount(cId);
 	}
+
+	@Override
+	public int deleteCompetition(Integer cId) {
+		return cDAO.deleteCompetition(cId);
+	}
 	
 }

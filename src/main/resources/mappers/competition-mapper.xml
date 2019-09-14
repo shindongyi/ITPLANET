@@ -87,4 +87,22 @@
 		set c_status = 'N'
 		where c_id = #{cId}
 	</update>
+	
+	<select id="getCpId" parameterType="_int" resultType="_int">
+		select cp_id
+		from cattachment
+		where c_id=#{i}
+	</select>
+	
+	<update id="updateFile" parameterType="Cattachment">
+		update cattachment
+		set origin_name=#{originName} ,change_name=#{changeName} ,update_date=sysdate
+		where cp_id=#{cpId}
+	</update>
+	
+	<update id="updateCompetition" parameterType="Competition">
+		update competition
+		set c_title=#{cTitle}, c_content=#{cContent}, c_phone=#{cPhone}, c_address=#{cAddress}, c_startdate=#{cStartDate}, c_duedate=#{cDueDate}, c_modify_date = sysdate, c_check=null
+		where c_id=#{cId}
+	</update>
 </mapper>

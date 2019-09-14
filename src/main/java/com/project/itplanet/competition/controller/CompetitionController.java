@@ -152,5 +152,67 @@ public class CompetitionController {
 		}
 		
 	}
+	
+	@RequestMapping("updateCompetitionView.do")
+	public ModelAndView updateCompetitionView(@RequestParam("cId") Integer cId, ModelAndView mv) {
+		Competition competition = cService.selectCompetition(cId);
+		Cattachment cAttachment = cService.selectCattachment(cId);
+		
+		mv.addObject("competition", competition);
+		mv.addObject("cAttachment", cAttachment);
+		mv.setViewName("competition/competitionUpdateView");
+		
+		return mv;
+	}
+	
+	@RequestMapping("competitionUpdate.do")
+	public String competitionUpdate(@ModelAttribute Competition c,@RequestParam(value="titleImg", required=false) MultipartFile titleImg, 
+			HttpServletRequest request, @RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+		c.setcStartDate(startDate);
+		c.setcDueDate(endDate);
+		
+		updateSaveFile(titleImg, request, c.getcId());
+		
+		int result = cService.updateCompetition(c);
+		if(result > 0) {
+			return "redirect:competitionView.do";
+		}else {
+			throw new CompetitionException("공모전 수정에 실패하였습니다.");
+		}
+	}
+	
+	private void updateSaveFile(MultipartFile file, HttpServletRequest request, int i) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\compeloadFiles";
+		
+		File folder = new File(savePath);
+		if(!folder.exists()) {
+			folder.mkdirs();
+		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String originalFileName = file.getOriginalFilename();
+		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "." 
+								+ originalFileName.substring(originalFileName.lastIndexOf(".")+1);
+		String renamePath = folder + "\\" + renameFileName;
+		
+		int cpId = cService.getCpId(i);
+		
+		Cattachment ca = new Cattachment();
+		ca.setCpId(cpId);
+		ca.setOriginName(originalFileName);
+		ca.setChangeName(renameFileName);
+		ca.setFilePath(savePath);
+		ca.setcId(i);
+		
+		cService.updateFile(ca);
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

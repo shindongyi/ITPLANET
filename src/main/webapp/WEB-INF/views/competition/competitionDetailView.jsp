@@ -30,7 +30,7 @@
 </head>
 <body>
 <c:import url="../common/menubar.jsp"/>
-	<form action="updateCompetition.do" name="cWrite" id="cWrite">
+	<form action="updateCompetitionView.do?cId=${ competition.cId }" name="cWrite" id="cWrite">
 	<div id="introduce">
 		<section class="title" style="top: -170px; transform: none;">
 	    <div class="wrap">

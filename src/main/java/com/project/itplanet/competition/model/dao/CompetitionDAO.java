@@ -57,4 +57,16 @@ public class CompetitionDAO {
 	public int deleteCompetition(Integer cId) {
 		return sqlSession.update("competitionMapper.deleteCompetition", cId);
 	}
+
+	public int getCpId(int i) {
+		return sqlSession.selectOne("competitionMapper.getCpId", i);
+	}
+
+	public void updateFile(Cattachment ca) {
+		sqlSession.update("competitionMapper.updateFile", ca);
+	}
+
+	public int updateCompetition(Competition c) {
+		return sqlSession.update("competitionMapper.updateCompetition", c);
+	}
 }

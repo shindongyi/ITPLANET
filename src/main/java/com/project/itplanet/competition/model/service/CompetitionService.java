@@ -28,4 +28,10 @@ public interface CompetitionService {
 
 	int deleteCompetition(Integer cId);
 
+	int getCpId(int i);
+
+	void updateFile(Cattachment ca);
+
+	int updateCompetition(Competition c);
+
 }

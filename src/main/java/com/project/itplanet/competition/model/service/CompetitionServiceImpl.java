@@ -64,5 +64,20 @@ public class CompetitionServiceImpl implements CompetitionService{
 	public int deleteCompetition(Integer cId) {
 		return cDAO.deleteCompetition(cId);
 	}
+
+	@Override
+	public int getCpId(int i) {
+		return cDAO.getCpId(i);
+	}
+
+	@Override
+	public void updateFile(Cattachment ca) {
+		cDAO.updateFile(ca);
+	}
+
+	@Override
+	public int updateCompetition(Competition c) {
+		return cDAO.updateCompetition(c);
+	}
 	
 }

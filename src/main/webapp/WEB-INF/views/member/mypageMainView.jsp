@@ -53,7 +53,7 @@
 						</div>
 					</div>
 					<!-- end compe 공모전 리스트 -->
-					<!-- start hire 채용공고 리스트 -->
+					<%-- <!-- start hire 채용공고 리스트 -->
 					<div class="article hire">
 						<h3>최근 채용공고 스크랩</h3>
 						<div class="detail">
@@ -74,7 +74,7 @@
 							<a href="myPageScrapView.do?type=2" class="more"><span>more</span>></a>
 						</div>
 					</div>
-					<!-- end hire 채용정보 리스트 -->
+					<!-- end hire 채용정보 리스트 --> --%>
 					<!-- start lcs 자격증 리스트 -->
 					<div class="article lcs">
 						<h3>최근 자격증 스크랩</h3>
@@ -93,7 +93,7 @@
 								</c:forEach> 
 								</c:if>
 							</ul>
-							<a href="myPageScrapView.do?type=3" class="more"><span>more</span>></a>
+							<a href="myPageScrapView.do?type=2" class="more"><span>more</span>></a>
 						</div>
 					</div>
 					<!-- end lcs 자격증 리스트 -->
@@ -110,7 +110,7 @@
 					 	<div class="myAlarm">
 					 		<c:if test="${!empty day1List or !empty day2List}">
 							<c:forEach var="i" begin="1" end="2">
-							<c:if test="${i eq'1' }">
+							<c:if test="${i eq'1' and !empty day1List}">
 									<div class="almToday">
 										<p class="todayBox">${day11}</p>
 									</div>
@@ -141,7 +141,7 @@
 									</div>
 									</c:forEach>
 									</c:if>
-											<c:if test="${i eq'2' }">
+									<c:if test="${i eq '2' and !empty day2List}">
 									<div class="almToday">
 										<p class="todayBox">${day22}</p>
 									</div>
@@ -174,7 +174,7 @@
 									</c:if>
 									</c:forEach>
 									</c:if>
-									<c:if test="${empty day1List or empty day2List}">
+									<c:if test="${empty day1List and empty day2List}">
 										<div class="alarmIsNull">
 											<p>NO DATA</p>
 											<div class="alaramList">

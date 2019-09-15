@@ -63,11 +63,11 @@
 						<li>
 							<a class="goScrap" id="compBtn" href="myPageScrapView.do?type=1">공모전</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a class="goScrap" id="hireBtn" href="myPageScrapView.do?type=2">채용공고</a>
-						</li>
+						</li> -->
 						<li>
-							<a class="goScrap" id="lcsBtn" href="myPageScrapView.do?type=3">자격증</a>
+							<a class="goScrap" id="lcsBtn" href="myPageScrapView.do?type=2">자격증</a>
 						</li>
 					</ul>
 				</li>

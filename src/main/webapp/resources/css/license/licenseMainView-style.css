@@ -5,6 +5,7 @@
 	clear: both;
 	text-align: left;
 	font-family: 'Noto Sans KR', sans-serif;
+	background: none !important;  
 }
 #wrap *:focus {
 	outline: none;
@@ -20,7 +21,7 @@
 }
 #calendar{
 	width: 480px;
-	height: 500px;
+	height: 460px;
 	overflow: hidden;
 	float: left;
 }
@@ -28,6 +29,12 @@
 	position: relative;
 	margin: auto;
 	width: 970px;
+}
+#lcs_date_list .lcs_title{
+	padding-bottom: 10px;
+}
+#lcs_date_list .lcs_title h3{
+	font-size: 17px;
 }
 .lcs_date{
 	float: right;
@@ -51,7 +58,7 @@
 .lcs_date h3, .license .lcs_title{
 	font-weight: 400;
 	display: inline;
-	font-size: 20px;
+	/* font-size: 17px; */
 }
 .more{
 	color: #777;
@@ -59,9 +66,6 @@
    	float: right;
    	cursor: pointer;
    }
-.lcs_title{
-	padding-bottom: 10px;
-}
 .lcs_date hr{
 	border: 0.5px solid #E6ECF0;
 }
@@ -85,7 +89,7 @@
   		 font-size: 12px;
 }
 .lcs_bt_wrap{
-	width: 100%;
+	width: 90%;
 	position: absolute;
 	bottom: 25px;
 }
@@ -94,26 +98,27 @@
 	font-weight: 300;
 }
 .lcs_btn{
-	border: 0.5px solid #d5d5d5;
-	color: #002358;
-	background: none;
-	width: 80px;
-	height: 35px;
-	border-radius: 5px;
-	cursor: pointer;
-	position: absolute;
-	bottom: 0px;
-	right: 50px;
+	right: 5px;
 }
-.lcs_btn:hover{
-	background: #002358;
+.lcs_scr{
+	right: 95px;
+}
+.lcs_btn:hover, .lcs_scr:hover{
+	background: #002358 !important;
 	color: white !important;
 }
-.serchArea{
+#primaryContent>hr{
+	width: 970px;
 	clear:both;
+	border: 0.5px solid #f1f1f1;
+	margin: auto;
+}
+.serchArea{
+	clear: both;
 	width: 970px;
 	margin: auto;
 	padding-top: 20px;
+	position: relative; 
 }
 #search_box {
     padding-left: 40px;
@@ -140,6 +145,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    background: none;
 }
 #searchBar{
 	text-align: center;
@@ -168,6 +174,16 @@
     margin-top: 4px;
     line-height: 13px;
 }
+#insertBtn{
+	/* display: none; */
+	position: absolute;
+	bottom: 5px;
+	right: 0;
+	background: none;
+	font-size: 14px;
+	color: #adadad;
+	cursor: pointer;
+}
 #step_txt {
     display: inline-block;
     position: absolute;
@@ -178,7 +194,7 @@
 #license_list_wrap{
 	clear: both;
 	/* 	text-align: center; */
-	margin: auto;
+	margin: auto auto 30px auto;
 	width: 100%;
 }
 #license_list{
@@ -190,17 +206,37 @@
 	padding: 50px 45px 0 45px;
 	/* float: left; */
 }
+.setting{
+	position: absolute;
+	font-size: 17px;
+	background: none;
+	border: none;
+	top: 60px;
+	right: 10px;
+	cursor: pointer;
+	display: none;
+}
 .license {
-	width: 206px;
+	width: 266px;
 	height: 210px;
-	padding: 30px;
+	padding: 0;
 	/* margin: 0 15px 10px 0; */
 	margin-bottom: 30px;
 	/* border: 0.5px solid #d5d5d5; */
+	overflow: hidden;
 	position: relative;
 	display: inline-block;
 	clear: both;
 	background: #ffffff8a;
+}
+.title{
+	padding: 8px 30px 8px 30px;
+	background: #002358;
+	color: #fff;
+	font-size: 15px;
+	min-height: 48px;
+	display: flex;
+	align-items: center;
 }
 .license img{
     top:0;
@@ -214,7 +250,7 @@
     width:100%;
     height:100%;
 }
-.license_txtWrap div{
+.license_txtWrap div:first-child{
 	display:none;
 }
 .license_txtWrap .lcs_title{
@@ -223,7 +259,7 @@
 }
 .lcs_round{
 	font-weight: 400;
-	font-size: 20px;
+	font-size: 17px;
 	float: right;
 }
 .hoverDiv{
@@ -251,39 +287,192 @@
 .license:nth-of-type(3n){
 	float: right;
 }
+.license_txtWrap{
+	padding: 20px 30px 10px 30px;
+}
+.scrapBtn{
+	cursor: pointer;
+}
+#lcsInfo button, .lcs_btn{
+	border: 0.5px solid #d5d5d5;
+	color: #002358;
+	background: none;
+	width: 80px;
+	height: 35px;
+	border-radius: 5px;
+	cursor: pointer;
+	position: absolute;
+	bottom: 0px;
+}
+.license .scrapBtn{
+	float: right;
+}
 .scrapBtn span{
 	font-size: 18px;
 }
-.license_txtWrap{
-	padding-top: 30px;
-}
-.license_txtWrap a{
-	padding-top: 20px;
-	float: right;
+.license a{
+	border: 1px solid #f1f1f1; 
 	font-size: 12px;
 	font-weight: 500;
 }
-.scrapBtn{
+.license .btnArea{
+	margin-top: 17px; 
+	display: flex;
+    justify-content: space-between;
+}
+.license .btnArea a{
+	padding: 8px 10px 8px 10px;	
+}
+.deleteBtn{
 	position: absolute;
-	top: 0;
+	top: 10px;
 	right: 0;
 	width: 40px;
 	height: 40px;
 	cursor: pointer;
 	background: none;
-	font-size: 35px;
+	font-size: 15px;
 }
 .fc-event, .fc-event:hover{
 	text-align: center;
 	color: #555 !important;
 }
-#popLayer{
-	position: absolute;
+#lcsInfo{
+	/* position: absolute;
 	opacity: 0.5;
 	left: 400px;
  	z-index: 9999;
  	width: 400px;
  	height: 230px;
- 	background-color: #333;
+ 	background-color: #333; */
  	display: none;
+ 	height: 200px;
+}
+
+#lcsInfo .lcs_bt_wrap{
+	bottom: 35px;
+}
+
+#calendar .fc-button-primary{
+	background: none;
+	border: none;
+	color: #002358;
+	text-shadow: none;
+	box-shadow: none;
+}
+#calendar .fc-today{
+	background: #002358;
+	color: #fff;
+}
+#calendar h2{
+	font-size: 24px;
+	font-weight: normal;
+}
+#layerPopup{
+	display: none;
+	position: fixed;
+	top:0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 99999999;
+}
+#layerPopup>div{
+	position: absolute;
+	top: 10%;
+	left: 35%;
+	background-color: #f5f5f5;
+	width: 560px;
+	height: 600px;
+	padding: 70px 30px 70px 30px;
+	margin: auto;
+}
+.insertLcs{
+	width: 500px;
+	height: 100%;
+	margin: auto;
+}
+#layerPopup select option[disabled]{
+	display: none;
+}
+#layerPopup input, #layerPopup select{
+	width: 70%;
+	float: right;
+}
+#layerPopup input, #layerPopup select, #layerPopup label{
+	font-size: 13px;
+}
+#layerPopup label{
+	line-height: 48px;
+}
+#layerPopup .loginSection{
+	width: 300px;
+}
+#layerPopup h2{
+	font-size: 28px;
+	font-weight: bold;
+	color: #555;
+}
+#layerPopup h2 p{
+	padding-top: 10px;
+	font-weight: bold;
+	font-size: 14px;
+	color: #999;
+}
+#confirmPopup{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 38.9%;
+	width: 410px;
+	height: 105px;
+	background: #fff;
+	z-index: 99999999999999;
+	border: 0.5px solid #f1f1f1;
+	padding: 10px 16px 10px 16px;
+	box-shadow: 1px 1px 5px gray;
+	font-size: 13px;
+	color: #333;
+	font-weight: lighter;
+	font-family: "µ¸¿ò",Dotum,"µ¸¿òÃ¼",DotumChe;
+}
+#confirmPopup p:first-of-type{
+	padding-bottom: 7px;
+	font-size: 14px;
+	color: #000;
+}
+#confirmPopup div{
+	float: right;
+	padding: 17px 0 15px 0; 	
+}
+.confirmBtn{
+	border: 1px solid rgb(226,226,226);
+	background: #fff;
+	color: rgb(102,157,246);
+	border-radius: 5px;
+	padding: 8px 18px 8px 18px;
+	margin-right: 3px; 
+}
+#updateBtn, #deleteBtn{
+	background: rgb(102,157,246);
+	color: white;
+}
+#updateLcsBtn{
+	display: none;
+}
+.ui-autocomplete { position: absolute; cursor: default; z-index:999999999 !important;}
+
+#goToTop{
+	position: sticky;
+	bottom: 5%; 
+	left: 95%; 
+	width: 50px; 
+	height: 50px; 
+	background: #002358;
+	color: #fff;
+	border-radius: 50%; 
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

@@ -174,6 +174,12 @@
       </foreach>
    </delete>
    
+   <select id="checkEmail" parameterType="string" resultType="_int">
+   		select count(*)
+   		from member
+   		where email=#{email}
+   </select>
+   
    <!-- ====================================관리자==================================== -->
 	<select id="selectList" resultMap="memberResultSet">
 		select * 

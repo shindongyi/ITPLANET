@@ -3,13 +3,10 @@ package com.project.itplanet.member.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.member.model.dao.MemberDAO;
 import com.project.itplanet.member.model.vo.Member;
 
@@ -65,7 +62,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList<HashMap<String, String>> selectScrapList(HashMap map2) {
+	public ArrayList<HashMap<String, String>> selectScrapList(HashMap<String, Object> map2) {
 		return mDAO.selectScrapList(map2);
 	}
 	
@@ -90,13 +87,18 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int deleteScrap(HashMap map) {
+	public int deleteScrap(HashMap<String, Object> map) {
 		return mDAO.deleteScrap(map);
 	}
 
 	@Override
-	public ArrayList recentScrap(HashMap map) {
-		return mDAO.recentScrap(map);
+	public int checkEmail(String email) {
+		return mDAO.checkEmail(email);
 	}
+
+//	@Override
+//	public ArrayList recentScrap(HashMap map) {
+//		return mDAO.recentScrap(map);
+//	}
 
 }

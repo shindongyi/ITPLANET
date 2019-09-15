@@ -17,6 +17,8 @@
 	ns(document).ready(function() {
    		 ns('.studyList').select2();
    		 ns('#local').select2();
+   		 ns('#study2').select2();
+   		ns('#study3').select2();
 	});
 	
 </script>
@@ -152,10 +154,20 @@ td{
 								</select>
 							</td>
 							<td colspan="2">
+								<div id="stu1">
 								<select id="study2" class="studyList" name="sCaName" style="width: 300px;">
-									<!-- 스터디 선택에 따라 option 정렬 -->
-									<option value="정처기">정처기</option>
+									<c:forEach items="${ license }" var="li">
+										<option value="${ li }">${ li }</option>
+									</c:forEach>
 								</select>
+								</div>
+								<div id="stu2" style="display: none;">
+								<select id="study3" class="studyList" style="width: 300px;">
+									<c:forEach items="${ competition }" var="comp">
+										<option value="${ comp }">${ comp }</option>
+									</c:forEach>
+								</select>
+								</div>
 							</td>
 						</tr>
 
@@ -213,6 +225,21 @@ td{
 				return true;
 			}
 		}
+		
+			ns('#study1').change(function(){
+				if(ns(this).val() == '공모전'){
+					ns('#stu2').show();
+					ns('#stu1').hide();
+					ns('#study2').removeAttr('name');
+					ns('#study3').attr('name', 'sCaName');
+				}
+				if(ns(this).val() == '자격증'){
+					ns('#stu1').show();
+					ns('#stu2').hide();
+					ns('#study3').removeAttr('name');
+					ns('#study2').attr('name', 'sCaName');
+				}
+			});
 		
        /*  ClassicEditor.create( document.querySelector( '#sContent' ) )
         .catch( error => {

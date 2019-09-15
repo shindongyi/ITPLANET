@@ -37,7 +37,11 @@ public class StudyController {
 	@RequestMapping("studyInsertView.do")
 	public ModelAndView studyInsertView(ModelAndView mv) {
 		ArrayList<Local> list = sService.selectLocal();
+		ArrayList<String> license = sService.selectLicense();
+		ArrayList<String> compe = sService.selectComp();
 		mv.addObject("list", list);
+		mv.addObject("license", license);
+		mv.addObject("competition", compe);
 		mv.setViewName("study/studyInsertView");
 		
 		return mv;
@@ -56,11 +60,15 @@ public class StudyController {
 		
 		ArrayList<Study> list = sService.selectStudy(pi);
 		ArrayList<Local> local = sService.selectLocal();
+		ArrayList<String> license = sService.selectLicense();
+		ArrayList<String> compe = sService.selectComp();
 		
 		if(list != null) {
 			mv.addObject("list", list);
 			mv.addObject("local", local);
 			mv.addObject("pi", pi);
+			mv.addObject("license", license);
+			mv.addObject("competition", compe);
 			mv.setViewName("study/studyListView");
 		}else {
 			throw new StudyException("게시글 전체 조회에 실패하였습니다.");

@@ -47,5 +47,9 @@ public interface StudyService {
 
 	ArrayList<StudyChat> getChatList(String nickName, PageInfo pi);
 
+	ArrayList<String> selectLicense();
+
+	ArrayList<String> selectComp();
+
 
 }

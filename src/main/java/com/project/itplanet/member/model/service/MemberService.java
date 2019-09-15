@@ -2,9 +2,7 @@ package com.project.itplanet.member.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.member.model.vo.Member;
 
 public interface MemberService {
@@ -28,15 +26,16 @@ public interface MemberService {
 
 	HashMap<String, Integer> countScrap(HashMap<String, String> map);
 
-	ArrayList<HashMap<String, String>> selectScrapList(HashMap<String, String> map2);
+	ArrayList<HashMap<String, String>> selectScrapList(HashMap<String, Object> map2);
 
 	ArrayList<HashMap<String, String>> recentComp(HashMap<String, String> map);
 	ArrayList<HashMap<String, String>> recentHire(HashMap<String, String> map);
 	ArrayList<HashMap<String, String>> recentLcs(HashMap<String, String> map);
 
-	ArrayList recentScrap(HashMap map);
+	int deleteScrap(HashMap<String, Object> map);
 
-	int deleteScrap(HashMap map);
+	int checkEmail(String email);
 
+//	ArrayList recentScrap(HashMap map);
 
 }

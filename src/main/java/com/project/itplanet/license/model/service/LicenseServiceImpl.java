@@ -6,10 +6,8 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.license.model.dao.LicenseDAO;
 import com.project.itplanet.license.model.vo.License;
-import com.project.itplanet.member.model.vo.LScrap;
 
 @Service("lService")
 public class LicenseServiceImpl implements LicenseService{
@@ -17,33 +15,43 @@ public class LicenseServiceImpl implements LicenseService{
 	private LicenseDAO lDAO;
 	
 	@Override
-	public int getListCount(HashMap map) {
+	public int getListCount(HashMap<String, Object> map) {
 		return lDAO.getListCount(map);
 	}
 
 	@Override
-	public ArrayList<License> selectList(HashMap map) {
+	public ArrayList<License> selectList(HashMap<String, Object> map) {
 		return lDAO.selectList(map);
 	}
 
 	@Override
-	public int insertScrapLcs(HashMap map) {
+	public int insertScrapLcs(HashMap<String, Object> map) {
 		return lDAO.insertScrapLcs(map);
 	}
 
 	@Override
-	public int confirmScrap(HashMap map) {
+	public int confirmScrap(HashMap<String, Object> map) {
 		return lDAO.confirmScrap(map);
 	}
 
 	@Override
-	public ArrayList userScrap(String userId) {
+	public ArrayList<?> userScrap(String userId) {
 		return lDAO.userScrap(userId);
 	}
 
 	@Override
 	public int deleteLcs(int eventId) {
 		return lDAO.deleteLcs(eventId);
+	}
+
+	@Override
+	public int updateLcs(HashMap<String, Object> map) {
+		return lDAO.updateLcs(map);
+	}
+
+	@Override
+	public int insertLcs(HashMap<String, Object> map) {
+		return lDAO.insertLcs(map);
 	}
 
 }

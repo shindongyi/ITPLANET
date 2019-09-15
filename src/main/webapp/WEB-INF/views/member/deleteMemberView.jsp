@@ -101,6 +101,7 @@
 						if(confirm("정말 탈퇴하시겠습니까?"))
 						location.href="deleteM.do";
 					} else {
+						$('#confirmUser').show();
 						$('#confirmUser').text('회원정보에 등록된 이메일과 일치하지 않습니다.');
 					}
 				}

@@ -128,7 +128,7 @@ public class MemberController {
 			currentPage = page;
 		}
 
-		HashMap<String, String> map = new HashMap();
+		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("userId", userId);
 		if(keyword != null) {
 			map.put("keyword", keyword);
@@ -142,17 +142,14 @@ public class MemberController {
 			str = "공모전";
 			listCount = scrapCount.get("compCount");
 		} else if(type == 2) {
-			str = "채용공고";
-			listCount = scrapCount.get("hireCount");
-		} else if(type == 3) {
 			str = "자격증";
 			listCount = scrapCount.get("lcsCount");
 		}
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
-		ArrayList<HashMap<String, String>> list = new ArrayList();
-		HashMap map2 = new HashMap();
+		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+		HashMap<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("userId", userId);
 		map2.put("type", type);
 		map2.put("pi", pi);
@@ -287,6 +284,19 @@ public class MemberController {
 		}
 	}
 	
+	// 이메일 중복 체크
+	@RequestMapping("checkEmail.do")
+	@ResponseBody
+	public String checkEmail(@RequestParam("email") String email) {
+		int result = mService.checkEmail(email);
+		
+		if(result > 0) {
+			return "already";
+		} else {
+			return "success";
+		}
+	}
+	
 	
 	// 이메일 전송
 	@RequestMapping("sendEmail.do")
@@ -322,7 +332,8 @@ public class MemberController {
 	@RequestMapping("updatePwd.do")
 	@ResponseBody
 	public String updatePwd(HttpSession session, @RequestParam("newPwd") String newPwd,
-							@RequestParam(value="userId", required=false) String id) {
+							@RequestParam(value="userId", required=false) String id,
+							Model model) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		String userId = null;
 		if(loginUser != null) {
@@ -340,9 +351,11 @@ public class MemberController {
 		int result = mService.updatePwd(m);
 
 		if(result > 0) {
+			loginUser.setUserPwd(encPwd);
+			model.addAttribute("loginUser", loginUser);
 			return "success";
 		} else {
-			throw new MemberException("비밀번호 변경에 실패하였습니다.");
+			return "fail";
 		}
 	}
 	
@@ -484,12 +497,12 @@ public class MemberController {
 		String userId= m.getUserId();
 
 		String[] dList = list.split("/");
-		List<Integer> aList = new ArrayList();
+		List<Integer> aList = new ArrayList<Integer>();
 		for(int i = 0; i < dList.length; i++) {
 			aList.add(Integer.parseInt(dList[i]));
 		}
 
-		HashMap map = new HashMap();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
 		map.put("aList", aList);
 		map.put("type", type);
@@ -501,14 +514,10 @@ public class MemberController {
 			from = "c_scrap";
 			map.put("from", from);
 			typeNum = 1;
-		} else if(type.equals("채용공고")) {
-			from = "h_scrap";
-			map.put("from", from);
-			typeNum = 2;
 		} else {
 			from = "l_scrap";
 			map.put("from", from);
-			typeNum = 3;
+			typeNum = 2;
 		}
 
 		int result = mService.deleteScrap(map);

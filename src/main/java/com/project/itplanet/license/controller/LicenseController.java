@@ -24,7 +24,6 @@ import com.project.itplanet.license.model.exception.LicenseException;
 import com.project.itplanet.license.model.service.LicenseService;
 import com.project.itplanet.license.model.vo.License;
 import com.project.itplanet.member.model.service.MemberService;
-import com.project.itplanet.member.model.vo.LScrap;
 import com.project.itplanet.member.model.vo.Member;
 
 @Controller
@@ -46,14 +45,18 @@ public class LicenseController {
 		Member m = (Member)session.getAttribute("loginUser");
 		if(m != null) {
 			String userId = m.getUserId();
-			ArrayList userScrap = lService.userScrap(userId);
+			ArrayList<?> userScrap = lService.userScrap(userId);
 			mv.addObject("userScrap", userScrap);
 			System.out.println("userScrap : " + userScrap.size());
 			System.out.println(userScrap);
+			
+			System.out.println("Grade : " + m.getGrade());
+			
 		}
 		
 		
-		HashMap map = new HashMap();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		ArrayList<License> calendarList = lService.selectList(map);
 		map.put("sort", sort);
 		map.put("page", page);
 		
@@ -73,15 +76,18 @@ public class LicenseController {
 		ArrayList<License> secondList = lService.selectList(map);
 		map.put("keyword", keyword);
 		
-		map.remove("choice");
 		
 		if(more != null) {
 			map.put("choice",more);
+		} else {
+			map.remove("choice");
 		}
+		map.put("all", "all");
 		ArrayList<License> allList 	= lService.selectList(map);
-		
+		System.out.println("allList.size() : " + allList.size());
 		
 		if(firstList != null && secondList != null) {
+			mv.addObject("calendarList", calendarList);
 			mv.addObject("allList", allList);
 			mv.addObject("firstList", firstList);
 			mv.addObject("secondList", secondList);
@@ -106,7 +112,7 @@ public class LicenseController {
 		if(page != null) {
 			currentPage = page;
 		}
-		HashMap map = new HashMap();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("page", page);
 		map.put("keyword", keyword);
 		map.put("sort", sort);
@@ -116,6 +122,7 @@ public class LicenseController {
 		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
 		
 		map.put("pi", pi);
+		map.put("all", "all");
 		
 		ArrayList<License> list = lService.selectList(map);
 		
@@ -134,7 +141,7 @@ public class LicenseController {
 		
 		Member m = (Member)session.getAttribute("loginUser");
 		String userId = m.getUserId();
-		HashMap map = new HashMap(); 
+		HashMap<String, Object> map = new HashMap<String, Object>(); 
 		map.put("userId", userId);
 		map.put("lId", lId);
 		
@@ -163,6 +170,46 @@ public class LicenseController {
 	@ResponseBody
 	public String deleteLcs(@RequestParam("eventId") int eventId) {
 		int result = lService.deleteLcs(eventId);
+		
+		if(result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
+	// 자격증 등록
+	@RequestMapping("insertLcs.do")
+	@ResponseBody
+	public String insertLcs(License l, HttpSession session) {
+		Member m = (Member)session.getAttribute("loginUser");
+		String userId = m.getUserId();
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("License", l);
+		
+		int result = lService.insertLcs(map);
+		
+		if(result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
+	// 자격증 수정
+	@RequestMapping("updateLcs.do")
+	@ResponseBody
+	public String updateLcs(License l, HttpSession session) {
+		Member m = (Member)session.getAttribute("loginUser");
+		String userId = m.getUserId();
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("License", l);
+		
+		int result = lService.updateLcs(map);
 		
 		if(result > 0) {
 			return "success";

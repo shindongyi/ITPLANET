@@ -47,7 +47,7 @@
 							</div>
 							<div id="list_area_rgt">
 								<button class="listBtn">공모전</button>
-								<button class="listBtn">채용공고</button>
+								<!-- <button class="listBtn">채용공고</button> -->
 								<button class="listBtn">자격증</button>
 							</div>
 							<script>
@@ -180,10 +180,8 @@
 	var type = 0;
 	if(typeStr == "공모전"){
 		type= 1;
-	}else if(typeStr == "채용공고"){
-		type= 2;
 	}else if(typeStr == "자격증"){
-		type= 3;
+		type= 2;
 	}
 	$('#searchBar').on('keypress', function(key){
 		if(key.keyCode==13) submit();

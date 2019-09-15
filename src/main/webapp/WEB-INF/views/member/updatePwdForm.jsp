@@ -33,7 +33,6 @@
 						<div id="primaryContent">
 						<!-- 비밀번호 수정 입력 부분 -->
 						<h4>비밀번호 변경</h4>
-							<form id="update_form" method="post" action="updatePwd.do">
 								<div class="updateForm_content">
 									<div class="row_group">
 										<div class="update_row">
@@ -64,8 +63,6 @@
 								<div id="btn_area">
 									<button id="update_btn" type="button">변경하기</button>
 								</div>	
-							</form>
-							<!-- end update_form -->
 						</div>
 						<!-- end primaryContent -->
 					</div>
@@ -77,7 +74,8 @@
 </div>		
 	<script>
 		var userPwdFlag = false;
-		var checkUserPwd = false;
+		var userPwdFlag2 = false;
+		var checkPwd = false;
 		
 		$("#userPwd").blur(function(){
 			checkUserPwd();
@@ -90,7 +88,7 @@
 		});
 		
 		function checkUserPwd(){
-			checkUserPwd = false;
+			checkPwd = false;
 			var userPwd = $('#userPwd').val();
 			
 			$.ajax({
@@ -99,9 +97,9 @@
 				data:{userPwd:userPwd},
 				success:function(data){
 					if(data == "success"){
-						checkUserPwd = true;
+						checkPwd = true;
 					} else {
-						checkUserPwd = false;
+						checkPwd = false;
 					}
 				}
 				
@@ -125,19 +123,19 @@
 		}
 		
 		function checkNewPwd2(){
-			userPwdFlag = false;
+			userPwdFlag2 = false;
 			
 			var newPwd = $('#newPwd').val();
 			var newPwd2 = $('#newPwd2').val();
 			var oMsg = $('#newPwd2Msg');
 			
 			if(newPwd != newPwd2){
-				showErrorMsg(oMsg, "비밀번호가 일치하지 않습니다.")
+				showErrorMsg(oMsg, "비밀번호가 일치하지 않습니다.");
 				console.log("1번 : " + newPwd);
 				console.log("2번 : " + newPwd2);
 			} else{
 				oMsg.hide();
-				userPwdFlag = true;
+				userPwdFlag2 = true;
 			}
 		}
 		
@@ -147,12 +145,27 @@
 		}
 		
 		$('#update_btn').on('click', function(){
-			if(userPwdFlag && checkUserPwd){
-				$('#update_form').submit();		
+			if(userPwdFlag && checkPwd){
+				var newPwd = $('#newPwd').val();
+				
+				$.ajax({
+					url: "updatePwd.do",
+					data:{newPwd:newPwd},
+					method:"post",
+					success:function(data){
+						if(data == "success"){
+							alert('비밀번호가 변경되었습니다.');
+							location.href='mypage.do';
+						} else{
+							alert('비밀번호 변경에 실패하였습니다. 잠시후 다시 시도해주세요.');
+						}
+					}
+				});
+				
 			} else {
 				if(!userPwdFlag){
 					alert('모든 항목을 확인해주세요');
-				} else if(!checkUserPwd){
+				} else if(!checkPwd){
 					alert('현재 비밀번호와 일치하지 않습니다. 다시 확인해주세요.');
 				}
 			}

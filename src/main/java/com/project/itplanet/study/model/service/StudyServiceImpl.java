@@ -111,5 +111,15 @@ public class StudyServiceImpl implements StudyService{
 		return sDAO.getChatList(nickName, pi);
 	}
 
+	@Override
+	public ArrayList<String> selectLicense() {
+		return sDAO.selectLicense();
+	}
+
+	@Override
+	public ArrayList<String> selectComp() {
+		return sDAO.selectComp();
+	}
+
 
 }

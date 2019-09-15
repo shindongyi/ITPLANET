@@ -150,14 +150,34 @@
 		      	</div>
 		    </div>
 		    <div id="menu2" class="container tab-pane fade"><br>
-		      	 <ul class="list-group list-group-horizontal list-group-flush">
-					 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">정처기</span></li>
-				</ul>
+				 <c:forEach items="${ competition }" var="com" varStatus="sta">
+				    <c:if test="${ (sta.index +1) mod 6 eq 1}">
+				    	<ul class="list-group list-group-horizontal list-group-flush">
+				    	<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ com }</span></li>
+				    </c:if>
+				    <c:if test="${ (sta.index +1) mod 6 ne 1 && (sta.index +1) mod 6 ne 0 }">
+				    	<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ com }</span></li>
+				    </c:if>
+				    <c:if test="${ (sta.index +1) % 6 eq 0}">
+				    	 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ com }</span></li>
+				    	 </ul>
+				    </c:if>
+			     </c:forEach>
 		    </div>
-		    <div id="menu3" class="container tab-pane fade"><br>
-		       <ul class="list-group list-group-horizontal list-group-flush">
-				 	<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">정처기</span></li>
-			   </ul>
+		    <div id="menu3" class="container tab-pane fade" style="overflow-x:hidden; overflow-y:scroll; height:200px;"><br>
+				      <c:forEach items="${ license }" var="lic" varStatus="sta">
+				    	<c:if test="${ (sta.index +1) mod 6 eq 1}">
+				    		<ul class="list-group list-group-horizontal list-group-flush">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lic }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) mod 6 ne 1 && (sta.index +1) mod 6 ne 0 }">
+				    		<li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lic }</span></li>
+				    	</c:if>
+				    	<c:if test="${ (sta.index +1) % 6 eq 0}">
+				    		 <li class="list-group-item" style="border-top:none; border-bottom:none;"><span class="list-group-item list-group-item-action">${ lic }</span></li>
+				    		 </ul>
+				    	</c:if>
+			    	 </c:forEach>
 		    </div>
 		    <div id="menu4" class="container tab-pane fade"><br>
 		    	<div class="container">

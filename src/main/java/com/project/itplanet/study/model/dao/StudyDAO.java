@@ -100,6 +100,14 @@ public class StudyDAO {
 		return (ArrayList)sqlSession.selectList("studyMapper.getChatList", nickName, rowBounds);
 	}
 
+	public ArrayList<String> selectLicense() {
+		return (ArrayList)sqlSession.selectList("studyMapper.getLicense");
+	}
+
+	public ArrayList<String> selectComp() {
+		return (ArrayList)sqlSession.selectList("studyMapper.getCompetition");
+	}
+
 
 
 }

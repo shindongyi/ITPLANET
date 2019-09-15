@@ -227,4 +227,16 @@
 		where chat_member like '%' || #{nickName} || '%'
 	</select>
 	
+	<select id="getLicense" resultType="string">
+		select l_name
+		from license
+		where end_date >= sysdate
+	</select>
+	
+	<select id="getCompetition" resultType="string">
+		select c_title
+		from competition
+		where c_status = 'Y' and c_check='Y' and c_startdate >= sysdate
+	</select>
+	
 </mapper>

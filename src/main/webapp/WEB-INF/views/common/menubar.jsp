@@ -101,8 +101,8 @@ $(window).scroll(function(event) {
 		<div class="hd_top">
 			<h1 class="sd">
 				<a href="<%=request.getContextPath()%>/index.jsp"><img
-					style="margin-top: -20px; width: 220px; height: 90px;"
-					src="<%=request.getContextPath()%>/resources/images/itplanet.png"
+					style="margin-top: -20px; width: 270px; height:98px;"
+					src="<%=request.getContextPath()%>/resources/images/mainlogo.jpg"
 					alt="IT PLANET"></a>
 			</h1>
 		</div>
@@ -128,7 +128,7 @@ $(window).scroll(function(event) {
 			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='studyListView.do';">스터디</a></li>
 
 			<!-- 코딩테스트 -->
-			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='codingTestView.do'">코딩테스트</a>
+			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='codingTestListView.do'">코딩테스트</a>
 			
 			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='chatListView.do'">채팅리스트 체크</a>
 		</ul>

@@ -21,6 +21,11 @@ public class CodingController {
 		return "coding/codingTestInsert";
 	}
 	
+	@RequestMapping("codingTestListView.do")
+	public String codingTestListView() {
+		return "coding/codingTestList";
+	}
+	
 	@RequestMapping("codingTestView.do")
 	public String codingTestView() {
 		return "coding/codingTestView";

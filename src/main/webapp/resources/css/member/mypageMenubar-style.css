@@ -41,7 +41,7 @@
 }
 #wrap #mypageMain h3{
 	font-size: 12px;
-	line-height: 1.25em;
+	/* line-height: 1.25em; */
 }
 #wrap .leftSection{
 	float: left;
@@ -57,6 +57,7 @@
 	color: #000;
 	font-weight: bold;
 	line-height: 1.25;
+	font-size: 14px;
 }
 #wrap .leftSection .profile ul{
 	margin-top: 39px;
@@ -102,6 +103,7 @@
 	background-color: #003458;
 	line-height: 38px;
 	text-align: center;
+	font-size: 14px;
 }
 #wrap .leftSection .navContent{
 	position: relative;

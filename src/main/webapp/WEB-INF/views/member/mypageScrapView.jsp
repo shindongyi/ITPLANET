@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +67,6 @@
 								<th nowrap="nowrap">제목</th>
 								<th nowrap="nowrap">글쓴이</th>
 								<th nowrap="nowrap">작성일</th>
-								<!-- <th nowrap="nowrap">조회</th> -->
 							</tr>
 							<c:forEach var="i" items="${ list }" varStatus="status">
 								<tr>
@@ -79,10 +79,8 @@
 									</td>
 									<td class="title"><a href="#">${ i.TITLE }</a></td>
 									<td class="writer">${ i.WRITER }</td>
-									<td class="date">${ i.MODIFYDATE }</td>
-<%-- 									<c:if test="${ !empty i.COUNT }">
-										<td class="count">${ i.COUNT }</td>
-									</c:if> --%>
+									<fmt:formatDate value="${ i.MODIFYDATE }" var="MODIFYDATE" pattern="yyyy-MM-dd"/>
+									<td class="date">${MODIFYDATE}</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -135,10 +133,6 @@
 								</c:url> 
 								<a class="arrow txt" href="${ after }">다음 ▶</a>
 							</c:if>
-						<!--<span id="num_next">
-								<span class="arrow txt">▶</span>
-								<span class="txt">다음</span>
-							</span> -->
 						</div>
 						<!-- end paging -->
 						<div id="search_row">

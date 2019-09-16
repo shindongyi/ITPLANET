@@ -5,7 +5,8 @@
 	float: none;
 }
 #wrap .section h3{
-	padding: 0 10px;
+	background: #f1f1f1;
+    padding: 8px 0 5px 28px;
 }
 #wrap .middleSection{
 	width: 598px;
@@ -13,11 +14,10 @@
 }
 #wrap .middleSection .article{
 	position: relative;
-	padding-top: 11px;
 	border-top: 2px solid #555;
 }
-#wrap .section .article{
-	/* margin-top: 20px; */
+#wrap .alarm h3{
+	background: #002358;
 }
 #wrap .article{
 	min-height: 232px;
@@ -29,6 +29,28 @@
 	overflow: hidden;
 	margin-top: 26px;
 	padding-left: 13px;
+}
+.detail div{
+	position: absolute; 
+	left: 35%; 
+	padding-top: 60px;
+}
+.detail div span, .alaramList span{
+	font-size: 14px;
+}
+.bGoBtn{
+	margin: 15px auto;
+    display: block;
+    background-color: #002358;
+    border: 1px solid #002358;
+    width: 120px;
+    padding: 8px 0 8px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 13px;
+    cursor: pointer;
+    box-sizing: border-box;
+    color: #fff !important;
 }
 .middleSection .article .more{
 	position: absolute;
@@ -43,8 +65,9 @@
 	width: 142px;
 	background: none;
 	text-align: center;
+	border-left: 0.5px solid #ededed;
 }
-.scpList li:first-child .figure{
+.scpList li:first-child .figure, .scpList li:first-child{
 	border: 0;
 }
 .scpList li .figure{
@@ -56,21 +79,17 @@
 .scpList li .figure img{
 	vertical-align: top;
 }
-.scpList li a .scpName{
-	margin-top: 13px;
-}
 .scpName{
 	width: 106px;
 	margin: 0 auto;
-	overflow: hidden;
-	height: 15px;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	height: 20px;
 	display: block;
 	color: #777;
 	font-size: 11px;
 	line-height: 14px;
 	font-weight: bold;
+	word-break: break-all;
+	padding: 8px;
 }
 .rightSection{
 	width: 288px;
@@ -88,8 +107,6 @@
 }
 .alarm span{
 	position: relative;
-	/* top: 11px;
-	left: 10px; */
 	padding-left: 10px;
 	width: 13px;
 	height: 14px;

@@ -75,38 +75,46 @@ public class MemberController {
 		map.put("userId", userId);
 
 		ArrayList<HashMap<String, String>> recentComp = mService.recentComp(map);
-		ArrayList<HashMap<String, String>> recentHire = mService.recentHire(map);
 		ArrayList<HashMap<String, String>> recentLcs = mService.recentLcs(map);
 
 		String keyword = "day1";
 		map.put("keyword", keyword);
 
 		ArrayList<HashMap<String, String>> day1Lcs = mService.recentLcs(map);
-		ArrayList<HashMap<String, String>> day1Hire = mService.recentHire(map);
 		ArrayList<HashMap<String, String>> day1Comp = mService.recentComp(map);
 
-		ArrayList day1List = new ArrayList();
+		ArrayList<Object> day1List = new ArrayList<Object>();
 		day1List.addAll(day1Lcs);
 		day1List.addAll(day1Comp);
-		day1List.addAll(day1Hire);
 
 		keyword = "day2";
 		map.put("keyword", keyword);
 
 		ArrayList<HashMap<String, String>> day2Lcs = mService.recentLcs(map);
-		ArrayList<HashMap<String, String>> day2Hire = mService.recentHire(map);
 		ArrayList<HashMap<String, String>> day2Comp = mService.recentComp(map);
 
-		ArrayList day2List = new ArrayList();
+		ArrayList<Object> day2List = new ArrayList<Object>();
 		day2List.addAll(day2Lcs);
 		day2List.addAll(day2Comp);
-		day2List.addAll(day2Hire);
+		
+		keyword = "dDay";
+		map.put("keyword", keyword);
 
-		mv.addObject("day1List", day1List);
-		mv.addObject("day2List", day2List);
+		ArrayList<HashMap<String, String>> dDayLcs = mService.recentLcs(map);
+		ArrayList<HashMap<String, String>> dDayComp = mService.recentComp(map);
+
+		ArrayList<Object> dDayList = new ArrayList<Object>();
+		dDayList.addAll(dDayLcs);
+		dDayList.addAll(dDayComp);
+		
+		ArrayList<Object> list = new ArrayList<Object>();
+		list.add(dDayList);
+		list.add(day1List);
+		list.add(day2List);
+
+		mv.addObject("list", list);
 
 		mv.addObject("recentComp", recentComp);
-		mv.addObject("recentHire", recentHire);
 		mv.addObject("recentLcs", recentLcs);
 		mv.setViewName("member/mypageMainView");
 
@@ -407,51 +415,29 @@ public class MemberController {
 			return "fail";
 		}
 	}
-
-//	// 개인정보 수정
-//	@RequestMapping("updateM.do")
-//	public String updateMember(@ModelAttribute Member m,
-//								@RequestParam("birth_yy") int birth_yy,
-//								@RequestParam("birth_mm") int birth_mm,
-//								@RequestParam("birth_dd") int birth_dd,
-//								Model model,
-//								HttpSession session) {
-//		Date birthDay = new Date(new GregorianCalendar(birth_yy, birth_mm-1, birth_dd).getTimeInMillis());
-//		m.setBirthDay(birthDay);
-//		Member loginUser = (Member)session.getAttribute("loginUser");
-//		m.setUserId(loginUser.getUserId());
-//		m.setUserPwd(loginUser.getUserPwd());
-//		int result = mService.updateMember(m);
-//		if(result>0) {
-//			model.addAttribute("loginUser", m);
-//			return "redirect:mypage.do";
-//		} else {
-//			throw new MemberException("개인정보 수정에 실패하였습니다.");
-//		}
-//	}
 	
-	// 개인정보 수정
-		@RequestMapping("updateM.do")
-		@ResponseBody
-		public String updateMember(@ModelAttribute Member m,
-									@RequestParam("birth_yy") int birth_yy,
-									@RequestParam("birth_mm") int birth_mm,
-									@RequestParam("birth_dd") int birth_dd,
-									Model model,
-									HttpSession session) {
-			Date birthDay = new Date(new GregorianCalendar(birth_yy, birth_mm-1, birth_dd).getTimeInMillis());
-			m.setBirthDay(birthDay);
-			Member loginUser = (Member)session.getAttribute("loginUser");
-			m.setUserId(loginUser.getUserId());
-			m.setUserPwd(loginUser.getUserPwd());
-			int result = mService.updateMember(m);
-			if(result>0) {
-				model.addAttribute("loginUser", m);
-				return "success";
-			} else {
-				return "개인정보 수정에 실패하였습니다.";
-			}
+// 개인정보 수정
+	@RequestMapping("updateM.do")
+	@ResponseBody
+	public String updateMember(@ModelAttribute Member m,
+								@RequestParam("birth_yy") int birth_yy,
+								@RequestParam("birth_mm") int birth_mm,
+								@RequestParam("birth_dd") int birth_dd,
+								Model model,
+								HttpSession session) {
+		Date birthDay = new Date(new GregorianCalendar(birth_yy, birth_mm-1, birth_dd).getTimeInMillis());
+		m.setBirthDay(birthDay);
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		m.setUserId(loginUser.getUserId());
+		m.setUserPwd(loginUser.getUserPwd());
+		int result = mService.updateMember(m);
+		if(result>0) {
+			model.addAttribute("loginUser", m);
+			return "success";
+		} else {
+			return "개인정보 수정에 실패하였습니다.";
 		}
+	}
 
 	// 회원 탈퇴전 이메일 체크
 	@RequestMapping("emailCheck.do")

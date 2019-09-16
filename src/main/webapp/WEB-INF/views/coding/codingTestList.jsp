@@ -16,9 +16,7 @@
 </head>
 <body>
    
-   <div class="header">
-   
-   </div>
+   <%@ include file="/WEB-INF/views/common/menubar.jsp" %>
    
    <!-- iframe -->
    <div class="pageFrame">
@@ -144,5 +142,6 @@
     </div>
 </div>
 
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>	    
 </body>
 </html>

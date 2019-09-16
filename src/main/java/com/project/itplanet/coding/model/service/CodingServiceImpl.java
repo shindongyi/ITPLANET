@@ -1,5 +1,7 @@
 package com.project.itplanet.coding.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,10 @@ public class CodingServiceImpl implements CodingService{
 	@Override
 	public int insertCoding(Coding c) {
 		return coDAO.insertCoding(c);
+	}
+
+	@Override
+	public ArrayList<Coding> listCoding() {
+		return coDAO.listCoding();
 	}
 }

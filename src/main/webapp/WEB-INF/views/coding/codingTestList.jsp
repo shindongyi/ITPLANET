@@ -1,5 +1,6 @@
-+<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -25,119 +26,41 @@
    
    <div class="box">
     <div class="container">
+    	<a onclick="javascript:location.href='insertCT.do'">코딩테스트</a>
+    	<c:if test="${ ctList.isEmpty() }">
+    		
+    	</c:if>
+    	
         <div class="row">
+          	<c:if test="${ !ctList.isEmpty() }">
+    			<c:forEach items="${ ctList }" var="ctList">
+		    			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+		               
+		               <div class="box-part">
+		                        
+		                        
+		                        <i class="fab fa-java fa-2x" aria-hidden="true"></i>
+		                        
+		                        
+		                        
+		                  <div class="title">
+		                     <h4>${ ctList.qTitle }</h4>
+		                  </div>
+		                        
+		                  <div class="text">
+		                     <span>${ ctList.qContent }</span>
+		                     
+		                     
+		                  </div>
+		                  
+		               
+		                        
+		                </div>
+		            </div>    
+    			</c:forEach>
+    		</c:if>
+             
           
-             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-               
-               <div class="box-part">
-                        
-                        
-                        <i class="fab fa-java fa-2x" aria-hidden="true"></i>
-                        
-                        
-                        
-                  <div class="title">
-                     <h4>스택/큐</h4>
-                  </div>
-                        
-                  <div class="text">
-                     <span>LIFO,FIFO & pop! 스택과 큐를 이용해서 문제를 풀어보세요.</span>
-                  </div>
-                        
-                        
-                </div>
-            </div>    
-            
-             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-               
-               <div class="box-part ">
-                   
-                   <i class="fab fa-java fa-2x" aria-hidden="true"></i>
-                    
-                  <div class="title">
-                     <h4>힙(HEAP)</h4>
-                  </div>
-                        
-                  <div class="text">
-                     <span>힙은 특정한 규칙을가지는 트리로, 힙을 이용해서 우선순위 큐를 구현할 수 있습니다.</span>
-                  </div>
-                        
-                        
-                </div>
-            </div>    
-            
-             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-               
-               <div class="box-part ">
-                        
-                        <i class="fab fa-java fa-2x " aria-hidden="true"></i>
-                        
-                  <div class="title">
-                     <h4>정렬</h4>
-                  </div>
-                        
-                  <div class="text">
-                     <span>정렬을 이용해서 문제를 효율적으로 풀어보세요.</span>
-                  </div>
-                        
-                        
-                </div>
-            </div>    
-            
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-               
-               <div class="box-part ">
-                        
-                        <i class="fab fa-java fa-2x" aria-hidden="true"></i>
-                        
-                  <div class="title">
-                     <h4>완전탐색</h4>
-                  </div>
-                        
-                  <div class="text">
-                     <span>무식해 보여도 사실은 최고의 방법일 떄가 있지요.</span>
-                  </div>
-                        
-                        
-                </div>
-            </div>    
-            
-             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-               
-               <div class="box-part ">
-                   
-                   <i class="fab fa-java fa-2x" aria-hidden="true"></i>
-                    
-                  <div class="title">
-                     <h4>이분탐색</h4>
-                  </div>
-                        
-                  <div class="text">
-                     <span>이분탐색 기법을 이용해 효울적으로 값을 찾아보세요</span>
-                  </div>
-                        
-                        
-                </div>
-            </div>    
-            
-             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-               
-               <div class="box-part ">
-                        
-                        <i class="fab fa-java fa-2x" aria-hidden="true"></i>
-                        
-                  <div class="title">
-                     <h4>그래프</h4>
-                  </div>
-                        
-                  <div class="text">
-                     <span>엣지를 지나 그래프의 노드를 탐험해 봅시다.</span>
-                  </div>
-                        
-                        
-                </div>
-            </div>
-      
       </div>      
     </div>
 </div>

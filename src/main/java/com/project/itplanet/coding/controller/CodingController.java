@@ -1,10 +1,13 @@
 package com.project.itplanet.coding.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.itplanet.coding.model.exception.CodingException;
 import com.project.itplanet.coding.model.service.CodingService;
@@ -22,8 +25,13 @@ public class CodingController {
 	}
 	
 	@RequestMapping("codingTestListView.do")
-	public String codingTestListView() {
-		return "coding/codingTestList";
+	public ModelAndView codingTestListView(@SessionAttribute("loginUser") Member loginUser , ModelAndView mv) {
+		//return "coding/codingTestList"; 
+		ArrayList<Coding> ctList = coService.listCoding();
+		
+		mv.addObject("ctList", ctList);
+		mv.setViewName("coding/codingTestList");
+		return mv;
 	}
 	
 	@RequestMapping("codingTestView.do")
@@ -94,7 +102,7 @@ public class CodingController {
 		
 		if(result > 0) {
 			// 경로 수정하기
-			return "webabb/index";
+			return "coding/codingTestList";
 		}else {
 			throw new CodingException("코딩테스트 글 작성에 실패하였습니다.");
 		}

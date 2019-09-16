@@ -83,6 +83,11 @@
 	padding: 20px;
 }
 
+#container .pageFrame {
+	margin: 10px;
+	padding: 20px;
+}
+
 .top {
 	display: block;
 	padding: 16px;

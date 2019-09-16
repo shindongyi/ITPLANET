@@ -130,6 +130,7 @@ $(window).scroll(function(event) {
 			<!-- 코딩테스트 -->
 			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='codingTestListView.do'">코딩테스트</a>
 			
+			
 			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='chatListView.do'">채팅리스트 체크</a>
 		</ul>
 	</div>

@@ -110,10 +110,10 @@
 		    hListView(resultURL);
 		    
 		    $(window).on("scroll", function() {
-		    	var scrollHeight = $(document).height();
-		    	var scrollPosition = $(window).height() + $(window).scrollTop();		
-		    	
-		    	if (scrollPosition > scrollHeight - 500) {			
+		    	var maxHeight = $(document).height();
+				var currentScroll = $(window).scrollTop() + $(window).height();
+				
+		    	if (maxHeight <= currentScroll + 100) {			
 		    		sNum++;
 		    		resultURL = uri + key + job_category + start + sNum + count + cNum;
 		    		hListView(resultURL);
@@ -152,7 +152,7 @@
 					var $hScrap;
 					var $desc;
 					var $info;
-					// console.log(data);
+					 console.log(data);
 					if(data.length > 0) {
 						for(var i in data){
 							$hr = $("<hr>");
@@ -178,6 +178,7 @@
 							var today = new Date();
 							var diff = today.getTime() - date.getTime();
 							var dday = Math.floor(diff/(1000*60*60*24)); 
+							 
 							
 							$expiration_date = $("<span class='dday highlight'>").text("D"+dday);
 							

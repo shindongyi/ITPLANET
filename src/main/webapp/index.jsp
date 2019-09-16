@@ -972,8 +972,8 @@ dd {
 		<h2>채용 공고</h2>
 
 		<div class="lists">
-			<div class="list" data-category2="0">
-				<a class="item" href="/study/view?id=10162"><h3>Mos 모스 자격증
+			<div class="list" data-category2="0" id="hireData">
+				<!-- <a class="item" href="/study/view?id=10162"><h3>Mos 모스 자격증
 						공부 하시는분 계신가요?</h3>
 					<p class="info">
 						<span>오늘 07:15</span><span class="viewcount">16</span><span
@@ -988,7 +988,7 @@ dd {
 					<p class="info">
 						<span>08/20</span><span class="viewcount">101</span><span
 							class="commentcount">4</span>
-					</p></a><a class="more" href="/study/list?category1=3&amp;category2=0">채용 공고 더 보기</a>
+					</p></a><a class="more" href="/study/list?category1=3&amp;category2=0">채용 공고 더 보기</a> -->
 			</div>
 		</div>
 		<div class="loading" style="display: none;"></div>
@@ -998,12 +998,17 @@ dd {
 
 		<div class="lists">
 			<div class="list" data-category2="0">
-				<a class="item" href="/study/view?id=10173"><h3>안산 중앙동 자율공부</h3>
+				<a class="item" href="/study/view?id=10173">
+					<h3>안산 중앙동 자율공부</h3>
 					<p class="info">
-						<span>오늘 11:12</span><span class="viewcount">8</span><span
-							class="commentcount">1</span>
-					</p></a><a class="item" href="/study/view?id=10172"><h3>(수원 용인 성남)
-						인공지능 공부 같이 하실분 기초부터</h3>
+						<span>오늘 11:12</span>
+						<span class="viewcount">8</span>
+						<span class="commentcount">1</span>
+					</p>
+				</a>
+				
+				<a class="item" href="/study/view?id=10172">
+					<h3>(수원 용인 성남)	인공지능 공부 같이 하실분 기초부터</h3>
 					<p class="info">
 						<span>오늘 11:07</span><span class="viewcount">11</span><span
 							class="commentcount">0</span>
@@ -1018,6 +1023,59 @@ dd {
 		<div class="loading" style="display: none;"></div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	var uri ="https://oapi.saramin.co.kr/job-search?";
+	var key ="access-key=mg233WU8HnG8aF5jrYPTqeBpU7Tr4OpGQtN38PyKptDLgj4ciNwbm";
+	var job_category = "&job_category=4"
+	var start = "&start=1";
+	var count = "&count=3";
+
+	$(document).ready(function(){
+		
+		var resultURL = uri + key + job_category+ start + count;
+		$.ajax({
+			url: "hJsonList.do",
+			type: "POST",
+			data: {"resultURL" : resultURL},
+			dataType: "json",
+			success: function(data){
+				$hireData = $("#hireData");
+				var $aItem;
+				var $title;
+				var $info;
+				var $span1;
+				var $span2;
+				var $span3;
+				var $link;
+				
+				
+				if(data.length > 0){
+					for(var i in data){
+					$aItem = $("<a class='item' target='_sub' >").attr("href",decodeURIComponent(data[i].href));
+					$title = $("<h3>").text(decodeURIComponent(data[i].title).replace(/[+]/gi," "));
+					$info = $("<p class='info'>");
+					$span1 = $("<span>").text(decodeURIComponent(data[i].industry));
+					$span2 = $("<span class='viewcount'>").text((decodeURIComponent(data[i].location)).replace(/[+&gt;+]/gi," "));
+					$span3 = $("<span class='commentcount'>").text(decodeURIComponent(data[i].jobType));
+					
+					$info.append($span1);
+					$info.append($span2);
+					$info.append($span3);
+					$aItem.append($title);
+					$aItem.append($info);
+					
+					$hireData.append($aItem);
+					}
+				}
+				$link = $("<a class='more' href='hList.do'>").text("채용 공고 더 보기");
+				$hireData.append($link);
+			}
+			
+		});
+		
+	});
+</script>
 
 <!-- 333333333333333333333333333333333333 끝 /CSS 공모전 / 스터디 / 채용공고 / 코딩테스트 4개 같이 있는 부분 CSS파일명 : asdf.css @@@@@@@@@@@@@@@@@@@@@@@@33333333333333333333333333 -->
 

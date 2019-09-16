@@ -1,5 +1,8 @@
 package com.project.itplanet.coding.model.dao;
 
+
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,5 +16,9 @@ public class CodingDAO {
 
 	public int insertCoding(Coding c) {
 		return sqlSession.insert("codingMapper.insertCoding", c);
+	}
+
+	public ArrayList<Coding> listCoding() {
+		return (ArrayList)sqlSession.selectList("codingMapper.listCoding");
 	}
 }

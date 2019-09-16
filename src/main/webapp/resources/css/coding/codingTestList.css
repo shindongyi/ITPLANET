@@ -48,11 +48,21 @@ span{
     border-top: 0.0625rem solid #D7E2EB;
     border-radius: 0;
 }
-.text{
+.box-part .text{
     margin:15px 0px;
     font-size: 0.875rem;
     line-height: 1.375rem;
     color: #98A8B9;
+    
+}
+
+.box-part .text span{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    /* width: 100px; */
+    height: 65px;
+    display: block;
 }
 
 

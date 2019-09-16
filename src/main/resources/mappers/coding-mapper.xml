@@ -20,6 +20,10 @@
 		<result property="userId" column="USER_ID"/>
 	</resultMap>
 	
+	<select id="listCoding" resultMap="codingResultSet">
+		select * from QUESTION
+	</select>
+	
 	<insert id="insertCoding" parameterType="Coding">
 		insert into question
 		values(seq_qnu.nextval, #{qTitle}, #{qContent}, #{qLimitation},

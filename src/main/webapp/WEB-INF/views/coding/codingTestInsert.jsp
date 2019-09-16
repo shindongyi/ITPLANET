@@ -12,9 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="header">
-	</div>
-	
+	<%@ include file="/WEB-INF/views/common/menubar.jsp" %>
 	
 	<h2 style="text-align:center">코딩테스트 글 작성하기</h2>
 	<div class="container">
@@ -89,7 +87,7 @@
 		            </div><!--//form-row-->
 		        </form>
 	</div>
-	
+	<%@ include file="/WEB-INF/views/common/footer.jsp" %>	 
 	<script type="text/javascript">
 		$('#append_row').on("click", function () {
 			var examCount = $("#list_table tr").length;

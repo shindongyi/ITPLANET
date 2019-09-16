@@ -9,6 +9,7 @@ import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.competition.model.dao.CompetitionDAO;
 import com.project.itplanet.competition.model.vo.Cattachment;
 import com.project.itplanet.competition.model.vo.Competition;
+import com.project.itplanet.competition.model.vo.CompetitionReply;
 
 @Service("cService")
 public class CompetitionServiceImpl implements CompetitionService{
@@ -78,6 +79,16 @@ public class CompetitionServiceImpl implements CompetitionService{
 	@Override
 	public int updateCompetition(Competition c) {
 		return cDAO.updateCompetition(c);
+	}
+
+	@Override
+	public ArrayList<CompetitionReply> competitionReplyList(int cId) {
+		return cDAO.competitionReplyList(cId);
+	}
+
+	@Override
+	public int addCompetitionReply(CompetitionReply r) {
+		return cDAO.addCompetitionReply(r);
 	}
 	
 }

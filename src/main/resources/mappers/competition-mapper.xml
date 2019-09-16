@@ -105,4 +105,27 @@
 		set c_title=#{cTitle}, c_content=#{cContent}, c_phone=#{cPhone}, c_address=#{cAddress}, c_startdate=#{cStartDate}, c_duedate=#{cDueDate}, c_modify_date = sysdate, c_check=null
 		where c_id=#{cId}
 	</update>
+	
+	<resultMap type="CompetitionReply" id="competitionReplyResult">
+		<id property="crId" column="CR_ID"/>
+		<result property="crContent" column="CR_CONTENT"/>
+		<result property="crCreateDate" column="CR_CREATE_DATE"/>
+		<result property="crModifyDate" column="CR_MODIFY_DATE"/>
+		<result property="crStatus" column="CR_STATUS"/>
+		<result property="userId" column="NICKNAME"/>
+		<result property="cId" column="C_ID"/>
+	</resultMap>
+	
+	<select id="competitionReplyList" parameterType="_int" resultMap="competitionReplyResult">
+		select cr_id, cr_content, cr_create_date, cr_modify_date, cr_status, nickName, c_id 
+		from creply
+		join member using(user_id)
+		where c_id = #{cId}
+		order by cr_id desc
+	</select>
+	
+	<insert id="addCompetitionReply" parameterType="CompetitionReply">
+		insert into creply
+		values(seq_crid.nextval, #{crContent}, sysdate, sysdate, default, #{userId}, #{cId})
+	</insert>
 </mapper>

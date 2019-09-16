@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.competition.model.vo.Cattachment;
 import com.project.itplanet.competition.model.vo.Competition;
+import com.project.itplanet.competition.model.vo.CompetitionReply;
 
 @Repository("cDAO")
 public class CompetitionDAO {
@@ -68,5 +69,13 @@ public class CompetitionDAO {
 
 	public int updateCompetition(Competition c) {
 		return sqlSession.update("competitionMapper.updateCompetition", c);
+	}
+
+	public ArrayList<CompetitionReply> competitionReplyList(int cId) {
+		return (ArrayList)sqlSession.selectList("competitionMapper.competitionReplyList", cId);
+	}
+
+	public int addCompetitionReply(CompetitionReply r) {
+		return sqlSession.insert("competitionMapper.addCompetitionReply", r);
 	}
 }

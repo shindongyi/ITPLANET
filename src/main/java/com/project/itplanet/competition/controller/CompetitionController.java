@@ -2,27 +2,34 @@ package com.project.itplanet.competition.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.project.itplanet.common.Pagination;
 import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.competition.model.exception.CompetitionException;
 import com.project.itplanet.competition.model.service.CompetitionService;
 import com.project.itplanet.competition.model.vo.Cattachment;
 import com.project.itplanet.competition.model.vo.Competition;
+import com.project.itplanet.competition.model.vo.CompetitionReply;
 import com.project.itplanet.member.model.vo.Member;
 
 @Controller
@@ -212,6 +219,34 @@ public class CompetitionController {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("competitionReplyList.do")
+	public void competitionReplyList(HttpServletResponse response, @RequestParam("cId") int cId) throws JsonIOException, IOException {
+		ArrayList<CompetitionReply> replyList = cService.competitionReplyList(cId);
+		
+		for(CompetitionReply cr : replyList) {
+			cr.setCrContent(URLEncoder.encode(cr.getCrContent(), "utf-8"));
+			cr.setUserId(URLEncoder.encode(cr.getUserId(), "utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(replyList, response.getWriter());
+	}
+	
+	@RequestMapping("addCompetitionReple.do")
+	@ResponseBody
+	public String addCompetitionReply(CompetitionReply r, @SessionAttribute("loginUser") Member loginUser, HttpServletResponse response) {
+		String rWriter = loginUser.getUserId();
+		r.setUserId(rWriter);
+		
+		int result = cService.addCompetitionReply(r);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			throw new CompetitionException("댓글 작성에 실패하였습니다.");
 		}
 	}
 

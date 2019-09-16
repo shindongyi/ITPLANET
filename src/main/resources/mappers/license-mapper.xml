@@ -53,18 +53,15 @@
 		from license l
 		where l.status = 'Y') 
 		<where>
-		<if test='keyword !=null and keyword != ""'>
-			l_name like '%' || #{keyword} || '%'
-		</if>
-		<if test='choice == "first"'>
-		and sysdate BETWEEN start_date and end_date
-		</if>
-		<if test='choice == "second"'>
-		<![CDATA[and sysdate < start_date]]>
-		</if>
-		<if test='all != null and all !=""'>
-		<![CDATA[and end_date >= sysdate]]>
-		</if>
+			<if test='keyword !=null and keyword != ""'>
+				l_name like '%' || #{keyword} || '%'
+			</if>
+			<if test='choice == "first"'>
+			and sysdate BETWEEN start_date and end_date
+			</if>
+			<if test='all != null and all !=""'>
+			<![CDATA[and end_date >= sysdate]]>
+			</if>
 		</where>
 		order by end_date
 	</select>

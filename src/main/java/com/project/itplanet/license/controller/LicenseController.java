@@ -54,7 +54,6 @@ public class LicenseController {
 			
 		}
 		
-		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		ArrayList<License> calendarList = lService.selectList(map);
 		map.put("sort", sort);
@@ -67,13 +66,12 @@ public class LicenseController {
 		
 		int listCount = lService.getListCount(map);
 		
+		
 		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
 		
 		map.put("pi", pi);
 		map.put("choice", "first");
 		ArrayList<License> firstList = lService.selectList(map);
-		map.put("choice", "second");
-		ArrayList<License> secondList = lService.selectList(map);
 		map.put("keyword", keyword);
 		
 		
@@ -84,17 +82,21 @@ public class LicenseController {
 		}
 		map.put("all", "all");
 		ArrayList<License> allList 	= lService.selectList(map);
-		System.out.println("allList.size() : " + allList.size());
 		
-		if(firstList != null && secondList != null) {
-			mv.addObject("calendarList", calendarList);
-			mv.addObject("allList", allList);
-			mv.addObject("firstList", firstList);
-			mv.addObject("secondList", secondList);
-			mv.addObject("pi", pi);
+		HashMap<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("all", "all");
+		ArrayList<License> totalList = lService.selectList(map2);
+		System.out.println("totalList.size() : " + totalList.size());
+		
+		if(firstList != null && totalList != null) {
+			mv.addObject("calendarList", calendarList); // 디비에 있는 모든 자격증 데이터
+			mv.addObject("allList", allList); // 페이징 리스트
+			mv.addObject("firstList", firstList); // 접수 중 리스트
+			mv.addObject("totalList", totalList); // 접수 마감 안된 리스트
+			/* mv.addObject("pi", pi); */
 			mv.addObject("keyword", keyword);
 			mv.setViewName("license/licenseMainView");
-			System.out.println("list size : " + allList.size());
+			System.out.println("firstlist size : " + firstList.size());
 		} else {
 			throw new LicenseException("게시판 조회에 실패했습니다.");
 		}

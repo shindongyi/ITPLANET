@@ -41,6 +41,7 @@
 	<!-- start 상단 lcs_date_list -->
 		<div id="lcs_date_list">
 			<div id="calendar"></div>
+			<div style="flex-direction: column; display: inline-block; position: absolute; left: 50%;">
 		 	<div class="lcs_date nowList">
 				<h2>접수 중인 시험 안내</h2>
 				<hr>
@@ -87,6 +88,7 @@
 					<button class="scrapBtn lcs_scr lcs_txt" title="스크랩하기">스크랩하기</button>
 					<button class="lcs_btn lcs_txt">접수하기</button>
 				</div>
+			</div>
 			</div>
 		</div>
 		<hr>
@@ -255,6 +257,12 @@ document.addEventListener('DOMContentLoaded', function() {
       drop: function(info){
     	  if(checkbox.check){
     		  info.draggedEl.parentNode.removeChild(info.draggedEl);
+    	  }
+      },
+      eventLimit: true,
+      views: {
+    	  dayGrid: {
+    		  eventLimit: 3
     	  }
       },
       // 이벤트 추가
@@ -458,9 +466,10 @@ $(document).ready(function(){
 // 스크랩 확인
 $(document).on('click', '.scrapBtn', function(e){
 	var loginUser = "${loginUser}";
-	var dateCk = false;
+	var dateCk = false; // 마감된 공고이면 false 
 	if($(this).prop("tagName") != 'A'){ // 스크랩을 상단에서 할 경우(접수 마감된 공고 클릭 분류하기 위해)
-		<c:forEach var="i" items="${allList}">
+		console.log("eventId : " + eventId);
+		<c:forEach var="i" items="${totalList}">
 			if("${i.l_id}" == eventId){
 				dateCk = true;
 			}
@@ -468,6 +477,7 @@ $(document).on('click', '.scrapBtn', function(e){
 	} else {
 		dateCk = true;
 		eventId = $(this).closest('.license').find('.lId').val();
+		console.log("eventId : " + eventId);
 	}
 	if(loginUser != null && loginUser!=""){
 		if(!dateCk){
@@ -483,7 +493,7 @@ $(document).on('click', '.scrapBtn', function(e){
 		}
 	}
 });
-
+console.log("123 : " + "${fn:length(totalList)}");
 // 스크랩 하기
 function scrap(){
 	$.ajax({

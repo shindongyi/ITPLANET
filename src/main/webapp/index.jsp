@@ -348,7 +348,7 @@ dd {
 					<c:out value="로그인 계정 없음"/>
 				</h3> --%>
 			</c:if>
-			<c:if test="${ !empty sessionScope.loginUser }">
+			<c:if test="${ !empty sessionScope.loginUser && loginUser.userName != '관리자'}">
 			<dd>
 				<a style="font-size:12px;"> ${ loginUser.userName }님 환영합니다.</a>
 			</dd>
@@ -357,6 +357,22 @@ dd {
 			</dd>
 			<dd>
 				<a href='logout.do'>로그아웃</a>
+			</dd>			
+			</c:if>
+			
+			<!-- 관리자 로그인시 -->
+			<c:if test="${loginUser.userName == '관리자' }">
+			<dd>
+				<a style="font-size:12px;"> ${ loginUser.userName }님 환영합니다.</a>
+			</dd>
+			<dd class="arw">
+				<a href='mypage.do'>마이페이지</a>
+			</dd>
+			<dd>
+				<a href='logout.do'>로그아웃</a>
+			</dd>
+			<dd>
+				<a href='admin.do'>관리자</a>
 			</dd>
 			</c:if>
 

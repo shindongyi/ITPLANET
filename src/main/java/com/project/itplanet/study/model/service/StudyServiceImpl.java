@@ -121,5 +121,10 @@ public class StudyServiceImpl implements StudyService{
 		return sDAO.selectComp();
 	}
 
+	@Override
+	public ArrayList<Study> mainStudy() {
+		return sDAO.mainStudy();
+	}
+
 
 }

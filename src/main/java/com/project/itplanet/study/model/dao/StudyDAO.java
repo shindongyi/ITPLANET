@@ -108,6 +108,10 @@ public class StudyDAO {
 		return (ArrayList)sqlSession.selectList("studyMapper.getCompetition");
 	}
 
+	public ArrayList<Study> mainStudy() {
+		return (ArrayList)sqlSession.selectList("studyMapper.mainStudy");
+	}
+
 
 
 }

@@ -2,10 +2,13 @@ package com.project.itplanet.competition.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -248,6 +251,43 @@ public class CompetitionController {
 		}else {
 			throw new CompetitionException("댓글 작성에 실패하였습니다.");
 		}
+	}
+	
+	@RequestMapping("mainComp.do")
+	public void mainComp(HttpServletResponse response) throws JsonIOException, IOException {
+		ArrayList<Competition> list = cService.mainComp();
+		
+		for(Competition c : list) {
+			c.setcTitle(URLEncoder.encode(c.getcTitle(), "utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("MM-dd").create();
+		gson.toJson(list, response.getWriter());
+	}
+	
+	@RequestMapping("mainCompNow.do")
+	public void mainCompNow(HttpServletResponse response) throws JsonIOException, IOException {
+		ArrayList<Competition> list = cService.mainCompNow();
+		ArrayList<Cattachment> cList = cService.allCattachment();
+		ArrayList<Competition> topComp = cService.topComp();
+		
+		for(Competition c : list) {
+			c.setcTitle(URLEncoder.encode(c.getcTitle(), "utf-8"));
+			c.setcAddress(URLEncoder.encode(c.getcAddress(), "utf-8"));
+		}
+		
+		for(Competition c : topComp) {
+			c.setcTitle(URLEncoder.encode(c.getcTitle(), "utf-8"));
+			c.setcAddress(URLEncoder.encode(c.getcAddress(), "utf-8"));
+		}
+		
+		Map<String, ArrayList> map = new HashMap<String, ArrayList>();
+		map.put("competition", list);
+		map.put("cattachment", cList);
+		map.put("topComp", topComp);
+		
+		Gson gson = new GsonBuilder().setDateFormat("MM-dd").create();
+		gson.toJson(map, response.getWriter());
 	}
 
 }

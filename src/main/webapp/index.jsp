@@ -550,13 +550,13 @@ dd {
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  지 금 딱  이 모 임 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 <section class="section_now_event">
-            <div class="title_area" style="margin-top: 2%; margin-bottom: 2%;">
-                <h1 class="title">지금 딱! <span class="text_normal">이 모임</span></h1>
+            <div class="title_area" style="margin-top: 2%; margin-bottom: 2%; text-align: center;">
+                <h1 class="title">지금 딱! <span class="text_normal">이 공모전</span></h1>
             </div>
             <div class="content_wrap wide_max_width_area">
                 <div class="area_top">
-                    <ul class="event_list">
-                                                                                                    <li>
+                    <ul class="event_list" id="mainCompNow">
+                      <li>
                             <article class="event_area event_card">
                                 <a href="/cs/a/45537?url=%2Fevent%2F183913" target="_blank" title="KT S/W Developer Conference 2019" data-c="hotissue1">
                                     <!-- 이미지 -->
@@ -718,216 +718,18 @@ dd {
                                 </a>
                             </article>
                         </li>
-                                                                    </ul>
+                    </ul>
 
                     <!-- 최소1구좌, 최대3구좌 -->
                     <div class="banner_now_top owl-carousel owl-loaded owl-drag">
-                                                                                                    
-                                                                            
-                                                                            
-                                                                    <div class="owl-stage-outer"><div class="owl-stage" style="transition: all 0s ease 0s; width: 3150px; transform: translate3d(-900px, 0px, 0px);"><div class="owl-item cloned" style="width: 450px;"><a href="/cs/a/46707?url=%2Fevent%2F190397" target="_blank" title="2019 마이데이터 액팅 해커톤" data-c="559c659b2">
-                            <img src="https://cfile1.onoffmix.com/attach/aqg3DoKB7UbWENAz9PGvTLufjxJZlO0k" alt="2019 마이데이터 액팅 해커톤">
-                        </a></div><div class="owl-item cloned" style="width: 450px;"><a href="/cs/a/46752?url=%2Fevent%2F191266" target="_blank" title="2019년 과학기술인 협동조합 설립(창업)지원교육(8월)" data-c="559c659b3">
-                            <img src="https://cfile1.onoffmix.com/attach/XpJM6qhunG9jKEZcA13HC5DfgYBRdb8N" alt="2019년 과학기술인 협동조합 설립(창업)지원교육(8월)">
-                        </a></div><div class="owl-item active center" style="width: 450px;"><a href="/cs/a/46258?url=%2Fevent%2F189742" target="_blank" title="4개항만공사 창업 아이디어 발굴 해커톤" data-c="559c659b1">
-                            <img src="https://cfile1.onoffmix.com/attach/UgEBMzkp9AqNOP4HWxfLovJZYTmIKhld" alt="4개항만공사 창업 아이디어 발굴 해커톤">
-                        </a></div><div class="owl-item" style="width: 450px;"><a href="/cs/a/46707?url=%2Fevent%2F190397" target="_blank" title="2019 마이데이터 액팅 해커톤" data-c="559c659b2">
-                            <img src="https://cfile1.onoffmix.com/attach/aqg3DoKB7UbWENAz9PGvTLufjxJZlO0k" alt="2019 마이데이터 액팅 해커톤">
-                        </a></div><div class="owl-item" style="width: 450px;"><a href="/cs/a/46752?url=%2Fevent%2F191266" target="_blank" title="2019년 과학기술인 협동조합 설립(창업)지원교육(8월)" data-c="559c659b3">
-                            <img src="https://cfile1.onoffmix.com/attach/XpJM6qhunG9jKEZcA13HC5DfgYBRdb8N" alt="2019년 과학기술인 협동조합 설립(창업)지원교육(8월)">
-                        </a></div><div class="owl-item cloned" style="width: 450px;"><a href="/cs/a/46258?url=%2Fevent%2F189742" target="_blank" title="4개항만공사 창업 아이디어 발굴 해커톤" data-c="559c659b1">
-                            <img src="https://cfile1.onoffmix.com/attach/UgEBMzkp9AqNOP4HWxfLovJZYTmIKhld" alt="4개항만공사 창업 아이디어 발굴 해커톤">
-                        </a></div><div class="owl-item cloned" style="width: 450px;"><a href="/cs/a/46707?url=%2Fevent%2F190397" target="_blank" title="2019 마이데이터 액팅 해커톤" data-c="559c659b2">
-                            <img src="https://cfile1.onoffmix.com/attach/aqg3DoKB7UbWENAz9PGvTLufjxJZlO0k" alt="2019 마이데이터 액팅 해커톤">
-                        </a></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
+                       <div class="owl-stage-outer">
+                       	<div id="topCompe" class="owl-stage" style="transition: all 0s ease 0s; width: 3150px; transform: translate3d(-900px, 0px, 0px);">
+                        	
+                        </div>
+                       </div>
                 </div>
-                <div class="area_bottom">
-                    <ul class="event_list">
-                                                                                        <li>
-                            <article class="event_area event_card">
-                                <a href="/cs/a/46845?url=%2Fevent%2F191274" target="_blank" title="AI HIDDEN STAR 2019 DEMO DAY &amp; TALK" data-c="f7ae469a1">
-                                    <!-- 이미지 -->
-                                    <div class="event_thumbnail">
-                                        <img src="https://cfile1.onoffmix.com/images/event/191274/s">
-                                    </div>
-
-                                    <div class="event_info_area">
-                                        <!-- 타이틀 -->
-                                        <div class="title_area">
-                                            <h5 class="title ellipsis">
-                                            AI HIDDEN STAR 2019 DEMO DAY &amp; TALK</h5>
-                                        </div>
-                                        <!-- 정보 -->
-                                        <div class="event_info">
-                                            <div class="type_info">
-                                                <span class="payment_type free">
-                                                    무료    
-                                                </span>
-                                            </div>
-                                            <div class="date">9.4 (수)</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
-                                                                <li>
-                            <article class="event_area event_card">
-                                <a href="/cs/a/46782?url=%2Fevent%2F191053" target="_blank" title="[무료]Unity활용한 체감형 VR/AR 개발자로 취업하기위한 무료설명회! VR/AR체감형 콘텐츠 개발자 양성과정" data-c="f7ae469a2">
-                                    <!-- 이미지 -->
-                                    <div class="event_thumbnail">
-                                        <img src="https://cfile1.onoffmix.com/images/event/191053/s">
-                                    </div>
-
-                                    <div class="event_info_area">
-                                        <!-- 타이틀 -->
-                                        <div class="title_area">
-                                            <h5 class="title ellipsis">
-                                            [무료]Unity활용한 체감형 VR/AR 개발자로 취업하기위한 무료설...</h5>
-                                        </div>
-                                        <!-- 정보 -->
-                                        <div class="event_info">
-                                            <div class="type_info">
-                                                <span class="payment_type free">
-                                                    무료    
-                                                </span>
-                                            </div>
-                                            <div class="date">8.23 (금)</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
-                                                                <li>
-                            <article class="event_area event_card">
-                                <a href="/cs/a/46626?url=%2Fevent%2F191017" target="_blank" title="서울시산학연협력포럼 컨퍼런스" data-c="f7ae469a3">
-                                    <!-- 이미지 -->
-                                    <div class="event_thumbnail">
-                                        <img src="https://cfile1.onoffmix.com/images/event/191017/s">
-                                    </div>
-
-                                    <div class="event_info_area">
-                                        <!-- 타이틀 -->
-                                        <div class="title_area">
-                                            <h5 class="title ellipsis">
-                                            서울시산학연협력포럼 컨퍼런스</h5>
-                                        </div>
-                                        <!-- 정보 -->
-                                        <div class="event_info">
-                                            <div class="type_info">
-                                                <span class="payment_type free">
-                                                    무료    
-                                                </span>
-                                            </div>
-                                            <div class="date">8.28 (수)</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
-                                                                <li>
-                            <article class="event_area event_card">
-                                <a href="/cs/a/46719?url=%2Fevent%2F191068" target="_blank" title="(9월) 월간 강연콘서트 <김창옥TV SHOW>" data-c="f7ae469a4">
-                                    <!-- 이미지 -->
-                                    <div class="event_thumbnail">
-                                        <img src="https://cfile1.onoffmix.com/images/event/191068/s">
-                                    </div>
-
-                                    <div class="event_info_area">
-                                        <!-- 타이틀 -->
-                                        <div class="title_area">
-                                            <h5 class="title ellipsis">
-                                            (9월) 월간 강연콘서트 &lt;김창옥TV SHOW&gt;</h5>
-                                        </div>
-                                        <!-- 정보 -->
-                                        <div class="event_info">
-                                            <div class="type_info">
-                                                <span class="payment_type pay">
-                                                    유료    
-                                                </span>
-                                            </div>
-                                            <div class="date">9.22 (일)</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
-                                                                <li>
-                            <article class="event_area event_card">
-                                <a href="/cs/a/46157?url=%2Fevent%2F189504" target="_blank" title="[실업자국비지원] 입문자도 할 수 있는 파이썬 기반 빅데이터분석" data-c="f7ae469a5">
-                                    <!-- 이미지 -->
-                                    <div class="event_thumbnail">
-                                        <img src="https://cfile1.onoffmix.com/images/event/189504/s">
-                                    </div>
-
-                                    <div class="event_info_area">
-                                        <!-- 타이틀 -->
-                                        <div class="title_area">
-                                            <h5 class="title ellipsis">
-                                            [실업자국비지원] 입문자도 할 수 있는 파이썬 기반 빅데이터분석</h5>
-                                        </div>
-                                        <!-- 정보 -->
-                                        <div class="event_info">
-                                            <div class="type_info">
-                                                <span class="payment_type free">
-                                                    무료    
-                                                </span>
-                                            </div>
-                                            <div class="date">9.9 (월) ~ 3.10 (화)</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
-                                                                <li>
-                            <article class="event_area event_card">
-                                <a href="/cs/a/46462?url=%2Fevent%2F190305" target="_blank" title="ICT콕 해커톤 &quot;CoC-Hackathon&quot;" data-c="f7ae469a6">
-                                    <!-- 이미지 -->
-                                    <div class="event_thumbnail">
-                                        <img src="https://cfile1.onoffmix.com/images/event/190305/s">
-                                    </div>
-
-                                    <div class="event_info_area">
-                                        <!-- 타이틀 -->
-                                        <div class="title_area">
-                                            <h5 class="title ellipsis">
-                                            ICT콕 해커톤 "CoC-Hackathon"</h5>
-                                        </div>
-                                        <!-- 정보 -->
-                                        <div class="event_info">
-                                            <div class="type_info">
-                                                <span class="payment_type free">
-                                                    무료    
-                                                </span>
-                                            </div>
-                                            <div class="date">8.30 (금) ~ 8.31 (토)</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
-                                                                </ul>
-
-                    <!-- 최소1구좌, 최대3구좌 -->
-                    <div class="banner_now_bottom owl-carousel owl-loaded owl-drag">
-                                                                                                    
-                                                                            
-                                                                            
-                                                                    <div class="owl-stage-outer"><div class="owl-stage" style="transition: all 0s ease 0s; width: 3150px; transform: translate3d(-900px, 0px, 0px);"><div class="owl-item cloned" style="width: 450px;"><a href="/cs/a/46777?url=%2Fevent%2F190688" target="_blank" title="[중소벤처부 장관과의 만남]제1회 중소벤처기업 미래포럼[미래산업 분야]" data-c="adfab8f92">
-                            <img src="https://cfile1.onoffmix.com/attach/Jw4j3Tld6B0RHuNZ5DyfEspzMU8AgLtm" alt="[중소벤처부 장관과의 만남]제1회 중소벤처기업 미래포럼[미래산업 분야]">
-                        </a></div><div class="owl-item cloned" style="width: 450px;"><a href="/cs/a/46680?url=%2Fevent%2F191268" target="_blank" title="언리얼 Realtime Visualization 건축/영상 콘텐츠 제작과정" data-c="adfab8f93">
-                            <img src="https://cfile1.onoffmix.com/attach/GrXfLTwkim3Wy0lA6UZozR5COgPIF24v" alt="언리얼 Realtime Visualization 건축/영상 콘텐츠 제작과정">
-                        </a></div><div class="owl-item active center" style="width: 450px;"><a href="/cs/a/46762?url=%2Fevent%2F191265" target="_blank" title="스마트 스토어 교육" data-c="adfab8f91">
-                            <img src="https://cfile1.onoffmix.com/attach/6nre1z8JfOa7jhmCLioQMbS9sRkDw3xY" alt="스마트 스토어 교육">
-                        </a></div><div class="owl-item" style="width: 450px;"><a href="/cs/a/46777?url=%2Fevent%2F190688" target="_blank" title="[중소벤처부 장관과의 만남]제1회 중소벤처기업 미래포럼[미래산업 분야]" data-c="adfab8f92">
-                            <img src="https://cfile1.onoffmix.com/attach/Jw4j3Tld6B0RHuNZ5DyfEspzMU8AgLtm" alt="[중소벤처부 장관과의 만남]제1회 중소벤처기업 미래포럼[미래산업 분야]">
-                        </a></div><div class="owl-item" style="width: 450px;"><a href="/cs/a/46680?url=%2Fevent%2F191268" target="_blank" title="언리얼 Realtime Visualization 건축/영상 콘텐츠 제작과정" data-c="adfab8f93">
-                            <img src="https://cfile1.onoffmix.com/attach/GrXfLTwkim3Wy0lA6UZozR5COgPIF24v" alt="언리얼 Realtime Visualization 건축/영상 콘텐츠 제작과정">
-                        </a></div><div class="owl-item cloned" style="width: 450px;"><a href="/cs/a/46762?url=%2Fevent%2F191265" target="_blank" title="스마트 스토어 교육" data-c="adfab8f91">
-                            <img src="https://cfile1.onoffmix.com/attach/6nre1z8JfOa7jhmCLioQMbS9sRkDw3xY" alt="스마트 스토어 교육">
-                        </a></div><div class="owl-item cloned" style="width: 450px;"><a href="/cs/a/46777?url=%2Fevent%2F190688" target="_blank" title="[중소벤처부 장관과의 만남]제1회 중소벤처기업 미래포럼[미래산업 분야]" data-c="adfab8f92">
-                            <img src="https://cfile1.onoffmix.com/attach/Jw4j3Tld6B0RHuNZ5DyfEspzMU8AgLtm" alt="[중소벤처부 장관과의 만남]제1회 중소벤처기업 미래포럼[미래산업 분야]">
-                        </a></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
-                </div>
+                
+            </div>
             </div>
         </section>
 
@@ -939,23 +741,8 @@ dd {
 		<h2>공모전</h2>
 
 		<div class="lists">
-			<div class="list" data-category2="0">
-				<a class="item" href="/study/view?id=10174"><h3>강남역] 영어회화
-						스터디 모집중입니다 😍</h3>
-					<p class="info">
-						<span>오늘 11:27</span><span class="viewcount">2</span><span
-							class="commentcount">0</span>
-					</p></a><a class="item" href="/study/view?id=10154"><h3>신촌/홍대 토익
-						목표 900점 이하 월5만 그룹</h3>
-					<p class="info">
-						<span>08/20</span><span class="viewcount">149</span><span
-							class="commentcount">0</span>
-					</p></a><a class="item" href="/study/view?id=10146"><h3>영어회화 스터디
-						참가하고 싶습니다.ㅣ</h3>
-					<p class="info">
-						<span>08/20</span><span class="viewcount">133</span><span
-							class="commentcount">0</span>
-					</p></a><a class="more" href="/study/list?category1=1&amp;category2=0">공모전 더 보기</a>
+			<div id="mainComp" class="list" data-category2="0">
+				
 			</div>
 		</div>
 		<div class="loading" style="display: none;"></div>
@@ -964,22 +751,8 @@ dd {
 		<h2>스터디</h2>
 
 		<div class="lists">
-			<div class="list" data-category2="0">
-				<a class="item" href="/study/view?id=10165"><h3>이공계 인적성 스터디
-						모집합니다</h3>
-					<p class="info">
-						<span>오늘 09:45</span><span class="viewcount">23</span><span
-							class="commentcount">2</span>
-					</p></a><a class="item" href="/study/view?id=10144"><h3>금융시사스터디 1분
-						인원 충원합니다!</h3>
-					<p class="info">
-						<span>08/20</span><span class="viewcount">73</span><span
-							class="commentcount">0</span>
-					</p></a><a class="item" href="/study/view?id=10136"><h3>대치동 NCS</h3>
-					<p class="info">
-						<span>08/20</span><span class="viewcount">74</span><span
-							class="commentcount">0</span>
-					</p></a><a class="more" href="/study/list?category1=2&amp;category2=0">스터디 더 보기</a>
+			<div id="mainStudy" class="list" data-category2="0">
+				
 			</div>
 		</div>
 		<div class="loading" style="display: none;"></div>
@@ -1010,30 +783,11 @@ dd {
 		<div class="loading" style="display: none;"></div>
 	</div>
 	<div class="section" data-category1="4">
-		<h2>코딩 테스트</h2>
+		<h2>자격증</h2>
 
 		<div class="lists">
-			<div class="list" data-category2="0">
-				<a class="item" href="/study/view?id=10173">
-					<h3>안산 중앙동 자율공부</h3>
-					<p class="info">
-						<span>오늘 11:12</span>
-						<span class="viewcount">8</span>
-						<span class="commentcount">1</span>
-					</p>
-				</a>
-				
-				<a class="item" href="/study/view?id=10172">
-					<h3>(수원 용인 성남)	인공지능 공부 같이 하실분 기초부터</h3>
-					<p class="info">
-						<span>오늘 11:07</span><span class="viewcount">11</span><span
-							class="commentcount">0</span>
-					</p></a><a class="item" href="/study/view?id=10171"><h3>따릉이 같이 타실
-						분</h3>
-					<p class="info">
-						<span>오늘 11:00</span><span class="viewcount">32</span><span
-							class="commentcount">2</span>
-					</p></a><a class="more" href="/study/list?category1=4&amp;category2=0">코딩 테스트 더 보기</a>
+			<div id="mainLicense" class="list" data-category2="0">
+
 			</div>
 		</div>
 		<div class="loading" style="display: none;"></div>
@@ -1094,6 +848,225 @@ dd {
 </script>
 
 <!-- 333333333333333333333333333333333333 끝 /CSS 공모전 / 스터디 / 채용공고 / 코딩테스트 4개 같이 있는 부분 CSS파일명 : asdf.css @@@@@@@@@@@@@@@@@@@@@@@@33333333333333333333333333 -->
+<script>
+	$(document).ready(function(){
+		$.ajax({
+			url:"mainStudy.do",
+			dataType: "json",
+			success: function(data){
+				$mainStudy = $("#mainStudy");
+				$mainStudy.html("");
+				
+				var $a;
+				var $h3;
+				var $p;
+				var $span1;
+				var $span2;
+				var $span3;
+				var $aMore;
+				var logUser = '${loginUser}';
+					
+				if(data.length > 0){
+					if(logUser != ''){
+						for(var i in data){
+							$a = $("<a class='item'>").attr('href',  'studyDetail.do?sId='+ data[i].sId);
+							$h3 = $("<h3>").text(decodeURIComponent(data[i].sTitle.replace(/\+/g," ")));
+							$p = $("<p class='info'>");
+							$span1 = $("<span>").text(data[i].createDate);
+							$span2 = $("<span class='viewcount'>").text("조회수 : " + data[i].sCount);
+							$span3 = $("<span class='commentcount'>").text(decodeURIComponent(data[i].sCategory.replace(/\+/g," ")) + " - " + decodeURIComponent(data[i].sCaName.replace(/\+/g," ")));
+							
+							$p.append($span1);
+							$p.append($span2);
+							$p.append($span3);
+							$a.append($h3);
+							$a.append($p);
+							$mainStudy.append($a);
+						}
+						$aMore = $("<a class='more' href='studyListView.do'>").text("스터디 더 보기");
+						$mainStudy.append($aMore);
+					}else{
+						for(var i in data){
+							$a = $("<a class='item'>");
+							$h3 = $("<h3>").text(decodeURIComponent(data[i].sTitle.replace(/\+/g," ")));
+							$p = $("<p class='info'>");
+							$span1 = $("<span>").text(data[i].createDate);
+							$span2 = $("<span class='viewcount'>").text("조회수 : " + data[i].sCount);
+							$span3 = $("<span class='commentcount'>").text(decodeURIComponent(data[i].sCategory.replace(/\+/g," ")) + " - " + decodeURIComponent(data[i].sCaName.replace(/\+/g," ")));
+							
+							$p.append($span1);
+							$p.append($span2);
+							$p.append($span3);
+							$a.append($h3);
+							$a.append($p);
+							$mainStudy.append($a);
+						}
+						$aMore = $("<a class='more' href='studyListView.do'>").text("스터디 더 보기");
+						$mainStudy.append($aMore);
+					}
+				}else{
+					$h3 = $("<h3>").text("등록된 스터디가 없습니다.");
+					
+					$mainStudy.append($h3);
+				}
+				
+			}
+		});
+		
+		$.ajax({
+			url:"mainComp.do",
+			dataType: "json",
+			success: function(data){
+				$mainComp = $("#mainComp");
+				$mainComp.html("");
+				
+				var $aComp;
+				var $h3Comp;
+				var $pComp;
+				var $span1Comp;
+				var $span2Comp;
+				var $aMoreComp;
+				
+				if(data.length > 0){
+					for(var i in data){
+						$aComp = $("<a class='item'>").attr('href', 'competitionDetail.do?cId='+ data[i].cId);
+						$h3Comp = $("<h3>").text(decodeURIComponent(data[i].cTitle.replace(/\+/g," ")));
+						$pComp = $("<p class='info'>");
+						$span1Comp = $("<span>").text(data[i].cStartDate + " ~ " + data[i].cDueDate);
+						$span2Comp = $("<span class='viewcount'>").text("조회수 : " + data[i].cCount);
+						
+						$pComp.append($span1Comp);
+						$pComp.append($span2Comp);
+						$aComp.append($h3Comp);
+						$aComp.append($pComp);
+						$mainComp.append($aComp);
+					}
+					$aMoreComp = $("<a class='more' href='competitionView.do'>").text("공모전 더 보기");
+					$mainComp.append($aMoreComp);
+				}else{
+					$h3Comp = $("<h3>").text("등록된 공모전이 없습니다.");
+					$mainComp.append($h3Comp);
+				}
+			}
+			
+		});
+		
+		$.ajax({
+			url:"mainLicense.do",
+			dataType:"json",
+			success:function(data){
+				$mainLicense = $("#mainLicense");
+				$mainLicense.html("");
+				
+				var $a;
+				var $h3;
+				var $p;
+				var $span1;
+				var $span2;
+				var $aMore;
+				
+				if(data.length > 0){
+					for(var i in data){
+						$a = $("<a class='item'>").attr('href', 'lcsView.do');
+						$h3 = $("<h3>").text(decodeURIComponent(data[i].l_name.replace(/\+/g," ")));
+						$p = $("<p class='info'>");
+						$span1 = $("<span>").text(data[i].start_date + " - " + data[i].end_date);
+						$span2 = $("<span class='viewcount'>").text(decodeURIComponent(data[i].l_address.replace(/\+/g," ")));
+						
+						$p.append($span1);
+						$p.append($span2);
+						$a.append($h3);
+						$a.append($p);
+						$mainLicense.append($a);
+					}
+					
+					$aMore = $("<a class='more' href='lcsView.do'>").text("자격증 더 보기");
+					$mainLicense.append($aMore);
+				}else{
+					$h3 = $("<h3>").text("등록된 자격증이 없습니다.");
+					$mainLicense.append($h3);
+				}
+				
+			}
+		});
+		
+		$.ajax({
+			url: "mainCompNow.do",
+			dataType: "json",
+			success: function(data){
+				$topCompe = $('#topCompe');
+				$topCompe.html("");
+				
+				$mainCompNow = $('#mainCompNow');
+				$mainCompNo2.html("");
+				
+	        	var $topdiv=$('<div class="owl-item active center" style="width: 450px;">');
+	        	var $topa = $('<a href="/cs/a/46258?url=%2Fevent%2F189742" target="_blank" title="4개항만공사 창업 아이디어 발굴 해커톤" data-c="559c659b1">');
+	        	var $topImg = $('<img src="https://cfile1.onoffmix.com/attach/UgEBMzkp9AqNOP4HWxfLovJZYTmIKhld" alt="4개항만공사 창업 아이디어 발굴 해커톤">');
+	        	var $topdiv2=$('<div class="owl-item active center" style="width: 450px;">');
+	        	var $topa2 = $('<a href="/cs/a/46258?url=%2Fevent%2F189742" target="_blank" title="4개항만공사 창업 아이디어 발굴 해커톤" data-c="559c659b1">');
+	        	var $topImg2 = $('<img src="https://cfile1.onoffmix.com/attach/UgEBMzkp9AqNOP4HWxfLovJZYTmIKhld" alt="4개항만공사 창업 아이디어 발굴 해커톤">');
+	        	
+	        	$topa.append($topImg);
+	        	$topdiv.append($topa);
+	        	$topa2.append($topImg2);
+	        	$topdiv2.append($topa2);
+	        	$topCompe.append($topdiv);
+	        	$topCompe.append($topdiv2);
+	        	
+	        	var $topdiv3 = $('<div class="owl-item active center" style="width: 450px;">');
+	        	var $topa3;
+	        	var $topImg3;
+	        	
+	        	if(data.topComp.length > 0){
+	        		
+	        		$topa3 = $('<a>').attr('title', decodeURIComponent(data.topComp[0].cTitle.replace(/\+/g," ")));
+	        		for(var i in data.cattachment){
+	        			if(data.cattachment[i].cId == data.topComp[0].cId){
+	        				$topImg3 = $('<img>').attr('src', '${ contextPath }/resources/compeloadFiles/' + data.cattachment[i].changeName).attr('title', decodeURIComponent(data.topComp[0].cTitle.replace(/\+/g," ")));
+	        			}
+	        		}
+	        		$topa3.append($topImg3);
+	        		$topdiv3.append($topa3);
+	        		$topCompe.append($topdiv3);
+	        	}
+	        	
+	        	var $li;
+	        	var $article;
+	        	var $a;
+	        	var $divImg;
+	        	var $img;
+	        	var $divContent;
+	        	var $divTitle;
+	        	var $h5Title;
+	        	var $divInfo;
+	        	var $divDate;
+	        	var $spanDate;
+	        	
+	        	if(data.competition.length > 0){
+	        		for(var i in data.competition){
+	        			$li = $('<li>');
+	        			$article = $('<article class="event_area event_card">');
+	        			$a = $('<a>').attr('href', 'competitionDetail.do?cId='+ data.competition[i].cId);
+	        			$divImg = $('<div class="event_thumbnail">');
+	        			for(var j in data.cattachment){
+		        			if(data.cattachment[j].cId == data.competition[i].cId){
+		        				$img = $('<img>').attr('src', '${ contextPath }/resources/compeloadFiles/' + data.cattachment[i].changeName);
+		        			}
+		        		}
+	        			$divContent = $('<div class="event_info_area">');
+	        			$divTitle = $('<div class="title_area">');
+	        			$h5Title = $('<h5 class="title ellipsis">').text(decodeURIComponent(data.competition[i].cTitle.replace(/\+/g," ")));
+	        			$divInfo = $('<div class="event_info">');
+	        			$divDate = $('<div class="type_info">');
+	        			$spanDate = $('<span class="payment_type free">').text()
+	        		}
+	        	}
+			}
+		});
+	});
+</script>
+
 
 <!-- 푸터  -->
  <%@ include file="/WEB-INF/views/common/footer.jsp" %>	    

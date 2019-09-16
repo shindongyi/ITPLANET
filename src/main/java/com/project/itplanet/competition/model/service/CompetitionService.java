@@ -39,4 +39,10 @@ public interface CompetitionService {
 
 	int addCompetitionReply(CompetitionReply r);
 
+	ArrayList<Competition> mainComp();
+
+	ArrayList<Competition> mainCompNow();
+
+	ArrayList<Competition> topComp();
+
 }

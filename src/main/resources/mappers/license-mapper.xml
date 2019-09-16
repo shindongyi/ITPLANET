@@ -96,4 +96,30 @@
 		default, #{userId})
 	</insert>
 	
+	<resultMap type="License" id="lcsResultSet2">
+		<id property="l_id" column="l_id"/>
+		<result property="l_name" column="l_name"/>
+		<result property="l_round" column="l_round"/>
+		<result property="start_date" column="start_date"/>
+		<result property="end_date" column="end_date"/>
+		<result property="results" column="results"/>
+		<result property="l_address" column="l_address"/>
+		<result property="l_count" column="l_count"/>
+		<result property="reg_date" column="reg_date"/>
+		<result property="modify_date" column="modify_date"/>
+		<result property="status" column="status"/>
+		<result property="user_Id" column="user_id"/>
+	</resultMap>
+	
+	<select id="mainLicense" resultMap="lcsResultSet2">
+		<![CDATA[
+			select X.*
+			from(select *
+					from license
+					where start_date >= sysdate
+					order by start_date) X
+			where rownum <=3
+		]]>
+	</select>
+	
 </mapper>

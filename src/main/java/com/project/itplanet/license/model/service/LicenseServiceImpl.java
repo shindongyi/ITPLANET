@@ -54,4 +54,9 @@ public class LicenseServiceImpl implements LicenseService{
 		return lDAO.insertLcs(map);
 	}
 
+	@Override
+	public ArrayList<License> mainLicense() {
+		return lDAO.mainLicense();
+	}
+
 }

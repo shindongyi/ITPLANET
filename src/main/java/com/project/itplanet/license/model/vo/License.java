@@ -22,6 +22,23 @@ public class License {
 	public License() {}
 
 	public License(int l_id, String l_name, int l_round, Date start_date, Date end_date, Date results, String l_address,
+			int l_count, Date reg_date, Date modify_date, String status, String user_Id) {
+		super();
+		this.l_id = l_id;
+		this.l_name = l_name;
+		this.l_round = l_round;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		this.results = results;
+		this.l_address = l_address;
+		this.l_count = l_count;
+		this.reg_date = reg_date;
+		this.modify_date = modify_date;
+		this.status = status;
+		this.user_Id = user_Id;
+	}
+
+	public License(int l_id, String l_name, int l_round, Date start_date, Date end_date, Date results, String l_address,
 			int l_count, Date reg_date, Date modify_date, String status, String user_Id,
 			ArrayList<LAttachment> latList) {
 		super();

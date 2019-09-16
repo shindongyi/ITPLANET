@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.competition.model.vo.Cattachment;
 import com.project.itplanet.competition.model.vo.Competition;
+import com.project.itplanet.competition.model.vo.CompetitionReply;
 
 public interface CompetitionService {
 
@@ -33,5 +34,9 @@ public interface CompetitionService {
 	void updateFile(Cattachment ca);
 
 	int updateCompetition(Competition c);
+
+	ArrayList<CompetitionReply> competitionReplyList(int cId);
+
+	int addCompetitionReply(CompetitionReply r);
 
 }

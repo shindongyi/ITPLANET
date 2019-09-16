@@ -145,6 +145,7 @@
 		from studyReply
 		join member using(user_id)
 		where s_id =#{sId}
+		order by sr_id desc
 	</select>
 	
 	<insert id="addReply" parameterType="StudyReply">

@@ -78,4 +78,16 @@ public class CompetitionDAO {
 	public int addCompetitionReply(CompetitionReply r) {
 		return sqlSession.insert("competitionMapper.addCompetitionReply", r);
 	}
+
+	public ArrayList<Competition> mainComp() {
+		return (ArrayList)sqlSession.selectList("competitionMapper.mainComp");
+	}
+
+	public ArrayList<Competition> mainCompNow() {
+		return (ArrayList)sqlSession.selectList("competitionMapper.mainCompNow");
+	}
+
+	public ArrayList<Competition> topComp() {
+		return (ArrayList)sqlSession.selectList("competitionMapper.topComp");
+	}
 }

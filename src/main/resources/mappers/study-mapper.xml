@@ -240,4 +240,17 @@
 		where c_status = 'Y' and c_check='Y' and c_startdate >= sysdate
 	</select>
 	
+	<select id="mainStudy" resultMap="studyResultSet2">
+		<![CDATA[
+		select X.* from(select s_id, s_title, s_member, s_content, s_count, s_category, s_caname, study.create_date as CREATE_DATE, study.modify_date as MODIFY_DATE, study.status as STATUS, nickname, l_name, chat_member
+		from study
+		join member using(user_id)
+		join local on(l_code = s_location)
+		join studychat using(s_id)
+		where study.status = 'Y'
+		order by s_id desc) X
+        where rownum <=3
+        ]]>
+	</select>
+	
 </mapper>

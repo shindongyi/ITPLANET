@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.project.itplanet.common.Pagination;
 import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.license.model.exception.LicenseException;
@@ -218,5 +219,18 @@ public class LicenseController {
 		} else {
 			return "fail";
 		}
+	}
+	
+	@RequestMapping("mainLicense.do")
+	public void mainLicense(HttpServletResponse response) throws JsonIOException, IOException {
+		ArrayList<License> list = lService.mainLicense();
+		
+		for(License l : list) {
+			l.setL_name(URLEncoder.encode(l.getL_name(),"utf-8"));
+			l.setL_address(URLEncoder.encode(l.getL_address(), "utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("MM-dd").create();
+		gson.toJson(list, response.getWriter());
 	}
 }

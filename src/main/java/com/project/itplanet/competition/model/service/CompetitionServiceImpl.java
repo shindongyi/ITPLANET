@@ -90,5 +90,20 @@ public class CompetitionServiceImpl implements CompetitionService{
 	public int addCompetitionReply(CompetitionReply r) {
 		return cDAO.addCompetitionReply(r);
 	}
+
+	@Override
+	public ArrayList<Competition> mainComp() {
+		return cDAO.mainComp();
+	}
+
+	@Override
+	public ArrayList<Competition> mainCompNow() {
+		return cDAO.mainCompNow();
+	}
+
+	@Override
+	public ArrayList<Competition> topComp() {
+		return cDAO.topComp();
+	}
 	
 }

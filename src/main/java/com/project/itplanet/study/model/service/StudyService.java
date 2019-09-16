@@ -51,5 +51,7 @@ public interface StudyService {
 
 	ArrayList<String> selectComp();
 
+	ArrayList<Study> mainStudy();
+
 
 }

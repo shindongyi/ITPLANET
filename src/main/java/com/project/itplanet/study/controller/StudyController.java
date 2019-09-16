@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.project.itplanet.common.Pagination;
 import com.project.itplanet.common.model.vo.Local;
 import com.project.itplanet.common.model.vo.PageInfo;
@@ -294,5 +295,22 @@ public class StudyController {
 		mv.setViewName("study/studyChatRoom");
 		return mv;
 	}
+	
+	@RequestMapping("mainStudy.do")
+	public void mainStudy(HttpServletResponse response) throws JsonIOException, IOException {
+		ArrayList<Study> list = sService.mainStudy();
+		
+		for(Study li : list) {
+			li.setsTitle(URLEncoder.encode(li.getsTitle(), "utf-8"));
+			li.setsCategory(URLEncoder.encode(li.getsCategory(), "utf-8"));
+			li.setsCaName(URLEncoder.encode(li.getsCaName(), "utf-8"));
+			li.setlName(URLEncoder.encode(li.getlName(), "utf-8"));
+			li.setNickName(URLEncoder.encode(li.getNickName(), "utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("MM-dd").create();
+		gson.toJson(list, response.getWriter());
+	}
 
+	
 }

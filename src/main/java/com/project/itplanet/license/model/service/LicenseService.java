@@ -23,4 +23,6 @@ public interface LicenseService {
 
 	int insertLcs(HashMap<String, Object> map);
 
+	ArrayList<License> mainLicense();
+
 }

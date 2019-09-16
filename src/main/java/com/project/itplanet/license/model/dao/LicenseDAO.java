@@ -54,6 +54,10 @@ public class LicenseDAO {
 	public int insertLcs(HashMap<String, Object> map) {
 		return sqlSession.insert("licenseMapper.insertLcs", map);
 	}
+
+	public ArrayList<License> mainLicense() {
+		return (ArrayList)sqlSession.selectList("licenseMapper.mainLicense");
+	}
 	
 
 }

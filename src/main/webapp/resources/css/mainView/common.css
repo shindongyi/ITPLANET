@@ -62,7 +62,6 @@ abbr, acronym{border:0;}
  .header{position:fixed;top:0;left:0;z-index:1000;width:100%;min-width:1230px;margin:0;padding:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;-moz-backface-visibility:hidden;-ms-backface-visibility:hidden;-o-backface-visibility:hidden;-webkit-transform:translateZ(0);transform:translateZ(0);}
 .header .contain{position:relative;z-index:10;max-width:1920px;margin:0 auto;background:#fff;}
 .header .hd_top h1 a img{display:inline-block;width:auto;height:100%;opacity:1;-webkit-transition:opacity 0.3s;transition:opacity 0.3s;}
-.header .hd_top h1 a:before{content:'';display:none;position:absolute;left:0;top:0;width:100%;height:100%;background:url(../images/common/logo_small.png) no-repeat center 0;}
 .header .hd_top{position:relative;width:1004px;height:107px;margin:0 auto;-webkit-transition:height 0.3s;transition:height 0.3s;}
 .header .hd_top h1{display:block;position:absolute;top:29px;left:393px;z-index:2;width:210px;height:49px;-webkit-transition:all 0.3s;transition:all 0.3s;}
 .header .hd_top h1 a{display:block;position:relative;width:100%;height:100%;text-align:center;}

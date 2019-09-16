@@ -97,9 +97,9 @@ public class HireController {
 			jsonObject = (JSONObject) jsonParser.parse(data);
 			
 			jobs = (JSONObject) jsonObject.get("jobs");
-			System.out.println("count :" + jobs.get("count").toString());
-			System.out.println("total :" + jobs.get("total").toString());
-			System.out.println("start :" + jobs.get("start").toString());
+//			System.out.println("count :" + jobs.get("count").toString());
+//			System.out.println("total :" + jobs.get("total").toString());
+//			System.out.println("start :" + jobs.get("start").toString());
 			jsonArray = (JSONArray) jobs.get("job");
 			
 			for(int i = 0; i < jsonArray.size(); i++ ){
@@ -151,7 +151,7 @@ public class HireController {
 		
 		String result = httpConnection(resultURL);
 		ArrayList<HashMap<String, String>> json = method(result);
-		System.out.println(json);
+		// System.out.println(json);
 		
 		for(HashMap<String, String> map : json) {
 			if(map.get("job-type") != null) 

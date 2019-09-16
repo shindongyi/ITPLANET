@@ -50,7 +50,7 @@
 						<span class="lcs_upper_title"><a href="${i.l_address}">${i.l_name} ${firstList[1].l_round}회차</a></span>
 					</c:forEach>
 					<c:if test="${fn:length(firstList) > '2'}">
-						<span class="more" id="more1">more</span>
+						<span class="more">more</span>
 					</c:if>
 				</div>
 				<c:if test="${!empty firstList }">
@@ -335,50 +335,51 @@ document.addEventListener('DOMContentLoaded', function() {
 	  	}
 	  </c:forEach>
 	  
-	  // 관리자일 경우 공고 삭제 이벤트
-	  $('#confirmPopup').show();
-	  $('#deleteBtn').on('click', function(){
-    	  if(confirm("자격증 공고를 삭제하시겠습니까?")){
-    		  $.ajax({
-    	    		 url: "deleteLcs.do",
-    	    		 data:{eventId:eventId},
-    	    		 type: "get",
-    	    		 success:function(data){
-    	    			 if(data == "success"){
-    	    				 alert('공고가 정상적으로 삭제되었습니다.');
-    	    				 location.href= "lcsView.do";
-    	    			 } else{
-    	    				 alert('공고 삭제에 실패하였습니다. 잠시 후 다시 시도해주세요.');
-    	    			 }
-    	    		 }
-    	    	  });  
-    	  }
-		  $('#confirmPopup').hide();
-	  });
-		  
-	 // 취소 버튼 클릭시 
-	$('#cancelBtn').on('click', function(){
-		$('#confirmPopup').hide();
-	});
-	 
-	 // 수정버튼 클릭시
-	$('#updateBtn').on('click', function(e){
-		$('#confirmPopup').hide();
-		$('.insertLcs h2').text('LICENSE UPDATE');
-		$('.insertLcs p').text('자격증 정보를 수정하는 폼입니다.');
-		$('#insertLcsBtn').hide();
-		$('#updateLcsBtn').show();
-		
-		$('#l_name').val(eventTitle);
-		$('#l_round').val(eventRound);
-		$('#start_date').val(eventStart);
-		$('#end_date').val(eventEnd);
-		$('#results').val(eventResults);
-		$('#l_address').val(eventAddress);
-		
-		$('#layerPopup').show();
-	});
+  	  $('#confirmPopup').show();
 }
+// 관리자일 경우 공고 삭제 이벤트
+ $('#deleteBtn').on('click', function(){
+  $('#confirmPopup').hide();
+  var bool = confirm("자격증 공고를 삭제하시겠습니까?");
+  	   if(bool){
+  		  $.ajax({
+  	    		 url: "deleteLcs.do",
+  	    		 data:{eventId:eventId},
+  	    		 type: "get",
+  	    		 success:function(data){
+  	    			 if(data == "success"){
+  	    				 alert('공고가 정상적으로 삭제되었습니다.');
+  	    				 location.href= "lcsView.do";
+  	    			 } else{
+  	    				 alert('공고 삭제에 실패하였습니다. 잠시 후 다시 시도해주세요.');
+  	    			 }
+  	    		 }
+  	    	  });  
+  	  } 
+ });
+ 		  
+ // 취소 버튼 클릭시 
+$('#cancelBtn').on('click', function(){
+	$('#confirmPopup').hide();
+});
+ 
+ // 수정버튼 클릭시
+$('#updateBtn').on('click', function(e){
+	$('#confirmPopup').hide();
+	$('.insertLcs h2').text('LICENSE UPDATE');
+	$('.insertLcs p').text('자격증 정보를 수정하는 폼입니다.');
+	$('#insertLcsBtn').hide();
+	$('#updateLcsBtn').show();
+	
+	$('#l_name').val(eventTitle);
+	$('#l_round').val(eventRound);
+	$('#start_date').val(eventStart);
+	$('#end_date').val(eventEnd);
+	$('#results').val(eventResults);
+	$('#l_address').val(eventAddress);
+	
+	$('#layerPopup').show();
+});
  
 /* 자격증 본문 start */
 // 검색칸 포커스 / 블러에 따른 css
@@ -401,7 +402,7 @@ $(document).ready(function(){
 		var keyword = "${keyword}";
 		var sort = "${sort}";
 		
-		ckUser();
+		ckUser(); // 스크롤시 관리자인지 회원인지 체크
 		
 		if(maxHeight <= currentScroll + 100) {
 			page++;
@@ -468,7 +469,6 @@ $(document).on('click', '.scrapBtn', function(e){
 	var loginUser = "${loginUser}";
 	var dateCk = false; // 마감된 공고이면 false 
 	if($(this).prop("tagName") != 'A'){ // 스크랩을 상단에서 할 경우(접수 마감된 공고 클릭 분류하기 위해)
-		console.log("eventId : " + eventId);
 		<c:forEach var="i" items="${totalList}">
 			if("${i.l_id}" == eventId){
 				dateCk = true;
@@ -477,7 +477,6 @@ $(document).on('click', '.scrapBtn', function(e){
 	} else {
 		dateCk = true;
 		eventId = $(this).closest('.license').find('.lId').val();
-		console.log("eventId : " + eventId);
 	}
 	if(loginUser != null && loginUser!=""){
 		if(!dateCk){
@@ -493,7 +492,7 @@ $(document).on('click', '.scrapBtn', function(e){
 		}
 	}
 });
-console.log("123 : " + "${fn:length(totalList)}");
+
 // 스크랩 하기
 function scrap(){
 	$.ajax({
@@ -523,13 +522,8 @@ $('#searchBar').on('keypress', function(key){
 
 // more 클릭시 해당 리스트만 자격증 리스트에 뿌리기
 $('.more').on('click', function(){
-	var more;
-	if($(this).id == "more1"){
-		more = "first";
-	} else{
-		more = "second";
-	}
-		location.href = "lcsView.do?more="+more;
+	var more = "first";
+	location.href = "lcsView.do?more="+more;
 });
 /* 자격증 본문 end */
 
@@ -556,8 +550,8 @@ $('#insertBtn').on('click', function(){
 });
 
 // 팝업 보이면 스크롤 비활성화
-$(document).on('click', $('#insertBtn'), function(){
-	if($('#layerPopup').is(':visible')){
+$(document).on('click', $('html'), function(){
+	if($('#layerPopup').is(':visible') || $('#confirmPopup').is(':visible')){
 		$('#wrap').on('scroll touchmove mousewheel', function(event) {
 			  event.preventDefault();
 			  event.stopPropagation();
@@ -567,7 +561,7 @@ $(document).on('click', $('#insertBtn'), function(){
 		$('#wrap').off('scroll touchmove mousewheel');
 	}
 });
-
+ 
 // on class가 안달린 부분 클릭시 팝업 hide
 $('#layerPopup').click(function(e){
 	if(!$(e.target).is(".on")){
@@ -626,8 +620,6 @@ $('#insertLcsBtn').on('click', function(){
 	var results = $('#results').val();
 	var l_address = $('#l_address').val();
 	var l_id = eventId;
-	
-	console.log("l_name : " + l_name);
 	
 	$.ajax({
 		url:"insertLcs.do",

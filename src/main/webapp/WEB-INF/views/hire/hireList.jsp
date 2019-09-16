@@ -19,6 +19,10 @@
 
 	<div id="container" class="container-fluid  center-block">
 		
+		<!-- iframe -->
+	   <div class="pageFrame">
+	      <iframe id="pageFrame" name="pageFrame" src="http://www.jobkorea.co.kr/Starter/calendar/sub/week" frameborder="0" width="980px" height="300px" scrolling="auto"></iframe>
+	   </div>
 		
 		
 		<div class="filter">
@@ -84,24 +88,41 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>	    
 	
 	<script type="text/javascript">
-
+		
+		var uri ="https://oapi.saramin.co.kr/job-search?";
+		var key ="access-key=mg233WU8HnG8aF5jrYPTqeBpU7Tr4OpGQtN38PyKptDLgj4ciNwbm";
+		var job_category = "&job_category=4"
+	
 		$(document).ready(function(){
 			// "https://oapi.saramin.co.kr/job-search?access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa&ind_cd=3&start=1&count=50";
-			var uri ="https://oapi.saramin.co.kr/job-search?";
-			var key ="access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa";
-			var ind_cd = "&ind_cd=3";
-			var job_category = "&job_category=4"
-			var start = "&start=1";
-			var count = "&count=100";
+			var sNum = 1;
+			var cNum = 10;
+
+			// var uri ="https://oapi.saramin.co.kr/job-search?";
+			// var key ="access-key=mg233WU8HnG8aF5jrYPTqeBpU7Tr4OpGQtN38PyKptDLgj4ciNwbm";
+			// var job_category = "&job_category=4"
+			var start = "&start=";
+			var count = "&count=";
 			var kewords = "&kewords=";
 			var kewords2 = encodeURI("개발자");
-			
-			
-			var resultURL = uri + key + job_category + start + count;
-			// var resultURL = "https://oapi.saramin.co.kr/job-search?access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa&ind_cd=3&start=1&count=100&kewords=%ea%b0%9c%eb%b0%9c%ec%9e%90";
-		
-			hListView(resultURL);
+		    var resultURL = uri + key + job_category + start + sNum + count + cNum;
+					
+		    hListView(resultURL);
+		    
+		    $(window).on("scroll", function() {
+		    	var maxHeight = $(document).height();
+				var currentScroll = $(window).scrollTop() + $(window).height();
+				
+		    	if (maxHeight <= currentScroll + 100) {			
+		    		sNum++;
+		    		resultURL = uri + key + job_category + start + sNum + count + cNum;
+		    		hListView(resultURL);
+		    	}
+		    });
+					
+				
 		});
+			
 	
 		function hListView(resultURL){
 			$.ajax({
@@ -111,7 +132,7 @@
 				dataType: "json",
 				success: function(data){
 					$hListBox = $("#hListBox");
-					$hListBox.html("");
+					// $hListBox.html("");
 
 					var $hr;
 					var $item;
@@ -131,13 +152,13 @@
 					var $hScrap;
 					var $desc;
 					var $info;
-					console.log(data);
+					 console.log(data);
 					if(data.length > 0) {
 						for(var i in data){
 							$hr = $("<hr>");
 							$hScrap = $("<i class='far fa-bookmark'>");
 							$item = $("<div class='item'>");
-							$aTop = $("<a class='top'>").attr("href",decodeURIComponent(data[i].href));
+							$aTop = $("<a class='top' target='_sub' >").attr("href",decodeURIComponent(data[i].href));
 							$desc = $("<ul id='desc' style='list-style-type: none;'>");
 							$info = $("<p class='info'>")
 							
@@ -157,6 +178,7 @@
 							var today = new Date();
 							var diff = today.getTime() - date.getTime();
 							var dday = Math.floor(diff/(1000*60*60*24)); 
+							 
 							
 							$expiration_date = $("<span class='dday highlight'>").text("D"+dday);
 							
@@ -192,27 +214,31 @@
  		}  // hListView END
  		
  		$("#hListSearch").on("click",function(){
- 			var uri ="https://oapi.saramin.co.kr/job-search?";
-			var key ="access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa";
+ 			// var uri ="https://oapi.saramin.co.kr/job-search?";
+			// var key ="access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa";
+			$hListBox = $("#hListBox");
+			$hListBox.html("");
 			var kewords = "&keword=";
 			var start = "&start=1";
 			var count = "&count=30";
 			var searchTxt = $("#search-txt"); 
-			console.log(searchTxt.val())
+			// console.log(searchTxt.val())
 			var kewords2 = encodeURI((searchTxt.val()));
 
        		var resultURL = uri + key + kewords + kewords2 + start + count;
-       		console.log(resultURL);
+       		//console.log(resultURL);
        		hListView(resultURL);
 		    searchTxt.val('');
  		});
  	   
  		$("#hf_jopType").on("change",function(){
  			var filter_jobType = $('#hf_jopType option:selected').val();
- 			console.log(filter_jobType);
- 			var uri ="https://oapi.saramin.co.kr/job-search?";
-			var key ="access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa";
-			var start = "&start=1";
+ 			// console.log(filter_jobType);
+ 			// var uri ="https://oapi.saramin.co.kr/job-search?";
+			// var key ="access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa";
+			$hListBox = $("#hListBox");
+			$hListBox.html("");
+			var start = "&start=1";	
 			var count = "&count=30";
 			var jobType = "&job_type=" + filter_jobType;
 			
@@ -222,8 +248,10 @@
  	
  		$("#hf_loc").on("change",function(){
  			var filter_loc = $('#hf_loc option:selected').val();
- 			var uri ="https://oapi.saramin.co.kr/job-search?";
-			var key ="access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa";
+ 			// var uri ="https://oapi.saramin.co.kr/job-search?";
+			// var key ="access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa";
+			$hListBox = $("#hListBox");
+			$hListBox.html("");
 			var start = "&start=1";
 			var count = "&count=30";
 			var loc_mcd = "&loc_mcd=" + filter_loc;
@@ -233,8 +261,10 @@
  		
  		$("#hf_edu").on("change",function(){
  			var filter_edu = $('#hf_edu option:selected').val();
- 			var uri ="https://oapi.saramin.co.kr/job-search?";
-			var key ="access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa";
+ 			// var uri ="https://oapi.saramin.co.kr/job-search?";
+			// var key ="access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa";
+			$hListBox = $("#hListBox");
+			$hListBox.html("");
 			var start = "&start=1";
 			var count = "&count=30";
 			var loc_edu = "&edu_lv=" + filter_edu;

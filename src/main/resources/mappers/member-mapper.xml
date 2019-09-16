@@ -76,9 +76,6 @@
 		<if test='count.equals("comp")'>
 			from cscrapview
 		</if>
-		<if test='count.equals("hire")'>
-			from hscrapview
-		</if>
 		<if test='count.equals("lcs")'>
 			from lscrapview
 		</if>
@@ -93,9 +90,6 @@
 		<if test='listName.equals("comp")'>
 			from cscrapview
 		</if>
-		<if test='listName.equals("hire")'>
-			from hscrapview
-		</if>
 		<if test='listName.equals("lcs")'>
 			from lscrapview
 		</if>
@@ -106,10 +100,13 @@
 		order by sid desc
 	</select>
 
- 	<select id="recentLcsScrap" parameterType="map" resultType="map">
-		select imagename, filepath, title, duedate, sid, link
-		from r_l_scrap_view
+	<select id="recentLcsScrap" parameterType="map" resultType="map">
+		select title, duedate, sid, link, round
+		from LSCRAPVIEW
 		where user_id = #{ userId }
+		<if test='keyword != null and keyword.equals("dDay")'>
+      	and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate,'YYYY-mm-DD')
+      	</if>
 		<if test='keyword != null and keyword.equals("day1")'>
 		and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+1,'YYYY-mm-DD')
 		</if>
@@ -124,21 +121,10 @@
       select imagename, filepath, title, duedate, sid, link
       from r_c_scrap_view
       where user_id = #{ userId }
+      <if test='keyword != null and keyword.equals("dDay")'>
+      and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate,'YYYY-mm-DD')
+      </if>
        <if test='keyword != null and keyword.equals("day1")'>
-      and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+1,'YYYY-mm-DD')
-      </if>
-      <if test='keyword != null and keyword.equals("day2")'>
-      and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+2,'YYYY-mm-DD')
-      </if>
-      and <![CDATA[rownum < 5]]>
-      order by sid desc
-   </select>
-
-   <select id="recentHireScrap" parameterType="map" resultType="map">
-        select title, location, info, htype, duedate, sid, link
-      from r_h_scrap_view
-      where user_id = #{ userId }
-      <if test='keyword != null and keyword.equals("day1")'>
       and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+1,'YYYY-mm-DD')
       </if>
       <if test='keyword != null and keyword.equals("day2")'>
@@ -153,18 +139,12 @@
       <if test='from.equals("c_scrap")'>
       from c_scrap
       </if>
-      <if test='from.equals("h_scrap")'>
-      from h_scrap
-      </if>
       <if test='from.equals("l_scrap")'>
       from l_scrap
       </if>
       where user_id = #{ userId } and
       <if test='type.equals("공모전")'>
          cs_id in
-      </if>
-      <if test='type.equals("채용공고")'>
-         hs_id in
       </if>
       <if test='type.equals("자격증")'>
          ls_id in

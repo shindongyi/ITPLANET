@@ -276,12 +276,57 @@ function checkEmail(){
 		check = true;
 	}
 }
-
+/* 
 // 인증번호 전송 버튼 클릭시 번호 입력 칸 토글
 $('#sendNum').on('click', function(){
 	$('#emailNumCk').attr('style', '');
 });
+ */
+//이메일 인증
+var randomNum;
+$('#sendNum').on('click', function(){
+	var oMsg = $('#emailMsg');
+	var email = $('#email').val();
+	console.log("email : " + email);
+	$.ajax({
+		url: "checkEmail.do",
+		method: "post",
+		data:{email:email},
+		success: function(data){
+			if(data == "success"){
+				$.ajax({
+					url: "sendEmail.do",
+					type: "post",
+					data:{email:email},
+					/* async:false, */
+					success:function(data){
+						if(data != null && data != ""){
+							$('#emailNumCk').show();
+							showErrorMsg(oMsg, "입력하신 이메일로 인증번호를 전송하였습니다. 확인 후 입력해주세요. 최대 5분이 걸릴 수 있습니다.");
+							randomNum = data;
+						} else{
+							showErrorMsg(oMsg, "인증번호 전송에 실패하였습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+						}
+					}
+				});
+			} else {
+				showErrorMsg(oMsg, "이미 존재하거나 탈퇴한 회원의 이메일입니다.");
+			}
+		}
+	})
 
+});
+$('#checkNum').on('click', function(){
+	var number1 = $('#inputNum').val();
+	var number2 = randomNum;
+	
+	var oMsg = $('#emailMsg');
+	if(number1 == number2){
+		showErrorMsg(oMsg, "인증에 성공하였습니다.");
+	} else {
+		showErrorMsg(oMsg, "인증번호가 일치하지 않습니다. 다시 확인해 주세요.");
+	}
+});
 function showErrorMsg(oMsg, msg){
 	oMsg.attr('style', '');
 	oMsg.text(msg);

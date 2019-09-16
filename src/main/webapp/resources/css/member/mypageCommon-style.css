@@ -95,3 +95,6 @@ option[disabled=disabled]{
 	vertical-align: middle;
     margin-top: -3px;
 }
+#breadcrumb{
+	font-size: 14px;
+}

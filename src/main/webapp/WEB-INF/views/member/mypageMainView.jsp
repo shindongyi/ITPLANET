@@ -5,10 +5,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="today"  value="<%=new Date()%>"/>
-<c:set var="day1" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
-<c:set var="day2" value="<%=new Date(new Date().getTime() + 60*60*24*2000)%>"/>
-<fmt:formatDate type="date" value="${day1}" var="day11" pattern="YYYY-MM-dd (E)"/>
-<fmt:formatDate type="date" value="${day2}" var="day22" pattern="YYYY-MM-dd (E)"/>
+<c:set var="day11" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>"/>
+<c:set var="day22" value="<%=new Date(new Date().getTime() + 60*60*24*2000)%>"/>
+<fmt:formatDate type="date" value="${today}" var="dDay" pattern="YYYY-MM-dd (E)"/>
+<fmt:formatDate type="date" value="${day11}" var="day1" pattern="YYYY-MM-dd (E)"/>
+<fmt:formatDate type="date" value="${day22}" var="day2" pattern="YYYY-MM-dd (E)"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,45 +37,29 @@
 						<h3>최근 공모전 스크랩</h3>
 						<div class="detail">
 							<ul class="scpList"> 
-								<li>
 								<c:if test="${fn:length(recentComp) > 0 }">
 								<c:forEach var="j" items="${ recentComp }" >
+								<li>
 									<a href="${ j.LINK }" class="figure">
-										<img src="${ j.FILEPATH/j.IMAGENAME }" width="106" height="106" alt="${ j.TITLE }">
+										<img src="" width="106" height="106" alt="${ j.TITLE }">
 									</a>
 									<a href="${ j.LINK }">
 										<span class="scpName">${ j.TITLE }</span>
 									</a>
+								</li>
 								</c:forEach>
 								</c:if>
-								</li>
 							</ul>
+								<c:if test="${empty recentComp }">
+								<div>
+									<span>스 크 랩  된  글 이  없 습 니 다 .</span>
+									<a href="competitionView.do" class="bGoBtn">공모전 게시판 가기 ></a>
+								</div>
+								</c:if>
 							<a href="myPageScrapView.do?type=1" class="more"><span>more</span>></a>
 						</div>
 					</div>
 					<!-- end compe 공모전 리스트 -->
-					<%-- <!-- start hire 채용공고 리스트 -->
-					<div class="article hire">
-						<h3>최근 채용공고 스크랩</h3>
-						<div class="detail">
-							<ul class="scpList">
-								<c:if test="${fn:length(recentHire) > 0 }">
-								<c:forEach var="j" items="${ recentHire }" >
-								<li>
-									<a href="${ j.LINK }" class="figure">
-										<span class="scpName">${ j.TITLE }</span>
-										<span class="scpName">${ j.LOCATION }</span>
-										<span class="scpName">${ j.INFO }</span>
-										<span class="scpName">${ j.HTYPE }</span>
-									</a>
-								</li>
-								</c:forEach>
-								</c:if>
-							</ul>
-							<a href="myPageScrapView.do?type=2" class="more"><span>more</span>></a>
-						</div>
-					</div>
-					<!-- end hire 채용정보 리스트 --> --%>
 					<!-- start lcs 자격증 리스트 -->
 					<div class="article lcs">
 						<h3>최근 자격증 스크랩</h3>
@@ -83,105 +68,83 @@
 								<c:if test="${fn:length(recentLcs) > 0 }">
 								<c:forEach var="j" items="${ recentLcs }" >
 								<li>
-										<a href="${ j.LINK }" class="figure">
-											<img src="${ k.FILEPATH/k.IMAGENAME }" width="106" height="106" alt="${ j.TITLE }">
-										</a>
-										<a href="${ j.LINK }">
-											<span class="scpName">${ j.TITLE }</span>
-										</a>
+									<a href="${ j.LINK }">
+										<span class="scpName">제 ${ j.ROUND }회</span>
+										<span class="scpName">${ j.TITLE }</span>
+									</a>
 								</li>
 								</c:forEach> 
 								</c:if>
 							</ul>
+								<c:if test="${empty recentLcs }">
+								<div>
+									<span>스 크 랩  된  글 이  없 습 니 다 .</span>
+									<a href="lcsView.do" class="bGoBtn">자격증 게시판 가기 ></a>
+								</div>
+								</c:if>
 							<a href="myPageScrapView.do?type=2" class="more"><span>more</span>></a>
 						</div>
 					</div>
 					<!-- end lcs 자격증 리스트 -->
 				</div>
 				<!-- end middleSection -->
-				<!-- start rightSection -->
-				<div class="section rightSection">
+				<!-- start rightSection 오른쪽 알람 섹션 -->
+				<div class="section rightSection"> 
 					<div class="article alarm">
 						<h3>
 							<i class="fas fa-bell"></i>
-							<span></span>
-							MY 알림
+							<span>MY 알림</span>
 						</h3>
-					 	<div class="myAlarm">
-					 		<c:if test="${!empty day1List or !empty day2List}">
-							<c:forEach var="i" begin="1" end="2">
-							<c:if test="${i eq'1' and !empty day1List}">
-									<div class="almToday">
-										<p class="todayBox">${day11}</p>
-									</div>
-									<c:forEach var="j" items="${ day1List }" varStatus="hStatus">
-									<div class="alarmList">
-										<ul class="alarmUnit">
-											<li class="itemPart">
-												<a href="#">
-												<span class="alarmIco">
-													<c:if test="${ j.CHANGENAME ne null }">
-														<img src="" alt="${ j.TITLE }이미지">
-													</c:if>
-													<c:if test="${ j.CHANGENAME eq null}">
-														<div class="scpName">${ j.TITLE }</div>
-														<div class="scpName">${ j.LOCATION }</div>
-														<div class="scpName">${ j.INFO }</div>
-														<div class="scpName">${ j.HTYPE }</div>
-													</c:if>
-												</span>
-													<dl>
-														<dt>공고만료예정</dt>
-														<dd>${ j.TITLE }</dd>
-													</dl>
-													<p>이 공고의 만료일이 D-1일 남았어요!</p>
-												</a>
-											</li>
-										</ul>
-									</div>
-									</c:forEach>
+							<div class="myAlarm">
+					 		<c:if test="${!empty list}"> <!--알람 리스트가 null이 아닐 경우 -->
+							<c:forEach var="i" items="${list}" varStatus="status">
+							<c:if test="${!empty i }">
+								<div class="almToday">
+									<c:if test="${ status.index eq '0' }">		
+									<p class="todayBox">${dDay}</p>
 									</c:if>
-									<c:if test="${i eq '2' and !empty day2List}">
-									<div class="almToday">
-										<p class="todayBox">${day22}</p>
-									</div>
-									<c:forEach var="j" items="${ day2List }" varStatus="hStatus">
-									<div class="alarmList">
-										<ul class="alarmUnit">
-											<li class="itemPart">
-												<a href="#">
-												<span class="alarmIco">
-													<c:if test="${ j.CHANGENAME ne null }">
-														<img src="" alt="${ j.TITLE }이미지">
-													</c:if>
-													<c:if test="${ j.CHANGENAME eq null}">
-														<div class="scpName">${ j.TITLE }</div>
-														<div class="scpName">${ j.LOCATION }</div>
-														<div class="scpName">${ j.INFO }</div>
-														<div class="scpName">${ j.HTYPE }</div>
-													</c:if>
-												</span>
-													<dl>
-														<dt>공고만료예정</dt>
-														<dd>${ j.TITLE }</dd>
-													</dl>
-													<p>이 공고의 만료일이 D-2일 남았어요!</p>
-												</a>
-											</li>
-										</ul>
-									</div>
-									</c:forEach>
+									<c:if test="${ status.index eq '1' }">		
+									<p class="todayBox">${day1}</p>
 									</c:if>
-									</c:forEach>
+									<c:if test="${ status.index eq '2' }">		
+									<p class="todayBox">${day2}</p>
 									</c:if>
-									<c:if test="${empty day1List and empty day2List}">
-										<div class="alarmIsNull">
-											<p>NO DATA</p>
-											<div class="alaramList">
-												<span>마감이 임박한 공고가 없습니다.</span>
-											</div>
+								</div>
+								<c:forEach var="j" items="${ i }">
+								<div class="alarmList">
+									<ul class="alarmUnit">
+										<li class="itemPart">
+											<a href="${ j.LINK }">
+											<span class="alarmIco">
+												<c:if test="${ j.IMAGENAME ne null }"> <!-- 이미지가 있다면 이미지만, 아니면 타이틀과 회차 출력 --> 
+													<img src="" alt="${ j.TITLE }이미지">
+												</c:if>
+												<c:if test="${ j.IMAGENAME eq null}">
+													<div class="scpName">제 ${ j.ROUND }회</div>
+													<div class="scpName">${ j.TITLE }</div>
+												</c:if>
+											</span>
+												<dl>
+													<dt>공고만료예정</dt>
+													<dd>${ TITLE }</dd>
+												</dl>
+												<p>이 공고의 만료일이 D-${status.index}일 남았어요!</p>
+											</a>
+										</li>
+									</ul>
+								</div>
+								</c:forEach>
+								</c:if>
+								</c:forEach>
+								</c:if>
+								<c:if test="${empty list}"> <!--알람 리스트가 null일 경우 -->
+									<div class="alarmIsNull">
+										<p>NO DATA</p>
+										<div class="alaramList">
+											<span>마감이 임박한 공고가 없습니다.</span>
 										</div>
-									</c:if>
+									</div>
+								</c:if>
 						<p class="expire">수신일로부터 5일이 지난 알림은 자동 삭제됩니다.</p>
 						</div>
 					</div>

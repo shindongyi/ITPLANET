@@ -21,16 +21,16 @@
 		<p class="hello">Hello, ${loginUser.nickName }</p>
 		<ul>
 			<li>
-				<a href=""><strong>${ scrapCount.hireCount+scrapCount.compCount+scrapCount.lcsCount }개</strong>총 스크랩</a>
+				<a href=""><strong>${ scrapCount.compCount+scrapCount.lcsCount }개</strong>총 스크랩</a>
 			</li>
 			<li>
 				<a href="myPageScrapView.do?type=1"><strong>${ scrapCount.compCount }개</strong>공모전</a>
 			</li>
 			<li>
-				<a href="myPageScrapView.do?type=2"><strong>${ scrapCount.hireCount }개</strong>채용공고</a>
+				<a href="myPageScrapView.do?type=2"><strong>${ scrapCount.lcsCount }개</strong>자격증</a>
 			</li>
 			<li>
-				<a href="myPageScrapView.do?type=3"><strong>${ scrapCount.lcsCount }개</strong>자격증</a>
+				<a href="#"><strong>0개</strong>뭐넣지</a>
 			</li>
 		</ul>
 	</div>
@@ -40,7 +40,6 @@
 		<div class="navContent">
 			<ul>
 				<li>
-					<%-- <img class="arrow" src="${contextPath}/resources/images/member/right-arrow.png"> --%>
 					<i class="fas fa-angle-right"></i>
 					<span class="navCt_title">MY INFO</span>
 					<ul style="display:none;">
@@ -56,7 +55,6 @@
 					</ul>
 				</li>
 				<li>
-					<%-- <img class="arrow" src="${contextPath}/resources/images/right-arrow.png"> --%>
 					<i class="fas fa-angle-right"></i>
 					<span class="navCt_title">MY SCRAP</span>
 					<ul style="display:none;">
@@ -81,32 +79,14 @@
 		$(event.target).next().toggle();
 		
 		if($(event.target).next().css('display') == 'none'){
-			/* $(event.target).prev().attr('src','${contextPath}/resources/image/right-arrow.png'); */
 			$(event.target).prev().attr('class', 'fas fa-angle-right');
 		} else {
-			/* $(event.target).prev().attr('src','${contextPath}/resources/image/down-arrow.png'); */
 			$(event.target).prev().attr('class', 'fas fa-angle-down');
 		}
 	});
 	</script>
 </div>
 <!-- end leftSection 마이페이지 메뉴-->
-<script>
-/* 	$('.goScrap').on('click', function(){
-		var type = $(event.target).val(); 
-		location.href="myPageScrapView.do?type="+ type;
-		location.href="myPageScrapView.do";
-	}); 
-	 $('#updateInfo').on('click', function(){
-	location.href="confirmUser.do";
-	});
-	$('#updatePwd').on('click', function(){
-		location.href="updatePwdForm.do";
-	});
-	$('#deleteM').on('click', function(){
-		location.href="joinView.do";
-	}); */
-</script>
 <!-- start main -->
 </body>
 </html>

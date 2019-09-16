@@ -15,16 +15,7 @@
 		<result property="modify_date" column="modify_date"/>
 		<result property="status" column="status"/>
 		<result property="user_id" column="user_id"/>
-		<collection property="latList" javaType="java.util.ArrayList" resultMap="latResultset"/>		
 	</resultMap>
- 	<resultMap type="LAttachment" id="latResultset">
-		<id property="l_fid" column="l_fid"/>
-		<result property="origin_name" column="origin_name"/>
-		<result property="change_name" column="change_name"/>
-		<result property="file_path" column="file_path"/>
-		<result property="update_date" column="update_date"/>
-		<result property="l_id" column="l_id"/>
-	</resultMap> 
 	
 	<select id="getListCount" parameterType="map" resultType="_int">
 		select count(*)

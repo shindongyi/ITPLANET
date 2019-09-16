@@ -45,19 +45,26 @@
 		<div class="list" style="width:169vh;">
 		<h2 align="center">나의 스터디</h2>
 		<br><br>
-			<c:forEach items="${ chatList }" var="chatList">
-				<div class="item">
-					<a class="top" href="chatRoomView.do?chatName=${ chatList.chatRoom }">
-						<i class="fas fa-sms"></i>
-						<p class="company">${chatList.sCategory} - ${ chatList.sCaname }</p>
-						<span class="hTitle">[스터디멤버] ${ chatList.chatMember }</span>
-					</a>
-					<hr>
-					<p class="info">
-						<span class="dday highlight">${ chatList.sTitle }</span>
-					</p>
+			<c:if test="${ !empty chatList }">
+				<c:forEach items="${ chatList }" var="chatList">
+					<div class="item">
+						<a class="top" href="chatRoomView.do?chatName=${ chatList.chatRoom }">
+							<i class="fas fa-sms"></i>
+							<p class="company">${chatList.sCategory} - ${ chatList.sCaname }</p>
+							<span class="hTitle">[스터디멤버] ${ chatList.chatMember }</span>
+						</a>
+						<hr>
+						<p class="info">
+							<span class="dday highlight">${ chatList.sTitle }</span>
+						</p>
+					</div>
+				</c:forEach>
+			</c:if>
+			<c:if test="${ empty chatList }">
+				<div style="text-align: center; margin-bottom: 40px;">
+					<h2>스터디가 없습니다.</h2>
 				</div>
-			</c:forEach>
+			</c:if>
 			
 			<div align="center">
 			<ul class="pagination justify-content-center">

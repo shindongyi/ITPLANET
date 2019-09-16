@@ -77,11 +77,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList<HashMap<String, String>> recentHire(HashMap<String, String> map) {
-		return mDAO.recentHire(map);
-	}
-
-	@Override
 	public ArrayList<HashMap<String, String>> recentLcs(HashMap<String, String> map) {
 		return mDAO.recentLcs(map);
 	}

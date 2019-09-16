@@ -84,7 +84,26 @@ $(window).scroll(function(event) {
 				<a href='mypage.do'>마이페이지</a>
 			</dd>
 			<dd>
+				<a href='chatListView.do'>나의 스터디 채팅방</a>
+			</dd>
+			<dd>
 				<a href='logout.do'>로그아웃</a>
+			</dd>
+			</c:if>
+			
+			<!-- 관리자 로그인시 -->
+			<c:if test="${loginUser.userName == '관리자' }">
+			<dd>
+				<a style="font-size:12px;"> ${ loginUser.userName }님 환영합니다.</a>
+			</dd>
+			<dd class="arw">
+				<a href='mypage.do'>마이페이지</a>
+			</dd>
+			<dd>
+				<a href='logout.do'>로그아웃</a>
+			</dd>
+			<dd>
+				<a href='admin.do'>관리자</a>
 			</dd>
 			</c:if>
 
@@ -131,7 +150,6 @@ $(window).scroll(function(event) {
 			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='codingTestListView.do'">코딩테스트</a>
 			
 			
-			<li class="menubar_li" style="color:white;"><a onclick="javascript:location.href='chatListView.do'">채팅리스트 체크</a>
 		</ul>
 	</div>
 </div>

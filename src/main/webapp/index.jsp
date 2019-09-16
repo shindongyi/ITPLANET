@@ -356,6 +356,9 @@ dd {
 				<a href='mypage.do'>마이페이지</a>
 			</dd>
 			<dd>
+				<a href='chatListView.do'>나의 스터디 채팅방</a>
+			</dd>
+			<dd>
 				<a href='logout.do'>로그아웃</a>
 			</dd>			
 			</c:if>
@@ -556,168 +559,7 @@ dd {
             <div class="content_wrap wide_max_width_area">
                 <div class="area_top">
                     <ul class="event_list" id="mainCompNow">
-                      <li>
-                            <article class="event_area event_card">
-                                <a href="/cs/a/45537?url=%2Fevent%2F183913" target="_blank" title="KT S/W Developer Conference 2019" data-c="hotissue1">
-                                    <!-- 이미지 -->
-                                    <div class="event_thumbnail">
-                                        <img src="https://cfile1.onoffmix.com/images/event/183913/s">
-                                    </div>
-
-                                    <div class="event_info_area">
-                                        <!-- 타이틀 -->
-                                        <div class="title_area">
-                                            <h5 class="title ellipsis">
-                                            KT S/W Developer Conference 2019</h5>
-                                        </div>
-                                        <!-- 정보 -->
-                                        <div class="event_info">
-                                            <div class="type_info">
-                                                <span class="payment_type free">
-                                                    무료    
-                                                </span>
-                                            </div>
-                                            <div class="date">8.27 (화)</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
-                                                                            <li>
-                            <article class="event_area event_card">
-                                <a href="/cs/a/46552?url=%2Fevent%2F190606" target="_blank" title="●[선착순 무료] MD가 직접 알려주는 이베이, 아마존, 도매꾹 등 대형유통사&amp;해외 글로벌 마켓 진출 노하우" data-c="hotissue2">
-                                    <!-- 이미지 -->
-                                    <div class="event_thumbnail">
-                                        <img src="https://cfile1.onoffmix.com/images/event/190606/s">
-                                    </div>
-
-                                    <div class="event_info_area">
-                                        <!-- 타이틀 -->
-                                        <div class="title_area">
-                                            <h5 class="title ellipsis">
-                                            ●[선착순 무료] MD가 직접 알려주는 이베이, 아마존, 도매꾹 등...</h5>
-                                        </div>
-                                        <!-- 정보 -->
-                                        <div class="event_info">
-                                            <div class="type_info">
-                                                <span class="payment_type free">
-                                                    무료    
-                                                </span>
-                                            </div>
-                                            <div class="date">8.29 (목) ~ 8.30 (금)</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
-                                                                            <li>
-                            <article class="event_area event_card">
-                                <a href="/cs/a/46628?url=%2Fevent%2F191431" target="_blank" title="멀티캠퍼스 4차산업혁명 선도인력양성 교육(19년 하반기)" data-c="hotissue3">
-                                    <!-- 이미지 -->
-                                    <div class="event_thumbnail">
-                                        <img src="https://cfile1.onoffmix.com/images/event/191431/s">
-                                    </div>
-
-                                    <div class="event_info_area">
-                                        <!-- 타이틀 -->
-                                        <div class="title_area">
-                                            <h5 class="title ellipsis">
-                                            멀티캠퍼스 4차산업혁명 선도인력양성 교육(19년 하반기)</h5>
-                                        </div>
-                                        <!-- 정보 -->
-                                        <div class="event_info">
-                                            <div class="type_info">
-                                                <span class="payment_type free">
-                                                    무료    
-                                                </span>
-                                            </div>
-                                            <div class="date">10.18 (금) ~ 4.21 (화)</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
-                                                                            <li>
-                            <article class="event_area event_card">
-                                <a href="/cs/a/46261?url=%2Fevent%2F189924" target="_blank" title="NCS 인증, 경영자격증 발급 휴넷 MBA" data-c="hotissue4">
-                                    <!-- 이미지 -->
-                                    <div class="event_thumbnail">
-                                        <img src="https://cfile1.onoffmix.com/images/event/189924/s">
-                                    </div>
-
-                                    <div class="event_info_area">
-                                        <!-- 타이틀 -->
-                                        <div class="title_area">
-                                            <h5 class="title ellipsis">
-                                            NCS 인증, 경영자격증 발급 휴넷 MBA</h5>
-                                        </div>
-                                        <!-- 정보 -->
-                                        <div class="event_info">
-                                            <div class="type_info">
-                                                <span class="payment_type free">
-                                                    무료    
-                                                </span>
-                                            </div>
-                                            <div class="date">8.28 (수)</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
-                                                                            <li>
-                            <article class="event_area event_card">
-                                <a href="/cs/a/46485?url=%2Fevent%2F189932" target="_blank" title="투자 집중형 ENNOvation TANK 시즌Ⅱ 참여 기업 모집" data-c="hotissue5">
-                                    <!-- 이미지 -->
-                                    <div class="event_thumbnail">
-                                        <img src="https://cfile1.onoffmix.com/images/event/189932/s">
-                                    </div>
-
-                                    <div class="event_info_area">
-                                        <!-- 타이틀 -->
-                                        <div class="title_area">
-                                            <h5 class="title ellipsis">
-                                            투자 집중형 ENNOvation TANK 시즌Ⅱ 참여 기업 모집</h5>
-                                        </div>
-                                        <!-- 정보 -->
-                                        <div class="event_info">
-                                            <div class="type_info">
-                                                <span class="payment_type free">
-                                                    무료    
-                                                </span>
-                                            </div>
-                                            <div class="date">9.12 (목) ~ 2.29 (토)</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
-                                                                            <li>
-                            <article class="event_area event_card">
-                                <a href="/cs/a/46040?url=%2Fevent%2F189155" target="_blank" title="2019년 노사상생플러스(+)교육 하반기 교육생 모집" data-c="hotissue6">
-                                    <!-- 이미지 -->
-                                    <div class="event_thumbnail">
-                                        <img src="https://cfile1.onoffmix.com/images/event/189155/s">
-                                    </div>
-
-                                    <div class="event_info_area">
-                                        <!-- 타이틀 -->
-                                        <div class="title_area">
-                                            <h5 class="title ellipsis">
-                                            2019년 노사상생플러스(+)교육 하반기 교육생 모집</h5>
-                                        </div>
-                                        <!-- 정보 -->
-                                        <div class="event_info">
-                                            <div class="type_info">
-                                                <span class="payment_type free">
-                                                    무료    
-                                                </span>
-                                            </div>
-                                            <div class="date">8.27 (화) ~ 12.3 (화)</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
+                      
                     </ul>
 
                     <!-- 최소1구좌, 최대3구좌 -->
@@ -762,22 +604,7 @@ dd {
 
 		<div class="lists">
 			<div class="list" data-category2="0" id="hireData">
-				<!-- <a class="item" href="/study/view?id=10162"><h3>Mos 모스 자격증
-						공부 하시는분 계신가요?</h3>
-					<p class="info">
-						<span>오늘 07:15</span><span class="viewcount">16</span><span
-							class="commentcount">0</span>
-					</p></a><a class="item" href="/study/view?id=10143"><h3>[cpa]문정역
-						인근 독서실에서 같이 공부 하실분 계신가요</h3>
-					<p class="info">
-						<span>08/20</span><span class="viewcount">87</span><span
-							class="commentcount">1</span>
-					</p></a><a class="item" href="/study/view?id=10133"><h3>컴활 2급 실기
-						같이 공부해요!!</h3>
-					<p class="info">
-						<span>08/20</span><span class="viewcount">101</span><span
-							class="commentcount">4</span>
-					</p></a><a class="more" href="/study/list?category1=3&amp;category2=0">채용 공고 더 보기</a> -->
+				
 			</div>
 		</div>
 		<div class="loading" style="display: none;"></div>
@@ -998,7 +825,7 @@ dd {
 				$topCompe.html("");
 				
 				$mainCompNow = $('#mainCompNow');
-				$mainCompNo2.html("");
+				$mainCompNow.html("");
 				
 	        	var $topdiv=$('<div class="owl-item active center" style="width: 450px;">');
 	        	var $topa = $('<a href="/cs/a/46258?url=%2Fevent%2F189742" target="_blank" title="4개항만공사 창업 아이디어 발굴 해커톤" data-c="559c659b1">');
@@ -1020,7 +847,7 @@ dd {
 	        	
 	        	if(data.topComp.length > 0){
 	        		
-	        		$topa3 = $('<a>').attr('title', decodeURIComponent(data.topComp[0].cTitle.replace(/\+/g," ")));
+	        		$topa3 = $('<a>').attr('title', decodeURIComponent(data.topComp[0].cTitle.replace(/\+/g," "))).attr('href','competitionDetail.do?cId='+ data.topComp[0].cId );
 	        		for(var i in data.cattachment){
 	        			if(data.cattachment[i].cId == data.topComp[0].cId){
 	        				$topImg3 = $('<img>').attr('src', '${ contextPath }/resources/compeloadFiles/' + data.cattachment[i].changeName).attr('title', decodeURIComponent(data.topComp[0].cTitle.replace(/\+/g," ")));
@@ -1051,7 +878,7 @@ dd {
 	        			$divImg = $('<div class="event_thumbnail">');
 	        			for(var j in data.cattachment){
 		        			if(data.cattachment[j].cId == data.competition[i].cId){
-		        				$img = $('<img>').attr('src', '${ contextPath }/resources/compeloadFiles/' + data.cattachment[i].changeName);
+		        				$img = $('<img>').attr('src', '${ contextPath }/resources/compeloadFiles/' + data.cattachment[j].changeName);
 		        			}
 		        		}
 	        			$divContent = $('<div class="event_info_area">');
@@ -1059,7 +886,21 @@ dd {
 	        			$h5Title = $('<h5 class="title ellipsis">').text(decodeURIComponent(data.competition[i].cTitle.replace(/\+/g," ")));
 	        			$divInfo = $('<div class="event_info">');
 	        			$divDate = $('<div class="type_info">');
-	        			$spanDate = $('<span class="payment_type free">').text()
+	        			$spanDate = $('<span class="payment_type free">').text(data.competition[i].cStartDate + " - " + data.competition[i].cDueDate);
+	        			
+	        			$divDate.append($spanDate);
+	        			$divInfo.append($divDate);
+	        			$divTitle.append($h5Title);
+	        			$divContent.append($divTitle);
+	        			$divContent.append($divInfo);
+	        			
+	        			$divImg.append($img);
+	        			$a.append($divImg);
+	        			$a.append($divContent);
+	        			
+	        			$article.append($a);
+	        			$li.append($article);
+	        			$mainCompNow.append($li);
 	        		}
 	        	}
 			}

@@ -29,7 +29,6 @@ public interface MemberService {
 	ArrayList<HashMap<String, String>> selectScrapList(HashMap<String, Object> map2);
 
 	ArrayList<HashMap<String, String>> recentComp(HashMap<String, String> map);
-	ArrayList<HashMap<String, String>> recentHire(HashMap<String, String> map);
 	ArrayList<HashMap<String, String>> recentLcs(HashMap<String, String> map);
 
 	int deleteScrap(HashMap<String, Object> map);

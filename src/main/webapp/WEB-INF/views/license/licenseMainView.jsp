@@ -66,7 +66,7 @@
 							<div class="lcs_results lcs_txt">결과 발표일 : 시험종료 즉시</div>
 						</c:otherwise>
 					</c:choose>
-					<button class="lcs_btn lcs_txt" onclick="location.href='${firstList[0].l_address}'">접수하기</button>
+					<button class="lcs_btn lcs_txt" onclick="window.open('${firstList[0].l_address}');">접수하기</button>
 				</div>
 				</c:if>
 				<c:if test="${empty firstList }">
@@ -128,7 +128,7 @@
 						</c:otherwise>
 					</c:choose>
 						<div class="btnArea">
-							<a href="${i.l_address }">사이트로 이동</a>
+							<a href="${i.l_address }" target="_blank">사이트로 이동</a>
 							<a class="scrapBtn" id="${i.l_id}" title="스크랩하기">스크랩하기</a>
 						</div>
 						</div>
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	  		} else {
     	  				$('#lcsInfo .lcs_results').text('결과 발표일 : 상시발표');
     	  		}
-    	  		$('#lcsInfo .lcs_btn').attr('onclick', 'location.href="${i.l_address}"');
+    	  		$('#lcsInfo .lcs_btn').attr('onclick', 'window.open("${i.l_address}")');
     	  	}
     	  </c:forEach>
     	  $lcsInfo.show();

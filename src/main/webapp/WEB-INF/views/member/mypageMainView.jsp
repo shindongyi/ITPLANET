@@ -40,7 +40,7 @@
 								<c:if test="${fn:length(recentComp) > 0 }">
 								<c:forEach var="j" items="${ recentComp }" >
 								<li>
-									<a href="${ j.LINK }" class="figure">
+									<a href="${ j.LINK }" class="figure" target="_blank">
 										<img src="" width="106" height="106" alt="${ j.TITLE }">
 									</a>
 									<a href="${ j.LINK }">
@@ -61,14 +61,14 @@
 					</div>
 					<!-- end compe 공모전 리스트 -->
 					<!-- start lcs 자격증 리스트 -->
-					<div class="article lcs">
+					<div class="article lcs" style="border-bottom: 0.5px solid #ddd;">
 						<h3>최근 자격증 스크랩</h3>
 						<div class="detail">
 							<ul class="scpList">
 								<c:if test="${fn:length(recentLcs) > 0 }">
 								<c:forEach var="j" items="${ recentLcs }" >
 								<li>
-									<a href="${ j.LINK }">
+									<a href="${ j.LINK }" target="_blank">
 										<span class="scpName">제 ${ j.ROUND }회</span>
 										<span class="scpName">${ j.TITLE }</span>
 									</a>
@@ -114,7 +114,7 @@
 								<div class="alarmList">
 									<ul class="alarmUnit">
 										<li class="itemPart">
-											<a href="${ j.LINK }">
+											<a href="${ j.LINK }" target="_blank">
 											<span class="alarmIco">
 												<c:if test="${ j.IMAGENAME ne null }"> <!-- 이미지가 있다면 이미지만, 아니면 타이틀과 회차 출력 --> 
 													<img src="" alt="${ j.TITLE }이미지">
@@ -137,7 +137,7 @@
 								</c:if>
 								</c:forEach>
 								</c:if>
-								<c:if test="${empty list}"> <!--알람 리스트가 null일 경우 -->
+								<c:if test="${empty list[0] and empty list[1] and empty list[2]}"> <!--알람 리스트가 null일 경우 -->
 									<div class="alarmIsNull">
 										<p>NO DATA</p>
 										<div class="alaramList">
@@ -145,7 +145,7 @@
 										</div>
 									</div>
 								</c:if>
-						<p class="expire">수신일로부터 5일이 지난 알림은 자동 삭제됩니다.</p>
+						<p class="expire">날짜가 지난 알림은 자동으로 삭제됩니다.</p>
 						</div>
 					</div>
 				</div>	

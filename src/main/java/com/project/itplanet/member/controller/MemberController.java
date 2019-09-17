@@ -113,7 +113,7 @@ public class MemberController {
 		list.add(day2List);
 
 		mv.addObject("list", list);
-
+		System.out.println("list.size() : " + list.size());
 		mv.addObject("recentComp", recentComp);
 		mv.addObject("recentLcs", recentLcs);
 		mv.setViewName("member/mypageMainView");

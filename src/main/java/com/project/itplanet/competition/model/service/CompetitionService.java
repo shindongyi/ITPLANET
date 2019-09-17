@@ -1,11 +1,13 @@
 package com.project.itplanet.competition.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.competition.model.vo.Cattachment;
 import com.project.itplanet.competition.model.vo.Competition;
 import com.project.itplanet.competition.model.vo.CompetitionReply;
+import com.project.itplanet.member.model.vo.CScrap;
 
 public interface CompetitionService {
 
@@ -44,5 +46,11 @@ public interface CompetitionService {
 	ArrayList<Competition> mainCompNow();
 
 	ArrayList<Competition> topComp();
+
+	int insertCscrap(Map<String, Object> map);
+
+	ArrayList<CScrap> selectScrapAll(Integer cId);
+
+	int deleteCscrap(Map<String, Object> map);
 
 }

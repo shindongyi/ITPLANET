@@ -200,8 +200,19 @@
 	  		<img src="${ contextPath }/resources/compeloadFiles/${ cAttachment.changeName }">
 	  	</div>
 	  	<div class="bottombar">
-	  		<a class="scrap">
-	  			<span>스크랩</span>
+	  		<a class="scrap" onclick='scrapCheck();'>
+	  			<c:set var="csCheck" value="false"/>
+	  			<c:forEach var="csList" items="${ csList }">
+	  				<c:if test="${ csList.userId == loginUser.userId }">
+	  					<c:set var="csCheck" value="true"/>
+	  				</c:if>
+	  			</c:forEach>
+	  			<c:if test="${ csCheck == true }">
+	  				<span id="scBtn">스크랩취소</span>
+	  			</c:if>
+	  			<c:if test="${ csCheck == false }">
+	  				<span id="scBtn">스크랩</span>
+	  			</c:if>
 	  		</a>
 	  	</div>
 	  </div>
@@ -225,6 +236,26 @@
   </div>
   </form>
   <script>
+  
+  	function scrapCheck(){
+  		
+  		if($('#scBtn').text() == "스크랩"){
+  			var bool = confirm("스크랩 하시겠습니까?");
+  	  		
+  	  		if(bool){
+  	  			$('#cWrite').attr("action", "insertCscap.do?cId=${competition.cId}");
+  	  			$('#cWrite').submit();
+  	  		}
+  		}else{
+  			var bool = confirm("스크랩 취소하시겠습니까?");
+  			
+  			if(bool){
+  				$('#cWrite').attr("action", "deleteCscap.do?cId=${competition.cId}");
+  	  			$('#cWrite').submit();
+  			}
+  		}
+  		
+  	}
   	function deleteComp(){
   		var bool = confirm("정말로 삭제하시겠습니까?");
 		if(bool){

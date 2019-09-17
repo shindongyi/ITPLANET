@@ -33,6 +33,7 @@ import com.project.itplanet.competition.model.service.CompetitionService;
 import com.project.itplanet.competition.model.vo.Cattachment;
 import com.project.itplanet.competition.model.vo.Competition;
 import com.project.itplanet.competition.model.vo.CompetitionReply;
+import com.project.itplanet.member.model.vo.CScrap;
 import com.project.itplanet.member.model.vo.Member;
 
 @Controller
@@ -143,9 +144,12 @@ public class CompetitionController {
 		
 		Competition competition = cService.selectCompetition(cId);
 		Cattachment cAttachment = cService.selectCattachment(cId);
+		ArrayList<CScrap> csList = cService.selectScrapAll(cId);
+		
 		
 		mv.addObject("competition", competition);
 		mv.addObject("cAttachment", cAttachment);
+		mv.addObject("csList", csList);
 		mv.setViewName("competition/competitionDetailView");
 		
 		return mv;
@@ -288,6 +292,43 @@ public class CompetitionController {
 		
 		Gson gson = new GsonBuilder().setDateFormat("MM-dd").create();
 		gson.toJson(map, response.getWriter());
+	}
+	
+	@RequestMapping("insertCscap.do")
+	public String insertCscrap(@SessionAttribute("loginUser") Member m, @RequestParam("cId") int cId) {
+		String userId = m.getUserId();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("cId", cId);
+		
+		int result = cService.insertCscrap(map);
+		
+		if(result > 0) {
+			String page = "competitionDetail.do?cId=" + cId;
+			return "redirect:"+ page;
+		}else {
+			throw new CompetitionException("공모전 스크랩에 실패하였습니다.");
+		}
+		
+	}
+	
+	@RequestMapping("deleteCscap.do")
+	public String deleteCscrap(@SessionAttribute("loginUser") Member m, @RequestParam("cId") int cId) {
+		String userId = m.getUserId();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("cId", cId);
+		
+		int result = cService.deleteCscrap(map);
+		
+		if(result > 0) {
+			String page = "competitionDetail.do?cId=" + cId;
+			return "redirect:"+ page;
+		}else {
+			throw new CompetitionException("공모전 스크랩취소에 실패하였습니다.");
+		}
 	}
 
 }

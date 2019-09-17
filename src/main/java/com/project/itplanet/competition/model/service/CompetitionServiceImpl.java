@@ -1,6 +1,7 @@
 package com.project.itplanet.competition.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import com.project.itplanet.competition.model.dao.CompetitionDAO;
 import com.project.itplanet.competition.model.vo.Cattachment;
 import com.project.itplanet.competition.model.vo.Competition;
 import com.project.itplanet.competition.model.vo.CompetitionReply;
+import com.project.itplanet.member.model.vo.CScrap;
 
 @Service("cService")
 public class CompetitionServiceImpl implements CompetitionService{
@@ -104,6 +106,21 @@ public class CompetitionServiceImpl implements CompetitionService{
 	@Override
 	public ArrayList<Competition> topComp() {
 		return cDAO.topComp();
+	}
+
+	@Override
+	public int insertCscrap(Map<String, Object> map) {
+		return cDAO.insertCscrap(map);
+	}
+
+	@Override
+	public ArrayList<CScrap> selectScrapAll(Integer cId) {
+		return cDAO.selectScrapAll(cId);
+	}
+
+	@Override
+	public int deleteCscrap(Map<String, Object> map) {
+		return cDAO.deleteCscrap(map);
 	}
 	
 }

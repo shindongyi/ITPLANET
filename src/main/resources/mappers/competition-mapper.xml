@@ -166,4 +166,26 @@
 			where rownum <=1
 		]]>
 	</select>
+	
+	<insert id="insertCscrap" parameterType="map">
+		insert into c_scrap
+		values(seq_csid.nextval, #{userId}, #{cId})
+	</insert>
+	
+	<resultMap type="CScrap" id="cscrapResult">
+		<id property="csId" column="CS_ID"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="cId" column="C_ID"/>
+	</resultMap>
+	
+	<select id="scrapAll" parameterType="_int" resultMap="cscrapResult">
+		select *
+		from c_scrap
+		where c_id = #{cId}
+	</select>
+	
+	<delete id="deleteCscrap" parameterType="map">
+		delete from c_scrap
+		where c_id = #{cId} and user_id = #{userId}
+	</delete>
 </mapper>

@@ -1,6 +1,7 @@
 package com.project.itplanet.competition.model.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -11,6 +12,7 @@ import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.competition.model.vo.Cattachment;
 import com.project.itplanet.competition.model.vo.Competition;
 import com.project.itplanet.competition.model.vo.CompetitionReply;
+import com.project.itplanet.member.model.vo.CScrap;
 
 @Repository("cDAO")
 public class CompetitionDAO {
@@ -89,5 +91,17 @@ public class CompetitionDAO {
 
 	public ArrayList<Competition> topComp() {
 		return (ArrayList)sqlSession.selectList("competitionMapper.topComp");
+	}
+
+	public int insertCscrap(Map<String, Object> map) {
+		return sqlSession.insert("competitionMapper.insertCscrap", map);
+	}
+
+	public ArrayList<CScrap> selectScrapAll(Integer cId) {
+		return (ArrayList)sqlSession.selectList("competitionMapper.scrapAll", cId);
+	}
+
+	public int deleteCscrap(Map<String, Object> map) {
+		return sqlSession.delete("competitionMapper.deleteCscrap", map);
 	}
 }

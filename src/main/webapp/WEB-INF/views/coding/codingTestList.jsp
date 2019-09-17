@@ -8,16 +8,24 @@
 <title>코딩테스트 목록</title>
 <link rel="stylesheet" href="${ contextPath }/resources/css/coding/codingTestList.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/77f9f5360f.js"></script>
+<style>
+	.question{
+		cursor: pointer;
+	}
+	.question:hover{
+		background: #a3a3cc24;
+	}
+</style>
 </head>
 <body>
    
-   <%@ include file="/WEB-INF/views/common/menubar.jsp" %>
+   <c:import url="../common/menubar.jsp"/>
    
    <!-- iframe -->
    <div class="pageFrame">
@@ -26,7 +34,7 @@
    
    <div class="box">
     <div class="container">
-    	<a onclick="javascript:location.href='insertCT.do'">코딩테스트</a>
+    	<a href="javascript:location.href='insertCT.do'">문제 작성</a>
     	<c:if test="${ ctList.isEmpty() }">
     		
     	</c:if>
@@ -34,37 +42,24 @@
         <div class="row">
           	<c:if test="${ !ctList.isEmpty() }">
     			<c:forEach items="${ ctList }" var="ctList">
-		    			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-		               
-		               <div class="box-part">
-		                        
-		                        
-		                        <i class="fab fa-java fa-2x" aria-hidden="true"></i>
-		                        
-		                        
-		                        
+		    		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" onclick="javascript:location.href='codingTestView.do'">
+		               <div class="box-part  question">
+	                      <i class="fab fa-java fa-2x" aria-hidden="true"></i>
 		                  <div class="title">
 		                     <h4>${ ctList.qTitle }</h4>
 		                  </div>
-		                        
 		                  <div class="text">
 		                     <span>${ ctList.qContent }</span>
-		                     
-		                     
 		                  </div>
-		                  
-		               
-		                        
 		                </div>
 		            </div>    
     			</c:forEach>
     		</c:if>
-             
           
-      </div>      
+      </div>
     </div>
 </div>
 
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>	    
+<c:import url="../common/footer.jsp"/>
 </body>
 </html>

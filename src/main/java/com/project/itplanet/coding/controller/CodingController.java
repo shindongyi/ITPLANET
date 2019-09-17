@@ -102,7 +102,7 @@ public class CodingController {
 		
 		if(result > 0) {
 			// 경로 수정하기
-			return "coding/codingTestList";
+			return "redirect:codingTestListView.do";
 		}else {
 			throw new CodingException("코딩테스트 글 작성에 실패하였습니다.");
 		}

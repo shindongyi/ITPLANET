@@ -33,7 +33,7 @@
 .detail div{
 	position: absolute; 
 	left: 35%; 
-	padding-top: 60px;
+	padding-top: 30px;
 }
 .detail div span, .alaramList span{
 	font-size: 14px;

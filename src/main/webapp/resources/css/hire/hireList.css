@@ -108,6 +108,10 @@
 #container p.info > span {
   display: inline-block; margin-right: 8px; line-height: 18px;  font-size: 15px; letter-spacing: 0;
   margin-left: 25px;
+  width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 #container p.info > span.dday {
   font-weight: bold;
@@ -133,6 +137,10 @@
     letter-spacing: -1px;
     line-height: 17px;
     line-style: none;
+     width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #container > .pow {

@@ -91,8 +91,8 @@
 		
 		var uri ="https://oapi.saramin.co.kr/job-search?";
 		var key ="access-key=mg233WU8HnG8aF5jrYPTqeBpU7Tr4OpGQtN38PyKptDLgj4ciNwbm";
-		var job_category = "&job_category=4"
-	
+		var job_category = "&job_category=4";
+		var fields = "&fields=count";
 		$(document).ready(function(){
 			// "https://oapi.saramin.co.kr/job-search?access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa&ind_cd=3&start=1&count=50";
 			var sNum = 1;
@@ -105,7 +105,7 @@
 			var count = "&count=";
 			var kewords = "&kewords=";
 			var kewords2 = encodeURI("개발자");
-		    var resultURL = uri + key + job_category + start + sNum + count + cNum;
+		    var resultURL = uri + key + job_category + start + sNum + count + cNum + fields;
 					
 		    hListView(resultURL);
 		    
@@ -115,7 +115,7 @@
 				
 		    	if (maxHeight <= currentScroll + 100) {			
 		    		sNum++;
-		    		resultURL = uri + key + job_category + start + sNum + count + cNum;
+		    		resultURL = uri + key + job_category + start + sNum + count + cNum + fields;
 		    		hListView(resultURL);
 		    	}
 		    });
@@ -147,6 +147,9 @@
 					var $expiration_date;
 					var $salary;
 					var $jobType;
+					var $read_cnt;
+					var $apply_cnt;
+					
 					
 					var $aTop;
 					var $hScrap;
@@ -171,8 +174,11 @@
 							$required = $("<li>").text(decodeURIComponent(data[i].required));
 							$jobType = $("<span>").text(decodeURIComponent(data[i].jobType));
 							if(decodeURIComponent(data[i].salary) != null){
-								$salary = $("<span>").text(decodeURIComponent(data[i].salary).replace(/[undefined]/gi," "));
+								$salary = $("<span>").text(decodeURIComponent(data[i].salary).replace(/[undefined]/gi," ").replace(/[+]/gi,""));
 							}
+							
+							$read_cnt = $("<li>").text(data[i].read_cnt);
+							$apply_cnt = $("<li>").text(data[i].apply_cnt);
 							
 							var date = new Date((decodeURIComponent(data[i].expiration_date))*1000);
 							var today = new Date();
@@ -191,6 +197,8 @@
 							$desc.append($industry);
 							$desc.append($experience);
 							$desc.append($required);
+							
+							
 							//$info.append($hScrap);
 							$info.append($jobType);
 							$info.append($salary);

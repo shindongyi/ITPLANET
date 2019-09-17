@@ -130,6 +130,8 @@ public class HireController {
 				map.put("experience", (String)experience.get("name"));
 				map.put("salary", (String)salary.get("name"));
 				map.put("expiration_date", (String)jsonObject1.get("expiration-timestamp"));
+				map.put("read_cnt", (String)jsonObject1.get("read-cnt"));
+				map.put("apply_cnt", (String)jsonObject1.get("apply-cnt"));
 				
 				list.add(map);
 			}
@@ -187,7 +189,10 @@ public class HireController {
 			if(map.get("expiation_date") != null) {
 				map.put("expiration_date", URLEncoder.encode(map.get("expiration_date"),"UTF-8"));
 			}
-		}
+			
+			map.put("read_cnt", map.get("read_cnt"));
+			map.put("apply_cnt", map.get("apply_cnt"));
+		} 
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(json,response.getWriter());

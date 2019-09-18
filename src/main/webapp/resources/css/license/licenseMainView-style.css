@@ -121,6 +121,30 @@
 	border: 0.5px solid #f1f1f1;
 	margin: auto;
 }
+.topN{
+	width: 180px;
+	padding-left: 20px;
+}
+.topNTitle{
+	font-size: 14px;
+	padding: 5px 2px 5px 2px;
+	color: #002358;
+	font-weight: 600;
+}
+.topNContent{
+	font-size: 12px;
+	padding: 8px;
+}
+.topNContent li{
+	margin-bottom: 8px;
+	color: red;
+	font-weight: 700;
+}
+.topNContent a{
+	padding-left: 8px;
+	color: #333;
+	font-weight: normal;
+}
 .serchArea{
 	clear: both;
 	width: 970px;
@@ -206,7 +230,7 @@
 	width: 100%;
 }
 #license_list{
-	background: #f1f1f1;
+	/* background: #f1f1f1; */
 	text-align: left;
 	position: relative;
 	margin: auto;
@@ -297,6 +321,7 @@
 }
 .license_txtWrap{
 	padding: 20px 30px 10px 30px;
+	border-bottom: 1px solid #ddd;
 }
 .scrapBtn{
 	cursor: pointer;
@@ -477,13 +502,15 @@
 	left: 95%; 
 	width: 50px; 
 	height: 50px; 
-	background: #002358;
-	color: #fff;
+	/* background: #002358;
+	color: #fff; */
+	color: #002358;
 	border-radius: 50%; 
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+	font-size: 14px;
 }
 .fc-more-popover {
 	top: 0 !important;

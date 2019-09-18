@@ -40,10 +40,10 @@
 								<c:if test="${fn:length(recentComp) > 0 }">
 								<c:forEach var="j" items="${ recentComp }" >
 								<li>
-									<a href="${ j.LINK }" class="figure" target="_blank">
+									<a href="competitionDetail?cId=${ j.SID }" class="figure">
 										<img src="" width="106" height="106" alt="${ j.TITLE }">
 									</a>
-									<a href="${ j.LINK }">
+									<a href="competitionDetail?cId=${ j.SID }">
 										<span class="scpName">${ j.TITLE }</span>
 									</a>
 								</li>

@@ -25,4 +25,6 @@ public interface LicenseService {
 
 	ArrayList<License> mainLicense();
 
+	void updateLcsCount(int lId);
+
 }

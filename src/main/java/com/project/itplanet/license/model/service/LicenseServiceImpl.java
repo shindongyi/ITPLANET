@@ -59,4 +59,9 @@ public class LicenseServiceImpl implements LicenseService{
 		return lDAO.mainLicense();
 	}
 
+	@Override
+	public void updateLcsCount(int lId) {
+		lDAO.updateLcsCount(lId);
+	}
+
 }

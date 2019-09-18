@@ -118,7 +118,7 @@
 	</select>
 
    <select id="recentCompScrap" parameterType="map" resultType="map">
-      select imagename, filepath, title, duedate, sid, link
+      select imagename, filepath, title, duedate, sid
       from r_c_scrap_view
       where user_id = #{ userId }
       <if test='keyword != null and keyword.equals("dDay")'>

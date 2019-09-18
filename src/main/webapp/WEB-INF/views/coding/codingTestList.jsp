@@ -35,31 +35,58 @@
    <div class="box">
     <div class="container">
     	<a href="javascript:location.href='insertCT.do'">문제 작성</a>
-    	<c:if test="${ ctList.isEmpty() }">
-    		
-    	</c:if>
     	
         <div class="row">
-          	<c:if test="${ !ctList.isEmpty() }">
-    			<c:forEach items="${ ctList }" var="ctList">
-		    		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" onclick="javascript:location.href='codingTestView.do'">
-		               <div class="box-part  question">
-	                      <i class="fab fa-java fa-2x" aria-hidden="true"></i>
-		                  <div class="title">
-		                     <h4>${ ctList.qTitle }</h4>
-		                  </div>
-		                  <div class="text">
-		                     <span>${ ctList.qContent }</span>
-		                  </div>
-		                </div>
-		            </div>    
-    			</c:forEach>
-    		</c:if>
-          
+        	<c:if test="${ empty loginUser }">
+        		<c:if test="${ ctList.isEmpty() }">
+	        		<h2>등록된 문제가 없습니다.</h2>
+	        	</c:if>
+	          	<c:if test="${ !ctList.isEmpty() }">
+	    			<c:forEach items="${ ctList }" var="ctList">
+			    		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" onclick="notLogin();">
+			               <div class="box-part  question">
+		                      <i class="fab fa-java fa-2x" aria-hidden="true"></i>
+			                  <div class="title">
+			                     <h4>${ ctList.qTitle }</h4>
+			                  </div>
+			                  <div class="text">
+			                     <span>${ ctList.qContent }</span>
+			                  </div>
+			                </div>
+			            </div>    
+	    			</c:forEach>
+	    		</c:if>
+        	</c:if>
+        
+        	<c:if test="${ !empty loginUser }">
+        		<c:if test="${ ctList.isEmpty() }">
+	        		<h2>등록된 문제가 없습니다.</h2>
+	        	</c:if>
+	          	<c:if test="${ !ctList.isEmpty() }">
+	    			<c:forEach items="${ ctList }" var="ctList">
+			    		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" onclick="javascript:location.href='codingTestView.do?Qno=${ ctList.qNum}'">
+			               <div class="box-part  question">
+		                      <i class="fab fa-java fa-2x" aria-hidden="true"></i>
+			                  <div class="title">
+			                     <h4>${ ctList.qTitle }</h4>
+			                  </div>
+			                  <div class="text">
+			                     <span>${ ctList.qContent }</span>
+			                  </div>
+			                </div>
+			            </div>    
+	    			</c:forEach>
+	    		</c:if>
+        	</c:if>
       </div>
     </div>
 </div>
 
+<script>
+	function notLogin(){
+		alert("로그인 후에 이용가능한 서비스입니다.");
+	}
+</script>
 <c:import url="../common/footer.jsp"/>
 </body>
 </html>

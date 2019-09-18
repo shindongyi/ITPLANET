@@ -21,7 +21,7 @@
 	</resultMap>
 	
 	<select id="listCoding" resultMap="codingResultSet">
-		select * from QUESTION
+		select * from QUESTION order by q_num
 	</select>
 	
 	<insert id="insertCoding" parameterType="Coding">
@@ -67,4 +67,24 @@
 		</if>
 		#{userId})
 	</insert>
+	<resultMap type="CodingPass" id="codingPassResult">
+		<id property="qsNum" column="QS_NUM"/>
+		<result property="qPass" column="Q_PASS"/>
+		<result property="qNum" column="Q_NUM"/>
+		<result property="userId" column="USER_ID"/>
+	</resultMap>
+	<select id="getPassList" parameterType="_int" resultMap="codingPassResult">
+		select * from qscore where q_num = #{qno}
+	</select>
+	
+	<insert id="insertQscore" parameterType="map">
+		insert into qscore
+		values(seq_qsnu.nextval, default, #{qno}, #{userId})
+	</insert>
+	
+	<select id="getCoding" parameterType="_int" resultMap="codingResultSet">
+		select * 
+		from question
+		where q_num = #{qno}
+	</select>
 </mapper>

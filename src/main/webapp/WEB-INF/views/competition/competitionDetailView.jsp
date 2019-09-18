@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 
 <link rel="stylesheet" href="${ contextPath }/resources/css/mainView/activity.css">
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=efed415f965636c4e32491ab2edf6847&libraries=services"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <title>Insert title here</title>
 <style>
 	#updateComp, input[type=button] {
@@ -163,43 +164,62 @@
 <c:import url="../common/menubar.jsp"/>
 	<form action="updateCompetitionView.do?cId=${ competition.cId }" name="cWrite" id="cWrite">
 	<div id="introduce">
-		<section class="title" style="top: -170px; transform: none;">
-	    <div class="wrap">
-	    	<input type="hidden" name="cId" value="${ competition.cId }">
-	      <p class="badges"><span>공모전</span></p>
-	      <figure style="background-image: url('${ contextPath }/resources/compeloadFiles/${ cAttachment.changeName }');"></figure>
-	      <div class="content">
-	        <h1>${ competition.cTitle }</h1>
-	        <p class="company">${ competition.cWriter }</p>
-	        <p class="info"><span class="viewcount">${ competition.cCount }</span></p>
-	        <c:if test="${ competition.cWriter == loginUser.nickName }">
-	        	<p class="company"><input type="submit" id="updateComp" value="수정하기"><input type="button" onclick="deleteComp();" value="삭제하기"></p> 
-	        </c:if>
-	      </div>
-	    </div>
+	  <section class="title" style="top: -170px; transform: none;">
+	    
 	  </section>
 	  
 	  <section class="tab" style="top: 0px; transform: none;">
 	    <div class="wrap">
 	      <a id="introP" class="active" href="javascript:introSelect();"><span class="text">소개</span></a>
 	      <a id="replyP" href="javascript:replySelect();"><span class="text">댓글</span></a>
+	     
 	    </div>
 	  </section>
 	  
 	  <div id="container" style="padding-top: 0px;">
-	  	<div class="section">
-	  		<h2>공모전 기간</h2>
-			
+	  	<section class="title" style="top: -170px; transform: none;">
+	  	<div class="wrap">
+	    	<input type="hidden" name="cId" value="${ competition.cId }">
+	      <p class="badges"><span>공모전</span></p>
+	      <%-- <figure style="background-image: url('${ contextPath }/resources/compeloadFiles/${ cAttachment.changeName }');"></figure> --%>
+	      <div class="content">
+	        <h1>${ competition.cTitle }</h1>
+	        <p class="company">작성자:   ${ competition.cWriter }</p>
+
+	      </div>
+	    </div>
+	     </section>
+	     <hr>
+	  	<div class="section">	  		
+			<p class="company">
+				<h2>공모전 기간</h2>
+				<span class="viewcount">조회수 : ${ competition.cCount }</span>
+			</p>
 	  		<p class="dday">${ competition.cStartDate } ~ ${ competition.cDueDate }</p>
 	  	</div>
 	  	<div class="section">
 	  		<h2>상세내용</h2>
 	  		<textarea rows="5" cols="120" readonly="readonly" style="resize: none; border: none;">${ competition.cContent }</textarea>
 	  	</div>
+	  	
 	  	<div class="poster">
 	  		<img src="${ contextPath }/resources/compeloadFiles/${ cAttachment.changeName }">
 	  	</div>
+	  	<h2 id="mapLoc">위치 정보</h2>
+	  	<div id="map" style="width:100%;height:350px;">
+	  		
+	  		<input type="hidden" value="${ competition.cAddress }" id="roadAddr" >	
+	  	</div>
+	  	
 	  	<div class="bottombar">
+	  		<c:if test="${ competition.cWriter == loginUser.nickName }">
+	  		<a onclick="submitComp();">
+	  			<span>수정하기</span>
+	  		</a>
+	  		<a onclick="deleteComp();">
+	  			<span>삭제하기</span>
+	  		</a>
+	  		</c:if>
 	  		<a class="scrap" onclick='scrapCheck();'>
 	  			<c:set var="csCheck" value="false"/>
 	  			<c:forEach var="csList" items="${ csList }">
@@ -281,6 +301,10 @@
   		$('#replyP').attr('class', 'active');
   	}
   	
+  	function submitComp() {
+  		$('#cWrite').submit();
+  	}
+  	
   	$(function(){
   		getReplyList();
   		
@@ -351,6 +375,48 @@
   	}
   </script>
   
+  <script>
+		var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
+		var mapOption = {
+		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };  
+		
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		var roadAddr = document.getElementById('roadAddr');
+		console.log(roadAddr.value);
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch(roadAddr.value, function(result, status) {
+		
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+		
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+		        });
+		        infowindow.open(map, marker);
+		
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		    
+		});    
+	</script>
  
 
 <!-- 푸터  -->

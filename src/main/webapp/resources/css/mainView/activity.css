@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 section.title, section.tab {
-  position: static; width: 100%; box-sizing: border-box; font-size: 0; background-color: #b8b7e6;
+  position: static; width: 100%; box-sizing: border-box; font-size: 0; 
 }
 section.title.fixed, section.tab.fixed {
   position: fixed; z-index: 5; transition: transform 0.5s;
@@ -25,14 +25,16 @@ section.title > div.wrap > p.badges > span {
 section.title > div.wrap > figure {
   position: absolute; display: block; width: 80px; height: 114px; background-color: #f9f9f9; background-position: center top; background-size: cover;
 }
-section.title > div.wrap > div.content {
+/* section.title > div.wrap > div.content {
   padding-left: 96px; min-height: 114px;
-}
+} */
 section.title > div.wrap > div.content > h1 {
   line-height: 27px; color: #292929; font-size: 18px; font-weight: bold; word-wrap: break-word;
+      display: inline-block;
 }
 section.title > div.wrap > div.content > p.company {
-  margin-bottom: 4px; line-height: 20px; color: #4c4c4c; font-size: 14px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  line-height: 20px; color: #4c4c4c; font-size: 15px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+      display: inline-block; margin-left: 400px;
 }
 section.title > div.wrap > div.content > p.info > span {
   display: inline-block; margin-right: 8px; line-height: 18px; color: #a6a6a6; font-size: 12px; letter-spacing: 0;
@@ -67,7 +69,7 @@ section.tab > div.wrap > a.active > span.count {
 }
 
 #container {
-  margin: 8px auto 64px auto; max-width: 720px; font-size: 0;
+  margin: 8px auto 64px auto; max-width: 720px; 
 }
 @media only screen and (min-width: 720px) {
   #container {
@@ -80,6 +82,12 @@ section.tab > div.wrap > a.active > span.count {
 }
 #container p.info > span.viewcount {
   padding-left: 14px; background: transparent url('/images/viewcount2.png') no-repeat left center; background-size: 12px 8px;
+}
+span.viewcount {
+	background: transparent url('/images/viewcount2.png') no-repeat left center; background-size: 12px 8px; display:inline-block;
+	line-height: 20px;     padding-left: 500px;
+    color: #4c4c4c;
+    font-size: 14px;
 }
 #container p.info > span.commentcount {
   padding-left: 12px; background: transparent url('/images/commentcount.png') no-repeat left center; background-size: 9px 9px;
@@ -99,7 +107,7 @@ section.tab > div.wrap > a.active > span.count {
   padding: 16px; background-color: #fff;
 }
 #container > div.section > h2 {
-  margin-bottom: 8px; line-height: 24px; color: #292929; font-size: 16px; font-weight: bold;
+  margin-bottom: 8px; line-height: 24px; color: #292929; font-size: 16px; font-weight: bold; display: inline-block;
 }
 #container > div.section > h3 {
   position: absolute; line-height: 20px; color: #a6a6a6; font-size: 14px; font-weight: normal;
@@ -134,16 +142,24 @@ section.tab > div.wrap > a.active > span.count {
 
 #container > div.bottombar {
   position: fixed; bottom: 0; left: 0; width: 100%; border-top: 1px solid #d6d6d6; background-color: #fff;
+  min-height: 50px;
 }
+#container > div.bottombar > a.scrap {
+   display: inline-block; width: 50%; text-align: center; cursor: pointer;
+   position: absolute;
+    left: 630px;
+}
+
 #container > div.bottombar > a {
-  display: inline-block; width: 50%; text-align: center; cursor: pointer;
+   display: inline-block; width: 50%; text-align: center; cursor: pointer;
+
 }
 #container > div.bottombar.threecols > a.scrap,
 #container > div.bottombar.threecols > a.share {
   width: 25%;
 }
 #container > div.bottombar > a > span {
-  display: inline-block; padding-left: 26px; line-height: 56px; color: #292929; font-size: 14px; background-repeat: no-repeat; background-size: 18px 18px; background-position: left center;
+  display: inline-block; line-height: 56px; color: #292929; font-size: 14px; background-repeat: no-repeat; background-size: 18px 18px; background-position: left center;
 }
 #container > div.bottombar > a.website > span {
   background-image: url('/images/bottombar.website.png');
@@ -253,4 +269,12 @@ section.tab > div.wrap > a.active > span.count {
 }
 #container > form.comment > div.wrap > input.submit {
   float: right; margin-right: 16px; padding: 0 16px; height: 36px; line-height: 36px; border: 1px solid transparent; border-radius: 18px; color: #fff; font-size: 14px; font-weight: bold; background-color: #1dcdff;
+}
+
+#mapLoc {
+	margin-bottom: 8px;
+    line-height: 24px;
+    color: #292929;
+    font-size: 16px;
+    font-weight: bold;	
 }

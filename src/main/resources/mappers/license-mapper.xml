@@ -35,26 +35,25 @@
 	</select>
 	
 	<select id="selectList" parameterType="map" resultMap="lcsResultSet">
-   		select l_id, l_name, l_round, start_date, end_date,
-				results, l_address, reg_date
-        from(
-		select l.l_id as l_id, l.l_name as l_name, l.l_round as l_round, l.start_date as start_date, 
-				l.end_date as end_date, l.results as results, l.l_address as l_address,
-				l.reg_date as reg_date
-		from license l
-		where l.status = 'Y') 
-		<where>
+   		select l_id, l_name, l_round, start_date, end_date, results, l_address,
+				reg_date, l_count
+		from license
+		where status = 'Y'
 			<if test='keyword !=null and keyword != ""'>
-				l_name like '%' || #{keyword} || '%'
+				and l_name like '%' || #{keyword} || '%'
 			</if>
 			<if test='choice == "first"'>
-			and sysdate BETWEEN start_date and end_date
+				and sysdate BETWEEN start_date and end_date
 			</if>
-			<if test='all != null and all !=""'>
-			<![CDATA[and end_date >= sysdate]]>
+			<if test='(all != null and all !="") or order=="count"'>
+			<![CDATA[and end_date >= sysdate-1]]>
 			</if>
-		</where>
-		order by end_date
+		<if test='order == null and order == ""'>
+			order by end_date
+		</if>
+		<if test='order == "count"'>
+			order by l_count desc
+		</if> 
 	</select>
 	
 	<insert id="insertScrapLcs" parameterType="map">
@@ -121,5 +120,11 @@
 			where rownum <=3
 		]]>
 	</select>
+	
+	<update id="updateLcsCount" parameterType="_int">
+		update license
+		set l_count = l_count +1
+		where l_id = #{lId}
+	</update>
 	
 </mapper>

@@ -41,42 +41,58 @@
 	<!-- start 상단 lcs_date_list -->
 		<div id="lcs_date_list">
 			<div id="calendar"></div>
-			<div style="flex-direction: column; display: inline-block; position: absolute; left: 50%;">
-		 	<div class="lcs_date nowList">
-				<h2>접수 중인 시험 안내</h2>
-				<hr>
-				<div class="lcs">
-					<c:forEach var="i" items="${firstList}" end="1">
-						<span class="lcs_upper_title"><a href="${i.l_address}">${i.l_name} ${firstList[1].l_round}회차</a></span>
-					</c:forEach>
-					<c:if test="${fn:length(firstList) > '2'}">
-						<span class="more">more</span>
-					</c:if>
-				</div>
-				<c:if test="${!empty firstList }">
-				<div class="lcs_bt_wrap">
-					<div class="lcs_title"><h3>제 ${firstList[0].l_round}회 ${firstList[0].l_name }</h3></div>
-					<div class="lcs_startDate lcs_txt">접수 시작일 : ${firstList[0].start_date}</div>
-					<div class="lcs_endDate lcs_txt">접수 마감일 : ${ firstList[0].end_date }</div>
-					<c:choose>
-						<c:when test='${firstList[0].results != null and firstList[0].results != "" }'>
-							<div class="lcs_results lcs_txt">결과 발표일 : ${ firstList[0].results }</div>
-						</c:when>
-						<c:otherwise>
-							<div class="lcs_results lcs_txt">결과 발표일 : 시험종료 즉시</div>
-						</c:otherwise>
-					</c:choose>
-					<button class="lcs_btn lcs_txt" onclick="window.open('${firstList[0].l_address}');">접수하기</button>
-				</div>
-				</c:if>
-				<c:if test="${empty firstList }">
-					<i class="fas fa-exclamation-triangle" style="font-size: 120px; color: #f1f1f1a8; position: absolute; left: 35%; top: 40%;"></i>
-					<div class="lcs_bt_wrap" style="bottom: 35%; left: 25%;">
-						<p style="display: inline-block;">원서 접수중인 시험이 없습니다.</p>
+			<div style="flex-direction: column; display: inline-block; position: absolute; left: 50%; padding: 60px 230px 0 0;">
+				<div style="flex-direction: row; display: flex;">
+				 	<div class="lcs_date nowList">
+						<h2>접수 중인 시험 안내</h2>
+						<hr>
+						<div class="lcs">
+							<c:forEach var="i" items="${firstList}" end="1">
+								<span class="lcs_upper_title"><a href="${i.l_address}"> 제 ${i.l_round}회 ${i.l_name}</a></span>
+							</c:forEach>
+							<c:if test="${fn:length(firstList) > '2'}">
+								<span class="more">more</span>
+							</c:if>
+						</div>
+						<c:if test="${!empty firstList }">
+						<div class="lcs_bt_wrap licenseArea">
+					 		<input type="hidden" class="lId" value="${firstList[0].l_id}">
+							<div class="lcs_title"><h3>제 ${firstList[0].l_round}회 ${firstList[0].l_name }</h3></div>
+							<div class="lcs_startDate lcs_txt">접수 시작일 : ${firstList[0].start_date}</div>
+							<div class="lcs_endDate lcs_txt">접수 마감일 : ${ firstList[0].end_date }</div>
+							<c:choose>
+								<c:when test='${firstList[0].results != null and firstList[0].results != "" }'>
+									<div class="lcs_results lcs_txt">결과 발표일 : ${ firstList[0].results }</div>
+								</c:when>
+								<c:otherwise>
+									<div class="lcs_results lcs_txt">결과 발표일 : 시험종료 즉시</div>
+								</c:otherwise>
+							</c:choose>
+							<button class="goToSite lcs_btn lcs_txt" onclick="window.open('${firstList[0].l_address}');">접수하기</button>
+						</div>
+						</c:if>
+						<c:if test="${empty firstList }">
+							<i class="fas fa-exclamation-triangle" style="font-size: 120px; color: #f1f1f1a8; position: absolute; left: 35%; top: 40%;"></i>
+							<div class="lcs_bt_wrap" style="bottom: 35%; left: 25%;">
+								<p style="display: inline-block;">원서 접수중인 시험이 없습니다.</p>
+							</div>
+						</c:if>
 					</div>
-				</c:if>
-			</div>
-			<div id="lcsInfo" class="lcs_date">
+					<div class="topN">
+						<div class="topNTitle"><i class="fas fa-arrow"></i> TOP COUNT </div>
+						<div class="topNContent">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div id="lcsInfo" class="lcs_date licenseArea">
+					<input type="hidden" class="lId">
 					<h2>자격증 정보 안내</h2>
 					<span class="deleteBtn">x</span>
 				<hr>
@@ -86,10 +102,11 @@
 					<div class="lcs_endDate lcs_txt"></div>
 					<div class="lcs_results lcs_txt"></div>
 					<button class="scrapBtn lcs_scr lcs_txt" title="스크랩하기">스크랩하기</button>
-					<button class="lcs_btn lcs_txt">접수하기</button>
+					<button class="lcs_btn goToSite lcs_txt">접수하기</button>
 				</div>
 			</div>
-			</div>
+
+		</div>
 		</div>
 		<hr>
 		<div class="serchArea">
@@ -109,7 +126,7 @@
 		<c:if test="${!empty allList }">
 			<div id="license_list">
 				<c:forEach var="i" items="${ allList }"> 
-					<div class="license">
+					<div class="license licenseArea">
 						<input type="hidden" class="lId" value="${i.l_id}">
 						<div class="title">
 							<p class="lcs_title">제 ${ i.l_round }회 ${ i.l_name }</p>
@@ -128,7 +145,7 @@
 						</c:otherwise>
 					</c:choose>
 						<div class="btnArea">
-							<a href="${i.l_address }" target="_blank">사이트로 이동</a>
+							<a href="${i.l_address }" target="_blank" class="goToSite">사이트로 이동</a>
 							<a class="scrapBtn" id="${i.l_id}" title="스크랩하기">스크랩하기</a>
 						</div>
 						</div>
@@ -209,7 +226,7 @@
 	</div>
 	<!-- 페이지 상단 이동 버튼 -->
 	<div id="goToTop">
-	 <span>TOP</span>
+	 <span><i class="fas fa-angle-up" style="font-weight: 100;"></i>&nbsp;TOP</span>
 	</div>
 	<!-- end primaryContent -->
 </div>
@@ -268,11 +285,12 @@ document.addEventListener('DOMContentLoaded', function() {
       // 이벤트 추가
       eventClick: function(e){
     	  eventId = e.event.id;
-   		  
+   		  $('#lcs_date_list').css('height', '600px');
    		  // 이벤트 클릭 시 우측에 상세 정보 띄우기
     	  var $lcsInfo = $('#lcsInfo');
     	  <c:forEach var="i" items="${calendarList}">
     	  	if("${i.l_id}" == eventId){
+    	  		$("#lcsInfo .lId").val('${i.l_id}');
     	  		$('#lcsInfo .scrapBtn').attr('id', '${i.l_id}');
     	  		$('#lcsInfo h3').text('${i.l_name} ${i.l_round}회차');
     	  		$('#lcsInfo .lcs_startDate').text('접수 시작일 : ${i.start_date}');
@@ -282,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	  		} else {
     	  				$('#lcsInfo .lcs_results').text('결과 발표일 : 상시발표');
     	  		}
-    	  		$('#lcsInfo .lcs_btn').attr('onclick', 'window.open("${i.l_address}")');
+    	  		$('#lcsInfo .goToSite').attr('onclick', 'window.open("${i.l_address}")');
     	  	}
     	  </c:forEach>
     	  $lcsInfo.show();
@@ -306,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		  	  if(!l_addressArr.includes("${i.l_address}")){
 		  		l_addressArr.push("${i.l_address}");
 		  	  }
-	    	calendar.addEvent({'id':'${i.l_id}','title':'${i.l_name} ${i.l_round}회차','start':'${i.start_date}','end':'${i.end_date}','color':'#f1f1f1a8'});
+	    	calendar.addEvent({'id':'${i.l_id}','title':'${i.l_name} ${i.l_round}회차','start':'${i.start_date}','end':'${ i.end_date }','color':'#f1f1f1a8'});
 		  </c:forEach>	  
 	  }
   }); 
@@ -529,6 +547,7 @@ $('.more').on('click', function(){
 
 // 상단 x 클릭시 해당 div hide
 $('.deleteBtn').on('click', function(){
+	$('#lcs_date_list').css('height', '510px');
 	$(this).closest('#lcsInfo').hide();
 });
 
@@ -635,6 +654,48 @@ $('#insertLcsBtn').on('click', function(){
 		}
 	});
 });
+
+// 조회수 +1 
+$(document).on('click', '.goToSite', function(){
+	var lId = $(this).closest('.licenseArea').find('.lId').val();
+	console.log("lId : " + lId);
+	
+	$.ajax({
+		url:"updateLcsCount.do",
+		method: "post",
+		data:{lId:lId}
+	})
+});
+
+// 탑앤분석 ajax
+
+$(function(){
+	topList();
+	
+	setInterval(function(){
+		topList();
+	}, 5000);
+});
+
+function topList(){
+	$.ajax({
+		url: "getTopList.do",
+		dataType: "json",
+		success: function(data){
+				var $div = $('.topNContent');
+				$div.text('');
+				var $ul = $('<ul>');
+			for(var i in data){
+				var $li = $('<li>').text(parseInt(i)+1);
+				var $a = $('<a>').text(decodeURIComponent(data[i].l_name.replace(/\+/g, " ")));
+				$li.append($a);
+				$ul.append($li);
+				if(i >= 4) break;
+			}
+			$div.append($ul);
+		}
+	});
+}
 
 </script>
 <c:import url="/WEB-INF/views/common/footer.jsp"/>

@@ -73,6 +73,7 @@ public class LicenseController {
 		map.put("pi", pi);
 		map.put("choice", "first");
 		ArrayList<License> firstList = lService.selectList(map);
+		map.remove("order");
 		map.put("keyword", keyword);
 		
 		
@@ -103,6 +104,22 @@ public class LicenseController {
 		}
 		return mv;
 	}
+	
+	// 탑앤분석
+	@RequestMapping("getTopList.do")
+	public void getTopList(HttpServletResponse response) throws IOException {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("order", "count");
+		ArrayList<License> topList = lService.selectList(map);
+		
+		for(License l : topList) {
+			l.setL_name(URLEncoder.encode(l.getL_name(), "utf-8"));
+		}
+		
+		Gson gson = new Gson();
+		gson.toJson(topList, response.getWriter());
+	}
+	
 	
 	// ajax로 페이지 더 불러올때
 	@RequestMapping("getListMore.do")
@@ -233,4 +250,26 @@ public class LicenseController {
 		Gson gson = new GsonBuilder().setDateFormat("MM-dd").create();
 		gson.toJson(list, response.getWriter());
 	}
+	
+	// 조회수+1
+	@RequestMapping("updateLcsCount.do")
+	public void lcsCount(@RequestParam(value="lId", required=false) Integer lId) {
+		System.out.println("lId : " + lId);
+		lService.updateLcsCount(lId);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -58,6 +58,10 @@ public class LicenseDAO {
 	public ArrayList<License> mainLicense() {
 		return (ArrayList)sqlSession.selectList("licenseMapper.mainLicense");
 	}
+
+	public void updateLcsCount(int lId) {
+		sqlSession.update("licenseMapper.updateLcsCount", lId);
+	}
 	
 
 }

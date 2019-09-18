@@ -10,7 +10,7 @@
 		<result property="birthDay" column="BIRTH_DAY"/>
 		<result property="gender" column="GENDER"/>
 		<result property="email" column="EMAIL"/>
-		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="enrollDate" column="ENROL_DATE"/>
 		<result property="modifyDate" column="MODIFY_DATE"/>
 		<result property="status" column="STATUS"/>
 		<result property="black" column="BLACK"/>

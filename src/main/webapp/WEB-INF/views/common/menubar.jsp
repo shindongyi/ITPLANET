@@ -76,7 +76,7 @@ $(window).scroll(function(event) {
 					<c:out value="로그인 계정 없음"/>
 				</h3> --%>
 			</c:if>
-			<c:if test="${ !empty sessionScope.loginUser }">
+			<c:if test="${ !empty sessionScope.loginUser && loginUser.userName != '관리자' }">
 			<dd>
 				<a style="font-size:12px;"> ${ loginUser.userName }님 환영합니다.</a>
 			</dd>
@@ -120,7 +120,7 @@ $(window).scroll(function(event) {
 		<div class="hd_top">
 			<h1 class="sd">
 				<a href="<%=request.getContextPath()%>/index.jsp"><img
-					style="margin-top: -20px; width: 270px; height:98px;"
+					style="margin-top: -30px; width: 270px; height:98px;"
 					src="<%=request.getContextPath()%>/resources/images/mainlogo.jpg"
 					alt="IT PLANET"></a>
 			</h1>

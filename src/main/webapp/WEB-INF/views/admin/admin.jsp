@@ -42,7 +42,7 @@ footer {
 }
 
 #userSearchTable{
-	font-size: 12px;
+	font-size: 14px;
 }
 
 #blackUserTable{
@@ -56,22 +56,32 @@ footer {
 	font-size: 12px;
 }
 
+#normalUser{
+	overflow: scroll;
+	height:500px;
+}
+
+#blackList{
+	overflow: scroll;
+	height:500px;
+}
+
 
 
 </style>
 <body>
+	<%@ include file="/WEB-INF/views/common/menubar.jsp" %>
 
 	<!-- 왼쪽사이드바 -->
 	<div class=" w3-bar-block  w3-card"
-		style="width: 150px; min-height: 700px; position: relative !important; z-index: 4; background: #003458; color: white;">
+		style="width: 150px; min-height: 685px; position: relative !important; z-index: 4; background: #003458; color: white;">
 		<h5 class="w3-bar-item">Admin Page</h5>
 		<hr>
 		<button class="w3-bar-item w3-button sideTablink"
 			onclick="openLink(event, 'administrate')">회원목록</button>
 		<button class="w3-bar-item w3-button sideTablink"
 			onclick="openLink(event, 'qna')">글목록</button>
-		<button class="w3-bar-item w3-button sideTablink"
-			onclick="openLink(event, 'userWant')">블랙리스트</button>
+		
 
 	</div>
 
@@ -97,7 +107,7 @@ footer {
 					style="background: #003458; color: white;"
 					onclick="user(event,'blackList')">블랙리스트</button>
 			</div>
-			<div id="normalUser" class="w3-container w3-border user">
+			<div id="normalUser" class="w3-container w3-border user" >
 				<h5>일반회원</h5>
 				<div class="w3-container">	
 					<table class="w3-table-all w3-margin-top" id="userSearchTable"
@@ -209,9 +219,7 @@ footer {
 					<button class="w3-bar-item w3-button qnaTablink "
 						style="background: #003458; color: white;"
 						onclick="qnaHoTab(event,'stuffQna')">신고글</button>
-					<button class="w3-bar-item w3-button qnaTablink "
-						style="background: #003458; color: white;"
-						onclick="qnaHoTab(event,'otherQna')">기타</button>
+					
 				</div>
 
 				<div id="sendQna" class="w3-container w3-border qnatab"
@@ -232,8 +240,8 @@ footer {
 									<th style="width: auto;">수정일</th>
 									<th style="width: auto;">작성자</th>
 									<th style="width: auto;">삭제여부</th>
-									<th style="width: 65px;">수락버튼</th>
-									<th style="width: 65px;"></th>
+									<th style="width: 70px;">수락버튼</th>
+									<th style="width: 70px;"></th>
 								</tr>
 								
 								<c:forEach var="c" items="${ clist }">
@@ -276,8 +284,8 @@ footer {
 							<th style="width: auto;">신고유형</th>
 							<th style="width: auto;">작성일</th>
 							<th style="width: auto;">수정일</th>
-							<th style="width: 50px;">수락버튼</th>
-							<th style="width: 50px;"></th>
+							<th style="width: 70px;">수락버튼</th>
+							<th style="width: 70px;"></th>
 						</tr>
 						
 						<c:forEach var="b" items="${ blist }">
@@ -300,22 +308,7 @@ footer {
 
 			</div>
 			
-			<div id="otherQna" class="w3-container w3-border qnatab"
-				style="padding-top: 20px; padding-bottom: 20px; display: none; width: 98%; margin-left: 15px;">
-				<!--  내용물(예시)  -->
-				<button onclick="userQnaList('otherQna1')"
-					class="w3-button w3-block w3-white w3-card w3-left-align">질문기타</button>
-				<div id="otherQna1" class="w3-hide w3-container">
-					<p>제목 :</p>
-					<p>작성자 :</p>
-					<p>닐짜 :</p>
-					<textarea rows="" cols="">  질문 내용물 넣을곳</textarea>
-					<textarea rows="" cols="">  답변 넣을곳</textarea>
-				</div>
-
-
-
-			</div>
+			
 		</div>
 	</div>
 	

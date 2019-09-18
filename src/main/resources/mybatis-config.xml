@@ -20,6 +20,7 @@
 		<typeAlias type="com.project.itplanet.competition.model.vo.Cattachment" alias="Cattachment"/>
 		<typeAlias type="com.project.itplanet.competition.model.vo.CompetitionReply" alias="CompetitionReply"/>
 		<typeAlias type="com.project.itplanet.coding.model.vo.Coding" alias="Coding"/>
+		<typeAlias type="com.project.itplanet.coding.model.vo.CodingPass" alias="CodingPass"/>
 		<typeAlias type="com.project.itplanet.blacklist.model.vo.Black" alias="Black"/>
 	</typeAliases>
 	

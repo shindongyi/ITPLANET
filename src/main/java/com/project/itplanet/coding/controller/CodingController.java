@@ -1,8 +1,21 @@
 package com.project.itplanet.coding.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.project.itplanet.coding.model.exception.CodingException;
 import com.project.itplanet.coding.model.service.CodingService;
 import com.project.itplanet.coding.model.vo.Coding;
@@ -141,5 +157,134 @@ public class CodingController {
 		}else {
 			throw new CodingException("코딩테스트 글 작성에 실패하였습니다.");
 		}
+	}
+	
+	@RequestMapping("compileCode.do")
+	public void compileCode(HttpServletResponse response, String code, HttpServletRequest request) throws JsonIOException, IOException {
+		saveFile(request, code);
+		
+//		String command = inputCommand("ipconfig");
+//		String result = execCommand(command);
+//		
+//		String resultSet = URLEncoder.encode(result, "utf-8");
+//		
+//		Gson gson = new GsonBuilder().setDateFormat("yy-MM-dd").create();
+//		gson.toJson(resultSet, response.getWriter());
+		
+		String command = inputCommand(request,"javac Solution.java");
+		String result = execCommand(request, command);
+		
+		
+		String commandResult = inputCommand(request, "java Solution");
+		String resultSet = URLEncoder.encode(execCommand(request, commandResult), "utf-8");
+		
+//		String resultSet = URLEncoder.encode(result, "utf-8");
+		
+		Gson gson = new GsonBuilder().setDateFormat("yy-MM-dd").create();
+		gson.toJson(resultSet, response.getWriter());
+		
+	}
+	
+	private void saveFile(HttpServletRequest request, String file) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\codingFiles";
+		
+		File folder = new File(savePath);
+		if(!folder.exists()) {
+			folder.mkdirs();
+		}
+		
+		String fileName = "Solution.java";
+		
+		String finalFileName = folder + "\\" + fileName;
+		
+		OutputStreamWriter outputStreamWriter= null;
+		try {
+			BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream(finalFileName));
+			
+			outputStreamWriter =new OutputStreamWriter(output, "utf-8");
+			
+			outputStreamWriter.write(file.toCharArray());
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				outputStreamWriter.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public String inputCommand(HttpServletRequest request, String cmd) {
+		StringBuffer buffer = new StringBuffer();
+		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\codingFiles";
+		System.out.println(savePath);
+		
+		buffer.append("cmd.exe ");
+		buffer.append("/c C: & ");
+		buffer.append("cd " + savePath + " & ");
+		buffer.append(cmd);
+		
+		System.out.println(buffer.toString());
+		
+		return buffer.toString();
+	}
+	
+	public String execCommand(HttpServletRequest request, String cmd) {
+		try {
+			Process process = Runtime.getRuntime().exec(cmd);
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), "EUC-KR"));
+			
+			String line = null;
+			StringBuffer readBuffer = new StringBuffer();
+			
+			while((line = bufferedReader.readLine()) != null) {
+				readBuffer.append(line);
+				readBuffer.append("\n");
+			}
+			
+			return readBuffer.toString();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
+	
+	public String inputCommand(String cmd) {
+		StringBuffer buffer = new StringBuffer();
+		
+		buffer.append("cmd.exe ");
+		buffer.append("/c ");
+		buffer.append(cmd);
+		
+		return buffer.toString();
+	}
+	
+	public String execCommand(String cmd) {
+		StringBuffer readBuffer = null;
+		try {
+			Process process = Runtime.getRuntime().exec(cmd);
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(),"EUC-KR"));
+			
+			String line = null;
+			readBuffer = new StringBuffer();
+			
+			while((line = bufferedReader.readLine()) != null) {
+				System.out.println(line);
+				readBuffer.append(line);
+				readBuffer.append("\n");
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return readBuffer.toString();
 	}
 }

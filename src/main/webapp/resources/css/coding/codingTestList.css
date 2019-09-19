@@ -31,7 +31,7 @@ span{
   border-bottom:2px solid #0062cc;
 } */
 .box{
-    padding:60px 0px;
+    padding:30px 0px;
 }
 
 .box-part{
@@ -57,12 +57,13 @@ span{
 }
 
 .box-part .text span{
-	overflow: hidden;
+   overflow: hidden;
     text-overflow: ellipsis;
-    /* white-space: nowrap; */
-    /* width: 100px; */
     height: 65px;
     display: block;
+    white-space: normal; line-height: 1.2; height: 3.6em; text-align: left; word-wrap: break-word; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+
+
 }
 
 
@@ -83,4 +84,60 @@ span{
         font-weight: 700;
     -webkit-font-smoothing: antialiased;
 }
+
+.box > .container > h2 {
+   line-height: 27px;
+    color: #292929;
+    font-size: 18px;
+    font-weight: bold;
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+.box > .container > #topList {
+   margin-top: 20px;
+   font-size: 14px;
+}
+
+
+.box > .container > #topList thead {
+   background: #003458;
+    opacity: 0.9;
+    color: #FFFFFF;
+}
+
+.responsive-table {
+   
+   thead {
+    background-color: #95A5A6;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  tbody {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  }
+  .col-1 {
+    flex-basis: 10%;
+  }
+  .col-2 {
+    flex-basis: 40%;
+  }
+  .col-3 {
+    flex-basis: 25%;
+  }
+  .col-4 {
+    flex-basis: 25%;
+  }
+}
+
+
+
+
+
+
+
+
+
 

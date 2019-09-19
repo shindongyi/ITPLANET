@@ -87,4 +87,10 @@
 		from question
 		where q_num = #{qno}
 	</select>
+	
+	<select id="countCoding" parameterType="string" resultType="_int">
+      select count(*) 
+      from qscore 
+      where user_id = #{userId}
+   </select>
 </mapper>

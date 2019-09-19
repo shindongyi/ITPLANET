@@ -13,6 +13,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/77f9f5360f.js"></script>
 	
 	<style>
 		#editor {
@@ -21,6 +22,12 @@
 		  right: 0;
 		  bottom: 0;
 		  left: 0;
+		}
+		
+		.fasd{
+			font-size: 25px;
+		    margin-right: 10px;
+		    cursor: pointer;
 		}
 	</style>
 </head>
@@ -35,6 +42,7 @@
 	  
 	<div class="challenge-topbar topbar-wrap">
 	  <h6 class="nav-header">
+	  	<i class="fas fa-angle-left fasd"></i>
 	    <span class="level">코딩 테스트 Q.${ co.qNum }</span>
 	  </h6>
 	</div>
@@ -139,12 +147,15 @@
 }</div>
 				<textarea hidden id="codeCopy" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
-		int result = question(1, 2);
-		int result2 = question(3, 4);
+		Solution sol = new Solution();
+		
+		int result = sol.question(1, 2);
+		int result2 = sol.question(3, 4);
 		
 		System.out.println(result);
 		System.out.println(result2);
-	}</textarea>
+	}
+}</textarea>
 		      </div>
 		    </div>
 		    <br><br>
@@ -158,8 +169,8 @@
 		      <div class="console tab-content">
 		        <div id="output" class="console-output tab-pane fade in active show">
 		          실행 결과가 여기에 표시됩니다.
-		          <div>
-		          <pre class='console-content'></pre>
+		          <div id="outputResult">
+		          	<pre class='console-content'></pre>
 		          </div>
 		        </div>
 		      </div>
@@ -212,23 +223,58 @@
 
 				});
 				
+				editor.$blockScrolling = Infinity;
+				
+				/* 코드 실행 */
 				$('#run-code').click(function(){
-					alert($('#startCode').val());
-					$('#codeCopy').val(editor.getValue());
+					var lastLine = editor.getSession().getLength();
+					editor.gotoLine(lastLine, lastLine,true);
+					editor.removeLines();
+					var editCode = editor.getValue();
+					editor.insert("\n}");
+					
+					$('#codeCopy').val(editCode + $("#startCode").val());
+					
+					$.ajax({
+						url:"compileCode.do",
+						data: {code: $("#codeCopy").val()},
+						type: "post",
+						dataType: "json",
+						success: function(data){
+							$outputResult = $("#outputResult");
+							$outputResult.html("");
+							
+							var $pre;
+							
+							if(data.length > 0){
+								$pre = $("<pre class='console-content'>").text(decodeURIComponent(data.replace(/\+/g, " ")));
+							}
+							
+							$outputResult.append($pre);
+						}
+					});
 				});
 				
 				var firstTxt = editor.getValue();
 				
+				/* 코드 초기화 */
 				$('#reset-code').click(function(){
 					editor.setValue(firstTxt);
+					editor.gotoLine(4, 4,true);
+				});
+				
+				/* 제출하고 완료 */
+				$("#submit-code").click(function(){
+					alert($.trim($("textarea").val()));
 				});
 			});
 		});
 		
-		$("#submit-code").click(function(){
-			alert($.trim($("textarea").val()));
-		});
 		
+		/* 코딩 리스트로 돌아가기 */
+		$('.fasd').click(function(){
+			location.href = 'codingTestListView.do';
+		});
 		
 		
 	</script>

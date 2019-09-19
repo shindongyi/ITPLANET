@@ -17,5 +17,6 @@ public interface CodingService {
 	void insertQscore(Map<String, Object> map);
 
 	Coding getCoding(int qno);
-
+	
+	 int codingCount(String userId);
 }

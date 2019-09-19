@@ -39,4 +39,9 @@ public class CodingServiceImpl implements CodingService{
 	public Coding getCoding(int qno) {
 		return coDAO.getCoding(qno);
 	}
+	
+	@Override
+	   public int codingCount(String userId) {
+	      return coDAO.countCoding(userId);
+	  }
 }

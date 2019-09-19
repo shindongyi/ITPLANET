@@ -117,7 +117,7 @@
 				</span>
 			</span>
 			<c:if test="${loginUser ne null and loginUser.getGrade() eq '0'}">
-			<button id="insertBtn">등록하기</button>
+			<button id="insertBtn"><i class="fas fa-pen-nib"></i>&nbsp;새 글 등록</button>
 			</c:if>
 		</div>
 		<!-- end 상단 lcs_date_list -->
@@ -133,7 +133,7 @@
 						</div>
 						<div class="license_txtWrap">
 						<div>1</div>
-						<button class="setting"><span>...</span></button>
+						<button class="setting"><span><i class="fas fa-cog"></i></span></button>
 						<p class="lcs_txt">접수 시작일 : ${ i.start_date }</p>
 						<p class="lcs_txt">접수 마감일 : ${ i.end_date }</p>
 						<c:choose>
@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }); 
 /* Fullcalendar end */
  
- // ... 클릭시 전역변수 eventId에 해당 자격증 아이디 넣기
+ // 톱니바퀴 클릭시 전역변수 eventId에 해당 자격증 아이디 넣기
  $(document).on('click', '.setting', function(){
 	 eventId = $(this).closest('.license').find('.lId').val();
 	 confirmPopup();
@@ -436,8 +436,9 @@ $(document).ready(function(){
 						if(day1 >= day2){
 							var $div = $("<div>").attr('class', 'license');
 							var $button = $("<button>").attr('class', 'setting').attr('title', '스크랩하기');
-							var $span = $('<span>').text("...");	
-							
+							var $span = $('<span>');	
+							var $i = $("<i>").attr('class', 'fas fa-cog');
+							$span.append($i);
 							$button.append($span);
 							
 							var $div2 = $("<div>").attr('class', 'title');

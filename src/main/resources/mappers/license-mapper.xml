@@ -48,7 +48,7 @@
 			<if test='(all != null and all !="") or order=="count"'>
 			<![CDATA[and end_date >= sysdate-1]]>
 			</if>
-		<if test='order == null and order == ""'>
+		<if test='order == null or order == ""'>
 			order by end_date
 		</if>
 		<if test='order == "count"'>

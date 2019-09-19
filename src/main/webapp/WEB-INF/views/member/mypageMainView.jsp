@@ -41,7 +41,7 @@
 								<c:forEach var="j" items="${ recentComp }" >
 								<li>
 									<a href="competitionDetail?cId=${ j.SID }" class="figure">
-										<img src="" width="106" height="106" alt="${ j.TITLE }">
+										<img src="${j.FILEPATH }/${j.IMAGENAME}" width="106" height="106" alt="${ j.TITLE }">
 									</a>
 									<a href="competitionDetail?cId=${ j.SID }">
 										<span class="scpName">${ j.TITLE }</span>
@@ -110,14 +110,20 @@
 									<p class="todayBox">${day2}</p>
 									</c:if>
 								</div>
-								<c:forEach var="j" items="${ i }">
+								<c:forEach var="j" items="${ i }" varStatus="jStatus">
 								<div class="alarmList">
 									<ul class="alarmUnit">
 										<li class="itemPart">
-											<a href="${ j.LINK }" target="_blank">
+											<c:if test='${j.LINK ne null and j.LINK ne ""}'>
+											<c:set var="link" value="${ j.LINK }"/>
+											</c:if>
+									 		<c:if test='${j.LINK eq null or j.LINK eq ""}'>
+											<c:set var="link" value="competitionDetail?cId=${ j.SID }"/>
+											</c:if>
+											<a href="${link}">
 											<span class="alarmIco">
 												<c:if test="${ j.IMAGENAME ne null }"> <!-- 이미지가 있다면 이미지만, 아니면 타이틀과 회차 출력 --> 
-													<img src="" alt="${ j.TITLE }이미지">
+													<img src="${j.FILEPATH }/${j.IMAGENAME}" alt="${ j.TITLE }이미지">
 												</c:if>
 												<c:if test="${ j.IMAGENAME eq null}">
 													<div class="scpName">제 ${ j.ROUND }회</div>
@@ -154,6 +160,14 @@
 		</div>
 	</div>
 </div>
+<script>
+$(document).on('click', '.itemPart a', function(){
+	var first = $(this).attr('href').substr(0,1);
+	if(first != 'c'){
+		$(this).attr('target', '_blank');
+	}
+	});
+</script>
 <c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

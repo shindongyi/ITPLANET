@@ -91,6 +91,7 @@
 			from cscrapview
 		</if>
 		<if test='listName.equals("lcs")'>
+			,link
 			from lscrapview
 		</if>
 		where user_id = #{userId}

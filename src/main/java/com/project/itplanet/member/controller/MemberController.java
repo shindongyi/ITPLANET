@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.itplanet.coding.model.service.CodingService;
 import com.project.itplanet.common.Pagination;
 import com.project.itplanet.common.model.vo.PageInfo;
 import com.project.itplanet.member.model.exception.MemberException;
@@ -31,14 +32,15 @@ import com.project.itplanet.member.model.vo.MailUtils;
 import com.project.itplanet.member.model.vo.Member;
 import com.project.itplanet.member.model.vo.TempKey;
 
-
-
 @SessionAttributes("loginUser")
 @Controller
 public class MemberController {
 
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	private CodingService cService;
 
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
@@ -210,6 +212,7 @@ public class MemberController {
 
 		Member loginUser = mService.memberLoginUser(m);
 		if(loginUser != null) {
+			String userId = loginUser.getUserId();
 			if(bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
 				System.out.println(url);
 				model.addAttribute("loginUser", loginUser);
@@ -219,7 +222,12 @@ public class MemberController {
 
 				HashMap<String,Integer> scrapCount = mService.countScrap(map);
 				session.setAttribute("scrapCount", scrapCount);
+				
+				int codingCount = cService.codingCount(userId);
+				session.setAttribute("codingCount", codingCount);
+				
 				session.setMaxInactiveInterval(600);
+				
 
 				String referer = request.getHeader("Referer");
 
@@ -315,6 +323,7 @@ public class MemberController {
 		System.out.println("controller : " + email);
 		// 임의의 키 생성
 		String authkey = new TempKey().getKey(50, false);
+		authkey = authkey.substring(0,6);
 		
 		// mail 작성 관련 
 				MailUtils sendMail = new MailUtils(mailSender);

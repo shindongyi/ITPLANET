@@ -88,8 +88,8 @@ option[disabled=disabled]{
     color: #666;
     vertical-align: middle;
 }
-#wrap input{
-	outline-style: none;
+#wrap input:focus{
+	outline: none !important;
 }
 #wrap input.check, input.radio{
 	vertical-align: middle;

@@ -170,6 +170,9 @@
 				}
 			}
 		});
+		
+		// 메뉴바 상위 메뉴 열려있게
+		$('.navContent .navCt_title').eq(0).next().toggle();
 	</script>
 	<c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>

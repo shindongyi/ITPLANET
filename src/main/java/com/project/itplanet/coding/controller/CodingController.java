@@ -171,18 +171,21 @@ public class CodingController {
 //		Gson gson = new GsonBuilder().setDateFormat("yy-MM-dd").create();
 //		gson.toJson(resultSet, response.getWriter());
 		
-		String command = inputCommand(request,"javac Solution.java");
+		String command = inputCommand(request,"javac -encoding utf-8 Solution.java");
 		String result = execCommand(request, command);
-		
-		
 		String commandResult = inputCommand(request, "java Solution");
-		String resultSet = URLEncoder.encode(execCommand(request, commandResult), "utf-8");
+		String execResult = execCommand(request, commandResult);
+		System.out.println(execResult);
 		
-//		String resultSet = URLEncoder.encode(result, "utf-8");
-		
+		String resultSet = null;
 		Gson gson = new GsonBuilder().setDateFormat("yy-MM-dd").create();
-		gson.toJson(resultSet, response.getWriter());
 		
+		if(execResult.equals("")) {
+			resultSet = URLEncoder.encode("컴파일 도중 에러 발생", "utf-8");
+		}else {
+			resultSet = URLEncoder.encode(execResult, "utf-8");
+		}
+		gson.toJson(resultSet, response.getWriter());
 	}
 	
 	private void saveFile(HttpServletRequest request, String file) {
@@ -223,7 +226,6 @@ public class CodingController {
 		
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "\\codingFiles";
-		System.out.println(savePath);
 		
 		buffer.append("cmd.exe ");
 		buffer.append("/c C: & ");
@@ -236,48 +238,15 @@ public class CodingController {
 	}
 	
 	public String execCommand(HttpServletRequest request, String cmd) {
+		StringBuffer readBuffer = null;
 		try {
 			Process process = Runtime.getRuntime().exec(cmd);
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), "EUC-KR"));
 			
 			String line = null;
-			StringBuffer readBuffer = new StringBuffer();
-			
-			while((line = bufferedReader.readLine()) != null) {
-				readBuffer.append(line);
-				readBuffer.append("\n");
-			}
-			
-			return readBuffer.toString();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
-		
-	}
-	
-	public String inputCommand(String cmd) {
-		StringBuffer buffer = new StringBuffer();
-		
-		buffer.append("cmd.exe ");
-		buffer.append("/c ");
-		buffer.append(cmd);
-		
-		return buffer.toString();
-	}
-	
-	public String execCommand(String cmd) {
-		StringBuffer readBuffer = null;
-		try {
-			Process process = Runtime.getRuntime().exec(cmd);
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(),"EUC-KR"));
-			
-			String line = null;
 			readBuffer = new StringBuffer();
 			
 			while((line = bufferedReader.readLine()) != null) {
-				System.out.println(line);
 				readBuffer.append(line);
 				readBuffer.append("\n");
 			}
@@ -285,6 +254,38 @@ public class CodingController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		return readBuffer.toString();
 	}
+	
+//	public String inputCommand(String cmd) {
+//		StringBuffer buffer = new StringBuffer();
+//		
+//		buffer.append("cmd.exe ");
+//		buffer.append("/c ");
+//		buffer.append(cmd);
+//		
+//		return buffer.toString();
+//	}
+//	
+//	public String execCommand(String cmd) {
+//		StringBuffer readBuffer = null;
+//		try {
+//			Process process = Runtime.getRuntime().exec(cmd);
+//			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(),"EUC-KR"));
+//			
+//			String line = null;
+//			readBuffer = new StringBuffer();
+//			
+//			while((line = bufferedReader.readLine()) != null) {
+//				System.out.println(line);
+//				readBuffer.append(line);
+//				readBuffer.append("\n");
+//			}
+//			
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return readBuffer.toString();
+//	}
 }

@@ -77,7 +77,13 @@
 									<td class="num">
 										${ status.count }
 									</td>
-									<td class="title"><a href="#">${ i.TITLE }</a></td>
+									<c:if test='${i.LINK ne null and i.LINK ne ""}'>
+									<c:set var="link" value="${ i.LINK }"/>
+									</c:if>
+							 		<c:if test='${i.LINK eq null or i.LINK eq ""}'>
+									<c:set var="link" value="competitionDetail?cId=${ i.SID }"/>
+									</c:if>
+									<td class="title"><a href="${link}">${ i.TITLE }</a></td>
 									<td class="writer">${ i.WRITER }</td>
 									<fmt:formatDate value="${ i.MODIFYDATE }" var="MODIFYDATE" pattern="yyyy-MM-dd"/>
 									<td class="date">${MODIFYDATE}</td>
@@ -119,6 +125,9 @@
 									<a href="${ pagination }" class="pagingNum">${ i }</a>
 								</c:if>
 							</c:forEach>
+							<c:if test='${pi.endPage eq "0"}'>
+								<a class="pagingNum">1</a>
+							</c:if>
 							
 							<!-- 다음 -->
 							<c:if test="${ pi.currentPage >= pi.maxPage }">
@@ -216,6 +225,12 @@
 		}
 		
 	}); 
+  	$(document).on('click', '.title a', function(){
+  		var first = $(this).attr('href').substr(0,1);
+  		if(first != 'c'){
+  			$(this).attr('target', '_blank');
+  		}
+  	});
 </script>
 <c:import url="/WEB-INF/views/common/footer.jsp"/>
 </body>

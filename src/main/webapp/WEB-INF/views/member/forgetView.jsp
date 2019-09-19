@@ -87,11 +87,8 @@
 														$('#resultIdList span').text(' (가입일자 : ' + date+")");
 														$('#idResult').show();
 													} else {
-/* 														$('#idResult p strong').text('');
-														$('#idResult p strong').text('회원 정보 조회 실패에 실패했습니다.');
- */														$('#resultIdList strong').text('');
+														$('#resultIdList strong').text('');
 														$('#resultIdList strong').text('회원정보 조회에 실패했습니다.');
-														$('#resultIdList strong').after('<br>');
 														$('#resultIdList span').text('입력하신 정보가 회원정보와 일치하는지 확인해 주세요.');
 														$('#idResult').show();
 													}
@@ -193,7 +190,7 @@
 					<div id="idResult" class="findResult overHidden">
 						<p><strong>아이디 조회 결과 입력하신 정보와 일치하는 아이디는 아래와 같습니다.</strong><p>
 						<ul id="resultIdList" class="idList">
-							<li><strong></strong><span></span></li>
+							<li><strong></strong><br><span></span></li>
 						</ul>
 					</div>
 					<!-- end id search result -->
@@ -296,7 +293,6 @@
 						}
 						
 						 $('#changePwdBtn').on('click', function(){
-							 alert("3:"+userPwdFlag);
 							 if(userPwdFlag){
 								 changedPwd();
 							 } else{

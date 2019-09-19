@@ -149,13 +149,21 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(1, 2);
-		int result2 = sol.question(3, 4);
-		
+		int result = sol.question(${co.qExData});
 		System.out.println(result);
-		System.out.println(result2);
 	}
 }</textarea>
+		<c:if test="${ co.qExDataTwo != null }">
+			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		int result = sol.question(${co.qExDataTwo});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+				
 		      </div>
 		    </div>
 		    <br><br>
@@ -234,6 +242,7 @@
 					editor.insert("\n}");
 					
 					$('#codeCopy').val(editCode + $("#startCode").val());
+					$('#codeCopy2').val(editCode + $("#startCode2").val());
 					
 					$.ajax({
 						url:"compileCode.do",
@@ -251,6 +260,26 @@
 							}
 							
 							$outputResult.append($pre);
+							
+							if(${co.qExDataTwo != null}){
+								$.ajax({
+									url: 'compileCode.do',
+									data: {code: $('#codeCopy2').val()},
+									type: "post",
+									dataType: "json",
+									success: function(data){
+										$outputResult = $("#outputResult");
+										
+										var $pre;
+										
+										if(data.length > 0){
+											$pre = $("<pre class='console-content'>").text(decodeURIComponent(data.replace(/\+/g, " ")));
+										}
+										
+										$outputResult.append($pre);
+									}
+								});
+							}
 						}
 					});
 				});

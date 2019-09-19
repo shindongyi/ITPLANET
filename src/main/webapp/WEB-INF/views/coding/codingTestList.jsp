@@ -28,9 +28,40 @@
    <c:import url="../common/menubar.jsp"/>
    
    <!-- iframe -->
-   <div class="pageFrame">
-      <iframe id="pageFrame" name="pageFrame" src="http://www.jobkorea.co.kr/Starter/calendar/sub/week" frameborder="0" width="1000px" height="300px" scrolling="auto"></iframe>
+  <div class="box">
+       <div class="container">
+          <h2>탑 리스트</h2>
+          <table class="table table-hover responsive-table" id="topList">
+             <colgroup>
+               <col width="15%" />
+               <col width="45%" />
+               <col width="12%" />
+               <col width="12%" />
+               <col width="12%" />      
+            </colgroup>
+             <thead>
+                <tr>
+                   <th>문제 번호</th>
+                   <th>문제 제목</th>
+                   <th>맞은 사람</th>
+                   <th>제출</th>
+                   <th>정답 비율</th>
+                </tr>
+             </thead>
+          
+             <tbody>
+                <tr>
+                   <td>123</td>
+                   <td>456</td>
+                   <td>789</td>
+                   <td>456</td>
+                   <td>156</td>
+                </tr>
+             </tbody>
+          </table>
+       </div>
    </div>
+
    
    <div class="box">
     <div class="container">

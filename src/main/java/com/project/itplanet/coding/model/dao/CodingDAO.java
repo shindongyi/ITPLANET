@@ -35,4 +35,8 @@ public class CodingDAO {
 	public Coding getCoding(int qno) {
 		return sqlSession.selectOne("codingMapper.getCoding", qno);
 	}
+	
+	public int countCoding(String userId) {
+	    return sqlSession.selectOne("codingMapper.countCoding",userId);
+	}
 }

@@ -92,11 +92,50 @@ public class CodingController {
 	
 	@RequestMapping("codingInsert.do")
 	public String codingInsert(@RequestParam("qTitle") String qTitle, @RequestParam("qContent") String qContent, @RequestParam("limitList") String[] limitList,
-							@RequestParam("exData") String[] exData, @RequestParam("exResult") String[] exResult,
+							@RequestParam("exData") ArrayList<String> exData, @RequestParam("exResult") ArrayList<String> exResult,
 							@SessionAttribute("loginUser") Member loginUser) {
 		Coding c = new Coding();
 		c.setqTitle(qTitle);
 		c.setqContent(qContent);
+		
+//		int startIndex = -1;
+//		int endIndex = -1;
+//		String array = "";
+		
+//		HashMap<Integer, String> map = new HashMap<Integer, String>();
+		
+//		int count = 0;
+//		for(int i =0 ; i< exData.size(); i++) {
+//			if(exData.get(i).charAt(0) == '[') startIndex = i;
+//			if(exData.get(i).charAt(exData.get(i).length()-1) == ']') endIndex = i;
+//			
+//			if(startIndex != -1 && endIndex != -1) {
+//				map.put(count, startIndex +"-" + endIndex);
+//				startIndex = -1;
+//				endIndex = -1;
+//				count++;
+//			}
+//			System.out.println(exData.get(i));
+//		}
+//		for(int i =0 ; i< exResult.size(); i++) {
+
+//			System.out.println(exResult.get(i));
+//		}
+//		System.out.println("map???");
+//		System.out.println(map);
+//		
+//		for(int i = startIndex; i <= endIndex; i++) {
+//			if(i == endIndex) array +=  exData.get(i);
+//			else array += exData.get(i) + ", ";
+//		}
+//		System.out.println(array);
+		System.out.println(exData);
+		System.out.println(exResult);
+		
+		for(int i=0; i< exData.size(); i++) {
+			System.out.println(i + " : " + exData.get(i));
+		}
+		
 		
 		switch(limitList.length) {
 		case 5:
@@ -126,29 +165,30 @@ public class CodingController {
 			break;
 		}
 		
-		switch(exData.length) {
-		case 1:
-			c.setqExData(exData[0]);
-			c.setqExResult(exResult[0]);
-			break;
+		switch(exData.size()) {
 		case 2:
-			c.setqExData(exData[0]);
-			c.setqExResult(exResult[0]);
-			c.setqExDataTwo(exData[1]);
-			c.setqExResultTwo(exResult[1]);
+			c.setqExData(exData.get(1));
+			c.setqExResult(exResult.get(1));
 			break;
-		case 3:
-			c.setqExData(exData[0]);
-			c.setqExResult(exResult[0]);
-			c.setqExDataTwo(exData[1]);
-			c.setqExResultTwo(exResult[1]);
-			c.setqExDataThree(exData[2]);
-			c.setqExResultThree(exResult[2]);
+		case 4:
+			c.setqExData(exData.get(1));
+			c.setqExResult(exResult.get(1));
+			c.setqExDataTwo(exData.get(3));
+			c.setqExResultTwo(exResult.get(3));
+			break;
+		case 6:
+			c.setqExData(exData.get(1));
+			c.setqExResult(exResult.get(1));
+			c.setqExDataTwo(exData.get(3));
+			c.setqExResultTwo(exResult.get(3));
+			c.setqExDataThree(exData.get(5));
+			c.setqExResultThree(exResult.get(5));
 			break;
 		}
 		
 		c.setUserId(loginUser.getUserId());
 		
+		System.out.println(c);
 		int result = coService.insertCoding(c); 
 		
 		if(result > 0) {
@@ -157,6 +197,7 @@ public class CodingController {
 		}else {
 			throw new CodingException("코딩테스트 글 작성에 실패하였습니다.");
 		}
+		
 	}
 	
 	@RequestMapping("compileCode.do")

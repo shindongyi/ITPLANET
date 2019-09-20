@@ -24,13 +24,13 @@
 				<a href="#"><strong>${ scrapCount.compCount+scrapCount.lcsCount }개</strong>총 스크랩 수</a>
 			</li>
 			<li>
-				<a href="myPageScrapView.do?type=1"><strong>${ scrapCount.compCount }개</strong>공모전</a>
+				<a href="myPageScrapView.do?type=1"><strong>${ scrapCount.compCount+0 }개</strong>공모전</a>
 			</li>
 			<li>
-				<a href="myPageScrapView.do?type=2"><strong>${ scrapCount.lcsCount }개</strong>자격증</a>
+				<a href="myPageScrapView.do?type=2"><strong>${ scrapCount.lcsCount+0 }개</strong>자격증</a>
 			</li>
 			<li>
-				<a href="#"><strong>${ codingCount }개</strong>코딩테스트</a>
+				<a href="#"><strong>${ codingCount+0 }개</strong>코딩테스트</a>
 			</li>
 		</ul>
 	</div>

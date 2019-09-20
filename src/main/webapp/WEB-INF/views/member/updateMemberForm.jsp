@@ -285,16 +285,19 @@ $('#sendNum').on('click', function(){
 //이메일 인증
 var randomNum;
 $('#sendNum').on('click', function(){
+	check = false;
 	var oMsg = $('#emailMsg');
 	var email = $('#email').val();
-	$('#emailNumCk').show();
-	showErrorMsg(oMsg, "입력하신 이메일로 인증번호를 전송하였습니다. 확인 후 입력해주세요. 최대 5분이 걸릴 수 있습니다.");
 	$.ajax({
 		url: "checkEmail.do",
 		method: "post",
 		data:{email:email},
 		success: function(data){
 			if(data == "success"){
+			$('#inputNum').attr('readonly', false);
+			$('#inputNum').css('background', '#f8f8f8');
+			$('#emailNumCk').show();
+			showErrorMsg(oMsg, "입력하신 이메일로 인증번호를 전송하였습니다. 확인 후 입력해주세요. 최대 5분이 걸릴 수 있습니다.");
 				$.ajax({
 					url: "sendEmail.do",
 					type: "post",
@@ -309,6 +312,7 @@ $('#sendNum').on('click', function(){
 					}
 				});
 			} else {
+				$('#emailNumCk').hide();
 				showErrorMsg(oMsg, "이미 존재하거나 탈퇴한 회원의 이메일입니다.");
 			}
 		}
@@ -324,6 +328,7 @@ $('#checkNum').on('click', function(){
 		showErrorMsg(oMsg, "인증에 성공하였습니다.");
 		$('#inputNum').attr('readonly', true);
 		$('#inputNum').css('background', '#ddd');
+		check = true;
 	} else {
 		showErrorMsg(oMsg, "인증번호가 일치하지 않습니다. 다시 확인해 주세요.");
 	}

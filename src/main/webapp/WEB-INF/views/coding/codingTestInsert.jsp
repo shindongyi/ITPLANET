@@ -105,7 +105,9 @@
 						$('<a>').prop('href', '#list_table').addClass('delete-link').append('Delete')
 						// <a href="#" class="delete-link">Delete</a>
 					),
+					$('<input type="hidden" name="exData">').val(""),
 					$('<input type="hidden" name="exData">').val($('#add_no').val()),
+					$('<input type="hidden" name="exResult">').val(""),
 					$('<input type="hidden" name="exResult">').val($('#add_name').val())
 				)
 			);

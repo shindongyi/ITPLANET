@@ -105,4 +105,23 @@
    		from qscore
    		where user_Id=#{userId}
    </select>
+   
+   <select id="topList" resultType="map">
+		<![CDATA[
+		SELECT Q_NUM , COUNT(*) d
+		FROM QSCORE
+		GROUP BY Q_NUM
+		order by d desc
+		]]>
+	</select>
+	
+	<select id="titleList" parameterType="list"  resultType="map">
+			SELECT Q_TITLE  
+			FROM QUESTION
+			WHERE Q_NUM in
+			<foreach item="item" collection="list" open="(" separator="," close=")">
+				 #{item.qNum}
+			</foreach>
+			
+	</select>
 </mapper>

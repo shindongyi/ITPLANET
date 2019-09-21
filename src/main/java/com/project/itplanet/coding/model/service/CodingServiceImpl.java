@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.project.itplanet.coding.model.dao.CodingDAO;
 import com.project.itplanet.coding.model.vo.Coding;
 import com.project.itplanet.coding.model.vo.CodingPass;
+import com.project.itplanet.coding.model.vo.CodingTop;
 
 @Service("coService")
 public class CodingServiceImpl implements CodingService{
@@ -53,5 +54,15 @@ public class CodingServiceImpl implements CodingService{
 	@Override
 	public ArrayList<CodingPass> listCPass(String userId) {
 		return coDAO.listCPass(userId);
+	}
+
+	@Override
+	public ArrayList<CodingTop> topList() {
+		return coDAO.topList();
+	}
+
+	@Override
+	public ArrayList<CodingTop> titleList(ArrayList<CodingTop> topList) {
+		return coDAO.titleList(topList);
 	}
 }

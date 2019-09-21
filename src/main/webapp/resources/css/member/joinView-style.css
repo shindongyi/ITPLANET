@@ -180,7 +180,7 @@ option[disabled]{
 	font-size: 15px;
 	line-height: 33px;
 	color: #000;
-	border: none;
+	border: 1px solid #ccc;
 	padding-left: 14px;
 }
 .red_mark{

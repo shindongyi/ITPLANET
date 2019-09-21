@@ -39,4 +39,12 @@ public class CodingDAO {
 	public int countCoding(String userId) {
 	    return sqlSession.selectOne("codingMapper.countCoding",userId);
 	}
+
+	public int codingTestSuccess(Map<String, Object> map) {
+		return sqlSession.update("codingMapper.codingTestSuccss", map);
+	}
+
+	public ArrayList<CodingPass> listCPass(String userId) {
+		return (ArrayList)sqlSession.selectList("codingMapper.listCPass", userId);
+	}
 }

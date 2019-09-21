@@ -44,4 +44,14 @@ public class CodingServiceImpl implements CodingService{
 	   public int codingCount(String userId) {
 	      return coDAO.countCoding(userId);
 	  }
+
+	@Override
+	public int codingTestSuccess(Map<String, Object> map) {
+		return coDAO.codingTestSuccess(map);
+	}
+
+	@Override
+	public ArrayList<CodingPass> listCPass(String userId) {
+		return coDAO.listCPass(userId);
+	}
 }

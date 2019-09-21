@@ -21,7 +21,7 @@
 	</resultMap>
 	
 	<select id="listCoding" resultMap="codingResultSet">
-		select * from QUESTION order by q_num
+		select * from QUESTION order by q_num desc
 	</select>
 	
 	<insert id="insertCoding" parameterType="Coding">
@@ -92,5 +92,17 @@
       select count(*) 
       from qscore 
       where user_id = #{userId}
+   </select>
+   
+   <update id="codingTestSuccss" parameterType="map">
+   		update qscore
+   		set q_pass = 'O'
+   		where user_id = #{userId} and q_Num = #{qNum}   
+   </update>
+   
+   <select id="listCPass" parameterType="string" resultMap="codingPassResult">
+   		select *
+   		from qscore
+   		where user_Id=#{userId}
    </select>
 </mapper>

@@ -327,6 +327,7 @@
 		        			<c:if test="${ fn:substring(co.qExData, 1,2).matches('[0-9]+') }">
 								<!-- 결과값 int -->
 				        		<c:if test="${ co.qExResult.matches('[0-9]+') }">
+				        			<c:set var="arrData" value="${ fn:substring(co.qExData, 1, fn:indexOf(co.qExData,']'))}"/>
 				        			<div id="code" style="width:800px; height:200px;">class Solution {
 
 	public int question(int[] a) {
@@ -338,26 +339,31 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExData});
+		int[] a = {${arrData}};
+		int result = sol.question(a);
 		System.out.println(result);
 	}
 }</textarea>
 		<c:if test="${ co.qExDataTwo != null }">
+		<c:set var="arrData2" value="${ fn:substring(co.qExDataTwo, 1, fn:indexOf(co.qExDataTwo,']'))}"/>
 			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataTwo});
+		int[] a = {${arrData2}};
+		int result = sol.question(a);
 		System.out.println(result);
 	}
 }</textarea>
 		</c:if>
 		<c:if test="${ co.qExDataThree != null }">
+		<c:set var="arrData3" value="${ fn:substring(co.qExDataThree, 1, fn:indexOf(co.qExDataThree,']'))}"/>
 			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataThree});
+		int[] a = {${arrData3}};
+		int result = sol.question(a);
 		System.out.println(result);
 	}
 }</textarea>
@@ -365,6 +371,7 @@
 				        		</c:if>
 				        		<!-- 결과값 String -->
 				        		<c:if test="${ !co.qExResult.matches('[0-9]+') }">
+				        			<c:set var="arrData" value="${ fn:substring(co.qExData, 1, fn:indexOf(co.qExData,']'))}"/>
 				        			<div id="code" style="width:800px; height:200px;">class Solution {
 
 	public String question(int[] a) {
@@ -376,26 +383,31 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExData});
+		int[] a = {${arrData}};
+		String result = sol.question(a);
 		System.out.println(result);
 	}
 }</textarea>
 		<c:if test="${ co.qExDataTwo != null }">
+		<c:set var="arrData2" value="${ fn:substring(co.qExDataTwo, 1, fn:indexOf(co.qExDataTwo,']'))}"/>
 			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataTwo});
+		int[] a = {${arrData2}};
+		String result = sol.question(a);
 		System.out.println(result);
 	}
 }</textarea>
 		</c:if>
 		<c:if test="${ co.qExDataThree != null }">
+		<c:set var="arrData3" value="${ fn:substring(co.qExDataThree, 1, fn:indexOf(co.qExDataThree,']'))}"/>
 			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataThree});
+		int[] a = {${arrData3}};
+		String result = sol.question(a);
 		System.out.println(result);
 	}
 }</textarea>
@@ -406,6 +418,7 @@
 		        			<c:if test="${ !fn:substring(co.qExData, 1,2).matches('[0-9]+') }">
 								<!-- 결과값 int -->
 				        		<c:if test="${ co.qExResult.matches('[0-9]+') }">
+				        		<c:set var="arrData" value="${ fn:substring(co.qExData, 1, fn:indexOf(co.qExData,']'))}"/>
 	        						<div id="code" style="width:800px; height:200px;">class Solution {
 
 	public int question(String[] a) {
@@ -417,26 +430,31 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExData});
+		String[] a = {${arrData}};
+		int result = sol.question(a);
 		System.out.println(result);
 	}
 }</textarea>
 		<c:if test="${ co.qExDataTwo != null }">
+		<c:set var="arrData2" value="${ fn:substring(co.qExDataTwo, 1, fn:indexOf(co.qExDataTwo,']'))}"/>
 			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataTwo});
+		String[] a = {${arrData2}};
+		int result = sol.question(a);
 		System.out.println(result);
 	}
 }</textarea>
 		</c:if>
 		<c:if test="${ co.qExDataThree != null }">
+		<c:set var="arrData3" value="${ fn:substring(co.qExDataThree, 1, fn:indexOf(co.qExDataThree,']'))}"/>
 			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataThree});
+		String[] a = {${arrData3}}
+		int result = sol.question(a);
 		System.out.println(result);
 	}
 }</textarea>
@@ -444,6 +462,7 @@
 				        		</c:if>
 				        		<!-- 결과값 String -->
 				        		<c:if test="${ !co.qExResult.matches('[0-9]+') }">
+				        		<c:set var="arrData" value="${ fn:substring(co.qExData, 1, fn:indexOf(co.qExData,']'))}"/>
 				        			<div id="code" style="width:800px; height:200px;">class Solution {
 
 	public String question(String[] a) {
@@ -455,26 +474,31 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExData});
+		String[] a = {${arrData}};
+		String result = sol.question(a);
 		System.out.println(result);
 	}
 }</textarea>
 		<c:if test="${ co.qExDataTwo != null }">
+		<c:set var="arrData2" value="${ fn:substring(co.qExDataTwo, 1, fn:indexOf(co.qExDataTwo,']'))}"/>
 			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataTwo});
+		String[] a = {${arrData2}};
+		String result = sol.question(a);
 		System.out.println(result);
 	}
 }</textarea>
 		</c:if>
 		<c:if test="${ co.qExDataThree != null }">
+		<c:set var="arrData3" value="${ fn:substring(co.qExDataThree, 1, fn:indexOf(co.qExDataThree,']'))}"/>
 			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataThree});
+		String[] a = {${arrData3}};
+		String result = sol.question(a);
 		System.out.println(result);
 	}
 }</textarea>
@@ -493,6 +517,7 @@
 		        				<c:if test="${ fn:substring(co.qExData, exDataLength-1, exDataLength).matches('[0-9]+') }">
 		        					<!-- 결과값 int -->
 					        		<c:if test="${ co.qExResult.matches('[0-9]+') }">
+					        		<c:set var="arrData" value="${ fn:substring(co.qExData, 1, fn:indexOf(co.qExData,']'))}"/>
 					        		<div id="code" style="width:800px; height:200px;">class Solution {
 
 	public int question(int[] a, int b) {
@@ -504,26 +529,31 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExData});
+		int a[] = {${arrData}};
+		int result = sol.question(a, ${ fn:substring(co.qExData, fn:indexOf(co.qExData,']') + 2, fn:length(co.qExData))});
 		System.out.println(result);
 	}
 }</textarea>
 		<c:if test="${ co.qExDataTwo != null }">
+		<c:set var="arrData2" value="${ fn:substring(co.qExDataTwo, 1, fn:indexOf(co.qExDataTwo,']'))}"/>
 			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataTwo});
+		int a[] = {${arrData2}};
+		int result = sol.question(a, ${ fn:substring(co.qExDataTwo, fn:indexOf(co.qExDataTwo,']') + 2, fn:length(co.qExDataTwo))});
 		System.out.println(result);
 	}
 }</textarea>
 		</c:if>
 		<c:if test="${ co.qExDataThree != null }">
+		<c:set var="arrData3" value="${ fn:substring(co.qExDataThree, 1, fn:indexOf(co.qExDataThree,']'))}"/>
 			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataThree});
+		int a[] = {${arrData3}};
+		int result = sol.question(a, ${ fn:substring(co.qExDataThree, fn:indexOf(co.qExDataThree,']') + 2, fn:length(co.qExDataThree))});
 		System.out.println(result);
 	}
 }</textarea>
@@ -532,6 +562,7 @@
 					        		</c:if>
 					        		<!-- 결과값 String -->
 					        		<c:if test="${ !co.qExResult.matches('[0-9]+') }">
+					        		<c:set var="arrData" value="${ fn:substring(co.qExData, 1, fn:indexOf(co.qExData,']'))}"/>
 					        		<div id="code" style="width:800px; height:200px;">class Solution {
 
 	public String question(int[] a, int b) {
@@ -539,30 +570,36 @@
 	}
 	
 }</div>
+
 				<textarea hidden id="codeCopy" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExData});
+		int[] a = {${arrData}};
+		String result = sol.question(a, ${ fn:substring(co.qExData, fn:indexOf(co.qExData,']') + 2, fn:length(co.qExData))});
 		System.out.println(result);
 	}
 }</textarea>
 		<c:if test="${ co.qExDataTwo != null }">
+		<c:set var="arrData2" value="${ fn:substring(co.qExDataTwo, 1, fn:indexOf(co.qExDataTwo,']'))}"/>
 			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataTwo});
+		int[] a = {${arrData2}};
+		String result = sol.question(a, ${ fn:substring(co.qExDataTwo, fn:indexOf(co.qExDataTwo,']') + 2, fn:length(co.qExDataTwo))});
 		System.out.println(result);
 	}
 }</textarea>
 		</c:if>
 		<c:if test="${ co.qExDataThree != null }">
+		<c:set var="arrData3" value="${ fn:substring(co.qExDataThree, 1, fn:indexOf(co.qExDataThree,']'))}"/>
 			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataThree});
+		int[] a = {${arrData3}};
+		String result = sol.question(a, ${ fn:substring(co.qExDataThree, fn:indexOf(co.qExDataThree,']') + 2, fn:length(co.qExDataThree))});
 		System.out.println(result);
 	}
 }</textarea>
@@ -576,6 +613,7 @@
 		        				<c:if test="${ !fn:substring(co.qExData, exDataLength-1, exDataLength).matches('[0-9]+') }">
 		        					<!-- 결과값 int -->
 					        		<c:if test="${ co.qExResult.matches('[0-9]+') }">
+					        		<c:set var="arrData" value="${ fn:substring(co.qExData, 1, fn:indexOf(co.qExData,']'))}"/>
 					        		<div id="code" style="width:800px; height:200px;">class Solution {
 
 	public int question(int[] a, String b) {
@@ -587,26 +625,31 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExData});
+		int[] a = {${arrData}};
+		int result = sol.question(a,${ fn:substring(co.qExData, fn:indexOf(co.qExData,']') + 2, fn:length(co.qExData))});
 		System.out.println(result);
 	}
 }</textarea>
 		<c:if test="${ co.qExDataTwo != null }">
+		<c:set var="arrData2" value="${ fn:substring(co.qExDataTwo, 1, fn:indexOf(co.qExDataTwo,']'))}"/>
 			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataTwo});
+		int[] a = {${arrData2}};
+		int result = sol.question(a, ${ fn:substring(co.qExDataTwo, fn:indexOf(co.qExDataTwo,']') + 2, fn:length(co.qExDataTwo))});
 		System.out.println(result);
 	}
 }</textarea>
 		</c:if>
 		<c:if test="${ co.qExDataThree != null }">
+		<c:set var="arrData3" value="${ fn:substring(co.qExDataThree, 1, fn:indexOf(co.qExDataThree,']'))}"/>
 			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataThree});
+		int[] a = {${arrData3}};
+		int result = sol.question(a, ${ fn:substring(co.qExDataThree, fn:indexOf(co.qExDataThree,']') + 2, fn:length(co.qExDataThree))});
 		System.out.println(result);
 	}
 }</textarea>
@@ -615,6 +658,7 @@
 					        		</c:if>
 					        		<!-- 결과값 String -->
 					        		<c:if test="${ !co.qExResult.matches('[0-9]+') }">
+					        		<c:set var="arrData" value="${ fn:substring(co.qExData, 1, fn:indexOf(co.qExData,']'))}"/>
 					        		<div id="code" style="width:800px; height:200px;">class Solution {
 
 	public String question(int[] a, String b) {
@@ -626,26 +670,31 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExData});
+		int[] a = {${arrData}};
+		String result = sol.question(a, ${ fn:substring(co.qExData, fn:indexOf(co.qExData,']') + 2, fn:length(co.qExData))});
 		System.out.println(result);
 	}
 }</textarea>
 		<c:if test="${ co.qExDataTwo != null }">
+		<c:set var="arrData2" value="${ fn:substring(co.qExDataTwo, 1, fn:indexOf(co.qExDataTwo,']'))}"/>
 			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataTwo});
+		int[] a = {${arrData2}};
+		String result = sol.question(a, ${ fn:substring(co.qExDataTwo, fn:indexOf(co.qExDataTwo,']') + 2, fn:length(co.qExDataTwo))});
 		System.out.println(result);
 	}
 }</textarea>
 		</c:if>
 		<c:if test="${ co.qExDataThree != null }">
+		<c:set var="arrData3" value="${ fn:substring(co.qExDataThree, 1, fn:indexOf(co.qExDataThree,']'))}"/>
 			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataThree});
+		int[] a = {${arrData3}};
+		String result = sol.question(a, ${ fn:substring(co.qExDataThree, fn:indexOf(co.qExDataThree,']') + 2, fn:length(co.qExDataThree))});
 		System.out.println(result);
 	}
 }</textarea>
@@ -660,6 +709,7 @@
 		        				<c:if test="${ fn:substring(co.qExData, exDataLength-1, exDataLength).matches('[0-9]+') }">
 		        					<!-- 결과값 int -->
 					        		<c:if test="${ co.qExResult.matches('[0-9]+') }">
+					        		<c:set var="arrData" value="${ fn:substring(co.qExData, 1, fn:indexOf(co.qExData,']'))}"/>
 					        		<div id="code" style="width:800px; height:200px;">class Solution {
 
 	public int question(String[] a, int b) {
@@ -671,26 +721,31 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExData});
+		String[] a= {${arrData}};
+		int result = sol.question(a, ${ fn:substring(co.qExData, fn:indexOf(co.qExData,']') + 2, fn:length(co.qExData))});
 		System.out.println(result);
 	}
 }</textarea>
 		<c:if test="${ co.qExDataTwo != null }">
+		<c:set var="arrData2" value="${ fn:substring(co.qExDataTwo, 1, fn:indexOf(co.qExDataTwo,']'))}"/>
 			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataTwo});
+		String[] a = {${arrData2}};
+		int result = sol.question(a, ${ fn:substring(co.qExDataTwo, fn:indexOf(co.qExDataTwo,']') + 2, fn:length(co.qExDataTwo))});
 		System.out.println(result);
 	}
 }</textarea>
 		</c:if>
 		<c:if test="${ co.qExDataThree != null }">
+		<c:set var="arrData3" value="${ fn:substring(co.qExDataThree, 1, fn:indexOf(co.qExDataThree,']'))}"/>
 			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataThree});
+		String[] a = {${arrData3}};
+		int result = sol.question(a, ${ fn:substring(co.qExDataThree, fn:indexOf(co.qExDataThree,']') + 2, fn:length(co.qExDataThree))});
 		System.out.println(result);
 	}
 }</textarea>
@@ -698,6 +753,7 @@
 					        		</c:if>
 					        		<!-- 결과값 String -->
 					        		<c:if test="${ !co.qExResult.matches('[0-9]+') }">
+					        		<c:set var="arrData" value="${ fn:substring(co.qExData, 1, fn:indexOf(co.qExData,']'))}"/>
 					        		<div id="code" style="width:800px; height:200px;">class Solution {
 
 	public String question(String[] a, int b) {
@@ -709,26 +765,31 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExData});
+		String[] a = {${arrData}};
+		String result = sol.question(a, ${ fn:substring(co.qExData, fn:indexOf(co.qExData,']') + 2, fn:length(co.qExData))});
 		System.out.println(result);
 	}
 }</textarea>
 		<c:if test="${ co.qExDataTwo != null }">
+		<c:set var="arrData2" value="${ fn:substring(co.qExDataTwo, 1, fn:indexOf(co.qExDataTwo,']'))}"/>
 			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataTwo});
+		String[] a = {${arrData2}};
+		String result = sol.question(a, ${ fn:substring(co.qExDataTwo, fn:indexOf(co.qExDataTwo,']') + 2, fn:length(co.qExDataTwo))});
 		System.out.println(result);
 	}
 }</textarea>
 		</c:if>
 		<c:if test="${ co.qExDataThree != null }">
+		<c:set var="arrData3" value="${ fn:substring(co.qExDataThree, 1, fn:indexOf(co.qExDataThree,']'))}"/>
 			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataThree});
+		String[] a = {${arrData3}};
+		String result = sol.question(a, ${ fn:substring(co.qExDataThree, fn:indexOf(co.qExDataThree,']') + 2, fn:length(co.qExDataThree))});
 		System.out.println(result);
 	}
 }</textarea>
@@ -740,6 +801,7 @@
 		        				<c:if test="${ !fn:substring(co.qExData, exDataLength-1, exDataLength).matches('[0-9]+') }">
 		        					<!-- 결과값 int -->
 					        		<c:if test="${ co.qExResult.matches('[0-9]+') }">
+					        		<c:set var="arrData" value="${ fn:substring(co.qExData, 1, fn:indexOf(co.qExData,']'))}"/>
 					        		<div id="code" style="width:800px; height:200px;">class Solution {
 
 	public int question(String[] a, String b) {
@@ -751,26 +813,31 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExData});
+		String[] a = {${arrData}};
+		int result = sol.question(a, ${ fn:substring(co.qExData, fn:indexOf(co.qExData,']') + 2, fn:length(co.qExData))});
 		System.out.println(result);
 	}
 }</textarea>
 		<c:if test="${ co.qExDataTwo != null }">
+		<c:set var="arrData2" value="${ fn:substring(co.qExDataTwo, 1, fn:indexOf(co.qExDataTwo,']'))}"/>
 			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataTwo});
+		String[] a = {${arrData2}};
+		int result = sol.question(a, ${ fn:substring(co.qExDataTwo, fn:indexOf(co.qExDataTwo,']') + 2, fn:length(co.qExDataTwo))});
 		System.out.println(result);
 	}
 }</textarea>
 		</c:if>
 		<c:if test="${ co.qExDataThree != null }">
+		<c:set var="arrData3" value="${ fn:substring(co.qExDataThree, 1, fn:indexOf(co.qExDataThree,']'))}"/>
 			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataThree});
+		String[] a = {${arrData3}};
+		int result = sol.question(a, ${ fn:substring(co.qExDataThree, fn:indexOf(co.qExDataThree,']') + 2, fn:length(co.qExDataThree))});
 		System.out.println(result);
 	}
 }</textarea>
@@ -778,6 +845,7 @@
 					        		</c:if>
 					        		<!-- 결과값 String -->
 					        		<c:if test="${ !co.qExResult.matches('[0-9]+') }">
+					        		<c:set var="arrData" value="${ fn:substring(co.qExData, 1, fn:indexOf(co.qExData,']'))}"/>
 					        			<div id="code" style="width:800px; height:200px;">class Solution {
 
 	public String question(String[] a, String b) {
@@ -789,26 +857,31 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExData});
+		String[] a = {${arrData}};
+		String result = sol.question(a, ${ fn:substring(co.qExData, fn:indexOf(co.qExData,']') + 2, fn:length(co.qExData))});
 		System.out.println(result);
 	}
 }</textarea>
 		<c:if test="${ co.qExDataTwo != null }">
+		<c:set var="arrData2" value="${ fn:substring(co.qExDataTwo, 1, fn:indexOf(co.qExDataTwo,']'))}"/>
 			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataTwo});
+		String[] a = {${arrData2}};
+		String result = sol.question(a, ${ fn:substring(co.qExDataTwo, fn:indexOf(co.qExDataTwo,']') + 2, fn:length(co.qExDataTwo))});
 		System.out.println(result);
 	}
 }</textarea>
 		</c:if>
 		<c:if test="${ co.qExDataThree != null }">
+		<c:set var="arrData3" value="${ fn:substring(co.qExDataThree, 1, fn:indexOf(co.qExDataThree,']'))}"/>
 			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataThree});
+		String[] a = {${arrData3}};
+		String result = sol.question(a, ${ fn:substring(co.qExDataThree, fn:indexOf(co.qExDataThree,']') + 2, fn:length(co.qExDataThree))});
 		System.out.println(result);
 	}
 }</textarea>
@@ -838,7 +911,7 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExData});
+		int result = sol.question("${co.qExData}");
 		System.out.println(result);
 	}
 }</textarea>
@@ -847,7 +920,7 @@
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataTwo});
+		int result = sol.question("${co.qExDataTwo}");
 		System.out.println(result);
 	}
 }</textarea>
@@ -857,7 +930,7 @@
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		int result = sol.question(${co.qExDataThree});
+		int result = sol.question("${co.qExDataThree}");
 		System.out.println(result);
 	}
 }</textarea>
@@ -877,7 +950,7 @@
 				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExData});
+		String result = sol.question("${co.qExData}");
 		System.out.println(result);
 	}
 }</textarea>
@@ -886,7 +959,7 @@
 				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataTwo});
+		String result = sol.question("${co.qExDataTwo}");
 		System.out.println(result);
 	}
 }</textarea>
@@ -896,7 +969,7 @@
 				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
 		Solution sol = new Solution();
 		
-		String result = sol.question(${co.qExDataThree});
+		String result = sol.question("${co.qExDataThree}");
 		System.out.println(result);
 	}
 }</textarea>
@@ -1085,11 +1158,27 @@
 								$spanData = $("<span class='console-content'>").text("입력 : " + '${co.qExData}');
 								$spanResult = $("<span class='console-content'>").text("  결과예상 : " + '${ co.qExResult}');
 								$pre = $("<pre class='console-content'>").text("결과 : " + decodeURIComponent(data.replace(/\+/g, " ")));
-								if(decodeURIComponent(data.replace(/\+/g, " ")) == ${co.qExResult}){
+								
+								<c:if test="${ co.qExResult.matches('[0-9]+') }">
+									if(decodeURIComponent(data.replace(/\+/g, " ")) == ${co.qExResult}){
+										$preResult = $("<pre name='testResult' class='console-content' style='color:#00e7ff;'>").text("통과입니다.");
+									}else{
+										$preResult = $("<pre name='testResult' class='console-content' style='color:red;'>").text("불통과입니다.");
+									}
+								</c:if>
+								<c:if test="${ !co.qExResult.matches('[0-9]+') }">
+									var qExResult = "${co.qExResult}";
+									if(decodeURIComponent(data.replace(/\+/g, " ")).indexOf(qExResult) > -1){
+										$preResult = $("<pre name='testResult' class='console-content' style='color:#00e7ff;'>").text("통과입니다.");
+									}else{
+										$preResult = $("<pre name='testResult' class='console-content' style='color:red;'>").text("불통과입니다.");
+									}
+								</c:if>
+								/* if(decodeURIComponent(data.replace(/\+/g, " ")) == "${co.qExResult}" || decodeURIComponent(data.replace(/\+/g, " ")) == ${co.qExResult}){
 									$preResult = $("<pre name='testResult' class='console-content' style='color:#00e7ff;'>").text("통과입니다.");
 								}else{
 									$preResult = $("<pre name='testResult' class='console-content' style='color:red;'>").text("불통과입니다.");
-								}
+								} */
 							}
 							$outputResult.append($spanData);
 							$outputResult.append($spanResult);
@@ -1114,12 +1203,26 @@
 											<c:if test="${ co.qExDataTwo != null}">
 												$spanData = $("<span class='console-content'>").text("입력 : " + '${co.qExDataTwo}');
 												$spanResult = $("<span class='console-content'>").text("  결과예상 : " + '${ co.qExResultTwo}');
-												
-												if(decodeURIComponent(data.replace(/\+/g, " ")) == ${co.qExResultTwo}){
+												<c:if test="${ co.qExResult.matches('[0-9]+') }">
+													if(decodeURIComponent(data.replace(/\+/g, " ")) == ${co.qExResultTwo}){
+														$preResult = $("<pre name='testResult' class='console-content' style='color:#00e7ff;'>").text("통과입니다.");
+													}else{
+														$preResult = $("<pre name='testResult' class='console-content' style='color:red;'>").text("불통과입니다.");
+													}
+												</c:if>
+												<c:if test="${ !co.qExResult.matches('[0-9]+') }">
+													var qExResultTwo = "${co.qExResultTwo}";
+													if(decodeURIComponent(data.replace(/\+/g, " ")).indexOf(qExResultTwo) > -1){
+														$preResult = $("<pre name='testResult' class='console-content' style='color:#00e7ff;'>").text("통과입니다.");
+													}else{
+														$preResult = $("<pre name='testResult' class='console-content' style='color:red;'>").text("불통과입니다.");
+													}
+												</c:if>
+												/* if(decodeURIComponent(data.replace(/\+/g, " ")) == "${co.qExResultTwo}" || decodeURIComponent(data.replace(/\+/g, " ")) == ${co.qExResultTwo}){
 													$preResult = $("<pre name='testResult' class='console-content' style='color:#00e7ff;'>").text("통과입니다.");
 												}else{
 													$preResult = $("<pre name='testResult' class='console-content' style='color:red;'>").text("불통과입니다.");
-												}
+												} */
 											</c:if>
 											$pre = $("<pre class='console-content'>").text(decodeURIComponent(data.replace(/\+/g, " ")));
 										}
@@ -1146,11 +1249,26 @@
 														<c:if test="${ co.qExDataThree != null}">
 															$spanData = $("<span class='console-content'>").text("입력 : " + '${co.qExDataThree}');
 															$spanResult = $("<span class='console-content'>").text("  결과예상 : " + '${ co.qExResultThree}');
-															if(decodeURIComponent(data.replace(/\+/g, " ")) == ${co.qExResultThree}){
+															<c:if test="${ co.qExResult.matches('[0-9]+') }">
+																if(decodeURIComponent(data.replace(/\+/g, " ")) == ${co.qExResultThree}){
+																	$preResult = $("<pre name='testResult' class='console-content' style='color:#00e7ff;'>").text("통과입니다.");
+																}else{
+																	$preResult = $("<pre name='testResult' class='console-content' style='color:red;'>").text("불통과입니다.");
+																}
+															</c:if>
+															<c:if test="${ !co.qExResult.matches('[0-9]+') }">
+																var qExResultThree = "${co.qExResultThree}";
+																if(decodeURIComponent(data.replace(/\+/g, " ")).indexOf(qExResultThree) > -1){
+																	$preResult = $("<pre name='testResult' class='console-content' style='color:#00e7ff;'>").text("통과입니다.");
+																}else{
+																	$preResult = $("<pre name='testResult' class='console-content' style='color:red;'>").text("불통과입니다.");
+																}
+															</c:if>
+															/* if(decodeURIComponent(data.replace(/\+/g, " ")) == "${co.qExResultThree}" || decodeURIComponent(data.replace(/\+/g, " ")) == ${co.qExResultThree}){
 																$preResult = $("<pre name='testResult' class='console-content' style='color:#00e7ff;'>").text("통과입니다.");
 															}else{
 																$preResult = $("<pre name='testResult' class='console-content' style='color:red;'>").text("불통과입니다.");
-															}
+															} */
 														</c:if>
 														$pre = $("<pre class='console-content'>").text(decodeURIComponent(data.replace(/\+/g, " ")));
 													}

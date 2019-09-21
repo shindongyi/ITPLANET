@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.itplanet.coding.model.vo.Coding;
 import com.project.itplanet.coding.model.vo.CodingPass;
+import com.project.itplanet.coding.model.vo.CodingTop;
 
 @Repository("coDAO")
 public class CodingDAO {
@@ -46,5 +47,13 @@ public class CodingDAO {
 
 	public ArrayList<CodingPass> listCPass(String userId) {
 		return (ArrayList)sqlSession.selectList("codingMapper.listCPass", userId);
+	}
+
+	public ArrayList<CodingTop> topList() {
+		return (ArrayList)sqlSession.selectList("codingMapper.topList");
+	}
+
+	public ArrayList<CodingTop> titleList(ArrayList<CodingTop> topList) {
+		return (ArrayList)sqlSession.selectList("codingMapper.titleList", topList);
 	}
 }

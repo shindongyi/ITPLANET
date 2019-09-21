@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.project.itplanet.coding.model.vo.Coding;
 import com.project.itplanet.coding.model.vo.CodingPass;
+import com.project.itplanet.coding.model.vo.CodingTop;
 
 public interface CodingService {
 
@@ -23,4 +24,8 @@ public interface CodingService {
 	int codingTestSuccess(Map<String, Object> map);
 
 	ArrayList<CodingPass> listCPass(String userId);
+
+	ArrayList<CodingTop> topList();
+
+	ArrayList<CodingTop> titleList(ArrayList<CodingTop> topList);
 }

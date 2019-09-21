@@ -29,6 +29,7 @@ import com.project.itplanet.coding.model.exception.CodingException;
 import com.project.itplanet.coding.model.service.CodingService;
 import com.project.itplanet.coding.model.vo.Coding;
 import com.project.itplanet.coding.model.vo.CodingPass;
+import com.project.itplanet.coding.model.vo.CodingTop;
 import com.project.itplanet.member.model.vo.Member;
 
 @Controller
@@ -45,6 +46,10 @@ public class CodingController {
 	public ModelAndView codingTestListView(ModelAndView mv, @SessionAttribute(value="loginUser", required=false) Member m) {
 		//return "coding/codingTestList"; 
 		ArrayList<Coding> ctList = coService.listCoding();
+		ArrayList<CodingTop> topList = coService.topList();
+		ArrayList<CodingTop> titleList = coService.titleList(topList);
+		
+		System.out.println(topList);
 		
 		if(m != null) {
 			String userId = m.getUserId();

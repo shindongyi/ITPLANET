@@ -98,6 +98,7 @@
 			    		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" onclick="javascript:location.href='codingTestView.do?Qno=${ ctList.qNum}'">
 			               <div class="box-part  question">
 		                      <i class="fab fa-java fa-2x" aria-hidden="true"></i>
+		                      <input type="hidden" name="qNum" value="${ ctList.qNum }">
 			                  <div class="title">
 			                     <h4>${ ctList.qTitle }</h4>
 			                  </div>
@@ -117,6 +118,14 @@
 	function notLogin(){
 		alert("로그인 후에 이용가능한 서비스입니다.");
 	}
+	
+	$(function(){
+		<c:forEach items="${ cpList }" var="cpList">
+			<c:if test="${ cpList.qPass == 'O' }">
+				$('input[value=${cpList.qNum}]+div h4').attr('style', 'text-decoration:line-through');
+			</c:if>
+		</c:forEach>
+	});
 </script>
 <c:import url="../common/footer.jsp"/>
 </body>

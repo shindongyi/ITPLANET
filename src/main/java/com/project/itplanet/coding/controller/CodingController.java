@@ -2,13 +2,11 @@ package com.project.itplanet.coding.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,9 +42,15 @@ public class CodingController {
 	}
 	
 	@RequestMapping("codingTestListView.do")
-	public ModelAndView codingTestListView(ModelAndView mv) {
+	public ModelAndView codingTestListView(ModelAndView mv, @SessionAttribute(value="loginUser", required=false) Member m) {
 		//return "coding/codingTestList"; 
 		ArrayList<Coding> ctList = coService.listCoding();
+		
+		if(m != null) {
+			String userId = m.getUserId();
+			ArrayList<CodingPass> cpList = coService.listCPass(userId);
+			mv.addObject("cpList", cpList);
+		}
 		
 		mv.addObject("ctList", ctList);
 		mv.setViewName("coding/codingTestList");
@@ -297,6 +301,24 @@ public class CodingController {
 		}
 		
 		return readBuffer.toString();
+	}
+	
+	@RequestMapping("codingTestSuccess.do")
+	public String codingTestSuccess(@RequestParam("qNum") int qNum, @SessionAttribute("loginUser") Member m) {
+		String userId = m.getUserId();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("qNum", qNum);
+		map.put("userId", userId);
+		
+		int result = coService.codingTestSuccess(map);
+		
+		if(result > 0) {
+			return "redirect:codingTestListView.do";
+		}else {
+			throw new CodingException("코딩테스트 성공에 실패하였습니다.");
+		}
+		
 	}
 	
 //	public String inputCommand(String cmd) {

@@ -19,4 +19,8 @@ public interface CodingService {
 	Coding getCoding(int qno);
 	
 	 int codingCount(String userId);
+
+	int codingTestSuccess(Map<String, Object> map);
+
+	ArrayList<CodingPass> listCPass(String userId);
 }

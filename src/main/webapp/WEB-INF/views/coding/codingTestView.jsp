@@ -30,6 +30,7 @@
 		    margin-right: 10px;
 		    cursor: pointer;
 		}
+
 	</style>
 </head>
 <body class="skill-checks skill-checks-show"
@@ -45,6 +46,7 @@
 	  <h6 class="nav-header">
 	  	<i class="fas fa-angle-left fasd"></i>
 	    <span class="level">코딩 테스트 Q.${ co.qNum }</span>
+	    <input type="hidden" name="qNum" value="${ co.qNum }">
 	  </h6>
 	</div>
 	
@@ -483,15 +485,338 @@
 		        		
 		        		<!-- 매개변수 2 -->
 		        		<c:if test="${ !fn:endsWith(co.qExData, ']') }">
-		        			<c:out value="매개변수 2"></c:out>
-		        			<!-- 결과값 int -->
-			        		<c:if test="${ co.qExResult.matches('[0-9]+') }">
-			        		
-			        		</c:if>
-			        		<!-- 결과값 String -->
-			        		<c:if test="${ !co.qExResult.matches('[0-9]+') }">
-			        		
-			        		</c:if>
+		        			<c:set var="exDataLength" value="${ fn:length(co.qExData) }"/>
+		        			
+		        			<!--  배열이 int 형태 -->
+		        			<c:if test="${ fn:substring(co.qExData, 1,2).matches('[0-9]+') }">
+		        				<!-- 뒤 매개변수 타입 int -->
+		        				<c:if test="${ fn:substring(co.qExData, exDataLength-1, exDataLength).matches('[0-9]+') }">
+		        					<!-- 결과값 int -->
+					        		<c:if test="${ co.qExResult.matches('[0-9]+') }">
+					        		<div id="code" style="width:800px; height:200px;">class Solution {
+
+	public int question(int[] a, int b) {
+		
+	}
+	
+}</div>
+				<textarea hidden id="codeCopy" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		int result = sol.question(${co.qExData});
+		System.out.println(result);
+	}
+}</textarea>
+		<c:if test="${ co.qExDataTwo != null }">
+			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		int result = sol.question(${co.qExDataTwo});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+		<c:if test="${ co.qExDataThree != null }">
+			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		int result = sol.question(${co.qExDataThree});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+					        		
+					        		</c:if>
+					        		<!-- 결과값 String -->
+					        		<c:if test="${ !co.qExResult.matches('[0-9]+') }">
+					        		<div id="code" style="width:800px; height:200px;">class Solution {
+
+	public String question(int[] a, int b) {
+		
+	}
+	
+}</div>
+				<textarea hidden id="codeCopy" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		String result = sol.question(${co.qExData});
+		System.out.println(result);
+	}
+}</textarea>
+		<c:if test="${ co.qExDataTwo != null }">
+			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		String result = sol.question(${co.qExDataTwo});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+		<c:if test="${ co.qExDataThree != null }">
+			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		String result = sol.question(${co.qExDataThree});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+					        		
+					        		</c:if>
+		        				
+		        				</c:if>
+		        				
+		        				<!-- 뒤 매개변수 타입 String -->
+		        				<c:if test="${ !fn:substring(co.qExData, exDataLength-1, exDataLength).matches('[0-9]+') }">
+		        					<!-- 결과값 int -->
+					        		<c:if test="${ co.qExResult.matches('[0-9]+') }">
+					        		<div id="code" style="width:800px; height:200px;">class Solution {
+
+	public int question(int[] a, String b) {
+		
+	}
+	
+}</div>
+				<textarea hidden id="codeCopy" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		int result = sol.question(${co.qExData});
+		System.out.println(result);
+	}
+}</textarea>
+		<c:if test="${ co.qExDataTwo != null }">
+			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		int result = sol.question(${co.qExDataTwo});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+		<c:if test="${ co.qExDataThree != null }">
+			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		int result = sol.question(${co.qExDataThree});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+					        		
+					        		</c:if>
+					        		<!-- 결과값 String -->
+					        		<c:if test="${ !co.qExResult.matches('[0-9]+') }">
+					        		<div id="code" style="width:800px; height:200px;">class Solution {
+
+	public String question(int[] a, String b) {
+		
+	}
+	
+}</div>
+				<textarea hidden id="codeCopy" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		String result = sol.question(${co.qExData});
+		System.out.println(result);
+	}
+}</textarea>
+		<c:if test="${ co.qExDataTwo != null }">
+			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		String result = sol.question(${co.qExDataTwo});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+		<c:if test="${ co.qExDataThree != null }">
+			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		String result = sol.question(${co.qExDataThree});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+					        		</c:if>
+		        				</c:if>
+		        			</c:if>
+		        			
+		        			<!-- 배열이 String 형태 -->
+		        			<c:if test="${ !fn:substring(co.qExData, 1,2).matches('[0-9]+') }">
+		        				<!-- 뒤 매개변수 타입 int -->
+		        				<c:if test="${ fn:substring(co.qExData, exDataLength-1, exDataLength).matches('[0-9]+') }">
+		        					<!-- 결과값 int -->
+					        		<c:if test="${ co.qExResult.matches('[0-9]+') }">
+					        		<div id="code" style="width:800px; height:200px;">class Solution {
+
+	public int question(String[] a, int b) {
+		
+	}
+	
+}</div>
+				<textarea hidden id="codeCopy" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		int result = sol.question(${co.qExData});
+		System.out.println(result);
+	}
+}</textarea>
+		<c:if test="${ co.qExDataTwo != null }">
+			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		int result = sol.question(${co.qExDataTwo});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+		<c:if test="${ co.qExDataThree != null }">
+			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		int result = sol.question(${co.qExDataThree});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+					        		</c:if>
+					        		<!-- 결과값 String -->
+					        		<c:if test="${ !co.qExResult.matches('[0-9]+') }">
+					        		<div id="code" style="width:800px; height:200px;">class Solution {
+
+	public String question(String[] a, int b) {
+		
+	}
+	
+}</div>
+				<textarea hidden id="codeCopy" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		String result = sol.question(${co.qExData});
+		System.out.println(result);
+	}
+}</textarea>
+		<c:if test="${ co.qExDataTwo != null }">
+			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		String result = sol.question(${co.qExDataTwo});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+		<c:if test="${ co.qExDataThree != null }">
+			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		String result = sol.question(${co.qExDataThree});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+					        		</c:if>
+		        				</c:if>
+		        				
+		        				<!-- 뒤 매개변수 타입 String -->
+		        				<c:if test="${ !fn:substring(co.qExData, exDataLength-1, exDataLength).matches('[0-9]+') }">
+		        					<!-- 결과값 int -->
+					        		<c:if test="${ co.qExResult.matches('[0-9]+') }">
+					        		<div id="code" style="width:800px; height:200px;">class Solution {
+
+	public int question(String[] a, String b) {
+		
+	}
+	
+}</div>
+				<textarea hidden id="codeCopy" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		int result = sol.question(${co.qExData});
+		System.out.println(result);
+	}
+}</textarea>
+		<c:if test="${ co.qExDataTwo != null }">
+			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		int result = sol.question(${co.qExDataTwo});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+		<c:if test="${ co.qExDataThree != null }">
+			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		int result = sol.question(${co.qExDataThree});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+					        		</c:if>
+					        		<!-- 결과값 String -->
+					        		<c:if test="${ !co.qExResult.matches('[0-9]+') }">
+					        			<div id="code" style="width:800px; height:200px;">class Solution {
+
+	public String question(String[] a, String b) {
+		
+	}
+	
+}</div>
+				<textarea hidden id="codeCopy" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		String result = sol.question(${co.qExData});
+		System.out.println(result);
+	}
+}</textarea>
+		<c:if test="${ co.qExDataTwo != null }">
+			<textarea hidden id="codeCopy2" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode2" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		String result = sol.question(${co.qExDataTwo});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+		<c:if test="${ co.qExDataThree != null }">
+			<textarea hidden id="codeCopy3" name="code" style="display:none;"></textarea>
+				<textarea hidden id="startCode3" name="code" style="display:none;">public static void main(String[] args){
+		Solution sol = new Solution();
+		
+		String result = sol.question(${co.qExDataThree});
+		System.out.println(result);
+	}
+}</textarea>
+		</c:if>
+					        		</c:if>
+		        				</c:if>
+		        			</c:if>
+		        			
 		        		</c:if>
 		        	</c:if>
 		        	
@@ -708,25 +1033,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ext-language_tools.js"></script>
 	<script>
 
-		function test(){
-			/* <c:if test="${typeValue[0].matches('[0-9]+')}"> // int형 판별
-			 alert("숫자" + ${typeValue[0]}); // 값 
-			 alert(${ fn:length(typeValue) }); //사이즈 
-			</c:if>
-			<c:if test="${!typeValue[0].matches('[0-9]+')}"> // int형 판별
-			 alert('${typeValue[0]}'); // 값 
-			 alert(${ fn:length(typeValue) }); //사이즈 
-			</c:if> */
-			/* alert('${typeArray[0]}');
-			alert('${typeArray[1]}');
-			alert(${fn:length(typeArray)}); */
-			
-			alert(${ fn:substring(co.qExData, 1,2) });
-			
-		}
 		$(function(){
-			test();
-			
 			$('[data-toggle="tooltip"]').tooltip();
 			
 			$('#code').each(function(){
@@ -769,13 +1076,25 @@
 							$outputResult = $("#outputResult");
 							$outputResult.html("");
 							
+							var $spanData;
+							var $spanResult;
 							var $pre;
+							var $preResult;
 							
 							if(data.length > 0){
-								$pre = $("<pre class='console-content'>").text(decodeURIComponent(data.replace(/\+/g, " ")));
+								$spanData = $("<span class='console-content'>").text("입력 : " + '${co.qExData}');
+								$spanResult = $("<span class='console-content'>").text("  결과예상 : " + '${ co.qExResult}');
+								$pre = $("<pre class='console-content'>").text("결과 : " + decodeURIComponent(data.replace(/\+/g, " ")));
+								if(decodeURIComponent(data.replace(/\+/g, " ")) == ${co.qExResult}){
+									$preResult = $("<pre name='testResult' class='console-content' style='color:#00e7ff;'>").text("통과입니다.");
+								}else{
+									$preResult = $("<pre name='testResult' class='console-content' style='color:red;'>").text("불통과입니다.");
+								}
 							}
-							
+							$outputResult.append($spanData);
+							$outputResult.append($spanResult);
 							$outputResult.append($pre);
+							$outputResult.append($preResult);
 							
 							if(${co.qExDataTwo != null}){
 								$.ajax({
@@ -786,13 +1105,28 @@
 									success: function(data){
 										$outputResult = $("#outputResult");
 										
+										var $spanData;
+										var $spanResult;
 										var $pre;
+										var $preResult;
 										
 										if(data.length > 0){
+											<c:if test="${ co.qExDataTwo != null}">
+												$spanData = $("<span class='console-content'>").text("입력 : " + '${co.qExDataTwo}');
+												$spanResult = $("<span class='console-content'>").text("  결과예상 : " + '${ co.qExResultTwo}');
+												
+												if(decodeURIComponent(data.replace(/\+/g, " ")) == ${co.qExResultTwo}){
+													$preResult = $("<pre name='testResult' class='console-content' style='color:#00e7ff;'>").text("통과입니다.");
+												}else{
+													$preResult = $("<pre name='testResult' class='console-content' style='color:red;'>").text("불통과입니다.");
+												}
+											</c:if>
 											$pre = $("<pre class='console-content'>").text(decodeURIComponent(data.replace(/\+/g, " ")));
 										}
-										
+										$outputResult.append($spanData);
+										$outputResult.append($spanResult);
 										$outputResult.append($pre);
+										$outputResult.append($preResult);
 										
 										if(${co.qExDataThree != null}){
 											$.ajax({
@@ -803,13 +1137,27 @@
 												success: function(data){
 													$outputResult = $("#outputResult");
 													
+													var $spanData;
+													var $spanResult;
 													var $pre;
+													var $preResult;
 													
 													if(data.length > 0){
+														<c:if test="${ co.qExDataThree != null}">
+															$spanData = $("<span class='console-content'>").text("입력 : " + '${co.qExDataThree}');
+															$spanResult = $("<span class='console-content'>").text("  결과예상 : " + '${ co.qExResultThree}');
+															if(decodeURIComponent(data.replace(/\+/g, " ")) == ${co.qExResultThree}){
+																$preResult = $("<pre name='testResult' class='console-content' style='color:#00e7ff;'>").text("통과입니다.");
+															}else{
+																$preResult = $("<pre name='testResult' class='console-content' style='color:red;'>").text("불통과입니다.");
+															}
+														</c:if>
 														$pre = $("<pre class='console-content'>").text(decodeURIComponent(data.replace(/\+/g, " ")));
 													}
-													
+													$outputResult.append($spanData);
+													$outputResult.append($spanResult);
 													$outputResult.append($pre);
+													$outputResult.append($preResult);
 												}
 											});
 										}
@@ -830,7 +1178,22 @@
 				
 				/* 제출하고 완료 */
 				$("#submit-code").click(function(){
-					alert($.trim($("textarea").val()));
+					var testResult = $('pre[name=testResult]').text();
+					console.log(testResult);
+					if(testResult != ""){
+						if(testResult.indexOf("불통과") != -1){
+							var bool = confirm("테스트에 통과하지 못하였습니다. 계속 도전하시려면 확인을 눌러주세요.");
+							
+							if(!bool){
+								location.href='codingTestListView.do';
+							}
+						}else{
+							alert("테스트에 통과하셨습니다. 축하합니다.");
+							location.href='codingTestSuccess.do?qNum='+ ${ co.qNum};
+						}
+					}else{
+						alert("제출전에 코드 실행을 필수로 하셔야됩니다.");
+					}
 				});
 			});
 		});

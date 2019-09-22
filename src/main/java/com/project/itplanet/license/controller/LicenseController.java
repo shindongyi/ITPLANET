@@ -56,6 +56,7 @@ public class LicenseController {
 		}
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("choice", "calendar");
 		ArrayList<License> calendarList = lService.selectList(map);
 		map.put("sort", sort);
 		map.put("page", page);
@@ -70,10 +71,9 @@ public class LicenseController {
 		
 		PageInfo pi = Pagination.getPageInfo2(currentPage, listCount);
 		
-		map.put("pi", pi);
 		map.put("choice", "first");
 		ArrayList<License> firstList = lService.selectList(map);
-		map.remove("order");
+//		map.remove("order");
 		map.put("keyword", keyword);
 		
 		
@@ -82,6 +82,7 @@ public class LicenseController {
 		} else {
 			map.remove("choice");
 		}
+		map.put("pi", pi);
 		map.put("all", "all");
 		ArrayList<License> allList 	= lService.selectList(map);
 		
@@ -94,8 +95,10 @@ public class LicenseController {
 			mv.addObject("calendarList", calendarList); // 디비에 있는 모든 자격증 데이터
 			mv.addObject("allList", allList); // 페이징 리스트
 			mv.addObject("firstList", firstList); // 접수 중 리스트
+			System.out.println("fistList : " + firstList.size());
 			mv.addObject("totalList", totalList); // 접수 마감 안된 리스트
 			/* mv.addObject("pi", pi); */
+			mv.addObject("more", more);
 			mv.addObject("keyword", keyword);
 			mv.setViewName("license/licenseMainView");
 			System.out.println("firstlist size : " + firstList.size());
@@ -127,7 +130,8 @@ public class LicenseController {
 							HttpServletRequest request,
 							@RequestParam(value="page", required=false) Integer page,
 							@RequestParam(value="keyword", required=false) String keyword,
-							@RequestParam(value="sort", required=false) String sort) throws IOException{
+							@RequestParam(value="sort", required=false) String sort,
+							@RequestParam(value="more", required=false) String more) throws IOException{
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
@@ -136,6 +140,8 @@ public class LicenseController {
 		map.put("page", page);
 		map.put("keyword", keyword);
 		map.put("sort", sort);
+		map.put("choice", more);
+		System.out.println("more : " + more);
 		
 		int listCount = lService.getListCount(map);
 		

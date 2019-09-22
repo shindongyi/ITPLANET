@@ -294,7 +294,12 @@ document.addEventListener('DOMContentLoaded', function() {
     	  		$('#lcsInfo .scrapBtn').attr('id', '${i.l_id}');
     	  		$('#lcsInfo h3').text('${i.l_name} ${i.l_round}회차');
     	  		$('#lcsInfo .lcs_startDate').text('접수 시작일 : ${i.start_date}');
-    	  		$('#lcsInfo .lcs_endDate').text('접수 마감일 : ${i.end_date}');
+    	  		var protoEventEnd = "${i.end_date}";
+    	  		var array = protoEventEnd.split("-");
+    	  		var date = new Date(array[0], array[1], array[2]);
+    	  		date.setDate(date.getDate()-1);
+    	  		eventEnd = getFormatDate(date);
+    	  		$('#lcsInfo .lcs_endDate').text('접수 마감일 : ' + eventEnd);
     	  		if("${i.results}" != null && "${i.results}" != ""){
     	  				$('#lcsInfo .lcs_results').text('결과 발표일 : ${i.results}');
     	  		} else {
@@ -342,10 +347,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	 <c:forEach var="i" items="${calendarList}">
 	  	if("${i.l_id}" == eventId){
 	  		<fmt:formatDate var="start_date" value="${i.start_date}" pattern="yyyy-MM-dd"/>
-	  		<fmt:formatDate var="end_date" value="${i.end_date}" pattern="yyyy-MM-dd"/>
  		  	<fmt:formatDate var="results" value="${i.results}" pattern="yyyy-MM-dd"/>
 	  		eventStart = "${start_date}";
-	  		eventEnd = "${end_date}";
+	  		var protoEventEnd = "${i.end_date}";
+	  		var array = protoEventEnd.split("-");
+	  		var date = new Date(array[0], array[1], array[2]);
+	  		date.setDate(date.getDate()-1);
+	  		eventEnd = getFormatDate(date);
 	  		eventResults = "${results}";
 	  		eventAddress = "${i.l_address}";
 	      	eventTitle = "${i.l_name}";
@@ -355,6 +363,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	  
   	  $('#confirmPopup').show();
 }
+ function getFormatDate(date){ 
+	 var year = date.getFullYear(); //yyyy 
+	 var month = (date.getMonth()); //M 
+	 month = month >= 10 ? month : '0' + month; //month 두자리로 저장 
+	 var day = date.getDate(); //d 
+	 day = day >= 10 ? day : '0' + day; //day 두자리로 저장 
+	 return year + '-' + month + '-' + day; 
+}
+
+ 
 // 관리자일 경우 공고 삭제 이벤트
  $('#deleteBtn').on('click', function(){
   $('#confirmPopup').hide();
@@ -419,6 +437,7 @@ $(document).ready(function(){
 		
 		var keyword = "${keyword}";
 		var sort = "${sort}";
+		var more = "${more}";
 		
 		ckUser(); // 스크롤시 관리자인지 회원인지 체크
 		
@@ -426,7 +445,7 @@ $(document).ready(function(){
 			page++;
 			$.ajax({
 				url:"getListMore.do",
-				data:{page:page, keyword:keyword, sort:sort},
+				data:{page:page, keyword:keyword, sort:sort, more:more},
 				dataType: "json",
 				success:function(data){
 					$licenseList = $('#license_list');
@@ -659,7 +678,6 @@ $('#insertLcsBtn').on('click', function(){
 // 조회수 +1 
 $(document).on('click', '.goToSite', function(){
 	var lId = $(this).closest('.licenseArea').find('.lId').val();
-	console.log("lId : " + lId);
 	
 	$.ajax({
 		url:"updateLcsCount.do",

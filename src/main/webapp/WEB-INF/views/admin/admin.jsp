@@ -96,9 +96,10 @@ footer {
 		<!-- 사용자관리 -->
 		<div id="administrate" class="w3-container sidetabs w3-animate-left"
 			style="display: none; min-height: 200px">
-
+			<hr>
 			<h3 style="margin-top: -10px;">사용자 관리</h3>
 			<p>${list.size() }명의 회원이있습니다 (일반회원 + 블랙리스트)</p>
+			<hr>
 			<div class="w3-bar w3-white w3-card">
 				<button class="w3-bar-item w3-button usertablink"
 					style="background: #003458; color: white;"
@@ -239,9 +240,8 @@ footer {
 									<th style="width: auto;">작성일</th>
 									<th style="width: auto;">수정일</th>
 									<th style="width: auto;">작성자</th>
-									<th style="width: auto;">삭제여부</th>
-									<th style="width: 70px;">수락버튼</th>
-									<th style="width: 70px;"></th>
+									<th style="width: 70px;">수락</th>
+									<th style="width: auto;"></th>
 								</tr>
 								
 								<c:forEach var="c" items="${ clist }">
@@ -256,7 +256,6 @@ footer {
 									<td>${ c.cCreateDate}</td>
 									<td>${ c.cModifyDate}</td>
 									<td>${ c.cWriter}</td>
-									<td>${ c.cStatus}</td>
 									<td><input type="button" value="수락" class="w3-button w3-blue" onclick="javascript:location.href='gongmoYes.do?gongNum=${ c.cId}'" ></td>
 									<td><input type="button" value="거부" class="w3-button w3-red" onclick="javascript:location.href='gongmoNo.do?gongNum2=${ c.cId}'" ></td>
 							   </tr>
@@ -431,5 +430,8 @@ footer {
 			evt.currentTarget.className += " w3-blue";
 		}
 	</script>
+	<!-- 푸터  -->
+	 <%@ include file="/WEB-INF/views/common/footer.jsp" %>	    
+	<!-- /푸터 -->
 </body>
 </html>

@@ -232,8 +232,8 @@ footer {
 								<tr>
 									<th style="width: auto;">글번호</th>
 									<th style="width: auto;">제목</th>
-									<th style="width: auto;">내용</th>
-									<th style="width: auto;">공모전 전화번호</th>
+									<th style="width: 180px;">내용</th>
+									<th style="width: auto;">전화번호</th>
 									<th style="width: auto;">주소</th>
 									<th style="width: auto;">시작일</th>
 									<th style="width: auto;">마감일</th>

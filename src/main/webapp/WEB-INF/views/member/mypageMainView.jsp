@@ -40,10 +40,10 @@
 								<c:if test="${fn:length(recentComp) > 0 }">
 								<c:forEach var="j" items="${ recentComp }" >
 								<li>
-									<a href="competitionDetail?cId=${ j.SID }" class="figure">
-										<img src="${j.FILEPATH }/${j.IMAGENAME}" width="106" height="106" alt="${ j.TITLE }">
+									<a href="competitionDetail.do?cId=${ j.SID }" class="figure">
+										<img src="${ contextPath }/resources/compeloadFiles/${j.IMAGENAME}" width="106" height="106" alt="${ j.TITLE }">
 									</a>
-									<a href="competitionDetail?cId=${ j.SID }">
+									<a href="competitionDetail.do?cId=${ j.SID }">
 										<span class="scpName">${ j.TITLE }</span>
 									</a>
 								</li>
@@ -118,12 +118,12 @@
 											<c:set var="link" value="${ j.LINK }"/>
 											</c:if>
 									 		<c:if test='${j.LINK eq null or j.LINK eq ""}'>
-											<c:set var="link" value="competitionDetail?cId=${ j.SID }"/>
+											<c:set var="link" value="competitionDetail.do?cId=${ j.SID }"/>
 											</c:if>
 											<a href="${link}">
 											<span class="alarmIco">
 												<c:if test="${ j.IMAGENAME ne null }"> <!-- 이미지가 있다면 이미지만, 아니면 타이틀과 회차 출력 --> 
-													<img src="${j.FILEPATH }/${j.IMAGENAME}" alt="${ j.TITLE }이미지">
+													<img src="${ contextPath }/resources/compeloadFiles/${j.IMAGENAME}" alt="${ j.TITLE }이미지">
 												</c:if>
 												<c:if test="${ j.IMAGENAME eq null}">
 													<div class="scpName">제 ${ j.ROUND }회</div>

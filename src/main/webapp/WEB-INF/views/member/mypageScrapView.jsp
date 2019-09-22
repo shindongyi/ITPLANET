@@ -81,7 +81,7 @@
 									<c:set var="link" value="${ i.LINK }"/>
 									</c:if>
 							 		<c:if test='${i.LINK eq null or i.LINK eq ""}'>
-									<c:set var="link" value="competitionDetail?cId=${ i.SID }"/>
+									<c:set var="link" value="competitionDetail.do?cId=${ i.SID }"/>
 									</c:if>
 									<td class="title"><a href="${link}">${ i.TITLE }</a></td>
 									<td class="writer">${ i.WRITER }</td>

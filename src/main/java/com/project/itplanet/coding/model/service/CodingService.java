@@ -27,7 +27,8 @@ public interface CodingService {
 
 	ArrayList<Coding> mainCoding();
 
-//	ArrayList<CodingTop> topList();
-//
-//	ArrayList<CodingTop> titleList(ArrayList<CodingTop> topList);
+	ArrayList<Integer> getSuccessCount();
+
+	ArrayList<CodingTop> getCoList();
+
 }

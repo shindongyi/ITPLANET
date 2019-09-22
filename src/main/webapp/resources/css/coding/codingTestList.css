@@ -94,13 +94,13 @@ span{
     display: inline-block;
 }
 
-.box > .container > #topList {
+.box > .container .topList {
    margin-top: 20px;
    font-size: 14px;
 }
 
 
-.box > .container > #topList thead {
+.box > .container > div > .topList thead {
    background: #003458;
     opacity: 0.9;
     color: #FFFFFF;
@@ -108,7 +108,7 @@ span{
 
 .responsive-table {
    
-   thead {
+  thead {
     background-color: #95A5A6;
     font-size: 14px;
     text-transform: uppercase;

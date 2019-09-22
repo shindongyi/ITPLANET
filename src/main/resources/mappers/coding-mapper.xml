@@ -114,22 +114,26 @@
    	]]>
    </select>
    
-   <!-- <select id="topList" resultType="map">
-		<![CDATA[
-		SELECT Q_NUM , COUNT(*) d
-		FROM QSCORE
-		GROUP BY Q_NUM
-		order by d desc
-		]]>
-	</select>
-	
-	<select id="titleList" parameterType="list"  resultType="map">
-			SELECT Q_TITLE  
-			FROM QUESTION
-			WHERE Q_NUM in
-			<foreach item="item" collection="list" open="(" separator="," close=")">
-				 #{item.qNum}
-			</foreach>
-			
-	</select> -->
+   <select id="getSuccessCount" resultType="_int">
+   		select count(*)
+   		from qscore
+   		where q_pass = 'O'
+   		group by q_num
+   		order by q_num
+   </select>
+   
+   <resultMap type="CodingTop" id="CodingTopResult">
+   		<result property="qNum" column="Q_NUM"/>
+   		<result property="qTtitle" column="Q_TITLE"/>
+   		<result property="submitNum" column="d"/>
+   </resultMap>
+   
+   <select id="getCoList" resultMap="CodingTopResult">
+   		SELECT Q_NUM , Q_TITLE, COUNT(*) d
+		FROM QSCORE 
+        join question using(Q_NUM)
+		GROUP BY Q_NUM,Q_TITLE
+		order by q_num
+   </select>
+   
 </mapper>

@@ -1,6 +1,6 @@
 package com.project.itplanet.coding.model.vo;
 
-public class CodingTop {
+public class CodingTop implements Comparable<CodingTop>{
 	private int qNum;
 	private String qTtitle;
 	private int correctNum;
@@ -14,6 +14,13 @@ public class CodingTop {
 		this.correctNum = correctNum;
 		this.submitNum = submitNum;
 		this.correctPer = correctPer;
+	}
+
+	public CodingTop(int qNum, String qTtitle, int submitNum) {
+		super();
+		this.qNum = qNum;
+		this.qTtitle = qTtitle;
+		this.submitNum = submitNum;
 	}
 
 	public int getqNum() {
@@ -55,10 +62,21 @@ public class CodingTop {
 	public void setCorrectPer(int correctPer) {
 		this.correctPer = correctPer;
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "CodingTop [qNum=" + qNum + ", qTtitle=" + qTtitle + ", correctNum=" + correctNum + ", submitNum="
+				+ submitNum + ", correctPer=" + correctPer + "]";
+	}
+
+	@Override
+	public int compareTo(CodingTop o) {
+		
+		int targetPer = o.getCorrectPer();
+		if(correctPer == targetPer) return 0;
+		else if(correctPer > targetPer) return 1;
+		else return -1;
+	}
 	
 	
 }

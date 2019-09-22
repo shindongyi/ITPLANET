@@ -61,13 +61,14 @@ public class CodingServiceImpl implements CodingService{
 		return coDAO.mainCoding();
 	}
 
-//	@Override
-//	public ArrayList<CodingTop> topList() {
-//		return coDAO.topList();
-//	}
-//
-//	@Override
-//	public ArrayList<CodingTop> titleList(ArrayList<CodingTop> topList) {
-//		return coDAO.titleList(topList);
-//	}
+	@Override
+	public ArrayList<Integer> getSuccessCount() {
+		return coDAO.getSuccessCount();
+	}
+
+	@Override
+	public ArrayList<CodingTop> getCoList() {
+		return coDAO.getCoList();
+	}
+
 }

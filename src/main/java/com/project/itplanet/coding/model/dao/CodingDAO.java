@@ -53,11 +53,12 @@ public class CodingDAO {
 		return (ArrayList)sqlSession.selectList("codingMapper.mainCoding");
 	}
 
-//	public ArrayList<CodingTop> topList() {
-//		return (ArrayList)sqlSession.selectList("codingMapper.topList");
-//	}
-//
-//	public ArrayList<CodingTop> titleList(ArrayList<CodingTop> topList) {
-//		return (ArrayList)sqlSession.selectList("codingMapper.titleList", topList);
-//	}
+	public ArrayList<Integer> getSuccessCount() {
+		return (ArrayList)sqlSession.selectList("codingMapper.getSuccessCount");
+	}
+
+	public ArrayList<CodingTop> getCoList() {
+		return (ArrayList)sqlSession.selectList("codingMapper.getCoList");
+	}
+
 }

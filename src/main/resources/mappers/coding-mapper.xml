@@ -106,7 +106,15 @@
    		where user_Id=#{userId}
    </select>
    
-   <select id="topList" resultType="map">
+   <select id="mainCoding" resultMap="codingResultSet">
+   	<![CDATA[
+   		select X.*
+		from(select * from question order by q_num desc) X
+		where rownum <=3
+   	]]>
+   </select>
+   
+   <!-- <select id="topList" resultType="map">
 		<![CDATA[
 		SELECT Q_NUM , COUNT(*) d
 		FROM QSCORE
@@ -123,5 +131,5 @@
 				 #{item.qNum}
 			</foreach>
 			
-	</select>
+	</select> -->
 </mapper>

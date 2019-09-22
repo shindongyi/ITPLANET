@@ -8,6 +8,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,9 @@ import com.project.itplanet.study.model.vo.StudyReply;
 public class StudyController {
 	@Autowired
 	private StudyService sService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	@RequestMapping("studyInsertView.do")
 	public ModelAndView studyInsertView(ModelAndView mv) {
@@ -98,7 +102,9 @@ public class StudyController {
 		
 		String nickName = loginUser.getNickName();
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("cname", cname);
+		
+		String encCname = bcryptPasswordEncoder.encode(cname);
+		map.put("cname", encCname);
 		map.put("nickName", nickName);
 		sService.createChat(map);
 		

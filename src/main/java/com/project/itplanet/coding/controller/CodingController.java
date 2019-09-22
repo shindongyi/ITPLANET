@@ -10,6 +10,7 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,6 +39,62 @@ public class CodingController {
 	@Autowired
 	private CodingService coService;
 	
+	@RequestMapping("lowCoding.do")
+	public void lowCoding(HttpServletResponse response) throws JsonIOException, IOException {
+		ArrayList<CodingTop> successCoList = coService.getCoList();
+		ArrayList<Integer> successList = coService.getSuccessCount();
+		
+		for(int i=0; i<successCoList.size(); i++) {
+			successCoList.get(i).setCorrectNum(successList.get(i));
+			successCoList.get(i).setCorrectPer((int)(((double)successCoList.get(i).getCorrectNum()/successCoList.get(i).getSubmitNum()) * 100));
+		}
+		
+		successCoList.sort(Comparator.naturalOrder());
+		
+		ArrayList<CodingTop> list = new ArrayList<CodingTop>();
+		list.add(successCoList.get(0));
+		list.add(successCoList.get(1));
+		list.add(successCoList.get(2));
+		list.add(successCoList.get(3));
+		list.add(successCoList.get(4));
+		
+		for(CodingTop c : list) {
+			c.setqTtitle(URLEncoder.encode(c.getqTtitle(),"utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("MM-dd").create();
+		gson.toJson(list, response.getWriter());
+		
+	}
+	
+	@RequestMapping("topCoding.do")
+	public void topCoding(HttpServletResponse response) throws JsonIOException, IOException {
+		ArrayList<CodingTop> successCoList = coService.getCoList();
+		ArrayList<Integer> successList = coService.getSuccessCount();
+		
+		for(int i=0; i<successCoList.size(); i++) {
+			successCoList.get(i).setCorrectNum(successList.get(i));
+			successCoList.get(i).setCorrectPer((int)(((double)successCoList.get(i).getCorrectNum()/successCoList.get(i).getSubmitNum()) * 100));
+		}
+		
+		successCoList.sort(Comparator.naturalOrder());
+		
+		ArrayList<CodingTop> list = new ArrayList<CodingTop>();
+		list.add(successCoList.get(successCoList.size()-1));
+		list.add(successCoList.get(successCoList.size()-2));
+		list.add(successCoList.get(successCoList.size()-3));
+		list.add(successCoList.get(successCoList.size()-4));
+		list.add(successCoList.get(successCoList.size()-5));
+		
+		for(CodingTop c : list) {
+			c.setqTtitle(URLEncoder.encode(c.getqTtitle(),"utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("MM-dd").create();
+		gson.toJson(list, response.getWriter());
+		
+	}
+	
 	@RequestMapping("insertCT.do")
 	public String cdTest() {
 		return "coding/codingTestInsert";
@@ -47,10 +104,6 @@ public class CodingController {
 	public ModelAndView codingTestListView(ModelAndView mv, @SessionAttribute(value="loginUser", required=false) Member m) {
 		//return "coding/codingTestList"; 
 		ArrayList<Coding> ctList = coService.listCoding();
-//		ArrayList<CodingTop> topList = coService.topList();
-//		ArrayList<CodingTop> titleList = coService.titleList(topList);
-		
-//		System.out.println(topList);
 		
 		if(m != null) {
 			String userId = m.getUserId();

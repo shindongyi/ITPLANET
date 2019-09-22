@@ -28,6 +28,12 @@
 	    top: 3.5rem;
 	    right: 6rem;
 	}
+	
+	.topList thead {
+	   background: #003458;
+	    opacity: 0.9;
+	   color: #FFFFFF;
+	}
 </style>
 </head>
 <body>
@@ -37,18 +43,17 @@
    <!-- iframe -->
   <div class="box">
        <div class="container">
-          <h2>탑 리스트</h2>
-          <table class="table table-hover responsive-table" id="topList">
+       <h2 style="margin-right:400px; margin-left: 50px;">오답률 리스트</h2><h2>정답률 리스트</h2>
+       	 <div>
+          <table class="table table-hover responsive-table topList" id="lowList" style="width:40%; float:left; margin-right: 70px; margin-left: 50px;">
              <colgroup>
+               <col width="30%" />
                <col width="15%" />
-               <col width="45%" />
-               <col width="12%" />
-               <col width="12%" />
-               <col width="12%" />      
+               <col width="10%" />
+               <col width="15%" />      
             </colgroup>
              <thead>
                 <tr>
-                   <th>문제 번호</th>
                    <th>문제 제목</th>
                    <th>맞은 사람</th>
                    <th>제출</th>
@@ -58,14 +63,42 @@
           
              <tbody>
                 <tr>
-                   <td>123</td>
                    <td>456</td>
-                   <td>789</td>
-                   <td>456</td>
-                   <td>156</td>
+                   <td style="text-align:center;">789</td>
+                   <td style="text-align:center;">456</td>
+                   <td style="text-align:center;">156</td>
                 </tr>
              </tbody>
           </table>
+		 </div>
+		 
+		 <div>
+          <table class="table table-hover responsive-table topList" id="topList" style="width:40%; float:rigth;">
+             <colgroup>
+               <col width="30%" />
+               <col width="15%" />
+               <col width="15%" />
+               <col width="15%" />      
+            </colgroup>
+             <thead>
+                <tr>
+                   <th>문제 제목</th>
+                   <th>맞은 사람</th>
+                   <th>제출</th>
+                   <th>정답 비율</th>
+                </tr>
+             </thead>
+          
+             <tbody>
+                <tr>
+                   <td>456</td>
+                   <td style="text-align:center;">789</td>
+                   <td style="text-align:center;">456</td>
+                   <td style="text-align:center;">156</td>
+                </tr>
+             </tbody>
+          </table>
+       </div>
        </div>
    </div>
 
@@ -127,12 +160,72 @@
 		alert("로그인 후에 이용가능한 서비스입니다.");
 	}
 	
+	function lowList(){
+		$.ajax({
+			url: "lowCoding.do",
+			dataType: "json",
+			success: function(data){
+				$tableBody = $("#lowList tbody");
+				$tableBody.html("");
+				
+				for(var i in data){
+					var $tr = $("<tr>");
+					var $title = $("<td>").text(decodeURIComponent(data[i].qTtitle.replace(/\+/g, " ")));
+					var $success = $("<td style='text-align:center;'>").text(data[i].correctNum);
+					var $total = $("<td style='text-align:center;'>").text(data[i].submitNum);
+					var $per = $("<td style='text-align:center;'>").text(data[i].correctPer + "%");
+					
+					$tr.append($title);
+					$tr.append($success);
+					$tr.append($total);
+					$tr.append($per);
+					
+					$tableBody.append($tr);
+				}
+			}
+		});
+	}
+	
+	function topList(){
+		$.ajax({
+			url: "topCoding.do",
+			dataType: "json",
+			success: function(data){
+				$tableBody = $("#topList tbody");
+				$tableBody.html("");
+				
+				for(var i in data){
+					var $tr = $("<tr>");
+					var $title = $("<td>").text(decodeURIComponent(data[i].qTtitle.replace(/\+/g, " ")));
+					var $success = $("<td style='text-align:center;'>").text(data[i].correctNum);
+					var $total = $("<td style='text-align:center;'>").text(data[i].submitNum);
+					var $per = $("<td style='text-align:center;'>").text(data[i].correctPer + "%");
+					
+					$tr.append($title);
+					$tr.append($success);
+					$tr.append($total);
+					$tr.append($per);
+					
+					$tableBody.append($tr);
+				}
+			}
+		});
+	}
+	
+	
 	$(function(){
 		<c:forEach items="${ cpList }" var="cpList">
 	        <c:if test="${ cpList.qPass == 'O' }">
 	           $('input[value=${cpList.qNum}]').parent().append("<i class='fas fa-check' id='cpCheck'>");
 	        </c:if>
 	     </c:forEach>
+	     
+	     lowList();
+	     topList();
+	     setInterval(function(){
+			topList();
+			lowList();
+		}, 15000);
 	  });
 </script>
 <c:import url="../common/footer.jsp"/>

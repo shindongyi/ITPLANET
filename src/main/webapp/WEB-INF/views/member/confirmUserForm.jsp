@@ -18,7 +18,7 @@
                <a href="mypage.do">MY PAGE</a>
             </h2>
             <div id="breadcrumb">
-               <a href="/">HOME</a> > 
+               <a href="index.jsp">HOME</a> > 
                <a href="mypage.do">MY PAGE</a> > MY INFO > 
                <strong>개인정보 수정</strong>
             </div>

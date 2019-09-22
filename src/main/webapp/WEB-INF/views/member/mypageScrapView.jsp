@@ -20,7 +20,7 @@
 					<a href="mypage.do">MY PAGE</a>
 				</h2>
 				<div id="breadcrumb">
-					<a href="/">HOME</a> > 
+					<a href="index.jsp">HOME</a> > 
 					<a href="mypage.do">MY PAGE</a> > MY SCRAP > 
 						<strong>${ type }</strong>
 				</div>

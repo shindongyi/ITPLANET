@@ -35,18 +35,24 @@
 	</select>
 	
 	<select id="selectList" parameterType="map" resultMap="lcsResultSet">
-   		select l_id, l_name, l_round, start_date, end_date, results, l_address,
+   		select l_id, l_name, l_round, start_date, results, l_address,
 				reg_date, l_count
+		<if test='choice == "calendar"'>
+			, to_date(to_char(end_date+1, 'yyyymmdd')) as end_date
+		</if>
+		<if test='choice != "calendar"'>
+		,end_date
+		</if>
 		from license
 		where status = 'Y'
 			<if test='keyword !=null and keyword != ""'>
 				and l_name like '%' || #{keyword} || '%'
 			</if>
 			<if test='choice == "first"'>
-				and sysdate BETWEEN start_date and end_date
+				and to_char(sysdate,'yyyymmddhh24miss') BETWEEN to_char(start_date, 'yyyymmddhh24miss') and to_char(end_date+1, 'yyyymmddhh24miss')
 			</if>
 			<if test='(all != null and all !="") or order=="count"'>
-			<![CDATA[and end_date >= sysdate-1]]>
+			<![CDATA[and to_char(end_date+1, 'yyyymmddhh24miss') >= to_char(sysdate,'yyyymmddhh24miss')]]>
 			</if>
 		<if test='order == null or order == ""'>
 			order by end_date

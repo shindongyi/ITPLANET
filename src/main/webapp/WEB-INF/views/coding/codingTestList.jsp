@@ -65,8 +65,9 @@
    
    <div class="box">
     <div class="container">
+    	<c:if test="${ loginUser.nickName == '관리자' }">
     	<a href="javascript:location.href='insertCT.do'">문제 작성</a>
-    	
+    	</c:if>
         <div class="row">
         	<c:if test="${ empty loginUser }">
         		<c:if test="${ ctList.isEmpty() }">

@@ -223,8 +223,8 @@ public class MemberController {
 				HashMap<String,Integer> scrapCount = mService.countScrap(map);
 				session.setAttribute("scrapCount", scrapCount);
 				
-//				int codingCount = cService.codingCount(userId);
-//				session.setAttribute("codingCount", codingCount);
+				int codingCount = cService.codingCount(userId);
+				session.setAttribute("codingCount", codingCount);
 				
 				session.setMaxInactiveInterval(600);
 				

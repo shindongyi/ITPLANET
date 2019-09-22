@@ -30,7 +30,7 @@
 				<a href="myPageScrapView.do?type=2"><strong>${ scrapCount.lcsCount+0 }개</strong>자격증</a>
 			</li>
 			<li>
-				<a href="#"><strong>${ codingCount+0 }개</strong>코딩테스트</a>
+				<a href="codingTestListView.do"><strong>${ codingCount+0 }개</strong>코딩테스트</a>
 			</li>
 		</ul>
 	</div>

@@ -20,7 +20,7 @@
 					<a href="mypage.do">MY PAGE</a>
 				</h2>
 				<div id="breadcrumb">
-					<a href="/">HOME</a> > 
+					<a href="index.jsp">HOME</a> > 
 					<a href="mypage.do">MY PAGE</a> > MY INFO > 
 					<strong>개인정보 수정</strong>
 				</div>
@@ -110,7 +110,7 @@
 											<div class="box">
 												<h3 class="update_title"><label for="email">본인 확인 이메일</label><span class="red_mark">*</span></h3>
 												<button type="button" class="emailBtn" id="sendNum">인증번호 전송</button>
-												<input type="text" id="email" name="email" class="int email" value="${ loginUser.email }">
+												<input type="text" id="email" name="email" class="int email" value="${ loginUser.email }" autocomplete="off">
 											</div>
 											<div class="box" id="emailNumCk" style="display: none;">
 												<button class="emailBtn" id="checkNum">인증번호 확인</button>
@@ -326,6 +326,8 @@ $('#checkNum').on('click', function(){
 	var oMsg = $('#emailMsg');
 	if(number1 == number2){
 		showErrorMsg(oMsg, "인증에 성공하였습니다.");
+		$('#email').attr('readonly', true);
+		$('#email').css('background', '#ddd');
 		$('#inputNum').attr('readonly', true);
 		$('#inputNum').css('background', '#ddd');
 		check = true;

@@ -30,6 +30,9 @@
 	margin-top: 26px;
 	padding-left: 13px;
 }
+.lcs li{
+	padding-top: 30px;
+} 
 .detail div{
 	position: absolute; 
 	left: 35%; 
@@ -122,6 +125,7 @@
 	padding: 0 20px;
 	overflow: hidden;
 	font-size: 11px;
+	border-bottom: 0.5px solid #f1f1f1;
 }
 .alarmList .almToday{
 	padding-top: 0;
@@ -170,14 +174,22 @@ li.itemPart span.alarmIco{
 .alarmUnit li span.alarmIco{
 	display: block;
 	position: absolute;
-	left: 8px;
-	top: 50%;
+	left: 0px;
+	top: 30%;
 	margin-top: -32px;
 	width: 66px;
 	height: 66px;
 	background-image: url(../../image/changePwd6.png);
 	background-repeat: no-repeat;
 	padding: 0;
+}
+.alarmUnit li span.alarmIco .scpName{
+	width: 50px;	
+}
+.alarmUnit li span.alarmIco img{
+    padding-top: 15px;
+    width: 60px;
+    height: 65px;
 }
 .alarmUnit li dl{
 	padding-bottom: 5px;

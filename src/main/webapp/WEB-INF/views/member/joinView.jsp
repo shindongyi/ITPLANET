@@ -95,7 +95,7 @@
 						<div class="box">
 							<h3 class="join_title"><label for="email">본인 확인 이메일</label><span class="red_mark">*</span></h3>
 							<button class="join_btn" type="button" id="emailNumBtn" title="인증번호 전송버튼">인증번호 전송</button>
-							<input type="text" id="email" name="email" class="int">
+							<input type="text" id="email" name="email" class="int" autocomplete="off">
 						</div>
 						<div class="box" style="display:none;" id="emailCKArea">
 							<span></span>
@@ -596,6 +596,8 @@ $('#confirmNum').on('click', function(){
 	var oMsg = $('#emailMsg');
 	if(number1 == number2){
 		showErrorMsg(oMsg, "인증에 성공하였습니다. 회원가입을 진행해주세요.");
+		$('#email').attr('readonly', true);
+		$('#email').css('background', '#ddd');
 		$('#emailNum').attr('readonly', true);
 		$('#emailNum').css('background', '#ddd');
 		check = true;

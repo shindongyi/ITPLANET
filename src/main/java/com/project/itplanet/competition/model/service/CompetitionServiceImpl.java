@@ -94,11 +94,6 @@ public class CompetitionServiceImpl implements CompetitionService{
 	}
 
 	@Override
-	public ArrayList<Competition> mainComp() {
-		return cDAO.mainComp();
-	}
-
-	@Override
 	public ArrayList<Competition> mainCompNow() {
 		return cDAO.mainCompNow();
 	}

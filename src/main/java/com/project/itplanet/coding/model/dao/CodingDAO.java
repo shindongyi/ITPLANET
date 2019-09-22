@@ -49,11 +49,15 @@ public class CodingDAO {
 		return (ArrayList)sqlSession.selectList("codingMapper.listCPass", userId);
 	}
 
-	public ArrayList<CodingTop> topList() {
-		return (ArrayList)sqlSession.selectList("codingMapper.topList");
+	public ArrayList<Coding> mainCoding() {
+		return (ArrayList)sqlSession.selectList("codingMapper.mainCoding");
 	}
 
-	public ArrayList<CodingTop> titleList(ArrayList<CodingTop> topList) {
-		return (ArrayList)sqlSession.selectList("codingMapper.titleList", topList);
-	}
+//	public ArrayList<CodingTop> topList() {
+//		return (ArrayList)sqlSession.selectList("codingMapper.topList");
+//	}
+//
+//	public ArrayList<CodingTop> titleList(ArrayList<CodingTop> topList) {
+//		return (ArrayList)sqlSession.selectList("codingMapper.titleList", topList);
+//	}
 }

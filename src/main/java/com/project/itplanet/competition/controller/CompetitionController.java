@@ -257,18 +257,6 @@ public class CompetitionController {
 		}
 	}
 	
-	@RequestMapping("mainComp.do")
-	public void mainComp(HttpServletResponse response) throws JsonIOException, IOException {
-		ArrayList<Competition> list = cService.mainComp();
-		
-		for(Competition c : list) {
-			c.setcTitle(URLEncoder.encode(c.getcTitle(), "utf-8"));
-		}
-		
-		Gson gson = new GsonBuilder().setDateFormat("MM-dd").create();
-		gson.toJson(list, response.getWriter());
-	}
-	
 	@RequestMapping("mainCompNow.do")
 	public void mainCompNow(HttpServletResponse response) throws JsonIOException, IOException {
 		ArrayList<Competition> list = cService.mainCompNow();

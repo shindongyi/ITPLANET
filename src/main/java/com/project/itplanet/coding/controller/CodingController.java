@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,10 +47,10 @@ public class CodingController {
 	public ModelAndView codingTestListView(ModelAndView mv, @SessionAttribute(value="loginUser", required=false) Member m) {
 		//return "coding/codingTestList"; 
 		ArrayList<Coding> ctList = coService.listCoding();
-		ArrayList<CodingTop> topList = coService.topList();
-		ArrayList<CodingTop> titleList = coService.titleList(topList);
+//		ArrayList<CodingTop> topList = coService.topList();
+//		ArrayList<CodingTop> titleList = coService.titleList(topList);
 		
-		System.out.println(topList);
+//		System.out.println(topList);
 		
 		if(m != null) {
 			String userId = m.getUserId();
@@ -356,4 +357,17 @@ public class CodingController {
 //		}
 //		return readBuffer.toString();
 //	}
+	
+	@RequestMapping("mainCoding.do")
+	public void mainCoding(HttpServletResponse response) throws JsonIOException, IOException {
+		ArrayList<Coding> list = coService.mainCoding();
+		
+		for(Coding c : list) {
+			c.setqTitle(URLEncoder.encode(c.getqTitle(), "utf-8"));
+			c.setqContent(URLEncoder.encode(c.getqContent(), "utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("MM-dd").create();
+		gson.toJson(list, response.getWriter());
+	}
 }

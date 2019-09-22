@@ -129,18 +129,6 @@
 		values(seq_crid.nextval, #{crContent}, sysdate, sysdate, default, #{userId}, #{cId})
 	</insert>
 	
-	<select id="mainComp" resultMap="CompetitionResult">
-		<![CDATA[
-			select X.*
-			from(select c_id, c_title, c_content, c_phone, c_address, c_count, c_startDate, c_duedate, c_create_date, c_modify_date, c_status, c_check, nickname
-				from competition
-				join member on(user_id = c_writer)
-				where c_check='Y' and c_status='Y'
-				order by c_count desc) X
-			where rownum <=3
-		]]>
-	</select>
-	
 	<select id="mainCompNow" resultMap="CompetitionResult">
 		<![CDATA[
 			select c_id, c_title, c_content, c_phone, c_address, c_count, c_startDate, c_duedate, c_create_date, c_modify_date, c_status, c_check, nickname 

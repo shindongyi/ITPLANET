@@ -326,6 +326,8 @@ dd {
 		min-height: 300px;
 	}
 }
+
+.codingSpan{height:15px; overflow: hidden;}
 /* 끝  News 관련 CSS 다른곳에 넣어서 링크 걸면 이상하게 깨짐 그래서 여기다가 박음 끝  */
 </style>
 </head>
@@ -580,10 +582,10 @@ dd {
 
 	<hr>
 	<div class="section" data-category1="1">
-		<h2>공모전</h2>
+		<h2>코딩테스트</h2>
 
 		<div class="lists">
-			<div id="mainComp" class="list" data-category2="0">
+			<div id="mainCoding" class="list" data-category2="0">
 				
 			</div>
 		</div>
@@ -741,38 +743,52 @@ dd {
 		});
 		
 		$.ajax({
-			url:"mainComp.do",
+			url:"mainCoding.do",
 			dataType: "json",
 			success: function(data){
-				$mainComp = $("#mainComp");
-				$mainComp.html("");
+				$mainCoding = $("#mainCoding");
+				$mainCoding.html("");
 				
-				var $aComp;
-				var $h3Comp;
-				var $pComp;
-				var $span1Comp;
-				var $span2Comp;
-				var $aMoreComp;
+				var $aCoding;
+				var $h3Coding;
+				var $pCoding;
+				var $span1Coding;
+				var $aMoreCoding;
+				var logUser = '${loginUser}';
 				
 				if(data.length > 0){
-					for(var i in data){
-						$aComp = $("<a class='item'>").attr('href', 'competitionDetail.do?cId='+ data[i].cId);
-						$h3Comp = $("<h3>").text(decodeURIComponent(data[i].cTitle.replace(/\+/g," ")));
-						$pComp = $("<p class='info'>");
-						$span1Comp = $("<span>").text(data[i].cStartDate + " ~ " + data[i].cDueDate);
-						$span2Comp = $("<span class='viewcount'>").text("조회수 : " + data[i].cCount);
-						
-						$pComp.append($span1Comp);
-						$pComp.append($span2Comp);
-						$aComp.append($h3Comp);
-						$aComp.append($pComp);
-						$mainComp.append($aComp);
+					if(logUser != ''){
+						for(var i in data){
+							$aCoding = $("<a class='item'>").attr('href', 'codingTestView.do?Qno='+ data[i].qNum);
+							$h3Coding = $("<h3>").text(decodeURIComponent(data[i].qTitle.replace(/\+/g," ")));
+							$pCoding = $("<p class='info'>");
+							$span1Coding = $("<span class='codingSpan'>").text(decodeURIComponent(data[i].qContent.replace(/\+/g," ")));
+							
+							$pCoding.append($span1Coding);
+							$aCoding.append($h3Coding);
+							$aCoding.append($pCoding);
+							$mainCoding.append($aCoding);
+						}
+						$aMoreCoding = $("<a class='more' href='codingTestListView.do'>").text("코딩테스트 더 보기");
+						$mainCoding.append($aMoreCoding);
+					}else{
+						for(var i in data){
+							$aCoding = $("<a class='item'>");
+							$h3Coding = $("<h3>").text(decodeURIComponent(data[i].qTitle.replace(/\+/g," ")));
+							$pCoding = $("<p class='info'>");
+							$span1Coding = $("<span class='codingSpan'>").text(decodeURIComponent(data[i].qContent.replace(/\+/g," ")));
+							
+							$pCoding.append($span1Coding);
+							$aCoding.append($h3Coding);
+							$aCoding.append($pCoding);
+							$mainCoding.append($aCoding);
+						}
+						$aMoreCoding = $("<a class='more' href='codingTestListView.do'>").text("코딩테스트 더 보기");
+						$mainCoding.append($aMoreCoding);
 					}
-					$aMoreComp = $("<a class='more' href='competitionView.do'>").text("공모전 더 보기");
-					$mainComp.append($aMoreComp);
 				}else{
-					$h3Comp = $("<h3>").text("등록된 공모전이 없습니다.");
-					$mainComp.append($h3Comp);
+					$h3Coding = $("<h3>").text("등록된 코딩테스트가 없습니다.");
+					$mainCoding.append($h3Coding);
 				}
 			}
 			

@@ -25,7 +25,9 @@ public interface CodingService {
 
 	ArrayList<CodingPass> listCPass(String userId);
 
-	ArrayList<CodingTop> topList();
+	ArrayList<Coding> mainCoding();
 
-	ArrayList<CodingTop> titleList(ArrayList<CodingTop> topList);
+//	ArrayList<CodingTop> topList();
+//
+//	ArrayList<CodingTop> titleList(ArrayList<CodingTop> topList);
 }

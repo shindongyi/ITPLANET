@@ -21,6 +21,13 @@
 	.question:hover{
 		background: #a3a3cc24;
 	}
+	
+	#cpCheck {
+	   margin-left: 90%;
+	   position: absolute;
+	    top: 3.5rem;
+	    right: 6rem;
+	}
 </style>
 </head>
 <body>
@@ -122,11 +129,11 @@
 	
 	$(function(){
 		<c:forEach items="${ cpList }" var="cpList">
-			<c:if test="${ cpList.qPass == 'O' }">
-				$('input[value=${cpList.qNum}]+div h4').attr('style', 'text-decoration:line-through');
-			</c:if>
-		</c:forEach>
-	});
+	        <c:if test="${ cpList.qPass == 'O' }">
+	           $('input[value=${cpList.qNum}]').parent().append("<i class='fas fa-check' id='cpCheck'>");
+	        </c:if>
+	     </c:forEach>
+	  });
 </script>
 <c:import url="../common/footer.jsp"/>
 </body>

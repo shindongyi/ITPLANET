@@ -225,13 +225,13 @@ function checkBirth(){
 	
 	switch(birth_mm){
 	case "1": case "3": case "5": case "7": case "8": case "10": case "12":
-		isBirth_dd = /^[1-2]{1}[0-9]{1}$|^[3]{1}[0-1]{1}$/;
+		isBirth_dd = /^[1-9]{1}$|^[1-2]{1}[0-9]{1}$|^[3]{1}[0-1]{1}$/;
 		break;
 	case "4": case "6": case "9": case "11":
-		isBirth_dd = /^[1-2]{1}[0-9]{1}$|^[3]{1}[0]{1}$/;
+		isBirth_dd = /^[1-9]{1}$|^[1-2]{1}[0-9]{1}$|^[3]{1}[0]{1}$/;
 		break;
 	case "2": 
-		isBirth_dd = /^[1]{1}[0-9]{1}$|^[2]{1}[0-9]{1}$/;
+		isBirth_dd = /^[1-9]{1}$|^[1]{1}[0-9]{1}$|^[2]{1}[0-9]{1}$/;
 		break;
 	}
 		
@@ -240,7 +240,7 @@ function checkBirth(){
 	} else if(!isBirth_dd.test(birth_dd)){
 		showErrorMsg(oMsg, "생년월일을 다시 확인해주세요.");
 	} else if(!isBirth_yy.test(birth_yy)){
-		showErrorMsg(oMsg, "정말요?");
+		showErrorMsg(oMsg, "다시 확인 해주세요.");
 	} else{
 		oMsg.hide();
 		check = true;

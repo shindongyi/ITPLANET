@@ -49,7 +49,8 @@
 				and l_name like '%' || #{keyword} || '%'
 			</if>
 			<if test='choice == "first"'>
-				and to_char(sysdate,'yyyymmddhh24miss') BETWEEN to_char(start_date, 'yyyymmddhh24miss') and to_char(end_date+1, 'yyyymmddhh24miss')
+				and to_char(sysdate,'yyyymmddhh24miss') 
+				BETWEEN to_char(start_date, 'yyyymmddhh24miss') and to_char(end_date+1, 'yyyymmddhh24miss')
 			</if>
 			<if test='(all != null and all !="") or order=="count"'>
 			<![CDATA[and to_char(end_date+1, 'yyyymmddhh24miss') >= to_char(sysdate,'yyyymmddhh24miss')]]>

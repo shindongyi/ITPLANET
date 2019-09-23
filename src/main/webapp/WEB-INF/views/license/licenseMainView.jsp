@@ -461,7 +461,8 @@ $(document).ready(function(){
 							$button.append($span);
 							
 							var $div2 = $("<div>").attr('class', 'title');
-							var $p = $('<p>').attr('class', 'lcs_title').text('제 ' + data[i].l_round + '회 ' + decodeURIComponent(data[i].l_name.replace(/\+/g, " ")));
+							var $p = $('<p>').attr('class', 'lcs_title').text('제 ' + data[i].l_round + '회 ' 
+													+ decodeURIComponent(data[i].l_name.replace(/\+/g, " ")));
 							
 							var $innerDiv =  $("<div>").attr('class', 'license_txtWrap');
 							var l_id = data[i].l_id;
@@ -482,7 +483,7 @@ $(document).ready(function(){
 							$div3.append($a);
 							$div3.append($a2);
 							
-							$innerDiv.append('<div>' + page + '<div>');
+							/* $innerDiv.append('<div>' + page + '<div>'); */
 							$innerDiv.append($input);
 							$innerDiv.append($p3);
 							$innerDiv.append($p4);

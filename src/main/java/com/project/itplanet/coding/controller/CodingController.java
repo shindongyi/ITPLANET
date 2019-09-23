@@ -16,6 +16,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,13 +41,20 @@ public class CodingController {
 	private CodingService coService;
 	
 	@RequestMapping("lowCoding.do")
-	public void lowCoding(HttpServletResponse response) throws JsonIOException, IOException {
+	public void lowCoding(HttpServletResponse response, HttpSession session) throws JsonIOException, IOException {
 		ArrayList<CodingTop> successCoList = coService.getCoList();
 		ArrayList<Integer> successList = coService.getSuccessCount();
 		
 		for(int i=0; i<successCoList.size(); i++) {
 			successCoList.get(i).setCorrectNum(successList.get(i));
 			successCoList.get(i).setCorrectPer((int)(((double)successCoList.get(i).getCorrectNum()/successCoList.get(i).getSubmitNum()) * 100));
+		}
+		
+		Member m = (Member)session.getAttribute("loginUser");
+		if(m != null) {
+			String userId = m.getUserId();
+			int codingCount = coService.codingCount(userId);
+			session.setAttribute("codingCount", codingCount);
 		}
 		
 		successCoList.sort(Comparator.naturalOrder());

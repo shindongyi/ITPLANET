@@ -60,5 +60,6 @@ public class CodingDAO {
 	public ArrayList<CodingTop> getCoList() {
 		return (ArrayList)sqlSession.selectList("codingMapper.getCoList");
 	}
+	
 
 }

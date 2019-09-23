@@ -276,7 +276,7 @@ function checkEmail(){
 	} else {
 		emailFlag2 = true;
 		var oMsgVal = $('#emailMsg').html();
-		if(oMsgVal == "" || oMsgVal == null)
+		if(oMsgVal == "이메일을 다시 확인해주세요.")
 		oMsg.hide();
 	}
 }

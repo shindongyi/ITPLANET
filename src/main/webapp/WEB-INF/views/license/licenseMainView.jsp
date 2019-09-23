@@ -436,7 +436,6 @@ $(document).ready(function(){
 		var currentScroll = $(window).scrollTop() + $(window).height();
 		
 		var keyword = "${keyword}";
-		var sort = "${sort}";
 		var more = "${more}";
 		
 		ckUser(); // 스크롤시 관리자인지 회원인지 체크
@@ -445,7 +444,7 @@ $(document).ready(function(){
 			page++;
 			$.ajax({
 				url:"getListMore.do",
-				data:{page:page, keyword:keyword, sort:sort, more:more},
+				data:{page:page, keyword:keyword, more:more},
 				dataType: "json",
 				success:function(data){
 					$licenseList = $('#license_list');

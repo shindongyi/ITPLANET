@@ -114,7 +114,6 @@
 		<if test='keyword != null and keyword.equals("day2")'>
 		and to_char(trunc(duedate)) = to_char(trunc(sysdate+2))
 		</if>
-		<!-- and <![CDATA[rownum < 5]]> -->
 		order by sid desc
 	</select>
 
@@ -131,7 +130,6 @@
       <if test='keyword != null and keyword.equals("day2")'>
       and to_char(trunc(duedate)) = to_char(trunc(sysdate+2))
       </if>
-      <!-- and <![CDATA[rownum < 5]]> -->
       order by sid desc
    </select>
 

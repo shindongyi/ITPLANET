@@ -136,8 +136,9 @@
 	</div>
 </div>
 <script>
-var check = false;
-
+var check = true;
+var emailFlag = true;
+var emailFlag2 = true;
 $("#userName").blur(function(){
 	checkUserName();
 });
@@ -158,7 +159,7 @@ $("#birth_dd").blur(function(){
 $("#gender").blur(function(){
 	checkGender();
 });
-$("#email").blur(function(){
+$("#email").on("propertychange change keyup paste input", function(){
 	checkEmail();
 });
 
@@ -217,6 +218,9 @@ function checkBirth(){
 	var birth_yy = $('#birth_yy').val();
 	var birth_mm = $('#birth_mm').val();
 	var birth_dd = $('#birth_dd').val();
+	if(birth_dd.substr(0,1) == 0){
+		birth_dd = birth_dd.substr(1,2);
+	}
 	var oMsg = $('#birthMsg');
 	
 	var isBirth_yy = /^[1-2]{1}[90]{1}[0-9]{2}/;
@@ -253,7 +257,7 @@ function checkGender(){
 	var gender = $('#gender').val();
 	var oMsg = $('#genderMsg');
 	
-	if(gender != "남자" || gender != "여자"){
+	if(gender != "남" && gender != "여"){
 		showErrorMsg(oMsg, "성별을 선택해주세요.");
 	} else {
 		oMsg.hide();
@@ -262,7 +266,8 @@ function checkGender(){
 }
 
 function checkEmail(){
-	check = false;
+	emailFlag = false;
+	emailFlag2 = false;
 	
 	var email = $('#email').val();
 	var oMsg = $('#emailMsg');
@@ -272,8 +277,10 @@ function checkEmail(){
 	if(!isEmail.test(email)){
 		showErrorMsg(oMsg, "이메일을 다시 확인해주세요.")
 	} else {
+		emailFlag2 = true;
+		var oMsgVal = $('#emailMsg').html();
+		if(oMsgVal == "이메일을 다시 확인해주세요.")
 		oMsg.hide();
-		check = true;
 	}
 }
 /* 
@@ -285,38 +292,40 @@ $('#sendNum').on('click', function(){
 //이메일 인증
 var randomNum;
 $('#sendNum').on('click', function(){
-	check = false;
-	var oMsg = $('#emailMsg');
-	var email = $('#email').val();
-	$.ajax({
-		url: "checkEmail.do",
-		method: "post",
-		data:{email:email},
-		success: function(data){
-			if(data == "success"){
-			$('#inputNum').attr('readonly', false);
-			$('#inputNum').css('background', '#f8f8f8');
-			$('#emailNumCk').show();
-			showErrorMsg(oMsg, "입력하신 이메일로 인증번호를 전송하였습니다. 확인 후 입력해주세요. 최대 5분이 걸릴 수 있습니다.");
-				$.ajax({
-					url: "sendEmail.do",
-					type: "post",
-					data:{email:email},
-					/* async:false, */
-					success:function(data){
-						if(data != null && data != ""){
-							randomNum = data;
-						} else{
-							showErrorMsg(oMsg, "인증번호 전송에 실패하였습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+	if(emailFlag2){
+		emailFlag = false;
+		var oMsg = $('#emailMsg');
+		var email = $('#email').val();
+		$.ajax({
+			url: "checkEmail.do",
+			method: "post",
+			data:{email:email},
+			success: function(data){
+				if(data == "success"){
+				$('#inputNum').attr('readonly', false);
+				$('#inputNum').css('background', '#f8f8f8');
+				$('#emailNumCk').show();
+				showErrorMsg(oMsg, "입력하신 이메일로 인증번호를 전송하였습니다. 확인 후 입력해주세요. 최대 5분이 걸릴 수 있습니다.");
+					$.ajax({
+						url: "sendEmail.do",
+						type: "post",
+						data:{email:email},
+						/* async:false, */
+						success:function(data){
+							if(data != null && data != ""){
+								randomNum = data;
+							} else{
+								showErrorMsg(oMsg, "인증번호 전송에 실패하였습니다. 잠시 후 다시 시도해주시기 바랍니다.");
+							}
 						}
-					}
-				});
-			} else {
-				$('#emailNumCk').hide();
-				showErrorMsg(oMsg, "이미 존재하거나 탈퇴한 회원의 이메일입니다.");
+					});
+				} else {
+					$('#emailNumCk').hide();
+					showErrorMsg(oMsg, "이미 존재하거나 탈퇴한 회원의 이메일입니다.");
+				}
 			}
-		}
-	})
+		})
+	}
 
 });
 $('#checkNum').on('click', function(){
@@ -330,7 +339,7 @@ $('#checkNum').on('click', function(){
 		$('#email').css('background', '#ddd');
 		$('#inputNum').attr('readonly', true);
 		$('#inputNum').css('background', '#ddd');
-		check = true;
+		emailFlag = true;
 	} else {
 		showErrorMsg(oMsg, "인증번호가 일치하지 않습니다. 다시 확인해 주세요.");
 	}
@@ -351,7 +360,7 @@ function showErrorMsg(oMsg, msg){
 }); */
 
 $('#update_btn').on('click', function(){
-	if(check){
+	if(check && emailFlag && emailFlag2){
 		var userName = $('#userName').val();
 		var nickName = $('#nickName').val();
 		var gender = $('#gender').val();
@@ -373,8 +382,11 @@ $('#update_btn').on('click', function(){
 			}
 		});
 	} else {
-		console.log(check);
-		alert("모든 항목을 확인해주세요.");
+		if(!emailFlag){
+			alert("이메일 인증을 진행해주세요. 변경을 원치 않으시면 뒤로가기를 해주세요.");
+		} else {
+			alert("모든 항목을 확인해주세요.");
+		}
 	}
 });
 

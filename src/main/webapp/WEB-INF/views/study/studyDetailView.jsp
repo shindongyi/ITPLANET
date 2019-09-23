@@ -233,6 +233,7 @@
 							<td>
 								[ <c:forEach items="${fn:split(chatMember,',') }" var="cm" varStatus="status">
 									<c:if test="${ status.last }">
+										<c:set var="lastIndex" value="${ status.index +1 }"/>
 										 ${status.index + 1 }
 									</c:if>
 								</c:forEach> / ${ study.sMember } ]
@@ -251,7 +252,12 @@
 										<input type="button" value="스터디 취소" onclick="javascript:location.href='studyCancel.do?sId=${study.sId}'">
 									</c:if>
 									<c:if test="${ check eq 1 }">
-										<input type="button" value="스터디 신청" onclick="javascript:location.href='studyAdd.do?sId=${study.sId}'">
+										<c:if test="${ lastIndex eq study.sMember }">
+											마감
+										</c:if>
+										<c:if test="${ lastIndex ne study.sMember }">
+											<input type="button" value="스터디 신청" onclick="javascript:location.href='studyAdd.do?sId=${study.sId}'">
+										</c:if>
 									</c:if>
 								</c:if>
 								

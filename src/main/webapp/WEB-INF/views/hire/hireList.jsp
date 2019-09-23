@@ -92,20 +92,15 @@
 		var uri ="https://oapi.saramin.co.kr/job-search?";
 		var key ="access-key=mg233WU8HnG8aF5jrYPTqeBpU7Tr4OpGQtN38PyKptDLgj4ciNwbm";
 		var job_category = "&job_category=4";
+		var sNum = 1;
+		var cNum = 10;
+		var start = "&start=";
+		var count = "&count=";
 		var fields = "&fields=count";
+		var resultURL = uri + key + job_category + start + sNum + count + cNum;
 		$(document).ready(function(){
-			// "https://oapi.saramin.co.kr/job-search?access-key=XezjUx3DKk1B2Sf6Rqs3H0ReMjILTLin4778M8jV4CieFkbVa&ind_cd=3&start=1&count=50";
-			var sNum = 1;
-			var cNum = 10;
-
-			// var uri ="https://oapi.saramin.co.kr/job-search?";
-			// var key ="access-key=mg233WU8HnG8aF5jrYPTqeBpU7Tr4OpGQtN38PyKptDLgj4ciNwbm";
-			// var job_category = "&job_category=4"
-			var start = "&start=";
-			var count = "&count=";
-			var kewords = "&kewords=";
-			var kewords2 = encodeURI("개발자");
-		    var resultURL = uri + key + job_category + start + sNum + count + cNum + fields;
+			resultURL = "";
+		    resultURL = uri + key + job_category + start + sNum + count + cNum;
 					
 		    hListView(resultURL);
 		    
@@ -114,16 +109,12 @@
 				var currentScroll = $(window).scrollTop() + $(window).height();
 				
 		    	if (maxHeight <= currentScroll + 100) {			
-		    		sNum++;
-		    		resultURL = uri + key + job_category + start + sNum + count + cNum + fields;
+		    		resultURL.slice(2,-1);
 		    		hListView(resultURL);
 		    	}
 		    });
-					
-				
 		});
 			
-	
 		function hListView(resultURL){
 			$.ajax({
 				url: "hJsonList.do",
@@ -133,7 +124,7 @@
 				success: function(data){
 					$hListBox = $("#hListBox");
 					// $hListBox.html("");
-
+					console.log(resultURL);
 					var $hr;
 					var $item;
 					
@@ -233,7 +224,7 @@
 			// console.log(searchTxt.val())
 			var kewords2 = encodeURI((searchTxt.val()));
 
-       		var resultURL = uri + key + kewords + kewords2 + start + count;
+       		resultURL += kewords + kewords2;
        		//console.log(resultURL);
        		hListView(resultURL);
 		    searchTxt.val('');
@@ -250,7 +241,7 @@
 			var count = "&count=30";
 			var jobType = "&job_type=" + filter_jobType;
 			
-			var resultURL = uri + key + start + count + jobType;
+			resultURL += jobType;
 			hListView(resultURL);
  		});
  	
@@ -263,7 +254,7 @@
 			var start = "&start=1";
 			var count = "&count=30";
 			var loc_mcd = "&loc_mcd=" + filter_loc;
-			var resultURL = uri + key + start + count + loc_mcd;
+			resultURL += loc_mcd;
 			hListView(resultURL);
  		});
  		
@@ -276,7 +267,7 @@
 			var start = "&start=1";
 			var count = "&count=30";
 			var loc_edu = "&edu_lv=" + filter_edu;
-			var resultURL = uri + key + start + count + loc_edu;
+			resultURL += loc_edu;
 			hListView(resultURL);
  		});
  		

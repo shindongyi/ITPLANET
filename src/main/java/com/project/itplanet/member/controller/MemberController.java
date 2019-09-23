@@ -40,7 +40,7 @@ public class MemberController {
 	private MemberService mService;
 	
 	@Autowired
-	private CodingService cService;
+	private CodingService coService;
 
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
@@ -222,7 +222,7 @@ public class MemberController {
 				HashMap<String,Integer> scrapCount = mService.countScrap(map);
 				session.setAttribute("scrapCount", scrapCount);
 				
-				int codingCount = cService.codingCount(userId);
+				int codingCount = coService.codingCount(userId);
 				session.setAttribute("codingCount", codingCount);
 				
 				session.setMaxInactiveInterval(600);

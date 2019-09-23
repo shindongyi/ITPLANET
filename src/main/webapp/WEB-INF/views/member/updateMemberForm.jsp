@@ -240,7 +240,7 @@ function checkBirth(){
 	} else if(!isBirth_dd.test(birth_dd)){
 		showErrorMsg(oMsg, "생년월일을 다시 확인해주세요.");
 	} else if(!isBirth_yy.test(birth_yy)){
-		showErrorMsg(oMsg, "정말요?");
+		showErrorMsg(oMsg, "다시 확인 해주세요.");
 	} else{
 		oMsg.hide();
 		check = true;

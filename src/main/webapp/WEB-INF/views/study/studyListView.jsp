@@ -392,9 +392,13 @@
 								<td>${ li.sTitle }</td>
 								<td><c:forEach items="${fn:split(li.chatMember,',') }" var="cm" varStatus="status">
 										<c:if test="${ status.last }">
-											 ${status.index + 1 }
+											<c:set var="lastIndex" value="${ status.index + 1 }"/>
+											<c:if test="${ lastIndex != li.sMember }">
+												 ${status.index + 1 }
+											</c:if>
 										</c:if>
-									</c:forEach> / ${ li.sMember }</td>
+									</c:forEach><c:if test="${ lastIndex != li.sMember }"> / ${ li.sMember }</c:if>
+									<c:if test="${ lastIndex == li.sMember }">마감</c:if></td>
 								<td>${ li.lName}</td>
 								<td>${ li.sCount }</td>
 								<td>${ li.nickName }</td>

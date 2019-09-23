@@ -218,6 +218,9 @@ function checkBirth(){
 	var birth_yy = $('#birth_yy').val();
 	var birth_mm = $('#birth_mm').val();
 	var birth_dd = $('#birth_dd').val();
+	if(birth_dd.substr(0,1) == 0){
+		birth_dd = birth_dd.substr(1,2);
+	}
 	var oMsg = $('#birthMsg');
 	
 	var isBirth_yy = /^[1-2]{1}[90]{1}[0-9]{2}/;

@@ -141,7 +141,6 @@ public class LicenseController {
 		map.put("keyword", keyword);
 		map.put("sort", sort);
 		map.put("choice", more);
-		System.out.println("more : " + more);
 		
 		int listCount = lService.getListCount(map);
 		

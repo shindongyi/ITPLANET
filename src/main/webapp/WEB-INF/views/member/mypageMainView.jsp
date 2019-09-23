@@ -38,7 +38,7 @@
 						<div class="detail">
 							<ul class="scpList"> 
 								<c:if test="${fn:length(recentComp) > 0 }">
-								<c:forEach var="j" items="${ recentComp }" >
+								<c:forEach var="j" items="${ recentComp }" varStatus="compStatus" begin="0" end="3">
 								<li>
 									<a href="competitionDetail.do?cId=${ j.SID }" class="figure">
 										<img src="${ contextPath }/resources/compeloadFiles/${j.IMAGENAME}" width="106" height="106" alt="${ j.TITLE }">
@@ -66,7 +66,7 @@
 						<div class="detail">
 							<ul class="scpList">
 								<c:if test="${fn:length(recentLcs) > 0 }">
-								<c:forEach var="j" items="${ recentLcs }" >
+								<c:forEach var="j" items="${ recentLcs }" varStatus="lcsStatus" begin="0" end="3">
 								<li>
 									<a href="${ j.LINK }" target="_blank">
 										<span class="scpName">제 ${ j.ROUND }회</span>
@@ -110,7 +110,7 @@
 									<p class="todayBox">${day2}</p>
 									</c:if>
 								</div>
-								<c:forEach var="j" items="${ i }" varStatus="jStatus">
+								<c:forEach var="j" items="${ i }" varStatus="jStatus" begin="0" end="3">
 								<div class="alarmList">
 									<ul class="alarmUnit">
 										<li class="itemPart">
@@ -140,17 +140,17 @@
 									</ul>
 								</div>
 								</c:forEach>
-								</c:if>
-								</c:forEach>
-								</c:if>
-								<c:if test="${empty list[0] and empty list[1] and empty list[2]}"> <!--알람 리스트가 null일 경우 -->
-									<div class="alarmIsNull">
-										<p>NO DATA</p>
-										<div class="alaramList">
-											<span>마감이 임박한 공고가 없습니다.</span>
-										</div>
+							</c:if>
+							</c:forEach>
+							</c:if>
+							<c:if test="${empty list[0] and empty list[1] and empty list[2]}"> <!--알람 리스트가 null일 경우 -->
+								<div class="alarmIsNull">
+									<p>NO DATA</p>
+									<div class="alaramList">
+										<span>마감이 임박한 공고가 없습니다.</span>
 									</div>
-								</c:if>
+								</div>
+							</c:if>
 						<p class="expire">날짜가 지난 알림은 자동으로 삭제됩니다.</p>
 						</div>
 					</div>

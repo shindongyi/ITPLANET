@@ -98,7 +98,7 @@
 		<if test="keyword != null">
 			and title like '%' || #{keyword} || '%'
 		</if>
-		order by sid desc
+		order by modifydate
 	</select>
 
 	<select id="recentLcsScrap" parameterType="map" resultType="map">
@@ -106,15 +106,15 @@
 		from LSCRAPVIEW
 		where user_id = #{ userId }
 		<if test='keyword != null and keyword.equals("dDay")'>
-      	and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate,'YYYY-mm-DD')
+      	and to_char(trunc(duedate)) = to_char(trunc(sysdate))
       	</if>
 		<if test='keyword != null and keyword.equals("day1")'>
-		and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+1,'YYYY-mm-DD')
+		and to_char(trunc(duedate)) = to_char(trunc(sysdate+1))
 		</if>
 		<if test='keyword != null and keyword.equals("day2")'>
-		and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+2,'YYYY-mm-DD')
+		and to_char(trunc(duedate)) = to_char(trunc(sysdate+2))
 		</if>
-		and <![CDATA[rownum < 5]]>
+		<!-- and <![CDATA[rownum < 5]]> -->
 		order by sid desc
 	</select>
 
@@ -123,15 +123,15 @@
       from r_c_scrap_view
       where user_id = #{ userId }
       <if test='keyword != null and keyword.equals("dDay")'>
-      and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate,'YYYY-mm-DD')
+      and to_char(trunc(duedate)) = to_char(trunc(sysdate))
       </if>
        <if test='keyword != null and keyword.equals("day1")'>
-      and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+1,'YYYY-mm-DD')
+      and to_char(trunc(duedate)) = to_char(trunc(sysdate+1))
       </if>
       <if test='keyword != null and keyword.equals("day2")'>
-      and to_date(duedate, 'YYYY-mm-DD') = to_date(sysdate+2,'YYYY-mm-DD')
+      and to_char(trunc(duedate)) = to_char(trunc(sysdate+2))
       </if>
-      and <![CDATA[rownum < 5]]>
+      <!-- and <![CDATA[rownum < 5]]> -->
       order by sid desc
    </select>
 

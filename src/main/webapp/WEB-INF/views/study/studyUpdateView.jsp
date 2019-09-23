@@ -150,20 +150,93 @@ td{
 							<th style="vertical-align: middle;">스터디 종류</th>
 							<td>
 								<select id="study1" class="studyList" name="sCategory" style="width:300px;">
-									<c:if test="${ study.sCategory eq '자격증' }">
+									<c:if test="${ study.sCategory == '자격증'}">
 										<option value="자격증" selected="selected">자격증</option>
 										<option value="공모전">공모전</option>
 									</c:if>
-									<c:if test="${ study.sCategory eq '공모전' }">
+									<c:if test="${ study.sCategory == '공모전' }">
 										<option value="자격증">자격증</option>
-										<option value="공모전" selected="selected">공모전</option>
+										<option value="공모전"selected="selected">공모전</option>
 									</c:if>
 								</select>
 							</td>
 							<td colspan="2">
-								<select id="study2" class="studyList" name="sCaName" style="width: 300px;">
-									<option value="정처기">정처기</option>
-								</select>
+							<c:if test="${ study.sCategory == '자격증'}">
+								<c:if test="${ study.sCategory == '자격증'}">
+									<div id="stu1">
+										<select id="study2" class="studyList" name="sCaName" style="width: 300px;">
+											<c:forEach items="${ license }" var="li">
+												<option value="${ li }">${ li }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</c:if>
+								<c:if test="${ study.sCategory != '자격증'}">
+									<div id="stu1">
+										<select id="study2" class="studyList" style="width: 300px;">
+											<c:forEach items="${ license }" var="li">
+												<option value="${ li }">${ li }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</c:if>
+								<c:if test="${ study.sCategory == '공모전'}">
+									<div id="stu2" style="display: none;">
+										<select id="study3" class="studyList" name="sCaName" style="width: 300px;">
+											<c:forEach items="${ compe }" var="comp">
+												<option value="${ comp }">${ comp }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</c:if>
+								<c:if test="${ study.sCategory != '공모전'}">
+									<div id="stu2" style="display: none;">
+										<select id="study3" class="studyList" style="width: 300px;">
+											<c:forEach items="${ compe }" var="comp">
+												<option value="${ comp }">${ comp }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</c:if>
+							</c:if>
+							<c:if test="${ study.sCategory == '공모전'}">
+								<c:if test="${ study.sCategory == '자격증'}">
+									<div id="stu1" style="display: none;">
+										<select id="study2" class="studyList" name="sCaName" style="width: 300px;">
+											<c:forEach items="${ license }" var="li">
+												<option value="${ li }">${ li }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</c:if>
+								<c:if test="${ study.sCategory != '자격증'}">
+									<div id="stu1" style="display: none;">
+										<select id="study2" class="studyList" style="width: 300px;">
+											<c:forEach items="${ license }" var="li">
+												<option value="${ li }">${ li }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</c:if>
+								<c:if test="${ study.sCategory == '공모전'}">
+									<div id="stu2">
+										<select id="study3" class="studyList" name="sCaName" style="width: 300px;">
+											<c:forEach items="${ compe }" var="comp">
+												<option value="${ comp }">${ comp }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</c:if>
+								<c:if test="${ study.sCategory != '공모전'}">
+									<div id="stu2">
+										<select id="study3" class="studyList" style="width: 300px;">
+											<c:forEach items="${ compe }" var="comp">
+												<option value="${ comp }">${ comp }</option>
+											</c:forEach>
+										</select>
+									</div>
+								</c:if>
+							</c:if>
 							</td>
 						</tr>
 
@@ -222,6 +295,21 @@ td{
 				return true;
 			}
 		}
+		
+		ns('#study1').change(function(){
+			if(ns(this).val() == '공모전'){
+				ns('#stu2').show();
+				ns('#stu1').hide();
+				ns('#study2').removeAttr('name');
+				ns('#study3').attr('name', 'sCaName');
+			}
+			if(ns(this).val() == '자격증'){
+				ns('#stu1').show();
+				ns('#stu2').hide();
+				ns('#study3').removeAttr('name');
+				ns('#study2').attr('name', 'sCaName');
+			}
+		});
 	</script>
 	<c:import url="../common/footer.jsp"/>
 </body>

@@ -2,7 +2,6 @@ package com.project.itplanet.competition.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -12,6 +11,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +33,7 @@ import com.project.itplanet.competition.model.service.CompetitionService;
 import com.project.itplanet.competition.model.vo.Cattachment;
 import com.project.itplanet.competition.model.vo.Competition;
 import com.project.itplanet.competition.model.vo.CompetitionReply;
+import com.project.itplanet.member.model.service.MemberService;
 import com.project.itplanet.member.model.vo.CScrap;
 import com.project.itplanet.member.model.vo.Member;
 
@@ -40,6 +41,9 @@ import com.project.itplanet.member.model.vo.Member;
 public class CompetitionController {
 	@Autowired
 	private CompetitionService cService;
+	
+	@Autowired
+	private MemberService mService;
 	
 	
 	@RequestMapping("competitionView.do")
@@ -283,7 +287,7 @@ public class CompetitionController {
 	}
 	
 	@RequestMapping("insertCscap.do")
-	public String insertCscrap(@SessionAttribute("loginUser") Member m, @RequestParam("cId") int cId) {
+	public String insertCscrap(@SessionAttribute("loginUser") Member m, @RequestParam("cId") int cId, HttpSession session) {
 		String userId = m.getUserId();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -293,6 +297,11 @@ public class CompetitionController {
 		int result = cService.insertCscrap(map);
 		
 		if(result > 0) {
+			HashMap<String, String>scrapCountMap = new HashMap<String, String>();
+			scrapCountMap.put("userId", userId);
+
+			HashMap<String,Integer> scrapCount = mService.countScrap(scrapCountMap);
+			session.setAttribute("scrapCount", scrapCount);
 			String page = "competitionDetail.do?cId=" + cId;
 			return "redirect:"+ page;
 		}else {

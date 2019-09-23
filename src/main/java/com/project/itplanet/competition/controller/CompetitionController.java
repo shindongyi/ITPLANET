@@ -77,7 +77,7 @@ public class CompetitionController {
 	
 	@RequestMapping("competitionInsert.do")
 	public String competitionInsertView(@ModelAttribute Competition c, @SessionAttribute("loginUser") Member loginUser,
-										@RequestParam(value="titleImg", required=false) MultipartFile titleImg, HttpServletRequest request,
+										@RequestParam("titleImg") MultipartFile titleImg, HttpServletRequest request,
 										@RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate,
 										@RequestParam(value="contentImg1",required=false) MultipartFile contentImg1,
 										@RequestParam(value="contentImg2",required=false) MultipartFile contentImg2,

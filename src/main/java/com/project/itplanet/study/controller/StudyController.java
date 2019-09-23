@@ -86,8 +86,12 @@ public class StudyController {
 	@RequestMapping("studyUpdateView.do")
 	public ModelAndView studyUpdateView(ModelAndView mv, @ModelAttribute Study study) {
 		ArrayList<Local> list = sService.selectLocal();
+		ArrayList<String> license = sService.selectLicense();
+		ArrayList<String> compe = sService.selectComp();
 		mv.addObject("study", study);
 		mv.addObject("list", list);
+		mv.addObject("license", license);
+		mv.addObject("compe", compe);
 		mv.setViewName("study/studyUpdateView");
 		return mv;
 	}

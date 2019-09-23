@@ -225,7 +225,7 @@ public class MemberController {
 				int codingCount = coService.codingCount(userId);
 				session.setAttribute("codingCount", codingCount);
 				
-				session.setMaxInactiveInterval(600);
+				session.setMaxInactiveInterval(6000);
 				
 
 				String referer = request.getHeader("Referer");

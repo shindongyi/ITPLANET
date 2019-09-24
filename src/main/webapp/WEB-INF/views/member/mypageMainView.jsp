@@ -40,10 +40,10 @@
 								<c:if test="${fn:length(recentComp) > 0 }">
 								<c:forEach var="j" items="${ recentComp }" varStatus="compStatus" begin="0" end="3">
 								<li>
-									<a href="competitionDetail.do?cId=${ j.SID }" class="figure">
+									<a href="competitionDetail.do?cId=${ j.ID }" class="figure">
 										<img src="${ contextPath }/resources/compeloadFiles/${j.IMAGENAME}" width="106" height="106" alt="${ j.TITLE }">
 									</a>
-									<a href="competitionDetail.do?cId=${ j.SID }">
+									<a href="competitionDetail.do?cId=${ j.ID }">
 										<span class="scpName">${ j.TITLE }</span>
 									</a>
 								</li>
@@ -118,7 +118,7 @@
 											<c:set var="link" value="${ j.LINK }"/>
 											</c:if>
 									 		<c:if test='${j.LINK eq null or j.LINK eq ""}'>
-											<c:set var="link" value="competitionDetail.do?cId=${ j.SID }"/>
+											<c:set var="link" value="competitionDetail.do?cId=${ j.ID }"/>
 											</c:if>
 											<a href="${link}">
 											<span class="alarmIco">
